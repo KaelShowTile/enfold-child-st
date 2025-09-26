@@ -21,11 +21,6 @@
 		$t_sub = avia_post_meta( $new, 'subtitle' );
 	}
 
-	if( get_post_meta( get_the_ID(), 'header', true ) != 'no' )
-	{
-		echo avia_title( array( 'heading' => 'strong', 'title' => $title, 'link' => $t_link, 'subtitle' => $t_sub ) );
-	}
-
 	do_action( 'ava_after_main_title' );
 
 	/**
@@ -35,49 +30,113 @@
 	 * @return string
 	 */
 	$main_class = apply_filters( 'avf_custom_main_classes', 'av-main-' . basename( __FILE__, '.php' ), basename( __FILE__ ) );
+?>
 
-	?>
+<div class='container_wrap container_wrap_first main_color <?php avia_layout_class( 'main' ); ?>'>
 
-		<div class='container_wrap container_wrap_first main_color <?php avia_layout_class( 'main' ); ?>'>
+	<div class='container template-tile template-single-tile '>
 
-			<div class='container template-blog template-single-blog '>
+		<main class='content units <?php avia_layout_class( 'content' ); ?> <?php echo avia_blog_class_string(); ?> <?php echo $main_class; ?>' <?php avia_markup_helper( array( 'context' => 'content', 'post_type' => 'tile' ) );?>>
 
-				<main class='content units <?php avia_layout_class( 'content' ); ?> <?php echo avia_blog_class_string(); ?> <?php echo $main_class; ?>' <?php avia_markup_helper( array( 'context' => 'content', 'post_type' => 'post' ) );?>>
+			<h1><?php the_title(); ?></h1>
 
-					<?php
-					/* Run the loop to output the posts.
-					* If you want to overload this in a child theme then include a file
-					* called loop-index.php and that will be used instead.
-					*
-					*/
-					get_template_part( 'includes/loop', 'index' );
+			<div class="tile-sidebar">
+				<!-- Load finish-->
+				<?php if( have_rows('tile_finish') ): ?>
+					<div class="accordion" id="tile-finish-accordion">
+					<?php while( have_rows('tile_finish') ) : the_row();?>
+						<div class="accordion-item">
+							<?php $finishName = get_sub_field('finish_name'); ?>
+							<h2 class="accordion-header">
+							<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#<?php echo $finishName; ?>" aria-expanded="true" aria-controls="collapseOne">
+								<!-- Load finish name-->
+								<h5><?php echo $finishName; ?></h5>
+								<!-- Load product code-->
+								<span><?php the_sub_field('product_code'); ?></span>
+							</button>
+							</h2>
+							<div id="<?php echo $finishName; ?>" class="accordion-collapse collapse show" data-bs-parent="#tile-finish-accordion">
+								<div class="accordion-body">
+									<!-- Load finish image-->
+									<?php $finishImageID = get_sub_field('finish_image'); 
+									$imageSize = 'medium'; ?>
+									<?php echo wp_get_attachment_image( $finishImageID, $imageSize); ?>
+									<!-- Load sizes-->
+									<?php if( have_rows('tile_size') ): ?>
+										<ul class="tile-size-list">
+										<?php while( have_rows('tile_size') ) : the_row(); ?>
+											<li><?php the_sub_field('tile_size_name'); ?></li>
+										<?php endwhile; ?>
+										</ul>
+									<?php endif ?>
+									<!-- btns-->
+									<div class="tile-sidebar-btns">
+										<a id="add-to-basket" data-product-id="<?php echo $tile_id ?>" data-product-finish="<?php echo $finishName; ?>">Add to Idea Basket</a>
+										<?php if(get_sub_field('visual_theatre')): ?>
+											<a href="<?php the_sub_field('visual_theatre'); ?>">Virtual Theatre</a>
+										<?php endif; ?>
+									</div>
+								</div>
+							</div>
+						</div>
+					<?php endwhile;?>
+					</div>
+				<?php endif;?>
+			</div>
 
-					$blog_disabled = ( avia_get_option('disable_blog') == 'disable_blog' ) ? true : false;
-
-					if( ! $blog_disabled )
-					{
-						//show related posts based on tags if there are any
-						get_template_part( 'includes/related-posts' );
-
-						//wordpress function that loads the comments template "comments.php"
-						comments_template();
-					}
-					?>
-
-				<!--end content-->
-				</main>
-
-				<?php
-
-				$avia_config['currently_viewing'] = 'blog';
-				//get the sidebar
-				get_sidebar();
-
+			<div class="tile-details">
+				<?php //Tile gallery
+					$tile_images = get_field('tile_photo_gallery');
+					$image_size = 'large';
+					if( $tile_images ):
 				?>
+				<div class="swiper" id="tile-gallery">
+					<div class="swiper-wrapper">
+						<?php foreach($tile_images as $image_id): ?>
+						<div class="swiper-slide"><?php echo wp_get_attachment_image( $image_id, $image_size ); ?></div>
+						<?php endforeach; ?>
+					</div>
 
-			</div><!--end container-->
+					<div class="swiper-button-prev"></div>
+					<div class="swiper-button-next"></div>
+					<div class="swiper-scrollbar"></div>
 
-		</div><!-- close default .container_wrap element -->
+				</div>
+				<?php endif; ?>
+				<!-- Tile metas-->		
+				<div class="tile-decripton">
+					<?php the_field('tile_description'); ?>
+					<table class="tile-attributes">
+						<tr>
+							<td>Design</td>
+							<td><?php the_field('tile_design'); ?></td>
+						</tr>
+						<tr>
+							<td>Material</td>
+							<td><?php the_field('tile_material'); ?></td>
+						</tr>
+						<tr>
+							<td>Application</td>
+							<td><?php the_field('tile_application'); ?></td>
+						</tr>
+						<tr>
+							<td>variation</td>
+							<td><?php the_field('tile_variation'); ?></td>
+						</tr>
+						<tr>
+							<td>Faces</td>
+							<td><?php the_field('tile_faces'); ?></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+
+		<!--end content-->
+		</main>
+
+	</div><!--end container-->
+
+</div><!-- close default .container_wrap element -->
 
 <?php
 		get_footer();

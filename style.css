@@ -2,3 +2,11 @@
 Theme Name: Enfold Child for ST
 Template: enfold
 */
+
+/* single tile */
+.tile-sidebar{width: 430px; float: left;}
+
+.tile-details{width: calc(100% - 480px); margin-left: 50px; float: right;}
+#tile-gallery .swiper-slide{width: auto;}
+
+.tile-attributes tr:nth-child(even){color: #333;}
