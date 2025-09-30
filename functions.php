@@ -28,3 +28,25 @@ add_filter('wp_editor_set_quality', function($quality, $mime_type) {
     if ($mime_type === 'image/png') return 6;       // PNG compression level
     return $quality; // Default for others
 }, 10, 2);
+
+// limit output content length
+function stCutText($text) {
+    $maxLength = 140;
+    
+    // Check if text is already within limit
+    if (strlen($text) <= $maxLength) {
+        return $text;
+    }
+    
+    // Truncate to 80 characters and find last space
+    $truncated = substr($text, 0, $maxLength);
+    $lastSpace = strrpos($truncated, ' ');
+    
+    if ($lastSpace !== false) {
+        // Cut at last complete word
+        return substr($truncated, 0, $lastSpace) . '...';
+    } else {
+        // No spaces found, hard truncate
+        return $truncated . '...';
+    }
+}

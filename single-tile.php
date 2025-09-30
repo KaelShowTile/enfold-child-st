@@ -7,7 +7,6 @@
 	 * get_header is a basic wordpress function, used to retrieve the header.php file in your theme directory.
 	 */
 	get_header();
-
     $tile_id = get_the_ID();
 
 	$title = __( 'Tile', 'avia_framework' ); //default blog title
@@ -138,6 +137,5 @@
 
 </div><!-- close default .container_wrap element -->
 
-<?php
-		get_footer();
+<?php get_footer();
 
