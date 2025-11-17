@@ -64,13 +64,16 @@
 									<?php if( have_rows('tile_size') ): ?>
 										<ul class="tile-size-list">
 										<?php while( have_rows('tile_size') ) : the_row(); ?>
-											<li><?php the_sub_field('tile_size_name'); ?></li>
+											<li>
+												<?php the_sub_field('tile_size_name'); ?>
+											<a id="add-to-basket" data-product-name="<?php echo the_title() . ' - ' . $finishName . ' - ' . get_sub_field('tile_size_name') ; ?>" data-product-image_id="<?php echo $finishImageID; ?>" data-product-image_url="<?php echo wp_get_attachment_image_url($finishImageID, 'medium'); ?>">Add to Idea Basket</a>
+											</li>
 										<?php endwhile; ?>
 										</ul>
 									<?php endif ?>
 									<!-- btns-->
 									<div class="tile-sidebar-btns">
-										<a id="add-to-basket" data-product-id="<?php echo $tile_id ?>" data-product-finish="<?php echo $finishName; ?>">Add to Idea Basket</a>
+										
 										<?php if(get_sub_field('visual_theatre')): ?>
 											<a href="<?php the_sub_field('visual_theatre'); ?>">Virtual Theatre</a>
 										<?php endif; ?>
@@ -138,4 +141,3 @@
 </div><!-- close default .container_wrap element -->
 
 <?php get_footer();
-

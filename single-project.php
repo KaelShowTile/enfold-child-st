@@ -45,7 +45,7 @@
 
 			<!-- Project Video -->
 			<?php if(get_field('project_video')): ?>
-			<?php $video_shortcode = "[av_video src='" . get_field('project_video') . "' mobile_image='' attachment='' attachment_size='' video_loop='aviaTBvideo_loop' video_controls='aviaTBvideo_controls' format='16-9' width='16' height='9' conditional_play='' id='' custom_class='' template_class='' av_uid='av-mg5wqzoh' sc_version='1.0']"; ?>
+			<?php $video_shortcode = "[av_video src='" . get_field('project_video') . "' video_loop='aviaTBvideo_loop' video_controls='aviaTBvideo_controls' format='16-9' width='16' height='9' id='' sc_version='1.0']"; ?>
 
 			<div class="project-video-container st_container_fullsize">
 				<?php echo do_shortcode($video_shortcode); ?>
@@ -129,8 +129,7 @@
 						<a href="<?php echo $tile_link; ?>">
 							<div class="single-finish-card">
 								<?php echo wp_get_attachment_image( $finish['finish_image'], 'medium'); ?>
-								<h5><?php echo $tile_title; ?></h5>
-								<p><?php echo $finish['finish_name']; ?></p>
+								<h5><?php echo $tile_title . " " . $finish['finish_name']; ?></h5>
 								<p><?php echo $finish['product_code']; ?></p>
 							</div>
 						</a>

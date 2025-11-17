@@ -5,6 +5,34 @@ Template: enfold
 
 /* globe */
 .swiper-slide{width: auto;}
+.image-overlay.overlay-type-extern{display: none !important;}
+
+/* tag cloud */
+.category-display-list .category-item{display: inline-block; text-transform: uppercase; font-weight: 600; margin: 40px 0 10px;}
+.category-display-list .category-item.child-category{text-transform: capitalize; font-weight: 500; margin: 0; cursor: pointer;}
+.category-item.child-category.selected{cursor: not-allowed; color: #ccc; text-decoration: line-through;}
+.category-display-list .category-item.no-collection{cursor: not-allowed; color: #ccc;}
+#collection-category-fliter-accordion .accordion-item{border-width: 0;}
+#collection-category-fliter-accordion .accordion-button{background: transparent; box-shadow: none; padding: 0; color: #000;}
+#collection-category-fliter-accordion .accordion-button:after{display: none;}
+#collection-category-fliter-accordion .accordion-collapse .accordion-body{padding: 0;}
+#collection-category-fliter-accordion .accordion-collapse .accordion-body .child-category{padding-left: 10px;}
+
+/* header */
+.container.av-logo-container{position: relative; padding-top: 25px;}
+.av-logo-container .logo-left-container{position: absolute; top: 0; left: 0; width: 25%; margin-top: 10px;}
+.av-logo-container .logo-left-container{color: #333; font-weight: 600;}
+.av-logo-container .logo-left-container .phone-number::before{content: "\e854"; font-family: 'entypo-fontello'; margin-right: 5px;}
+.av-logo-container .logo-right-container{position: absolute; top: 0; right: 0; width: 25%; margin-top: 20px;}
+.av-logo-container .logo-right-container a{float: right; line-height: 18px;}
+.av-logo-container .logo-right-container img{width: 24px; float: right;}
+.av-logo-container .logo-right-container #search-tile{margin-bottom: 0; max-width: 200px; border-width: 0 0 1px 0; font-size: 14px; padding: 3px 0; float: right; margin-right: 15px; background-color: #fff !important; color: #333 !important; border-color: #666 !important;;}
+.av-logo-container .logo-right-container #search-tile:focus{box-shadow: none;}
+.av-logo-container .logo-right-container #search-tile::placeholder{color: #000;}
+.av-logo-container .inner-container{margin: auto; width: 50%;}
+
+#header_main_alternate{padding-top: 5px; box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.05);}
+#header_main_alternate .menu-item .avia-menu-text{color: #333; font-weight: 500; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.3px;}
 
 /* single tile */
 .tile-sidebar{width: 430px; float: left;}
@@ -14,3 +42,8 @@ Template: enfold
 /* single collection */
 .collection-container{display: inline-block; width: 100%;}
 .collection-tiles-container a{width: 25%; float: left;}
+
+/* collection archive*/
+.collection-list-container{display: flex; flex-wrap: wrap; gap: 40px;}
+.collection-list-container:before{display: none;}
+.collection-list-container .collection-card{width: calc((100% - 80px) / 3);}
