@@ -58,34 +58,34 @@
 					<?php the_field('project_description'); ?>
 				</div>
 				<div class="flex_column av_one_half avia-builder-el-2 el_after_av_one_half avia-builder-el-last flex_column_div">
-					<table>
+					<table class="collection-description-container">
 					<?php if(get_field('project_designer')): ?>
 						<tr>
-							<td class="meta_name">Designer</td>
+							<td class="attribute-name">Designer</td>
 							<td><?php the_field('project_designer') ?></td>
 						</tr>
 					<?php endif; ?>
 					<?php if(get_field('project_builder')): ?>
 						<tr>
-							<td class="meta_name">Builder</td>
+							<td class="attribute-name">Builder</td>
 							<td><?php the_field('project_builder') ?></td>
 						</tr>
 					<?php endif; ?>
 					<?php if(get_field('project_developer')): ?>
 						<tr>
-							<td class="meta_name">Developer</td>
+							<td class="attribute-name">Developer</td>
 							<td><?php the_field('project_developer') ?></td>
 						</tr>
 					<?php endif; ?>
 					<?php if(get_field('project_architect')): ?>
 						<tr>
-							<td class="meta_name">Architect</td>
+							<td class="attribute-name">Architect</td>
 							<td><?php the_field('project_architect') ?></td>
 						</tr>
 					<?php endif; ?>
 					<?php if(get_field('project_stylist')): ?>
 						<tr>
-							<td class="meta_name">Stylist</td>
+							<td class="attribute-name">Stylist</td>
 							<td><?php the_field('project_stylist') ?></td>
 						</tr>
 					<?php endif; ?>
@@ -118,6 +118,7 @@
 				<div class="inner-container-heading">
 					<h2>Featured Products</h2>
 				</div>
+				<div class="project-tile-list">
 				<?php //loop tile
 				foreach($project_related_tile as $tile): 
 					$tile_link = get_permalink( $tile );
@@ -126,7 +127,7 @@
 					//loop finish
 					if($tile_finish):
 						foreach($tile_finish as $finish): ?>
-						<a href="<?php echo $tile_link; ?>">
+						<a href="<?php echo $tile_link; ?>" class="single-finish-card-container">
 							<div class="single-finish-card">
 								<?php echo wp_get_attachment_image( $finish['finish_image'], 'medium'); ?>
 								<h5><?php echo $tile_title . " " . $finish['finish_name']; ?></h5>
@@ -136,6 +137,7 @@
 						<?php endforeach; ?>
 					<?php endif; ?>
 				<?php endforeach; ?>
+				</div>
 				
 			</div>
 			<?php endif; ?>
@@ -143,6 +145,7 @@
 			<!-- House Tour -->
 			<?php if( get_field('project_house_tour') ): ?>
 				<div class="project-house-tour-container container_wrap fullsize">
+					<h2>House Tour</h2>
 					<iframe src="<?php echo get_field('project_house_tour')?>" width="100%" height="600px"></iframe>
 				</div>
 			<?php endif; ?>

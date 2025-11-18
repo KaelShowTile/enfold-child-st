@@ -30,7 +30,7 @@ function enqueue_swiper_scripts() {
 // Enqueue archive collection category JS
 add_action( 'wp_enqueue_scripts', 'enqueue_archive_collection_scripts' );
 function enqueue_archive_collection_scripts() {
-    if ( is_tax( 'collection_category' ) ) {
+    if ( is_tax( 'product_category' ) ) {
         wp_enqueue_script( 'archive-collection-category-js', get_stylesheet_directory_uri() . '/assets/js/archive-collection-category.js', array('jquery'), '1.0.0', true );
         wp_localize_script( 'archive-collection-category-js', 'ajax_object', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
     }
@@ -81,7 +81,7 @@ function enqueue_all_collection_scripts() {
 add_action( 'wp_enqueue_scripts', 'enqueue_load_more_scripts' );
 function enqueue_load_more_scripts() {
     // Load on taxonomy pages or all-collection page
-    if ( is_tax( 'collection_category' ) || is_page_template( 'all-collection.php' ) ) {
+    if ( is_tax( 'product_category' ) || is_page_template( 'all-collection.php' ) ) {
         wp_enqueue_script( 'load-more-items-js', get_stylesheet_directory_uri() . '/assets/js/load-more-items.js', array('jquery'), '1.0.0', true );
         wp_localize_script( 'load-more-items-js', 'st_ajax_object', array(
             'ajax_url' => admin_url( 'admin-ajax.php' ),
@@ -132,16 +132,16 @@ function stCutText($text) {
 // Function to get collections HTML
 function get_collections_html($offset = 0, $limit = 12, $term_ids = null, $load_more = false, $container_class = 'collection-list-container fliter-collection') {
     $args = array(
-        'post_type' => 'collection',
+        'post_type' => 'product',
         'posts_per_page' => $limit,
         'offset' => $offset,
     );
     
-    if (is_tax('collection_category')) {
+    if (is_tax('product_category')) {
         $term = get_queried_object();
         $args['tax_query'] = array(
             array(
-                'taxonomy' => 'collection_category',
+                'taxonomy' => 'product_category',
                 'field'    => 'term_id',
                 'terms'    => $term->term_id,
             ),
@@ -150,7 +150,7 @@ function get_collections_html($offset = 0, $limit = 12, $term_ids = null, $load_
         $terms = is_array($term_ids) ? $term_ids : array($term_ids);
         $args['tax_query'] = array(
             array(
-                'taxonomy' => 'collection_category',
+                'taxonomy' => 'product_category',
                 'field'    => 'term_id',
                 'terms'    => $terms,
             ),
@@ -220,7 +220,7 @@ function get_collections_html($offset = 0, $limit = 12, $term_ids = null, $load_
         if ($current_count < $total_posts) {
             $next_offset = $current_count;
             $term_id_param = '';
-            if (is_tax('collection_category')) {
+            if (is_tax('product_category')) {
                 $term = get_queried_object();
                 $term_id_param = $term->term_id;
             } elseif ($term_ids !== null && !empty($term_ids)) {
@@ -244,11 +244,11 @@ function get_collections_html($offset = 0, $limit = 12, $term_ids = null, $load_
 function get_total_collections() {
     $term = get_queried_object();
     $args = array(
-        'post_type' => 'collection',
+        'post_type' => 'product',
         'posts_per_page' => -1,
         'tax_query' => array(
             array(
-                'taxonomy' => 'collection_category',
+                'taxonomy' => 'product_category',
                 'field'    => 'term_id',
                 'terms'    => $term->term_id,
             ),
@@ -268,7 +268,7 @@ function generate_collections_xml() {
     $dom->appendChild($root);
 
     $args = array(
-        'post_type' => 'collection',
+        'post_type' => 'product',
         'posts_per_page' => -1,
     );
     $query = new WP_Query($args);

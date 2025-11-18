@@ -48,7 +48,7 @@
 						<div class="category-display-list">
 							<?php
 							$terms = get_terms( array(
-								'taxonomy' => 'collection_category',
+								'taxonomy' => 'product_category',
 								'hide_empty' => false,
 							) );
 

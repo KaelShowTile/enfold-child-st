@@ -31,7 +31,7 @@
 
 			<div class='container'>
 
-				<main class='template-page template-collection content  <?php avia_layout_class( 'content' ); ?> units <?php echo $main_class; ?>' <?php avia_markup_helper( array( 'context' => 'content', 'post_type' => 'collection' ) );?>>
+				<main class='template-page template-collection content  <?php avia_layout_class( 'content' ); ?> units <?php echo $main_class; ?>' <?php avia_markup_helper( array( 'context' => 'content', 'post_type' => 'product' ) );?>>
 
                     <h1><?php single_term_title(); ?></h1>
 

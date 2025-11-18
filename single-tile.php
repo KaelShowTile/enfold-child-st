@@ -49,9 +49,7 @@
 							<h2 class="accordion-header">
 							<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#<?php echo $finishName; ?>" aria-expanded="true" aria-controls="collapseOne">
 								<!-- Load finish name-->
-								<h5><?php echo $finishName; ?></h5>
-								<!-- Load product code-->
-								<span><?php the_sub_field('product_code'); ?></span>
+								<h5><?php echo $finishName; ?><br><span>Code: <?php the_sub_field('product_code'); ?></span></h5>
 							</button>
 							</h2>
 							<div id="<?php echo $finishName; ?>" class="accordion-collapse collapse show" data-bs-parent="#tile-finish-accordion">
@@ -108,25 +106,25 @@
 				<!-- Tile metas-->		
 				<div class="tile-decripton">
 					<?php the_field('tile_description'); ?>
-					<table class="tile-attributes">
+					<table class="collection-description-container">
 						<tr>
-							<td>Design</td>
+							<td class="attribute-name">Design</td>
 							<td><?php the_field('tile_design'); ?></td>
 						</tr>
 						<tr>
-							<td>Material</td>
+							<td class="attribute-name">Material</td>
 							<td><?php the_field('tile_material'); ?></td>
 						</tr>
 						<tr>
-							<td>Application</td>
+							<td class="attribute-name">Application</td>
 							<td><?php the_field('tile_application'); ?></td>
 						</tr>
 						<tr>
-							<td>variation</td>
+							<td class="attribute-name">variation</td>
 							<td><?php the_field('tile_variation'); ?></td>
 						</tr>
 						<tr>
-							<td>Faces</td>
+							<td class="attribute-name">Faces</td>
 							<td><?php the_field('tile_faces'); ?></td>
 						</tr>
 					</table>

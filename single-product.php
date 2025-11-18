@@ -174,7 +174,7 @@
 						<?php if (!empty($collection_design)): 
 						$design_string = implode(", ", $collection_design); ?>
 						<tr>
-							<td>Design</td>
+							<td class="attribute-name">Design</td>
 							<td><?php echo $design_string; ?></td>
 						</tr>
 						<?php endif; ?>
@@ -182,7 +182,7 @@
 						<?php if (!empty($collection_material)): 
 						$material_string = implode(", ", $collection_material); ?>
 						<tr>
-							<td>Material</td>
+							<td class="attribute-name">Material</td>
 							<td><?php echo $material_string; ?></td>
 						</tr>
 						<?php endif; ?>
@@ -190,7 +190,7 @@
 						<?php if (!empty($collection_application)): 
 						$application_string = implode(", ", $collection_application); ?>
 						<tr>
-							<td>Application</td>
+							<td class="attribute-name">Application</td>
 							<td><?php echo $application_string; ?></td>
 						</tr>
 						<?php endif; ?>
@@ -198,14 +198,14 @@
 						<?php if (!empty($collection_variation)): 
 						$variation_string = implode(", ", $collection_variation); ?>
 						<tr>
-							<td>Variation</td>
+							<td class="attribute-name">Variation</td>
 							<td><?php echo $variation_string; ?></td>
 						</tr>
 						<?php endif; ?>
 
 						<?php if (!empty($grouped_finish)): ?>
 						<tr>
-							<td>Finish | Size</td>
+							<td class="attribute-name">Finish | Size</td>
 							<td>
 								<?php foreach($grouped_finish as $finish): ?>
 									<p><?php echo $finish['finish_name']; ?> | <?php echo $finish['finish_size']; ?></p>
@@ -223,8 +223,9 @@
 				<div class="inner-container-heading">
 					<h2>Colours</h2>
 				</div>
+				<div class="collection-tiles-list">
 				<?php foreach($collection_tiles_list as $tile): ?>
-					<a href="<?php echo $tile['title_link']; ?>">
+					<a href="<?php echo $tile['title_link']; ?>" class="single-tile-card-container">
 						<div class="single-tile-card">
 							<img src="<?php echo $tile['title_thumb_url']; ?>">
 							<div class="tile-card-detail">
@@ -234,24 +235,27 @@
 						</div>
 					</a>
 				<?php endforeach; ?>
+				</div>
 			</div>
 			
 			<!-- Related project -->
 			<?php if($collection_projects):?>
 			<div class="collection-tile-container collection-container container">
 				<div class="inner-container-heading">
-					<h2>Product</h2>
+					<h2><?php echo the_title(); ?> Project</h2>
 				</div>
-
+				<div class="collection-project-list">
 				<?php foreach($collection_projects as $project): ?>
-				</div class="single-project-card">
-					<?php echo wp_get_attachment_image(get_field('project_photos', $project)[0], 'medium' ); ?>
-					<h5><?php echo get_the_title($project); ?></h5>
-					<?php $project_des = stCutText(get_field('project_description', $project));?>
-					<p><?php echo $project_des; ?></p>
-				</div>
+					<a href="<?php echo get_permalink($project); ?>" class="single-project-card-container">
+						<div class="single-project-card">
+							<?php echo wp_get_attachment_image(get_field('project_photos', $project)[0], 'medium' ); ?>
+							<span><?php the_field('project_type', $project); ?></span>
+							<h5><?php echo get_the_title($project); ?></h5>
+							<p><?php echo stCutText(get_field('project_description', $project));?></p>
+						</div>
+					</a>
 				<?php endforeach; ?>
-
+				</div>
 			</div>
 			<?php endif;?>
 
