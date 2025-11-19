@@ -290,7 +290,7 @@ function generate_collections_xml() {
             $collection->appendChild($link_elem);
 
             // Categories
-            $terms = get_the_terms($collection_id, 'collection_category');
+            $terms = get_the_terms($collection_id, 'product_category');
             if ($terms && !is_wp_error($terms)) {
                 $categories = $dom->createElement('categories');
                 foreach ($terms as $term) {
@@ -347,6 +347,7 @@ function generate_collections_xml() {
 
     $dom->save($xml_file);
 }
+
 
 // Schedule daily XML generation at 3:00 AM
 if (!wp_next_scheduled('generate_collections_xml')) {
