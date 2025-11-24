@@ -161,7 +161,6 @@ function get_collections_html($offset = 0, $limit = 12, $term_ids = null, $load_
     
     $html = '';
     if ($query->have_posts()) {
-        error_log('has posts');
         while ($query->have_posts()) {
             $query->the_post();
             $title = get_the_title();
