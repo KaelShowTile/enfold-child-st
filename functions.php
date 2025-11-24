@@ -269,6 +269,7 @@ function get_total_collections() {
     return $query->found_posts;
 }
 
+generate_collections_xml();
 // Function to generate collections XML
 function generate_collections_xml() {
     $upload_dir = wp_upload_dir();
