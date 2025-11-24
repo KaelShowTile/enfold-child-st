@@ -42,7 +42,7 @@
 				<main class='template-page content  <?php avia_layout_class( 'content' ); ?> units <?php echo $main_class; ?>' <?php avia_markup_helper(array('context' => 'content','post_type'=>'page'));?>>
 				<!--idea basket content-->
 				<div class="idea-basket-container">
-					<h1>Your Idea Basket</h1>
+					<h1>Idea Basket</h1>
 					<div id="basket-items" class="basket-items-list">
 						<!-- Items will be loaded here -->
 					</div>

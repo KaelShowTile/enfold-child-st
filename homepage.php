@@ -165,7 +165,7 @@
 						$project_description = substr($project_description, 0, strrpos(substr($project_description, 0, $project_des_length), ' ')) . '...';
 					}
 					$project_link = get_permalink();
-            		$project_thumb = get_the_post_thumbnail_url($project_id, 'large');
+            		$project_thumb = get_the_post_thumbnail_url($project_id, 'project-vertical');
 
 					$other_project_output_html .= '<div class="swiper-slide">';
 					$other_project_output_html .= '<a href="' . $project_link . '" ><img src="' . $project_thumb . '"></a>';

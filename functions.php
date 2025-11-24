@@ -107,6 +107,18 @@ add_filter('wp_editor_set_quality', function($quality, $mime_type) {
     return $quality; // Default for others
 }, 10, 2);
 
+// Add custom image size to Enfold's image selection
+add_filter('avf_ajax_preview_image_sizes', 'add_custom_size_to_enfold');
+function add_custom_size_to_enfold($sizes) {
+    // Add your custom size to the array
+    $sizes['project-vertical'] = array(
+        'width' => 320, 
+        'height' => 480,
+        'crop' => true
+    );
+    return $sizes;
+}
+
 // limit output content length
 function stCutText($text) {
     $maxLength = 140;

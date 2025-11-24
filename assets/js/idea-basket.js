@@ -21,7 +21,7 @@ jQuery(document).ready(function($) {
 
         basketItems.forEach(function(item, index) {
             const itemHtml = `
-                <div class="basket-item" data-index="${index}">
+                <div class="basket-item flex_column av_one_fifth flex_column_div" data-index="${index}">
                     <div class="basket-item-image">
                         ${item.imageUrl ? `<img src="${item.imageUrl}" alt="${item.name}" loading="lazy">` : '<div class="no-image">No Image</div>'}
                     </div>

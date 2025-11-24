@@ -182,3 +182,8 @@ svg.swiper-navigation-icon{height: 14px; color: #000000; stroke: #000;}
 .home-blog-inner .swiper-slide img{width: 100%;}
 .home-blog-inner .swiper-slide h3{margin: 40px auto 10px;}
 .home-blog-inner .swiper-slide p{font-size: 0.8rem;}
+
+/* other pages */
+.idea-basket-container h1{text-align: center;}
+.basket-items-list .basket-item.av_one_fifth{margin: auto 1%; width: 18%;}
+.basket-items-list .basket-item .basket-item-title{font-size: 1rem;}
