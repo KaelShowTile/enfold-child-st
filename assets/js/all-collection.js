@@ -10,7 +10,8 @@ jQuery(document).ready(function($) {
             var parsedData = JSON.parse(storedData);
             if (parsedData.timestamp && parsedData.timestamp === today) {
                 collectionsData = parsedData.data;
-                fetchNewData();
+                fetchNewData();//testing
+                //initializePage();
                 console.log('Loaded collections data from localStorage (today)');
             } else {
                 console.log('LocalStorage data is outdated, fetching new data...');

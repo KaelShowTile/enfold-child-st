@@ -251,6 +251,90 @@ function get_collections_html($offset = 0, $limit = 12, $term_ids = null, $load_
     return $html;
 }
 
+function get_project_html($offset = 0, $limit = 12, $term_ids = null, $load_more = false, $container_class = 'project-list-container fliter-project') {
+    $args = array(
+        'post_type' => 'project',
+        'posts_per_page' => $limit,
+        'offset' => $offset,
+    );
+    
+    if (is_tax('project_category')) {
+        $term = get_queried_object();
+        $args['tax_query'] = array(
+            array(
+                'taxonomy' => 'project_category',
+                'field'    => 'term_id',
+                'terms'    => $term->term_id,
+            ),
+        );
+    } elseif ($term_ids !== null && !empty($term_ids)) {
+        $terms = is_array($term_ids) ? $term_ids : array($term_ids);
+        $args['tax_query'] = array(
+            array(
+                'taxonomy' => 'project_category',
+                'field'    => 'term_id',
+                'terms'    => $terms,
+            ),
+        );
+    }
+    // If term_ids is null and not on tax page, load all projects
+    $query = new WP_Query($args);
+    
+    $html = '';
+    if ($query->have_posts()) {
+        while ($query->have_posts()) {
+            $query->the_post();
+            $title = get_the_title();
+            $link = get_permalink();
+            $project_id = get_the_ID();
+            $project_thumb =  wp_get_attachment_image(get_field('project_photos', $project_id)[0], 'project-vertical' );
+            $project_type = get_field('project_type', $project_id);
+            $project_des = stCutText(get_field('project_description', $project_id));
+            //output html
+            $html .= '<a href="' . $link . '">';
+            $html .= '<div class="single-project-card">';
+            $html .= $project_thumb;
+            $html .= '<span>' . $project_type . '</span>';
+            $html .= '<h5>' . $title . '</h5>';
+            $html .= '<p>' . $project_des . '</p>';
+            $html .= '</div></a>';
+        }
+        wp_reset_postdata();
+    }
+
+    // Add load more button if enabled and there are more posts
+    if ($load_more) {
+        // Get total count for this query
+        $total_args = $args;
+        $total_args['posts_per_page'] = -1; // Get all posts for count
+        $total_query = new WP_Query($total_args);
+        $total_posts = $total_query->found_posts;
+        wp_reset_postdata();
+
+        $current_count = $offset + $query->post_count;
+        if ($current_count < $total_posts) {
+            $next_offset = $current_count;
+            $term_id_param = '';
+            if (is_tax('product_category')) {
+                $term = get_queried_object();
+                $term_id_param = $term->term_id;
+            } elseif ($term_ids !== null && !empty($term_ids)) {
+                $term_id_param = is_array($term_ids) ? implode(',', $term_ids) : $term_ids;
+            }
+
+            $html .= '<div class="load-more-container" style="text-align: center; margin: 20px 0;">';
+            $html .= '<button class="load-more-btn btn btn-primary" data-offset="' . $next_offset . '" data-limit="' . $limit . '" data-term-ids="' . $term_id_param . '" data-total="' . $total_posts . '">Load More Collections</button>';
+            $html .= '</div>';
+        }
+    }
+
+    if($offset == 0){
+        $html = '<div class="' . esc_attr($container_class) . '">' . $html . '</div>';
+    }
+    
+    return $html;
+}
+
 // Function to get total collections count
 function get_total_collections() {
     $term = get_queried_object();
@@ -269,6 +353,8 @@ function get_total_collections() {
     return $query->found_posts;
 }
 
+// Testing only
+generate_collections_xml();
 // Function to generate collections XML
 function generate_collections_xml() {
     $upload_dir = wp_upload_dir();
