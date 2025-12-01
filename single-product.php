@@ -246,14 +246,12 @@
 				</div>
 				<div class="collection-project-list">
 				<?php foreach($collection_projects as $project): ?>
-					<a href="<?php echo get_permalink($project); ?>" class="single-project-card-container">
-						<div class="single-project-card">
-							<?php echo wp_get_attachment_image(get_field('project_photos', $project)[0], 'project-vertical' ); ?>
-							<span><?php the_field('project_type', $project); ?></span>
-							<h5><?php echo get_the_title($project); ?></h5>
-							<p><?php echo stCutText(get_field('project_description', $project));?></p>
-						</div>
-					</a>
+					<div class="single-project-card single-project-card-container">
+						<a href="<?php echo get_permalink($project); ?>"><?php echo wp_get_attachment_image(get_field('project_photos', $project)[0], 'project-vertical' ); ?></a>
+						<span><?php the_field('project_type', $project); ?></span>
+						<a href="<?php echo get_permalink($project); ?>"><h5><?php echo get_the_title($project); ?></h5></a>
+						<p><?php echo stCutText(get_field('project_description', $project));?></p>
+					</div>
 				<?php endforeach; ?>
 				</div>
 			</div>

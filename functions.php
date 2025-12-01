@@ -291,13 +291,12 @@ function get_project_html($offset = 0, $limit = 12, $term_ids = null, $load_more
             $project_type = get_field('project_type', $project_id);
             $project_des = stCutText(get_field('project_description', $project_id));
             //output html
-            $html .= '<a href="' . $link . '">';
-            $html .= '<div class="single-project-card">';
-            $html .= $project_thumb;
+            $html .= '<div class="single-project-card single-project-card-container">';
+            $html .= '<a href="' . $link . '">' . $project_thumb . '</a>';
             $html .= '<span>' . $project_type . '</span>';
-            $html .= '<h5>' . $title . '</h5>';
+            $html .= '<a href="' . $link . '"><h5>' . $title . '</h5></a>';
             $html .= '<p>' . $project_des . '</p>';
-            $html .= '</div></a>';
+            $html .= '</div>';
         }
         wp_reset_postdata();
     }
@@ -353,8 +352,6 @@ function get_total_collections() {
     return $query->found_posts;
 }
 
-// Testing only
-generate_collections_xml();
 // Function to generate collections XML
 function generate_collections_xml() {
     $upload_dir = wp_upload_dir();
@@ -388,7 +385,9 @@ function generate_collections_xml() {
 
             // Categories
             $terms = get_the_terms($collection_id, 'product_category');
+            error_log('Collection ID:' . $collection_id);
             if ($terms && !is_wp_error($terms)) {
+                error_log('Has category...');
                 $categories = $dom->createElement('categories');
                 foreach ($terms as $term) {
                     $cat = $dom->createElement('category', htmlspecialchars($term->name));
@@ -396,6 +395,14 @@ function generate_collections_xml() {
                     $categories->appendChild($cat);
                 }
                 $collection->appendChild($categories);
+            }
+
+            if ( is_wp_error( $terms ) ) {
+                error_log( 'WP Error Message: ' . $terms->get_error_message() ); // Tells you if taxonomy is invalid
+            } elseif ( empty( $terms ) ) {
+                error_log( 'Terms are empty/false. The post exists but has no terms assigned in this taxonomy.' );
+            } else {
+                error_log( 'Terms found: ' . print_r( $terms, true ) );
             }
 
             // Images

@@ -2,7 +2,7 @@
 	if ( ! defined( 'ABSPATH' ) ){ die(); }
 
 	/**
-	* Template Name: Idea Basket
+	* Template Name: Submit Tile
 	*/
 
 	global $avia_config, $wp_query;
@@ -33,8 +33,9 @@
 	 */
 	$main_class = apply_filters( 'avf_custom_main_classes', 'av-main-' . basename( __FILE__, '.php' ), basename( __FILE__ ) );
 
-	$submit_link = get_field("submit_form_url", get_the_ID());
 	?>
+
+		<script src="<?php echo get_stylesheet_directory_uri();?>/assets/js/submit-tile.js"></script>
 
 		<div class='container_wrap container_wrap_first main_color <?php avia_layout_class( 'main' ); ?>'>
 
@@ -42,19 +43,11 @@
 
 				<main class='template-page content  <?php avia_layout_class( 'content' ); ?> units <?php echo $main_class; ?>' <?php avia_markup_helper(array('context' => 'content','post_type'=>'page'));?>>
 				<!--idea basket content-->
-				<div class="idea-basket-container">
-					<h1>Idea Basket</h1>
-					<div id="basket-items" class="basket-items-list">
-						<!-- Items will be loaded here -->
-					</div>
-					<div id="empty-basket" class="empty-basket" style="display: none;">
-						<p>Your idea basket is empty. Start adding tiles to your basket!</p>
-						<a href="<?php echo home_url(); ?>" class="btn btn-primary">Browse Tiles</a>
-					</div>
-					<div id="submit-btn-container">
-						<a href="<?php echo $submit_link; ?>" class="submit-btn">Tile Enquiry</a>
-					</div>
+				<div id="tile-enquiry-container">
+					
 				</div>
+
+				<div id="empty-list"></div>
 
 				<!--end content-->
 				</main>

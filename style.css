@@ -118,8 +118,8 @@ ul{padding-left: 0; margin-left: 0;}
 .tile-card-detail h5{font-family: 'Roboto', Helvetica, Arial, sans-serif; font-size: 1rem; margin: 8px 0 0;}
 .tile-card-detail p{font-size: 0.7rem;}
 
-.collection-project-list{margin: auto -1.5%;}
-.single-project-card-container{width: 22.75%; margin: auto 1.5%;}
+.collection-project-list{margin: auto -1.5%; display: flex; flex-wrap: wrap;}
+.single-project-card-container{width: 22.75%; margin: auto 1.5% 0;}
 .single-project-card span{font-weight: 500; text-transform: uppercase; font-size: 0.8rem; margin-top: 40px; display: inline-block; width: 100%;}
 .single-project-card h5{font-size: 1.5rem; font-weight: 600;}
 .single-project-card p{font-size: 0.7rem;}
@@ -197,4 +197,7 @@ svg.swiper-navigation-icon{height: 14px; color: #000000; stroke: #000;}
 .idea-basket-container h1{text-align: center;}
 .basket-items-list .basket-item.av_one_fifth{margin: auto 1%; width: 18%;}
 .basket-items-list .basket-item .basket-item-title{font-size: 1rem;}
+.basket-item-date{font-size: 0.8rem;}
 
+#submit-btn-container{display: inline-block; width: 100%; text-align: center; margin-top: 50px;}
+#submit-btn-container .submit-btn{background: #ff4444; color: #fff; padding: 10px 40px 9px; border-radius: 30px;}
