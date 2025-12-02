@@ -47,7 +47,9 @@
 					
 				</div>
 
-				<div id="empty-list"></div>
+				<div id="empty-list">
+					<p>Please add tiles to your busket first.</p>
+				</div>
 
 				<!--end content-->
 				</main>

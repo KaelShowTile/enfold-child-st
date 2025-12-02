@@ -21,22 +21,22 @@ jQuery(document).ready(function($) {
 
         basketItems.forEach(function(item, index) {
             const itemHtml = `
-                <tr class="submit-form-row" data-index="${index}">
-                    <td class="basket-item-image">
+                <div class="submit-form-row" data-index="${index}">
+                    <div class="basket-item-image">
                         ${item.imageUrl ? `<img src="${item.imageUrl}" alt="${item.name}" loading="lazy">` : '<div class="no-image">No Image</div>'}
-                    </td>
-                    <td class="basket-item-details">
+                    </div>
+                    <div class="basket-item-details">
                         <p class="basket-item-title">${escapeHtml(item.name)}</p>
-                    </td>
-                    <td class="basket-item-note">
-                        <input></input>
-                    </td>
-                    <td class="basket-item-actions">
-                        <button class="btn btn-danger btn-sm remove-item" data-index="${index}">
+                    </div>
+                    <div class="basket-item-note">
+                        <textarea rows="6"></textarea>
+                    </div>
+                    <div class="basket-item-actions">
+                        <button class="form-remover" data-index="${index}">
                             <i class="fas fa-trash"></i> Remove
                         </button>
-                    </td>
-                </tr>
+                    </div>
+                </div>
             `;
             $basketContainer.append(itemHtml);
         });
