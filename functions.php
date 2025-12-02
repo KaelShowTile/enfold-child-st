@@ -251,7 +251,7 @@ function get_collections_html($offset = 0, $limit = 12, $term_ids = null, $load_
     return $html;
 }
 
-function get_project_html($offset = 0, $limit = 12, $term_ids = null, $load_more = false, $container_class = 'project-list-container fliter-project') {
+function get_project_html($offset = 0, $limit = 12, $term_ids = null, $load_more = false, $container_class = 'project-list-container no-fliter') {
     $args = array(
         'post_type' => 'project',
         'posts_per_page' => $limit,

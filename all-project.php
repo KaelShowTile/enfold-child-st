@@ -41,30 +41,7 @@
 
 				<h1 class="page-title">Project</h1>
 
-				<main class='template-page content  <?php avia_layout_class( 'content' ); ?> units <?php echo $main_class; ?>' <?php avia_markup_helper(array('context' => 'content','post_type'=>'page'));?>>
-
-					<div class="category-list flex_column av_one_fourth  avia-builder-el-0  el_before_av_three_fourth  avia-builder-el-first  first flex_column_div">
-						<div class="active-categories"></div>
-						<div class="category-display-list">
-							<?php
-							$terms = get_terms( array(
-								'taxonomy' => 'project_category',
-								'hide_empty' => false,
-							) );
-
-							if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) {
-								display_terms_hierarchically( $terms );
-							}
-							?>
-						</div>
-					</div>
-
-					<div class="flex_column av_three_fourth avia-builder-el-2 el_after_av_one_fourth avia-builder-el-last flex_column_div">
-						<?php echo get_project_html(0, 6, null, true); ?>
-					</div>
-
-				<!--end content-->
-				</main>
+				<?php echo get_project_html(0, 8, null, true); ?>
 
 			</div><!--end container-->
 
