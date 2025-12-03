@@ -99,7 +99,6 @@ ul{padding-left: 0; margin-left: 0;}
 .project-description-container .collection-description-container{margin-top: 0;}
 .project-tile-container{margin: 80px auto 60px;}
 .single-finish-card-container{margin: auto 2%; width: 14.666%; display: inline-block; float: left;}
-.project-tile-list{margin: auto -2%;}
 
 /* single blog */
 #top .fullsize .template-blog .post .entry-content-wrapper{max-width: 100%;}
@@ -202,7 +201,7 @@ svg.swiper-navigation-icon{height: 14px; color: #000000; stroke: #000;}
 .home-blog-inner .swiper-slide h3{margin: 40px auto 10px;}
 .home-blog-inner .swiper-slide p{font-size: 0.8rem;}
 
-.instagram-post-container{padding: 50px;}
+.instagram-post-container{padding-top: 50px;}
 
 /* All project page */
 .project-list-container.fliter-project{display: flex; flex-wrap: wrap; gap: 40px;}

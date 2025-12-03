@@ -41,7 +41,7 @@
 
 		<main class='content units <?php avia_layout_class( 'content' ); ?> <?php echo avia_blog_class_string(); ?> <?php echo $main_class; ?>' <?php avia_markup_helper( array( 'context' => 'content', 'post_type' => 'post' ) );?>>
 
-			<h1><?php the_title(); ?></h1>
+			<h1 class="item-title"><?php the_title(); ?></h1>
 
 			<!-- Project Video -->
 			<?php if(get_field('project_video')): ?>
@@ -118,7 +118,7 @@
 				<div class="inner-container-heading">
 					<h2>Featured Products</h2>
 				</div>
-				<div class="project-tile-list">
+				<div class="collection-tiles-list">
 				<?php //loop tile
 				foreach($project_related_tile as $tile): 
 					$tile_link = get_permalink( $tile );
@@ -127,13 +127,11 @@
 					//loop finish
 					if($tile_finish):
 						foreach($tile_finish as $finish): ?>
-						<a href="<?php echo $tile_link; ?>" class="single-finish-card-container">
-							<div class="single-finish-card">
-								<?php echo wp_get_attachment_image( $finish['finish_image'], 'medium'); ?>
-								<h5><?php echo $tile_title . " " . $finish['finish_name']; ?></h5>
+							<div class="single-tile-card">
+								<a href="<?php echo $tile_link; ?>"><?php echo wp_get_attachment_image( $finish['finish_image'], 'medium'); ?></a>
+								<a href="<?php echo $tile_link; ?>"><h5><?php echo $tile_title . " " . $finish['finish_name']; ?></h5></a>
 								<p><?php echo $finish['product_code']; ?></p>
 							</div>
-						</a>
 						<?php endforeach; ?>
 					<?php endif; ?>
 				<?php endforeach; ?>
