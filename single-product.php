@@ -146,11 +146,11 @@
 
 		<main class='content units <?php avia_layout_class( 'content' ); ?> <?php echo avia_blog_class_string(); ?> <?php echo $main_class; ?>' <?php avia_markup_helper( array( 'context' => 'content', 'post_type' => 'post' ) );?>>
 
-			<h1><?php the_title(); ?></h1>
+			<h1 class="item-title"><?php the_title(); ?></h1>
 
 			<!-- Image gallery -->
 			<?php if($collection_gallery): ?>
-			<div class="collection-gallery-slider collection-container container">
+			<div class="collection-gallery-slider collection-container">
 				<div class="swiper" id="tile-gallery">
 					<div class="swiper-wrapper">
 						<?php foreach($collection_gallery as $image_id): ?>
@@ -165,7 +165,7 @@
 			<?php endif; ?>
 
 			<!-- Description & metas -->
-			<div class="collection-description-container collection-container container">
+			<div class="collection-description-container collection-container">
 				<div class="flex_column av_one_half avia-builder-el-1 el_before_av_one_half avia-builder-el-first first flex_column_div">
 					<?php the_field('collection_description'); ?>
 				</div>
@@ -219,28 +219,26 @@
 			</div>
 			
 			<!-- Colour/tile in collection -->
-			<div class="collection-tiles-container collection-container container">
+			<div class="collection-tiles-container collection-container">
 				<div class="inner-container-heading">
 					<h2>Colours</h2>
 				</div>
 				<div class="collection-tiles-list">
 				<?php foreach($collection_tiles_list as $tile): ?>
-					<a href="<?php echo $tile['title_link']; ?>" class="single-tile-card-container">
-						<div class="single-tile-card">
-							<img src="<?php echo $tile['title_thumb_url']; ?>">
-							<div class="tile-card-detail">
-								<h5><?php echo $tile['tile_title']; ?></h5>
-								<p><?php echo $tile['total_finish']; ?> finishes | <?php echo $tile['total_size']; ?> sizes</p>
-							</div>
+					<div class="single-tile-card">
+						<a href="<?php echo $tile['title_link']; ?>"><img src="<?php echo $tile['title_thumb_url']; ?>"></a>
+						<div class="tile-card-detail">
+							<a href="<?php echo $tile['title_link']; ?>"><h5><?php echo $tile['tile_title']; ?></h5></a>
+							<p><?php echo $tile['total_finish']; ?> finishes | <?php echo $tile['total_size']; ?> sizes</p>
 						</div>
-					</a>
+					</div>		
 				<?php endforeach; ?>
 				</div>
 			</div>
 			
 			<!-- Related project -->
 			<?php if($collection_projects):?>
-			<div class="collection-tile-container collection-container container">
+			<div class="collection-tile-container collection-container">
 				<div class="inner-container-heading">
 					<h2><?php echo the_title(); ?> Project</h2>
 				</div>
@@ -259,7 +257,7 @@
 
 			<!-- Collection QA -->
 			<?php if(have_rows('collection_qna')):?>
-			<div class="collection-qa-container collection-container container">
+			<div class="collection-qa-container collection-container">
 				<div class="accordion" id="collection-qa-accordion">
 				<?php $qna_index = 0; ?>
 				<?php while( have_rows('collection_qna')): the_row();?>

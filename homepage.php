@@ -35,6 +35,8 @@
 
 	//default ACF values
 	$video_slider_id = "1095801320";
+	$mobile_video_slider_id = "1095801320";
+	$mobile_video_ratio = 1;
 
 	$banner_tagline = "";
 	$banner_title = "";
@@ -45,7 +47,10 @@
 	$trending_video_title ="";
 	$trending_video_description ="";
 	$trending_video_link ="";
-	$trending_video_id ="";
+	$trending_video_id ="1095801320";
+	$trending_video_ratio = 1;
+	$trending_video_scale = 1;
+	$trending_video_container_margin = 1;
 
 	$feature_project_output_html = null;
 	$other_project_output_html = null;
@@ -60,6 +65,8 @@
 	if ( function_exists('get_field') ){
 		//video slider
 		$video_slider_id = get_field('homepage_slider_video_id');
+		$mobile_video_slider_id = get_field('homepage_slider_mobile_video_id');
+		$mobile_video_ratio = get_field('mobile_video_ratio');
 
 		//banner
 		$banner_detail = get_field('homepage_banner');
@@ -75,7 +82,10 @@
 		$trending_video_description = $trending_video['trending_video_section_description'];
 		$trending_video_link = $trending_video['trending_video_section_link'];
 		$trending_video_id = $trending_video['trending_video_id'];
-
+		$trending_video_ratio = $trending_video['trending_video_mobile_ratio'];
+		$trending_video_scale = $trending_video['trending_video_mobile_scale'];
+		$trending_video_container_margin = $trending_video_ratio / ($trending_video_scale - 1) * 2;
+		
 		//project section
 		$project_settings = get_field('homepage_project');
 		$project_section = false;
@@ -252,15 +262,16 @@
 
 	<div class='container_wrap container_wrap_first main_color <?php avia_layout_class( 'main' ); ?>'>
 
-		<div class="st-video-container">
+		<div class="st-video-container desktop-only">
 			<div class="st-video-wrapper">
-				<div class="st-video-iframe-container">
-					
-					<iframe src="https://player.vimeo.com/video/<?php echo $video_slider_id; ?>?background=1&autoplay=1&loop=1&muted=1&autopause=0" frameborder="0" allow="autoplay; fullscreen" allowfullscreen>
-					</iframe>
+				<div class="st-video-iframe-container">	
+					<iframe src="https://player.vimeo.com/video/<?php echo $video_slider_id; ?>?background=1&autoplay=1&loop=1&muted=1&autopause=0" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
 				</div>
 			</div>
-			
+		</div>
+
+		<div class="st-mobile-video-container mobile-only">
+			<iframe src="https://player.vimeo.com/video/<?php echo $mobile_video_slider_id; ?>?background=1&autoplay=1&loop=1&muted=1&autopause=0" frameborder="0" allow="autoplay; fullscreen" allowfullscreen style="width:100%; height: calc(100vw / <?php echo $mobile_video_ratio; ?>);"></iframe>
 		</div>
 
 		<div class='container home-banner-container'>
@@ -270,6 +281,7 @@
 					<div class="banner-top-container">
 						<span><?php echo $banner_tagline; ?></span>
 						<h2><?php echo $banner_title; ?></h2>
+						<img src="<?php echo $banner_image_link; ?>" class="mobile-only">	
 					</div>
 					<div class="banner-bottom-container">
 						<p><?php echo $bannner_description; ?></p>
@@ -277,7 +289,7 @@
 					</div>
 				</div>
 
-				<div class="flex_column av_three_fifth avia-builder-el-2 el_after_av_two_fifth avia-builder-el-last flex_column_table_cell av-equal-height-column av-align-top">
+				<div class="flex_column av_three_fifth avia-builder-el-2 el_after_av_two_fifth avia-builder-el-last flex_column_table_cell av-equal-height-column av-align-top desktop-only">
 					<img src="<?php echo $banner_image_link; ?>">	
 				</div>
 			</div>
@@ -296,15 +308,14 @@
 		</div>
 		<?php endif; ?>
 
-		<div class="st-video-container">
+		<div class="st-video-container desktop-only">
 			<div class="st-video-wrapper">
 				<div class="st-video-iframe-container">
-					
 					<iframe src="https://player.vimeo.com/video/<?php echo $trending_video_id; ?>?background=1&autoplay=1&loop=1&muted=1&autopause=0" frameborder="0" allow="autoplay; fullscreen" allowfullscreen>
 					</iframe>
 				</div>
 			</div>
-			
+
 			<!-- Optional content overlay -->
 			<div class="st-overlay bottom-left">
 				<div class="st-overlay-inner">
@@ -312,6 +323,22 @@
 					<h2><?php echo $trending_video_title; ?></h2>
 					<p><?php echo $trending_video_description; ?></p>
 					<a href="<?php echo $trending_video_link; ?>" class="st-link-button white-color-schema">Explore Now ></a>
+				</div>
+			</div>
+		</div>
+
+		<div class="st-mobile-video-container mobile-only" style="margin: calc(100vw / <?php echo $trending_video_container_margin; ?>) 0;">
+			<iframe src="https://player.vimeo.com/video/<?php echo $trending_video_id; ?>?background=1&autoplay=1&loop=1&muted=1&autopause=0" frameborder="0" allow="autoplay; fullscreen" allowfullscreen style="width:100%; height: calc(100vw / <?php echo $trending_video_ratio; ?>); transform: scale(<?php echo $trending_video_scale; ?>);"></iframe>
+
+			<!-- Optional content overlay -->
+			<div class="st-overlay-outer">
+				<div class="st-overlay bottom-left">
+					<div class="st-overlay-inner">
+						<span class="tagline">TRENDING</span>
+						<h2><?php echo $trending_video_title; ?></h2>
+						<p><?php echo $trending_video_description; ?></p>
+						<a href="<?php echo $trending_video_link; ?>" class="st-link-button white-color-schema">Explore Now ></a>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -327,6 +354,11 @@
 			<?php echo $blog_slider_output_html; ?>
 		</div>
 		<?php endif; ?>
+
+		<!-- Instagram plugin -->
+		<div class="container instagram-post-container">
+			<?php echo do_shortcode('[instagram-feed feed=1]'); ?>
+		</div>
 
 	</div><!-- close default .container_wrap element -->
 

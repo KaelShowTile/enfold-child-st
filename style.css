@@ -5,7 +5,7 @@ Template: enfold
 
 /* globe */
 html{font-size: 18px;}
-h1{padding: 10px 10px 0; font-size: 3.5rem; font-weight: 600; font-family: "Crimson Text", serif;}
+h1{padding: 10px 0 0; font-size: 3.5rem; font-weight: 600; font-family: "Crimson Text", serif;}
 h2{font-weight: 600; font-size: 1.8rem; font-family: "Crimson Text", serif;}
 h3, h4, h5, h6{font-family: "Crimson Text", serif;}
 ul{padding-left: 0; margin-left: 0;}
@@ -22,10 +22,11 @@ ul{padding-left: 0; margin-left: 0;}
 .image-overlay.overlay-type-extern .image-overlay-inside:before{display: none;}
 
 .page-title{text-align: center; font-size: 3rem; margin-top: 40px;}
+.item-title{text-align: left; font-size: 3rem; margin-top: 40px;}
 .inner-container-heading h2{margin-top: 20px;}
 
 #top .av-siteloader-wrap.av-transition-with-logo .av-siteloader-cell .av-siteloader{display: none;}
-.category-list .active-categories .active-cat{background: #fff; border-radius: 25px; padding: 0 10px; margin: 0 3px 3px 0;}
+.category-list .active-categories .active-cat{background: #fff; border-radius: 25px; padding: 1px 12px 0; margin: 0 3px 3px 0;}
 
 /* tag cloud */
 .category-display-list .category-item{display: inline-block; text-transform: uppercase; font-weight: 600; margin: 40px 0 10px;}
@@ -82,7 +83,8 @@ ul{padding-left: 0; margin-left: 0;}
 
 /* single collection */
 .collection-container{display: inline-block; width: 100%;}
-.collection-tiles-container a{width: 25%; float: left;}
+.collection-tiles-list{display: flex; flex-wrap: wrap; align-items: flex-end; gap: 40px;}
+.single-tile-card{width: calc((100% - 120px)/4);}
 .collection-description-container{margin-top: 25px;}
 .collection-description-container tr:nth-child(odd){background: #fff;}
 .collection-description-container tr:nth-child(even){color: #000;}
@@ -121,17 +123,15 @@ ul{padding-left: 0; margin-left: 0;}
 #top .st-link-button.white-color-schema{color: rgba(255, 255, 255, 0.8); border-color: rgba(255, 255, 255, 0.8);}
 #top .st-link-button.small-style{display: inline-block; margin-top: 10px; padding: 5px 40px 4px;}
 
-.collection-tiles-list{margin: auto -1.5%;}
 .collection-card .collection-inner-slider-thumb .swiper-wrapper{margin: auto -2%;}
 .collection-card .collection-inner-slider-thumb .slider-thumbnail{width: 10.85% !important; margin: 2% !important;}
 .collection-list-container .collection-card h3{font-size: 1.5rem; margin-top: 10px;}
 
-.single-tile-card-container{width: 22.75%; margin: auto 1.5%;}
 .tile-card-detail h5{font-family: 'Roboto', Helvetica, Arial, sans-serif; font-size: 1rem; margin: 8px 0 0;}
 .tile-card-detail p{font-size: 0.7rem;}
 
-.collection-project-list{margin: auto -1.5%; display: flex; flex-wrap: wrap;}
-.single-project-card-container{width: 22.75%; margin: auto 1.5% 0;}
+.collection-project-list{display: flex; flex-wrap: wrap; align-items: flex-start; gap: 40px;}
+.single-project-card-container{width: calc((100% - 120px)/4);}
 .single-project-card span{font-weight: 500; text-transform: uppercase; font-size: 0.8rem; margin-top: 40px; display: inline-block; width: 100%;}
 .single-project-card h5{font-size: 1.5rem; font-weight: 600;}
 .single-project-card p{font-size: 0.7rem;}
@@ -148,6 +148,7 @@ ul{padding-left: 0; margin-left: 0;}
 .st-video-iframe-container { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);  width: 100%; height: 100%; min-width: 100%; min-height: 100%; background: #000; background-image: url(https://showtile.com.au/staging/wp-content/uploads/2025/12/fade-stagger-squares.svg); background-repeat: no-repeat; background-attachment: fixed; background-position: center; background-size: 50px;}
 .st-video-iframe-container::before { content: ''; display: block; padding-top: 56.25%; }
 .st-video-iframe-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; transform: scale(1.2);  transform-origin: center; }
+.st-overlay-outer{position: relative;}
 .st-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; z-index: 2; pointer-events: none; background: rgba(0, 0, 0, 0.3); }
 .st-overlay h2 {font-size: 3rem; margin-bottom: 1rem; color: #ffff;}
 .st-overlay p {font-size: 0.8rem; color: #ffff;}
@@ -201,10 +202,12 @@ svg.swiper-navigation-icon{height: 14px; color: #000000; stroke: #000;}
 .home-blog-inner .swiper-slide h3{margin: 40px auto 10px;}
 .home-blog-inner .swiper-slide p{font-size: 0.8rem;}
 
+.instagram-post-container{padding: 50px;}
+
 /* All project page */
 .project-list-container.fliter-project{display: flex; flex-wrap: wrap; gap: 40px;}
 .project-list-container.fliter-project a{width: calc((100% - 80px) / 3);}
-.project-list-container.no-fliter{display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-end;}
+.project-list-container.no-fliter{display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-start;}
 .project-list-container.no-fliter .single-project-card-container{width: calc((100% - 120px) / 4); margin: 0 0 20px;}
 
 /* other pages */
@@ -228,19 +231,57 @@ svg.swiper-navigation-icon{height: 14px; color: #000000; stroke: #000;}
     .desktop-only{display: none !important;}
     .mobile-only{display: initial;}
 
+    h1{font-size: 2rem;}
+    h1.page-title{font-size: 2rem; margin: 5px auto 20px;}
+    h1.item-title{font-size: 2rem; margin: 5px auto 20px;}
+    #top h2{font-size: 2rem; line-height: 1.1;}
+
+    .content, .sidebar{padding-top: 20px;}
+    .av-preloading-logo{max-width: 60%;}
+
+    #top #header #search-tile{display: none;}
     .responsive #top #wrap_all .av-logo-container{max-width: 90%; width: 90%;}
     #top .av-logo-container .logo-left-container{display: none;}
     #top .av-logo-container .inner-container{width: 100%;}
     .responsive #top #wrap_all .main_menu{left: 0; right: auto;}
     .responsive #top #header_main .container .main_menu .av-main-nav li a{padding: 0;}
     .responsive #top .logo{width: 100%;}
+    .responsive #top .logo img, .responsive #top .logo svg{margin: auto;}
     .responsive #top .av_header_transparency.av_alternate_logo_active .logo a img{margin: auto;}
-    #header.av_header_transparency .logo-right-container img{filter: brightness(500%);}
+    #header.av_header_transparency .logo-right-container img{filter: brightness(1);}
+    .av-logo-container .logo-right-container{z-index: 3;}
     .av-logo-container .logo-right-container img{width: 30px; margin-top: 3px;}
+    .header_color div .av-hamburger-inner, .header_color div .av-hamburger-inner::before, .header_color div .av-hamburger-inner::after{background-color: #333;}
 
     /* home */
-    .st-video-container{height: calc(100vh - 80px);}
-    
+    .st-mobile-video-container.mobile-only{display: inline-block; width: 100%;}
+    .st-mobile-video-container iframe{background: #000; width: 100%; background-image: url(https://showtile.com.au/staging/wp-content/uploads/2025/12/fade-stagger-squares.svg); background-repeat: no-repeat; background-position: center; background-size: 50px;}
+    .st-overlay.bottom-left .st-overlay-inner{width: 80%; margin: 0; padding: 20px 30px;}
+    .st-overlay.bottom-left h2{font-size: 1.5rem;}
+
+    .container.home-banner-container{padding-top: 20px;}
+    .home-banner-container .banner-bottom-container{position: relative; bottom: 0; margin-top: 20px;}
+    .home-feature-project-inner .flex_column{margin-bottom: 40px;}
+    .home-other-project-inner .swiper-slide{width: 75%;}
+    .home-feature-page-container{padding-top: 50px;}
+    .home-blog-inner .swiper-slide{width: 75%;}
+    .home-feature-page-inner{margin-bottom: 50px;}
+
+    /* All Collection */
+    .category-display-list br{display: none;}
+    .category-display-list .category-item{width: 100%; margin: 20px 0 0 -1px; letter-spacing: 0.3px;}
+    .category-display-list .category-item.child-category{font-size: 0.8rem; float: left; width: auto; margin: 1px 10px 1px 0;}
+    #collection-category-fliter-accordion .accordion-button{font-size: 0.8rem;}
+    #collection-category-fliter-accordion .accordion-collapse .accordion-body .child-category{padding-left: 0;}
+    .category-list .active-categories .active-cat{font-size: 0.8rem;}
+
+    .single-project-card-container{width: calc((100% - 40px) / 2);}
+
+    /* element */
+    .collection-list-container .collection-card{width: calc((100% - 40px) / 2);}
+    .project-list-container.no-fliter .single-project-card-container{width: calc((100% - 40px) / 2);}
+    .single-tile-card{width: calc((100% - 40px) / 2);}
+
 }
 
 
