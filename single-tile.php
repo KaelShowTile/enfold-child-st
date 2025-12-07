@@ -64,7 +64,7 @@
 										<?php while( have_rows('tile_size') ) : the_row(); ?>
 											<li>
 												<?php the_sub_field('tile_size_name'); ?>
-											<a id="add-to-basket" data-product-name="<?php echo the_title() . ' - ' . $finishName . ' - ' . get_sub_field('tile_size_name') ; ?>" data-product-image_id="<?php echo $finishImageID; ?>" data-product-image_url="<?php echo wp_get_attachment_image_url($finishImageID, 'medium'); ?>">Add to Idea Basket</a>
+											<a id="add-to-basket" data-product-name="<?php echo the_title() . ' - ' . $finishName . ' - ' . get_sub_field('tile_size_name') ; ?>" data-tile-name="<?php echo the_title(); ?>" data-product-finish="<?php echo $finishName; ?>" data-product-size="<?php echo get_sub_field('tile_size_name'); ?>" data-product-image_id="<?php echo $finishImageID; ?>" data-product-image_url="<?php echo wp_get_attachment_image_url($finishImageID, 'medium'); ?>">Add to Idea Basket</a>
 											</li>
 										<?php endwhile; ?>
 										</ul>

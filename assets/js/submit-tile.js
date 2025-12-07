@@ -26,15 +26,15 @@ jQuery(document).ready(function($) {
                         ${item.imageUrl ? `<img src="${item.imageUrl}" alt="${item.name}" loading="lazy">` : '<div class="no-image">No Image</div>'}
                     </div>
                     <div class="basket-item-details">
-                        <p class="basket-item-title">${escapeHtml(item.name)}</p>
+                        <h3 class="basket-item-title">${escapeHtml(item.name)}</h3>
+                        <p>${escapeHtml(item.finish)}</p>
+                        <p>${escapeHtml(item.size)}</p>
                     </div>
                     <div class="basket-item-note">
                         <textarea rows="6"></textarea>
                     </div>
                     <div class="basket-item-actions">
-                        <button class="form-remover" data-index="${index}">
-                            <i class="fas fa-trash"></i> Remove
-                        </button>
+                        <button class="btn btn-danger btn-sm remove-item" data-index="${index}"><i class="fas fa-trash"></i>X</button>
                     </div>
                 </div>
             `;
@@ -130,6 +130,74 @@ jQuery(document).ready(function($) {
             }, 300);
         }, 3000);
     }
+
+    // Handle form submission
+    $('#tile-enquiry-form').on('submit', function(e) {
+        e.preventDefault();
+
+        const $form = $(this);
+        const $submitBtn = $('#submit-form-btn');
+        const originalLabel = $submitBtn.val();
+        const sendingLabel = $submitBtn.data('sending-label');
+
+        // Get form data
+        const formData = {
+            customer_name: $('#customer-name').val(),
+            customer_type: $('#customer-type').val(),
+            contact_no: $('#contact-no').val(),
+            company_name: $('#company-name').val(),
+            customer_email: $('#customer-email').val(),
+            project_reference: $('#project-reference').val(),
+            need_sample: $('#need-sample').is(':checked') ? 'yes' : 'no',
+            customer_address: $('#customer-address').val(),
+            basket_content: $('#tile-enquiry-container').html()
+        };
+
+        // Basic validation
+        if (!formData.customer_name || !formData.customer_type || !formData.contact_no || !formData.customer_email || !formData.customer_address) {
+            showBasketMessage('Please fill in all required fields.', 'error');
+            return;
+        }
+
+        // Email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(formData.customer_email)) {
+            showBasketMessage('Please enter a valid email address.', 'error');
+            return;
+        }
+
+        // Disable submit button and show sending state
+        $submitBtn.prop('disabled', true).val(sendingLabel);
+
+        // Send AJAX request
+        $.ajax({
+            url: '/wp-admin/admin-ajax.php',
+            type: 'POST',
+            data: {
+                action: 'send_tile_enquiry_email',
+                form_data: JSON.stringify(formData)
+            },
+            success: function(response) {
+                if (response.success) {
+                    showBasketMessage('Enquiry sent successfully!', 'success');
+                    $form[0].reset();
+                    // Clear basket after successful submission
+                    localStorage.removeItem('idea-basket-items');
+                    loadBasketItems();
+                } else {
+                    showBasketMessage(response.data || 'Failed to send enquiry. Please try again.', 'error');
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error('AJAX Error:', error);
+                showBasketMessage('An error occurred. Please try again.', 'error');
+            },
+            complete: function() {
+                // Re-enable submit button and restore original label
+                $submitBtn.prop('disabled', false).val(originalLabel);
+            }
+        });
+    });
 
     // Load basket items on page load
     loadBasketItems();

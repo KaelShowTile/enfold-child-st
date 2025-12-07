@@ -17,6 +17,8 @@ ul{padding-left: 0; margin-left: 0;}
 .clear-both{clear: both; width: 100%;}
 .no-border-col{border-width: 0 !important;}
 
+.btn.btn-primary{background: #ff0000; color: #fff; padding: 8px 20px 7px;}
+.btn.btn-primary:hover{color: #fff; border-color: #c90000;}
 .avia-arrow{display: none;}
 .image-overlay.overlay-type-extern{display: none !important;}
 .image-overlay.overlay-type-extern .image-overlay-inside:before{display: none;}
@@ -24,6 +26,8 @@ ul{padding-left: 0; margin-left: 0;}
 .page-title{text-align: center; font-size: 3rem; margin-top: 40px;}
 .item-title{text-align: left; font-size: 3rem; margin-top: 40px;}
 .inner-container-heading h2{margin-top: 20px;}
+.col-flex-row{display: flex; flex-wrap: wrap; }
+.two-col-flex-row{gap: 20px;}
 
 #top .av-siteloader-wrap.av-transition-with-logo .av-siteloader-cell .av-siteloader{display: none;}
 .category-list .active-categories .active-cat{background: #fff; border-radius: 25px; padding: 1px 12px 0; margin: 0 3px 3px 0;}
@@ -210,21 +214,38 @@ svg.swiper-navigation-icon{height: 14px; color: #000000; stroke: #000;}
 .project-list-container.no-fliter .single-project-card-container{width: calc((100% - 120px) / 4); margin: 0 0 20px;}
 
 /* other pages */
+.basket-item-details p{margin: 0 0 4px; font-size: 1rem; color: #666; line-height: 1;}
+.basket-item-details .basket-item-title{font-size: 1.3rem; margin: 10px 0 5px; font-weight: 600;}
+
 .idea-basket-container h1{text-align: center;}
-.basket-items-list .basket-item.av_one_fifth{margin: auto 1%; width: 18%;}
-.basket-items-list .basket-item .basket-item-title{font-size: 1rem;}
+#idea-basket-tagline{margin: 30px 0 10px; font-size: 1.2rem;}
+#empty-basket{text-align: center;}
+#basket-items{display: flex; flex-wrap: wrap; gap: 30px; width: 100%; margin-bottom: 50px;}
+#basket-items .basket-item{width: calc((100% - 120px)/5);}
+#basket-items .basket-item .basket-item-image{position: relative;}
+#basket-items .basket-item .basket-item-actions{position: absolute; top: 0; right: 0;}
+#basket-items .basket-item .basket-item-actions .remove-item{border-radius: 0 0 0 10px;}
 .basket-item-date{font-size: 0.8rem;}
 
 #submit-btn-container{display: inline-block; width: 100%; text-align: center; margin-top: 50px;}
 #submit-btn-container .submit-btn{background: #ff4444; color: #fff; padding: 10px 40px 9px; border-radius: 30px;}
 
 #tile-enquiry-container .submit-form-row{display: flex; flex-wrap: nowrap; width: 100%;}
-#tile-enquiry-container div{padding: 10px;}
+#tile-enquiry-container div{padding: 5px 10px;}
 #tile-enquiry-container .basket-item-image{width: 200px;}
-#tile-enquiry-container .basket-item-details{width: calc((100% - 290px) * 2 / 5);}
-#tile-enquiry-container .basket-item-note{width: calc((100% - 290px) * 3 / 5);}
-#tile-enquiry-container .basket-item-note textarea{background: #fff;}
-#tile-enquiry-container .basket-item-actions{width: 90px;}
+#tile-enquiry-container .basket-item-details{width: calc((100% - 250px) * 2 / 5);}
+#tile-enquiry-container .basket-item-note{width: calc((100% - 250px) * 3 / 5);}
+#tile-enquiry-container .basket-item-note textarea{background: #fff; margin-bottom: 0; resize: none;}
+#tile-enquiry-container .basket-item-actions{width: 50px;}
+
+#tile-enquiry-form{padding: 50px 15px 0;}
+#tile-enquiry-form .two-col-flex-row input, #tile-enquiry-form .two-col-flex-row select{width: calc((100% - 30px) / 2); display: inline-block;}
+#top #tile-enquiry-form input, #top #tile-enquiry-form select{color: #000; margin-bottom: 0; border-radius: 25px; padding: 14px 20px 13px; background: #fff; border: 1px solid #aaa;}
+#top #tile-enquiry-form input::placeholder{color: #000; opacity: 0.8; font-style: italic;}
+#top #tile-enquiry-form .col-flex-row.one-col-flex-row input{margin-top: 15px;}
+#top #tile-enquiry-form .col-flex-row.one-col-flex-row input#need-sample{margin-left: 3px;}
+#top #tile-enquiry-form .col-flex-row.one-col-flex-row label{margin: 20px 0 0 5px; font-weight: 500; font-size: 1rem;}
+#top #tile-enquiry-form #submit-form-btn{margin-top: 50px; margin-left: 50%; transform: translateX(-140px); background: #dc3545; color: #fff; padding: 10px 20px 8px; width: 280px;}
 
 @media only screen and (max-width: 640px) {
     .desktop-only{display: none !important;}

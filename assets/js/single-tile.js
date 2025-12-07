@@ -25,21 +25,27 @@ document.addEventListener('DOMContentLoaded', function () {
         link.addEventListener('click', function(e) {
             e.preventDefault();
 
-            const productName = this.getAttribute('data-product-name');
+            const productUnqueName = this.getAttribute('data-product-name');
+            const productName = this.getAttribute('data-tile-name');
+            const productFinish = this.getAttribute('data-product-finish');
+            const productSize = this.getAttribute('data-product-size');
             const productImageId = this.getAttribute('data-product-image_id');
             const productImageUrl = this.getAttribute('data-product-image_url');
 
-            if (productName && productImageId) {
+            if (productUnqueName && productImageId) {
                 // Get existing basket items
                 let basketItems = JSON.parse(localStorage.getItem('idea-basket-items')) || [];
 
                 // Check if item already exists
-                const existingItem = basketItems.find(item => item.name === productName && item.imageId === productImageId);
+                const existingItem = basketItems.find(item => item.name === productUnqueName && item.imageId === productImageId);
 
                 if (!existingItem) {
                     // Add new item
                     basketItems.push({
+                        UnqueName: productUnqueName,
                         name: productName,
+                        finish: productFinish,
+                        size: productSize,
                         imageId: productImageId,
                         imageUrl: productImageUrl,
                         dateAdded: new Date().toISOString()

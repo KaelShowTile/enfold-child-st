@@ -6,34 +6,40 @@ jQuery(document).ready(function($) {
         const basketItems = JSON.parse(localStorage.getItem('idea-basket-items')) || [];
         const $basketContainer = $('#basket-items');
         const $emptyMessage = $('#empty-basket');
+        const $submitContainer = $('#submit-btn-container');
+        const $tagline = $('#idea-basket-tagline');
 
         $basketContainer.empty();
 
         if (basketItems.length === 0) {
             $emptyMessage.show();
+            $submitContainer.hide();
+            $tagline.hide();
             return;
         }
 
         $emptyMessage.hide();
+        $submitContainer.show();
+        $tagline.show();
 
         // Sort items by date added (newest first)
         basketItems.sort((a, b) => new Date(b.dateAdded) - new Date(a.dateAdded));
 
         basketItems.forEach(function(item, index) {
-            const itemHtml = `
-                <div class="basket-item flex_column av_one_fifth flex_column_div" data-index="${index}">
+            const itemHtml =`
+                <div class="basket-item" data-index="${index}">
                     <div class="basket-item-image">
                         ${item.imageUrl ? `<img src="${item.imageUrl}" alt="${item.name}" loading="lazy">` : '<div class="no-image">No Image</div>'}
+                        <div class="basket-item-actions">
+                            <button class="btn btn-danger btn-sm remove-item" data-index="${index}"><i class="fas fa-trash"></i>X</button>
+                        </div>
                     </div>
                     <div class="basket-item-details">
                         <h3 class="basket-item-title">${escapeHtml(item.name)}</h3>
-                        <p class="basket-item-date">Added: ${formatDate(item.dateAdded)}</p>
+                        <p>${escapeHtml(item.finish)}</p>
+                        <p>${escapeHtml(item.size)}</p>
                     </div>
-                    <div class="basket-item-actions">
-                        <button class="btn btn-danger btn-sm remove-item" data-index="${index}">
-                            <i class="fas fa-trash"></i> Remove
-                        </button>
-                    </div>
+                    
                 </div>
             `;
             $basketContainer.append(itemHtml);
@@ -106,7 +112,7 @@ jQuery(document).ready(function($) {
         `;
 
         if (type === 'success') {
-            messageEl.style.backgroundColor = '#28a745';
+            messageEl.style.backgroundColor = '#000000';
         } else {
             messageEl.style.backgroundColor = '#dc3545';
         }

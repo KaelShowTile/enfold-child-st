@@ -44,6 +44,7 @@
 				<!--idea basket content-->
 				<div class="idea-basket-container">
 					<h1>Idea Basket</h1>
+					<p id="idea-basket-tagline">You've made some excellent selections! Enquire now and request your samples today.</p>
 					<div id="basket-items" class="basket-items-list">
 						<!-- Items will be loaded here -->
 					</div>
