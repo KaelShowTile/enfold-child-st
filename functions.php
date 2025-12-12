@@ -170,6 +170,8 @@ function get_collections_html($offset = 0, $limit = 12, $term_ids = null, $load_
     }
     // If term_ids is null and not on tax page, load all collections
     $query = new WP_Query($args);
+    $slider_image_no = 0;
+    $slider_thumb_no = 0;
     
     $html = '';
     if ($query->have_posts()) {
@@ -180,20 +182,23 @@ function get_collections_html($offset = 0, $limit = 12, $term_ids = null, $load_
             $collection_id = get_the_ID();
             $collection_thumb_preview = get_the_post_thumbnail($collection_id, 'medium');
             $collection_thumb_thumb = get_the_post_thumbnail($collection_id, 'thumbnail');
-
+            
             //output html
             $html .= '<div class="collection-card">';
             $html .= '<div class="collection-inner-slider">';
 
             //get thumbnail images from each tiles
             $collection_tiles = get_field('tiles_in_collection', $collection_id);
-            if($collection_tiles){
+            if($collection_tiles){ 
                 $html .= '<div class="swiper collection-inner-slider-preview">';
                 $html .= '<div class="swiper-wrapper">';
                 $html .= '<div class="swiper-slide">' . $collection_thumb_preview . '</div>';
 		        foreach($collection_tiles as $tile){
-                    $preview = get_the_post_thumbnail($tile, 'medium');
-                    $html .= '<div class="swiper-slide">' . $preview . '</div>';
+                    $slider_image_no = $slider_image_no + 1;
+                    if($slider_image_no < 6){
+                        $preview = get_the_post_thumbnail($tile, 'medium');
+                        $html .= '<div class="swiper-slide">' . $preview . '</div>';
+                    }
                 }
                 $html .= '</div>';
                 $html .= '</div>';
@@ -202,8 +207,11 @@ function get_collections_html($offset = 0, $limit = 12, $term_ids = null, $load_
                 $html .= '<div class="swiper-wrapper">';
                 $html .= '<div class="swiper-slide slider-thumbnail">' . $collection_thumb_thumb . '</div>';
                 foreach($collection_tiles as $tile){
-                    $thumbnail = get_the_post_thumbnail($tile, 'thumbnail');
-                    $html .= '<div class="swiper-slide slider-thumbnail">' . $thumbnail . '</div>';
+                    $slider_thumb_no = $slider_thumb_no + 1;
+                    if($slider_thumb_no < 6){
+                        $thumbnail = get_the_post_thumbnail($tile, 'thumbnail');
+                        $html .= '<div class="swiper-slide slider-thumbnail">' . $thumbnail . '</div>';
+                    } 
                 }
                 $html .= '</div>';
                 $html .= '</div>';
@@ -385,9 +393,7 @@ function generate_collections_xml() {
 
             // Categories
             $terms = get_the_terms($collection_id, 'product_category');
-            error_log('Collection ID:' . $collection_id);
             if ($terms && !is_wp_error($terms)) {
-                error_log('Has category...');
                 $categories = $dom->createElement('categories');
                 foreach ($terms as $term) {
                     $cat = $dom->createElement('category', htmlspecialchars($term->name));

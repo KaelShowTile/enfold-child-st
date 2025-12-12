@@ -52,8 +52,10 @@
 			$tile_finish = get_field('tile_finish', $tile);//repeater field
 
 			//combine iamges
-			$collection_gallery = array_unique(array_merge($collection_gallery, $tile_images));
-
+			if($tile_images){
+				$collection_gallery = array_unique(array_merge($collection_gallery, $tile_images));
+			}
+			
 			//add tile meta to project meta
 			if (!in_array($tile_design, $collection_design)) {
 				$collection_design[] = $tile_design;
@@ -91,7 +93,9 @@
 
 			//generate finish-size string
 			$total_finish = 0;
+			$total_finish_suffix = "finish";
 			$total_size = 0;
+			$total_size_suffix = "size";
 			
 			if(get_field('tile_finish', $tile)){
 				while( the_repeater_field('tile_finish', $tile) ){
@@ -107,9 +111,15 @@
 						}
 					}
 				}
+				if($total_finish > 1){
+					$total_finish_suffix = "finishes";
+				}
+				if($total_size > 1){
+					$total_size_suffix = "sizes";
+				}
 			}
 
-			$collection_tiles_list[] = ['tile_title' => $tile_title, 'title_link' => $permalink, 'title_thumb_url' => $tile_thumb, 'total_finish' => $total_finish, 'total_size' => $total_size];
+			$collection_tiles_list[] = ['tile_title' => $tile_title, 'title_link' => $permalink, 'title_thumb_url' => $tile_thumb, 'total_finish' => $total_finish, 'total_size' => $total_size, 'total_finish_suffix' => $total_finish_suffix, 'total_size_suffix' => $total_size_suffix ];
 		}
 	}
 
@@ -229,7 +239,7 @@
 						<a href="<?php echo $tile['title_link']; ?>"><img src="<?php echo $tile['title_thumb_url']; ?>"></a>
 						<div class="tile-card-detail">
 							<a href="<?php echo $tile['title_link']; ?>"><h5><?php echo $tile['tile_title']; ?></h5></a>
-							<p><?php echo $tile['total_finish']; ?> finishes | <?php echo $tile['total_size']; ?> sizes</p>
+							<p><?php echo $tile['total_finish'] . ' ' . $tile['total_finish_suffix'] . ' | ' . $tile['total_size'] . ' ' . $tile['total_size_suffix']; ?></p>
 						</div>
 					</div>		
 				<?php endforeach; ?>
