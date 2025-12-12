@@ -118,6 +118,9 @@ function add_custom_size_to_enfold($sizes) {
     );
     return $sizes;
 }
+// hard crop medium and large image size
+update_option( 'medium_crop', 1 ); 
+update_option( 'large_crop', 1 );
 
 // limit output content length
 function stCutText($text) {

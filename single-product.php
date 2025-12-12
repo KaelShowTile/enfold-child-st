@@ -53,6 +53,9 @@
 
 			//combine iamges
 			if($tile_images){
+				if(count($tile_images) > 3){
+					$tile_images = array_slice($tile_images, 0, 3);
+				}
 				$collection_gallery = array_unique(array_merge($collection_gallery, $tile_images));
 			}
 			
@@ -80,7 +83,9 @@
 			//get first image as thumbnail
 			$tile_thumb;
 			if($tile_images){
-				$tile_thumb = wp_get_attachment_image_url( $tile_images[0], 'medium' );
+				$medium_url = wp_get_attachment_image_url( $tile_images[0], 'medium' );
+				$full_url = wp_get_attachment_image_url( $tile_images[0], 'full' );
+				$tile_thumb = ($medium_url !== $full_url) ? $medium_url : $full_url;
 			}else{
 				$tile_thumb = get_stylesheet_directory_uri() . '/assets/img/st-place-holder.jpg';
 			}
