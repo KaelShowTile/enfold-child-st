@@ -55,16 +55,17 @@
 							<div id="<?php echo $finishName; ?>" class="accordion-collapse collapse show" data-bs-parent="#tile-finish-accordion">
 								<div class="accordion-body">
 									<!-- Load finish image-->
-									<?php $finishImageID = get_sub_field('finish_image'); 
-									$imageSize = 'medium'; ?>
-									<?php echo wp_get_attachment_image( $finishImageID, $imageSize); ?>
+									<?php $finishImageID = get_sub_field('finish_image'); ?>
+									<a class="Lightbox" href="<?php echo wp_get_attachment_image_url( $finishImageID, 'full'); ?>">
+										<img src="<?php echo wp_get_attachment_image_url( $finishImageID, 'medium'); ?>">
+									</a>
 									<!-- Load sizes-->
 									<?php if( have_rows('tile_size') ): ?>
 										<ul class="tile-size-list">
 										<?php while( have_rows('tile_size') ) : the_row(); ?>
 											<li>
 												<?php the_sub_field('tile_size_name'); ?>
-											<a id="add-to-basket" data-product-name="<?php echo the_title() . ' - ' . $finishName . ' - ' . get_sub_field('tile_size_name') ; ?>" data-tile-name="<?php echo the_title(); ?>" data-product-finish="<?php echo $finishName; ?>" data-product-size="<?php echo get_sub_field('tile_size_name'); ?>" data-product-image_id="<?php echo $finishImageID; ?>" data-product-image_url="<?php echo wp_get_attachment_image_url($finishImageID, 'medium'); ?>">Add to Idea Basket</a>
+												<a id="add-to-basket" data-product-name="<?php echo the_title() . ' - ' . $finishName . ' - ' . get_sub_field('tile_size_name') ; ?>" data-tile-name="<?php echo the_title(); ?>" data-product-finish="<?php echo $finishName; ?>" data-product-size="<?php echo get_sub_field('tile_size_name'); ?>" data-product-image_id="<?php echo $finishImageID; ?>" data-product-image_url="<?php echo wp_get_attachment_image_url($finishImageID, 'medium'); ?>">Add to Idea Basket</a>
 											</li>
 										<?php endwhile; ?>
 										</ul>
@@ -107,26 +108,42 @@
 				<div class="tile-decripton">
 					<?php the_field('tile_description'); ?>
 					<table class="collection-description-container">
+
+						<?php if(get_field('tile_design')): ?>
 						<tr>
 							<td class="attribute-name">Design</td>
 							<td><?php the_field('tile_design'); ?></td>
 						</tr>
+						<?php endif; ?>
+
+						<?php if(get_field('tile_material')): ?>
 						<tr>
 							<td class="attribute-name">Material</td>
 							<td><?php the_field('tile_material'); ?></td>
 						</tr>
+						<?php endif; ?>
+
+						<?php if(get_field('tile_application')): ?>
 						<tr>
 							<td class="attribute-name">Application</td>
 							<td><?php the_field('tile_application'); ?></td>
 						</tr>
+						<?php endif; ?>
+
+						<?php if(get_field('tile_variation')): ?>
 						<tr>
 							<td class="attribute-name">variation</td>
 							<td><?php the_field('tile_variation'); ?></td>
 						</tr>
+						<?php endif; ?>
+
+						<?php if(get_field('tile_faces')): ?>
 						<tr>
 							<td class="attribute-name">Faces</td>
 							<td><?php the_field('tile_faces'); ?></td>
 						</tr>
+						<?php endif; ?>
+						
 					</table>
 				</div>
 			</div>

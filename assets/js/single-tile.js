@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (document.getElementById('tile-gallery')) {
         var swiper = new Swiper("#tile-gallery", {
             slidesPerView: "auto",
-            spaceBetween: 0,
+            spaceBetween: 10,
             grabCursor: true,
             navigation: {
                 nextEl: ".swiper-button-next",

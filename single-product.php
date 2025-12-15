@@ -51,12 +51,18 @@
 			$tile_variation = get_field('tile_variation', $tile);
 			$tile_finish = get_field('tile_finish', $tile);//repeater field
 
-			//combine iamges
+			//get title & link
+			$tile_title = get_the_title($tile);
+			$permalink = get_permalink( $tile );
+
+			//combine images with tile title
 			if($tile_images){
 				if(count($tile_images) > 3){
 					$tile_images = array_slice($tile_images, 0, 3);
 				}
-				$collection_gallery = array_unique(array_merge($collection_gallery, $tile_images));
+				foreach($tile_images as $image_id){
+					$collection_gallery[] = ['image_id' => $image_id, 'tile_title' => $tile_title];
+				}
 			}
 			
 			//add tile meta to project meta
@@ -75,10 +81,6 @@
 			if (!in_array($tile_variation, $collection_variation)) {
 				$collection_variation[] = $tile_variation;
 			}
-
-			//get title & link
-			$tile_title = get_the_title($tile);
-			$permalink = get_permalink( $tile );
 
 			//get first image as thumbnail
 			$tile_thumb;
@@ -168,8 +170,11 @@
 			<div class="collection-gallery-slider collection-container">
 				<div class="swiper" id="tile-gallery">
 					<div class="swiper-wrapper">
-						<?php foreach($collection_gallery as $image_id): ?>
-						<div class="swiper-slide"><?php echo wp_get_attachment_image( $image_id, 'large' ); ?></div>
+						<?php foreach($collection_gallery as $gallery_item): ?>
+						<div class="swiper-slide">
+							<?php echo wp_get_attachment_image( $gallery_item['image_id'], 'large' ); ?>
+							<h5 class="tile-name"><?php echo esc_html($gallery_item['tile_title']); ?></h5>
+						</div>
 						<?php endforeach; ?>
 					</div>
 					<div class="swiper-button-prev"></div>
@@ -260,7 +265,7 @@
 				<div class="collection-project-list">
 				<?php foreach($collection_projects as $project): ?>
 					<div class="single-project-card single-project-card-container">
-						<a href="<?php echo get_permalink($project); ?>"><?php echo wp_get_attachment_image(get_field('project_photos', $project)[0], 'project-vertical' ); ?></a>
+						<a href="<?php echo get_permalink($project); ?>"><?php echo get_the_post_thumbnail($project, 'project-vertical'); ?></a>
 						<span><?php the_field('project_type', $project); ?></span>
 						<a href="<?php echo get_permalink($project); ?>"><h5><?php echo get_the_title($project); ?></h5></a>
 						<p><?php echo stCutText(get_field('project_description', $project));?></p>

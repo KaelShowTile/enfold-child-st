@@ -99,6 +99,13 @@ function enqueue_idea_basket_scripts() {
     }
 }
 
+/*ST Lightbox, if Enfold lightbox doesn't work, enable this one, the trigger class is "st-lightbox"
+add_action( 'wp_enqueue_scripts', 'enqueue_lightbox_scripts' );
+function enqueue_lightbox_scripts() {
+    wp_enqueue_style( 'st-lightbox-css', get_stylesheet_directory_uri() . '/assets/css/st-lightbox.css' );
+    wp_enqueue_script( 'st-lightbox-js', get_stylesheet_directory_uri() . '/assets/js/st-lightbox.js', array('jquery'), '1.0.0', true );
+}*/
+
 // Images auto-crop quality
 add_filter('wp_editor_set_quality', function($quality, $mime_type) {
     if ($mime_type === 'image/jpeg') return 50;     // JPEG
@@ -298,7 +305,7 @@ function get_project_html($offset = 0, $limit = 12, $term_ids = null, $load_more
             $title = get_the_title();
             $link = get_permalink();
             $project_id = get_the_ID();
-            $project_thumb =  wp_get_attachment_image(get_field('project_photos', $project_id)[0], 'project-vertical' );
+            $project_thumb =  get_the_post_thumbnail($project_id, 'project-vertical' );
             $project_type = get_field('project_type', $project_id);
             $project_des = stCutText(get_field('project_description', $project_id));
             //output html
