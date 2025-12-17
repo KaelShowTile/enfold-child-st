@@ -41,62 +41,13 @@
 
 		<main class='content units <?php avia_layout_class( 'content' ); ?> <?php echo avia_blog_class_string(); ?> <?php echo $main_class; ?>' <?php avia_markup_helper( array( 'context' => 'content', 'post_type' => 'post' ) );?>>
 
-			<h1 class="item-title"><?php the_title(); ?></h1>
-
-			<!-- Project Video -->
-			<?php if(get_field('project_video')): ?>
-			<?php $video_shortcode = "[av_video src='" . get_field('project_video') . "' video_loop='aviaTBvideo_loop' video_controls='aviaTBvideo_controls' format='16-9' width='16' height='9' id='' sc_version='1.0']"; ?>
-
-			<div class="project-video-container st_container_fullsize">
-				<?php echo do_shortcode($video_shortcode); ?>
+			<div class="project-title-container container">	
+				<h1 class="item-title"><?php the_title(); ?></h1>
 			</div>
-			<?php endif;?>
 
-			<!-- Project description -->
-			<div class="project-description-container project-container container">
-				<div class="flex_column av_one_half avia-builder-el-1 el_before_av_one_half avia-builder-el-first first flex_column_div">
-					<?php the_field('project_description'); ?>
-				</div>
-				<div class="flex_column av_one_half avia-builder-el-2 el_after_av_one_half avia-builder-el-last flex_column_div">
-					<table class="collection-description-container">
-					<?php if(get_field('project_designer')): ?>
-						<tr>
-							<td class="attribute-name">Designer</td>
-							<td><?php the_field('project_designer') ?></td>
-						</tr>
-					<?php endif; ?>
-					<?php if(get_field('project_builder')): ?>
-						<tr>
-							<td class="attribute-name">Builder</td>
-							<td><?php the_field('project_builder') ?></td>
-						</tr>
-					<?php endif; ?>
-					<?php if(get_field('project_developer')): ?>
-						<tr>
-							<td class="attribute-name">Developer</td>
-							<td><?php the_field('project_developer') ?></td>
-						</tr>
-					<?php endif; ?>
-					<?php if(get_field('project_architect')): ?>
-						<tr>
-							<td class="attribute-name">Architect</td>
-							<td><?php the_field('project_architect') ?></td>
-						</tr>
-					<?php endif; ?>
-					<?php if(get_field('project_stylist')): ?>
-						<tr>
-							<td class="attribute-name">Stylist</td>
-							<td><?php the_field('project_stylist') ?></td>
-						</tr>
-					<?php endif; ?>
-					</table>
-				</div>
-			</div>
-				
 			<!-- Project gallery -->
 			<div class="project-gallery-container project-container container">
 				<div class="inner-container-heading">
-					<h2>Photo Gallery</h2>
 				</div>
 				<?php if( $project_images ): ?>
 				<div class="swiper" id="tile-gallery">
@@ -110,6 +61,62 @@
 					<div class="swiper-scrollbar"></div>
 				</div>
 				<?php endif; ?>
+			</div>
+
+			<!-- Project description -->
+			<div class="project-description-container project-container container">
+				<div class="flex_column av_one_half avia-builder-el-1 el_before_av_one_half avia-builder-el-first first flex_column_div">
+					<?php the_field('project_description'); ?>
+				</div>
+				<div class="flex_column av_one_half avia-builder-el-2 el_after_av_one_half avia-builder-el-last flex_column_div">
+					<div class="collection-description-container">
+						<?php if(get_field('project_designer')): ?>
+							<div class="description-meta-col half-col">
+								<p class="attribute-name">Designer</p>
+								<p><?php the_field('project_designer') ?></p>
+							</div>
+						<?php endif; ?>
+						<?php if(get_field('project_builder')): ?>
+							<div class="description-meta-col half-col">
+								<p class="attribute-name">Builder</p>
+								<p><?php the_field('project_builder') ?></p>
+							</div>
+						<?php endif; ?>
+						<?php if(get_field('project_developer')): ?>
+							<div class="description-meta-col half-col">
+								<p class="attribute-name">Developer</p>
+								<p><?php the_field('project_developer') ?></p>
+							</div>
+						<?php endif; ?>
+						<?php if(get_field('project_architect')): ?>
+							<div class="description-meta-col half-col">
+								<p class="attribute-name">Architect</p>
+								<p><?php the_field('project_architect') ?></p>
+							</div>
+						<?php endif; ?>
+						<?php if(get_field('project_stylist')): ?>
+							<div class="description-meta-col half-col">
+								<p class="attribute-name">Stylist</p>
+								<p><?php the_field('project_stylist') ?></p>
+							</div>
+						<?php endif; ?>
+					</div>
+				</div>
+			</div>
+				
+			<!-- Project Video -->
+			<div class="project-video-container st_container_fullsize">
+				<?php if(have_rows('project_video')):?>
+					<?php while( have_rows('project_video')): the_row();?>
+						<?php if(get_sub_field('project_video_title')): ?>
+							<h5 class="project-video-title"><?php the_sub_field('project_video_title'); ?></h5>
+						<?php endif; ?>	
+						<?php if(get_sub_field('project_video_url')): ?>
+							<?php $video_shortcode = "[av_video src='" . get_sub_field('project_video_url') . "' video_loop='aviaTBvideo_loop' video_controls='aviaTBvideo_controls' format='16-9' width='16' height='9' id='' sc_version='1.0']"; ?>
+							<?php echo do_shortcode($video_shortcode); ?>
+						<?php endif; ?>	
+					<?php endwhile; ?>
+				<?php endif; ?>		
 			</div>
 
 			<!-- Ralated Tiles -->
@@ -142,9 +149,25 @@
 
 			<!-- House Tour -->
 			<?php if( get_field('project_house_tour') ): ?>
-				<div class="project-house-tour-container container_wrap fullsize">
-					<h2>House Tour</h2>
-					<iframe src="<?php echo get_field('project_house_tour')?>" width="100%" height="600px"></iframe>
+				<div class="project-house-tour-container container">
+					<?php if(have_rows('project_house_tour')):?>
+						<?php while( have_rows('project_house_tour')): the_row();?>
+							<?php if(get_sub_field('project_house_tour_title')): ?>
+								<h5 class="project-video-title"><?php the_sub_field('project_house_tour_title'); ?></h5>
+							<?php endif; ?>	
+							<?php if(get_sub_field('project_house_tour_platform')): ?>
+								<?php $tour_platform = get_sub_field('project_house_tour_platform'); ?>
+								<?php $tour_url = get_sub_field('project_house_tour_url'); ?>
+								<?php if($tour_platform == 'cloudpano' && $tour_url): ?>
+									<div id="<?php echo $tour_url; ?>">
+										<script type="text/javascript" async data-short="<?php echo $tour_url; ?>" data-path="tours" data-is-self-hosted="undefined" width="100%" height="500px" src="https://app.cloudpano.com/public/shareScript.js"></script>
+									</div>
+								<?php elseif($tour_platform == 'teliportme' && $tour_url): ?>
+									<iframe src="https://teliportme.com/embed/<?php echo $tour_url; ?>?ar=-3&amp;sfc=t&amp;lp=lt&amp;ls=d&amp;lz=50&amp;lo=-1" width="100%" height="500" frameborder="0" scrolling="no" allowfullscreen="allowfullscreen"></iframe>
+								<?php endif; ?>
+							<?php endif; ?>	
+						<?php endwhile; ?>
+					<?php endif; ?>	
 				</div>
 			<?php endif; ?>
 

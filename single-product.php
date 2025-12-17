@@ -173,7 +173,7 @@
 						<?php foreach($collection_gallery as $gallery_item): ?>
 						<div class="swiper-slide">
 							<?php echo wp_get_attachment_image( $gallery_item['image_id'], 'large' ); ?>
-							<h5 class="tile-name"><?php echo esc_html($gallery_item['tile_title']); ?></h5>
+							<p class="tile-name"><?php echo esc_html($gallery_item['tile_title']); ?></p>
 						</div>
 						<?php endforeach; ?>
 					</div>
@@ -185,56 +185,54 @@
 			<?php endif; ?>
 
 			<!-- Description & metas -->
-			<div class="collection-description-container collection-container">
+			<div class="collection-description-outer-container collection-container">
 				<div class="flex_column av_one_half avia-builder-el-1 el_before_av_one_half avia-builder-el-first first flex_column_div">
 					<?php the_field('collection_description'); ?>
 				</div>
 				<div class="flex_column av_one_half avia-builder-el-2 el_after_av_one_half avia-builder-el-last flex_column_div">
-					<table>
+					<div class="collection-description-container">
 						<?php if (!empty($collection_design)): 
-						$design_string = implode(", ", $collection_design); ?>
-						<tr>
-							<td class="attribute-name">Design</td>
-							<td><?php echo $design_string; ?></td>
-						</tr>
+							$design_string = implode(", ", $collection_design); ?>
+							<div class="description-meta-col half-col">
+								<p class="attribute-name">Design</p>
+								<p><?php echo $design_string; ?></p>
+							</div>
 						<?php endif; ?>
 
 						<?php if (!empty($collection_material)): 
-						$material_string = implode(", ", $collection_material); ?>
-						<tr>
-							<td class="attribute-name">Material</td>
-							<td><?php echo $material_string; ?></td>
-						</tr>
+							$material_string = implode(", ", $collection_material); ?>
+							<div class="description-meta-col half-col">
+								<p class="attribute-name">Material</p>
+								<p><?php echo $material_string; ?></p>
+							</div>
 						<?php endif; ?>
 
 						<?php if (!empty($collection_application)): 
-						$application_string = implode(", ", $collection_application); ?>
-						<tr>
-							<td class="attribute-name">Application</td>
-							<td><?php echo $application_string; ?></td>
-						</tr>
+							$application_string = implode(", ", $collection_application); ?>
+							<div class="description-meta-col half-col">
+								<p class="attribute-name">Application</p>
+								<p><?php echo $application_string; ?></p>
+							</div>
 						<?php endif; ?>
 
 						<?php if (!empty($collection_variation)): 
-						$variation_string = implode(", ", $collection_variation); ?>
-						<tr>
-							<td class="attribute-name">Variation</td>
-							<td><?php echo $variation_string; ?></td>
-						</tr>
+							$variation_string = implode(", ", $collection_variation); ?>
+							<div class="description-meta-col half-col">
+								<p class="attribute-name">Variation</p>
+								<p><?php echo $variation_string; ?></p>
+							</div>
 						<?php endif; ?>
 
 						<?php if (!empty($grouped_finish)): ?>
-						<tr>
-							<td class="attribute-name">Finish | Size</td>
-							<td>
+							<div class="description-meta-col full-col">
+								<p class="attribute-name">Finish | Size</p>
 								<?php foreach($grouped_finish as $finish): ?>
 									<p><?php echo $finish['finish_name']; ?> | <?php echo $finish['finish_size']; ?></p>
 								<?php endforeach; ?>
-							</td>
-						</tr>
+							</div>
 						<?php endif; ?>
 
-					</table>
+					</div>
 				</div>
 			</div>
 			
