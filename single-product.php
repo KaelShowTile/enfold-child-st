@@ -30,6 +30,13 @@
 	 */
 	$main_class = apply_filters( 'avf_custom_main_classes', 'av-main-' . basename( __FILE__, '.php' ), basename( __FILE__ ) );
 
+	$catalogue_pdf_url = get_field('catalogue_pdf');
+	$catalogue_pdf_shortcode = "";
+	if($catalogue_pdf_url){
+		$catalogue_pdf_shortcode = '[dflip source="' . esc_url($catalogue_pdf_url) . '" viewertype="flipbook" is3d="true" height="750px"][/dflip]';
+	}
+	
+
 	$collection_tiles = get_field('tiles_in_collection');
 
 	$collection_gallery = [];
@@ -157,6 +164,8 @@
 
 ?>
 
+<script src="<?php echo get_stylesheet_directory_uri();?>/assets/js/single-collection.js"></script>
+
 <div class='container_wrap container_wrap_first main_color <?php avia_layout_class( 'main' ); ?>'>
 
 	<div class='container template-collection template-single-collection '>
@@ -258,7 +267,7 @@
 			<?php if($collection_projects):?>
 			<div class="collection-tile-container collection-container">
 				<div class="inner-container-heading">
-					<h2><?php echo the_title(); ?> Project</h2>
+					<h2><?php the_title(); ?> Project</h2>
 				</div>
 				<div class="collection-project-list">
 				<?php foreach($collection_projects as $project): ?>
@@ -273,9 +282,22 @@
 			</div>
 			<?php endif;?>
 
+			<!-- Collection Catalogue -->
+			<div class="collection-pdf-container collection-container">
+				<a id="collection-pdf-btn" class="st-link-button small-style">Show Catalogue of <?php the_title(); ?></a>
+				<div id="collection-pdf-content" style="display:none;">
+					<?php if($catalogue_pdf_url): ?>
+						<?php echo do_shortcode($catalogue_pdf_shortcode); ?>
+					<?php endif; ?>
+				</div>
+			</div>
+
 			<!-- Collection QA -->
 			<?php if(have_rows('collection_qna')):?>
 			<div class="collection-qa-container collection-container">
+				<div class="inner-container-heading">
+					<h2>FAQ</h2>
+				</div>
 				<div class="accordion" id="collection-qa-accordion">
 				<?php $qna_index = 0; ?>
 				<?php while( have_rows('collection_qna')): the_row();?>
