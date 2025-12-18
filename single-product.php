@@ -284,12 +284,13 @@
 
 			<!-- Collection Catalogue -->
 			<div class="collection-pdf-container collection-container">
-				<a id="collection-pdf-btn" class="st-link-button small-style">Show Catalogue of <?php the_title(); ?></a>
+				<a id="collection-pdf-btn" class="st-link-button small-style desktop-only">Show Catalogue of <?php the_title(); ?></a>
 				<div id="collection-pdf-content" style="display:none;">
 					<?php if($catalogue_pdf_url): ?>
 						<?php echo do_shortcode($catalogue_pdf_shortcode); ?>
 					<?php endif; ?>
 				</div>
+				<a href="<?php echo $catalogue_pdf_url; ?>" class="st-link-button small-style mobile-only">Download Catalogue of <?php the_title(); ?></a>
 			</div>
 
 			<!-- Collection QA -->
