@@ -181,7 +181,7 @@
 					<div class="swiper-wrapper">
 						<?php foreach($collection_gallery as $gallery_item): ?>
 						<div class="swiper-slide">
-							<?php echo wp_get_attachment_image( $gallery_item['image_id'], 'large' ); ?>
+							<?php echo wp_get_attachment_image( $gallery_item['image_id'], 'full' ); ?>
 							<p class="tile-name"><?php echo esc_html($gallery_item['tile_title']); ?></p>
 						</div>
 						<?php endforeach; ?>

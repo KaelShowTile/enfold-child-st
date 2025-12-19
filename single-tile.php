@@ -88,13 +88,12 @@
 			<div class="tile-details">
 				<?php //Tile gallery
 					$tile_images = get_field('tile_photo_gallery');
-					$image_size = 'large';
 					if( $tile_images ):
 				?>
 				<div class="swiper" id="tile-gallery">
 					<div class="swiper-wrapper">
 						<?php foreach($tile_images as $image_id): ?>
-						<div class="swiper-slide"><?php echo wp_get_attachment_image( $image_id, $image_size ); ?></div>
+						<div class="swiper-slide"><?php echo wp_get_attachment_image( $image_id, 'full'); ?></div>
 						<?php endforeach; ?>
 					</div>
 
@@ -107,37 +106,37 @@
 				<!-- Tile metas-->		
 				<div class="tile-decripton">
 					<?php the_field('tile_description'); ?>
-					<table class="collection-description-container">
-
+					<div class="collection-description-container">
+							
 						<?php if(get_field('tile_design')): ?>
-						<tr>
-							<td class="attribute-name">Design</td>
-							<td><?php the_field('tile_design'); ?></td>
-						</tr>
+							<div class="description-meta-col half-col">
+								<p class="attribute-name">Design</p>
+								<p><?php the_field('tile_design'); ?></p>
+							</div>
 						<?php endif; ?>
 
 						<?php if(get_field('tile_material')): ?>
-						<tr>
-							<td class="attribute-name">Material</td>
-							<td><?php the_field('tile_material'); ?></td>
-						</tr>
+							<div class="description-meta-col half-col">
+								<p class="attribute-name">Material</p>
+								<p><?php the_field('tile_material'); ?></p>
+							</div>
 						<?php endif; ?>
 
 						<?php if(get_field('tile_application')): ?>
-						<tr>
-							<td class="attribute-name">Application</td>
-							<td><?php the_field('tile_application'); ?></td>
-						</tr>
+							<div class="description-meta-col half-col">
+								<p class="attribute-name">Application</p>
+								<p><?php the_field('tile_application'); ?></p>
+							</div>
 						<?php endif; ?>
 
 						<?php if(get_field('tile_variation')): ?>
-						<tr>
-							<td class="attribute-name">variation</td>
-							<td><?php the_field('tile_variation'); ?></td>
-						</tr>
+							<div class="description-meta-col half-col">
+								<p class="attribute-name">Variation</p>
+								<p><?php the_field('tile_variation'); ?></p>
+							</div>
 						<?php endif; ?>
 						
-					</table>
+					</div>
 				</div>
 			</div>
 

@@ -13,6 +13,7 @@ ul{padding-left: 0; margin-left: 0;}
 #top del{text-decoration: line-through;}
 .hide-this-area{display: none !important; visibility: hidden !important;}
 .mobile-only{display: none;}
+#top .mobile-only{display: none;}
 .remove-clear{clear: none !important;}
 .clear-both{clear: both; width: 100%;}
 .no-border-col{border-width: 0 !important;}
@@ -263,7 +264,9 @@ svg.swiper-navigation-icon{height: 14px; color: #000000; stroke: #000;}
 #top #tile-enquiry-form #submit-form-btn{margin-top: 50px; margin-left: 50%; transform: translateX(-140px); background: #dc3545; color: #fff; padding: 10px 20px 8px; width: 280px;}
 
 @media only screen and (max-width: 640px) {
+    #top .desktop-only{display: none !important;}
     .desktop-only{display: none !important;}
+    #top .mobile-only{display: initial;}
     .mobile-only{display: initial;}
 
     h1{font-size: 2rem;}

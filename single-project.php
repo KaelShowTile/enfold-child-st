@@ -53,7 +53,7 @@
 				<div class="swiper" id="tile-gallery">
 					<div class="swiper-wrapper">
 						<?php foreach($project_images as $image_id): ?>
-						<div class="swiper-slide"><?php echo wp_get_attachment_image( $image_id, 'large'); ?></div>
+						<div class="swiper-slide"><?php echo wp_get_attachment_image( $image_id, 'full'); ?></div>
 						<?php endforeach; ?>
 					</div>
 					<div class="swiper-button-prev"></div>
