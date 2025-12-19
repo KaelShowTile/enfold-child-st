@@ -8,6 +8,7 @@
 	 */
 	get_header();
     $tile_id = get_the_ID();
+	$related_project_ids = get_post_meta($tile_id, 'related_project', true);
 
 	$title = __( 'Tile', 'avia_framework' ); //default blog title
 	$t_link = home_url( '/' );
@@ -138,7 +139,26 @@
 						
 					</div>
 				</div>
-			</div>
+
+				<!-- Related project-->	
+				<?php if($related_project_ids):?>
+				<div class="single-tile-related-project-container">
+					<div class="inner-container-heading">
+						<h2>Related Project</h2>
+					</div>
+					<div class="collection-project-list">
+					<?php foreach($related_project_ids as $project): ?>
+						<div class="single-project-card single-project-card-container">
+							<a href="<?php echo get_permalink($project); ?>"><?php echo get_the_post_thumbnail($project, 'project-vertical'); ?></a>
+							<span><?php the_field('project_type', $project); ?></span>
+							<a href="<?php echo get_permalink($project); ?>"><h5><?php echo get_the_title($project); ?></h5></a>
+							<p><?php echo stCutText(get_field('project_description', $project));?></p>
+						</div>
+					<?php endforeach; ?>
+					</div>
+				</div>
+				<?php endif;?>
+				</div>
 
 		<!--end content-->
 		</main>

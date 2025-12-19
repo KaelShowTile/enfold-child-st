@@ -506,7 +506,7 @@ function display_terms_hierarchically( $terms, $parent_id = 0, $level = 0 ) {
                 display_terms_hierarchically( $terms, $term->term_id, $level + 1 );
                 echo '</div>';
                 echo '</div>';
-                
+
                 echo '</div>';
                 echo '</div>';
             } else {
@@ -515,4 +515,62 @@ function display_terms_hierarchically( $terms, $parent_id = 0, $level = 0 ) {
             }
         }
     }
+}
+
+//functions to sync related tiles of project(ACF object field) AND related projects(custom post meta) of tile 
+// Global variable to store old related_tile values
+global $old_related_tiles;
+$old_related_tiles = array();
+
+// Hook to store old related_tile values before ACF saves
+add_action('acf/pre_save_post', 'store_old_related_tiles', 10, 1);
+function store_old_related_tiles($post_id) {
+    if (get_post_type($post_id) !== 'project') {
+        return;
+    }
+    global $old_related_tiles;
+    $old_related_tiles[$post_id] = get_field('related_tile', $post_id, false); // false to get raw IDs
+}
+
+// Hook to update related_project meta on tiles after ACF saves
+add_action('acf/save_post', 'update_tile_related_projects', 20, 1); // priority 20 to run after ACF saves
+function update_tile_related_projects($post_id) {
+    if (get_post_type($post_id) !== 'project') {
+        return;
+    }
+    global $old_related_tiles;
+
+    $new_related_tiles = get_field('related_tile', $post_id, false); // new values
+    $old_related_tiles_list = isset($old_related_tiles[$post_id]) ? $old_related_tiles[$post_id] : array();
+
+    // Ensure they are arrays
+    if (!is_array($new_related_tiles)) $new_related_tiles = array();
+    if (!is_array($old_related_tiles_list)) $old_related_tiles_list = array();
+
+    // Find added and removed tiles
+    $added_tiles = array_diff($new_related_tiles, $old_related_tiles_list);
+    $removed_tiles = array_diff($old_related_tiles_list, $new_related_tiles);
+
+    // Add project to added tiles
+    foreach ($added_tiles as $tile_id) {
+        $current_projects = get_post_meta($tile_id, 'related_project', true);
+        if (!is_array($current_projects)) $current_projects = array();
+        if (!in_array($post_id, $current_projects)) {
+            $current_projects[] = $post_id;
+            update_post_meta($tile_id, 'related_project', $current_projects);
+        }
+    }
+
+    // Remove project from removed tiles
+    foreach ($removed_tiles as $tile_id) {
+        $current_projects = get_post_meta($tile_id, 'related_project', true);
+        if (!is_array($current_projects)) $current_projects = array();
+        if (($key = array_search($post_id, $current_projects)) !== false) {
+            unset($current_projects[$key]);
+            update_post_meta($tile_id, 'related_project', array_values($current_projects)); // reindex
+        }
+    }
+
+    // Clean up global
+    unset($old_related_tiles[$post_id]);
 }

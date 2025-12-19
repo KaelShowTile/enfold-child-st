@@ -60,7 +60,7 @@
 
 			//get title & link
 			$tile_title = get_the_title($tile);
-			$permalink = get_permalink( $tile );
+			$permalink = get_permalink($tile);
 
 			//combine images with tile title
 			if($tile_images){
@@ -89,13 +89,12 @@
 				$collection_variation[] = $tile_variation;
 			}
 
-			//get first image as thumbnail
+			//get thumbnail
 			$tile_thumb;
-			if($tile_images){
-				$medium_url = wp_get_attachment_image_url( $tile_images[0], 'medium' );
-				$full_url = wp_get_attachment_image_url( $tile_images[0], 'full' );
-				$tile_thumb = ($medium_url !== $full_url) ? $medium_url : $full_url;
-			}else{
+			$medium_url = get_the_post_thumbnail_url($tile, 'medium' );
+			$full_url = get_the_post_thumbnail_url($tile, 'full' );
+			$tile_thumb = ($medium_url !== $full_url) ? $medium_url : $full_url;
+			if(!$tile_thumb){
 				$tile_thumb = get_stylesheet_directory_uri() . '/assets/img/st-place-holder.jpg';
 			}
 
@@ -262,25 +261,6 @@
 				<?php endforeach; ?>
 				</div>
 			</div>
-			
-			<!-- Related project -->
-			<?php if($collection_projects):?>
-			<div class="collection-tile-container collection-container">
-				<div class="inner-container-heading">
-					<h2><?php the_title(); ?> Project</h2>
-				</div>
-				<div class="collection-project-list">
-				<?php foreach($collection_projects as $project): ?>
-					<div class="single-project-card single-project-card-container">
-						<a href="<?php echo get_permalink($project); ?>"><?php echo get_the_post_thumbnail($project, 'project-vertical'); ?></a>
-						<span><?php the_field('project_type', $project); ?></span>
-						<a href="<?php echo get_permalink($project); ?>"><h5><?php echo get_the_title($project); ?></h5></a>
-						<p><?php echo stCutText(get_field('project_description', $project));?></p>
-					</div>
-				<?php endforeach; ?>
-				</div>
-			</div>
-			<?php endif;?>
 
 			<!-- Collection Catalogue -->
 			 <?php if($catalogue_pdf_url): ?>
@@ -289,7 +269,7 @@
 				<div id="collection-pdf-content" style="display:none;">				
 					<?php echo do_shortcode($catalogue_pdf_shortcode); ?>				
 				</div>
-				<a href="<?php echo $catalogue_pdf_url; ?>" class="st-link-button small-style mobile-only">Download Catalogue of <?php the_title(); ?></a>
+				<a href="<?php echo $catalogue_pdf_url; ?>" class="st-link-button small-style mobile-only">Open Catalogue of <?php the_title(); ?></a>
 			</div>
 			<?php endif; ?>
 

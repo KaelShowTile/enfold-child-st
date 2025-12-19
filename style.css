@@ -25,6 +25,7 @@ ul{padding-left: 0; margin-left: 0;}
 .image-overlay .image-overlay-inside:before{display: none;}
 .image-overlay.overlay-type-extern .image-overlay-inside:before{display: none;}
 .avia_transform a:hover .image-overlay{opacity: 0 !important;}
+.swiper img.size-full{height: 600px; width: auto;}
 
 .page-title{text-align: center; font-size: 3rem; margin-top: 40px;}
 .item-title{text-align: left; font-size: 3rem; margin-top: 40px;}
@@ -87,6 +88,7 @@ ul{padding-left: 0; margin-left: 0;}
 #tile-finish-accordion .accordion-body .tile-sidebar-btns a{margin: 0;}
 .tile-details .tile-decripton{margin-top: 25px;}
 .tile-decripton .attribute-name{padding-left: 0;}
+.single-tile-related-project-container{margin-top: 40px;}
 
 /* single collection */
 .collection-container{display: inline-block; width: 100%;}
@@ -102,6 +104,7 @@ ul{padding-left: 0; margin-left: 0;}
 .collection-description-container tr td p{margin-bottom: 0;}
 .collection-pdf-container{min-height: 46px; margin: 20px 0 0;}
 #top #collection-pdf-btn{cursor: pointer; position: absolute; background: #ffffff; border-radius: 0; z-index: 9999; margin-top: 1px; padding: 10px 60px 9px;}
+#top .st-link-button.small-style.mobile-only{display: none;}
 .collection-qa-container{margin-top: 20px;}
 
 /* single project */
@@ -312,7 +315,7 @@ svg.swiper-navigation-icon{height: 14px; color: #000000; stroke: #000;}
     #collection-category-fliter-accordion .accordion-button{font-size: 0.8rem;}
     #collection-category-fliter-accordion .accordion-collapse .accordion-body .child-category{padding-left: 0;}
     .category-list .active-categories .active-cat{font-size: 0.8rem;}
-
+    #top .st-link-button.small-style.mobile-only{display: inline-block;}
     .single-project-card-container{width: calc((100% - 40px) / 2);}
 
     /* element */
