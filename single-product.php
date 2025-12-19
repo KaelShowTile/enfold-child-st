@@ -47,6 +47,7 @@
 	$collection_finish = [];//get all finish-size pair
 	$grouped_finish = [];//combine $collection_finish by finish name & merge size
 	$collection_tiles_list = [];
+	$collection_projects = [];
 
 	if($collection_tiles){
 		foreach($collection_tiles as $tile){
@@ -61,6 +62,10 @@
 			//get title & link
 			$tile_title = get_the_title($tile);
 			$permalink = get_permalink($tile);
+
+			//get related project ids
+			$collection_projects_id = get_post_meta($tile, 'related_project', true);
+			$collection_projects = array_unique(array_merge($collection_projects, $collection_projects_id));
 
 			//combine images with tile title
 			if($tile_images){
@@ -157,8 +162,6 @@
         'finish_name' => $name,
         'finish_size' => implode(', ', $uniqueSizes)
     ];
-
-	$collection_projects = get_field('related_project');
 }
 
 ?>
@@ -261,6 +264,25 @@
 				<?php endforeach; ?>
 				</div>
 			</div>
+			
+			<!-- Related project -->
+			<?php if($collection_projects):?>
+			<div class="collection-tile-container collection-container">
+				<div class="inner-container-heading">
+					<h2><?php the_title(); ?> Project</h2>
+				</div>
+				<div class="collection-project-list">
+				<?php foreach($collection_projects as $project): ?>
+					<div class="single-project-card single-project-card-container">
+						<a href="<?php echo get_permalink($project); ?>"><?php echo get_the_post_thumbnail($project, 'project-vertical'); ?></a>
+						<span><?php the_field('project_type', $project); ?></span>
+						<a href="<?php echo get_permalink($project); ?>"><h5><?php echo get_the_title($project); ?></h5></a>
+						<p><?php echo stCutText(get_field('project_description', $project));?></p>
+					</div>
+				<?php endforeach; ?>
+				</div>
+			</div>
+			<?php endif;?>
 
 			<!-- Collection Catalogue -->
 			 <?php if($catalogue_pdf_url): ?>
