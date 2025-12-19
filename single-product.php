@@ -73,19 +73,19 @@
 			}
 			
 			//add tile meta to project meta
-			if (!in_array($tile_design, $collection_design)) {
+			if (!empty($tile_design && !in_array($tile_design, $collection_design))) {
 				$collection_design[] = $tile_design;
 			}
 
-			if (!in_array($tile_material, $collection_material)) {
+			if (!empty($tile_material && !in_array($tile_material, $collection_material))) {
 				$collection_material[] = $tile_material;
 			}
 
-			if (!in_array($tile_application, $collection_application)) {
+			if (!empty($tile_application) && !in_array($tile_application, $collection_application)) {
 				$collection_application[] = $tile_application;
 			}
 
-			if (!in_array($tile_variation, $collection_variation)) {
+			if (!empty($tile_variation && !in_array($tile_variation, $collection_variation))) {
 				$collection_variation[] = $tile_variation;
 			}
 

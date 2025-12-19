@@ -136,13 +136,6 @@
 							<td><?php the_field('tile_variation'); ?></td>
 						</tr>
 						<?php endif; ?>
-
-						<?php if(get_field('tile_faces')): ?>
-						<tr>
-							<td class="attribute-name">Faces</td>
-							<td><?php the_field('tile_faces'); ?></td>
-						</tr>
-						<?php endif; ?>
 						
 					</table>
 				</div>

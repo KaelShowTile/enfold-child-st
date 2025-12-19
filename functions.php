@@ -108,9 +108,10 @@ function enqueue_lightbox_scripts() {
 
 // Images auto-crop quality
 add_filter('wp_editor_set_quality', function($quality, $mime_type) {
-    if ($mime_type === 'image/jpeg') return 50;     // JPEG
-    if ($mime_type === 'image/webp') return 50;     // WebP
-    if ($mime_type === 'image/png') return 5;       // PNG compression level
+    if ($mime_type === 'image/jpeg') return 40;     // JPEG
+    if ($mime_type === 'image/jpg') return 40;     // JPG
+    if ($mime_type === 'image/webp') return 40;     // WebP
+    if ($mime_type === 'image/png') return 4;       // PNG compression level
     return $quality; // Default for others
 }, 10, 2);
 

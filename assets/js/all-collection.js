@@ -86,8 +86,7 @@ jQuery(document).ready(function($) {
         // Add load more button if there are more collections
         if (collectionsData.length > 6) {
             initialHtml += '<div class="load-more-container" style="text-align: center; margin: 20px 0;">';
-            initialHtml += '<button class="load-more-filtered-btn btn btn-primary" data-offset="6" data-term-ids="" data-total="' + collectionsData.length + '">Load More Collections</button>';
-            initialHtml += '<div class="loading-spinner" style="display: none;">Loading...</div>';
+            initialHtml += '<button class="load-more-filtered-btn btn st-link-button small-style" data-offset="6" data-term-ids="" data-total="' + collectionsData.length + '">Load More Collections</button>';
             initialHtml += '</div>';
         }
 
@@ -152,8 +151,7 @@ jQuery(document).ready(function($) {
         if (currentCount < allFilteredCollections.length) {
             var nextOffset = currentCount;
             html += '<div class="load-more-container" style="text-align: center; margin: 20px 0;">';
-            html += '<button class="load-more-filtered-btn btn btn-primary" data-offset="' + nextOffset + '" data-term-ids="' + termIds.join(',') + '" data-total="' + allFilteredCollections.length + '">Load More Collections</button>';
-            html += '<div class="loading-spinner" style="display: none;">Loading...</div>';
+            html += '<button class="load-more-filtered-btn btn st-link-button small-style" data-offset="' + nextOffset + '" data-term-ids="' + termIds.join(',') + '" data-total="' + allFilteredCollections.length + '">Load More Collections</button>';
             html += '</div>';
         }
 
@@ -318,7 +316,6 @@ jQuery(document).ready(function($) {
 
         var $button = $(this);
         var $container = $button.closest('.collection-list-container');
-        var $spinner = $button.siblings('.loading-spinner');
         var $loadMoreContainer = $button.parent('.load-more-container');
 
         // Get data attributes
@@ -327,14 +324,10 @@ jQuery(document).ready(function($) {
 
         // Show loading state
         $button.prop('disabled', true).text('Loading...');
-        $spinner.show();
 
         // Load more filtered results
         setTimeout(function() {
             filterCollections(offset);
-
-            // Hide loading state
-            $spinner.hide();
         }, 100); // Small delay to show loading state
     });
 
