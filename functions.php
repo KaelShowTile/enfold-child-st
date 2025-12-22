@@ -109,17 +109,14 @@ function enqueue_lightbox_scripts() {
 // Sets compression quality for both GD and ImageMagick engines
 add_filter('wp_editor_set_quality', function($quality) { return 50; });
 
-// Specifically targeting ImageMagick for more aggressive stripping of metadata
-add_filter('wp_image_editor_before_save', function($editor) {
-    if (method_exists($editor, 'set_quality')) {
-        $editor->set_quality(50);
-    }
-    // This part removes EXIF data from cropped versions to save space
-    if (method_exists($editor, 'strip_metadata')) {
-        $editor->strip_metadata();
-    }
-    return $editor;
-}, 10);
+// Images auto-crop quality
+add_filter('wp_editor_set_quality', function($quality, $mime_type) {
+    if ($mime_type === 'image/jpeg') return 30;     // JPEG
+    if ($mime_type === 'image/jpg') return 30;     // JPG
+    if ($mime_type === 'image/webp') return 30;     // WebP
+    if ($mime_type === 'image/png') return 3;       // PNG compression level
+    return $quality; // Default for others
+}, 10, 2);
 
 //Add custom image size
 add_theme_support( 'post-thumbnails' );
