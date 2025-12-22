@@ -105,6 +105,7 @@ ul{padding-left: 0; margin-left: 0;}
 .collection-pdf-container{min-height: 46px; margin: 20px 0 0;}
 #top #collection-pdf-btn{cursor: pointer; position: absolute; background: #ffffff; border-radius: 0; z-index: 9999; margin-top: 1px; padding: 10px 60px 9px;}
 #top .st-link-button.small-style.mobile-only{display: none;}
+.collection-video-container{margin-top: 30px;}
 .collection-qa-container{margin-top: 20px;}
 
 /* single project */

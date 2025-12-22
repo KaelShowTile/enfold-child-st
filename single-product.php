@@ -266,6 +266,13 @@
 				<?php endforeach; ?>
 				</div>
 			</div>
+
+			<?php if(get_field('collection_video')): ?>
+			<div class="collection-tile-container collection-container collection-video-container">
+				<?php $video_shortcode = "[av_video src='" . get_field('collection_video') . "' video_loop='aviaTBvideo_loop' video_controls='aviaTBvideo_controls' format='16-9' width='16' height='9' id='' sc_version='1.0']"; ?>
+				<?php echo do_shortcode($video_shortcode); ?>
+			</div>
+			<?php endif; ?>	
 			
 			<!-- Related project -->
 			<?php if($collection_projects):?>
