@@ -107,12 +107,12 @@ function enqueue_lightbox_scripts() {
 }*/
 
 // Sets compression quality for both GD and ImageMagick engines
-add_filter('wp_editor_set_quality', function($quality) { return 50; });
+add_filter('wp_editor_set_quality', function($quality) { return 60; });
 
 // Specifically targeting ImageMagick for more aggressive stripping of metadata
 add_filter('wp_image_editor_before_save', function($editor) {
     if (method_exists($editor, 'set_quality')) {
-        $editor->set_quality(50);
+        $editor->set_quality(60);
     }
     // This part removes EXIF data from cropped versions to save space
     if (method_exists($editor, 'strip_metadata')) {
