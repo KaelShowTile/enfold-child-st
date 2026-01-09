@@ -119,34 +119,6 @@
 				<?php endif; ?>		
 			</div>
 
-			<!-- Ralated Tiles -->
-			<?php if( $project_related_tile ): ?>
-			<div class="project-tile-container project-container container">
-				<div class="inner-container-heading">
-					<h2>Featured Products</h2>
-				</div>
-				<div class="collection-tiles-list">
-				<?php //loop tile
-				foreach($project_related_tile as $tile): 
-					$tile_link = get_permalink( $tile );
-					$tile_title = get_the_title($tile);
-					$tile_finish = get_field('tile_finish', $tile);
-					//loop finish
-					if($tile_finish):
-						foreach($tile_finish as $finish): ?>
-							<div class="single-tile-card">
-								<a href="<?php echo $tile_link; ?>"><?php echo wp_get_attachment_image( $finish['finish_image'], 'medium'); ?></a>
-								<a href="<?php echo $tile_link; ?>"><h5><?php echo $tile_title . " " . $finish['finish_name']; ?></h5></a>
-								<p><?php echo $finish['product_code']; ?></p>
-							</div>
-						<?php endforeach; ?>
-					<?php endif; ?>
-				<?php endforeach; ?>
-				</div>
-				
-			</div>
-			<?php endif; ?>
-
 			<!-- House Tour -->
 			<?php if( get_field('project_house_tour') ): ?>
 				<div class="project-house-tour-container container">
@@ -169,6 +141,27 @@
 						<?php endwhile; ?>
 					<?php endif; ?>	
 				</div>
+			<?php endif; ?>
+
+			<!-- Ralated Tiles -->
+			<?php if( $project_related_tile ): ?>
+			<div class="project-tile-container project-container container">
+				<div class="inner-container-heading">
+					<h2>Featured Products</h2>
+				</div>
+				<div class="collection-tiles-list">
+					<?php //loop tile
+					foreach($project_related_tile as $tile): 
+						$tile_link = get_permalink( $tile );
+						$tile_title = get_the_title($tile); ?>
+						<div class="single-tile-card">
+							<a href="<?php echo $tile_link; ?>"><?php echo get_the_post_thumbnail( $tile, 'medium'); ?></a>
+							<a href="<?php echo $tile_link; ?>"><h5><?php echo $tile_title; ?></h5></a>
+						</div>
+					<?php endforeach; ?>
+				</div>
+				
+			</div>
 			<?php endif; ?>
 
 		<!--end content-->

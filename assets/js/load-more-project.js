@@ -2,7 +2,7 @@ jQuery(document).ready(function($) {
     'use strict';
 
     // Handle load more button clicks
-    $(document).on('click', '.load-more-btn', function(e) {
+    $(document).on('click', '.load-more-filtered-btn', function(e) {
         e.preventDefault();
 
         var $button = $(this);
@@ -20,7 +20,7 @@ jQuery(document).ready(function($) {
 
         // Prepare AJAX data
         var ajaxData = {
-            action: 'load_more_collections',
+            action: 'load_more_projects',
             offset: offset,
             limit: limit,
         };
@@ -38,42 +38,19 @@ jQuery(document).ready(function($) {
                 if (response.success) {
                     // Hide loading state
                     $spinner.hide();
-                    $button.prop('disabled', false).text('Load More Collections');
+                    $button.prop('disabled', false).text('Load More Projects');
 
                     // Parse the returned HTML
                     var $newContent = $(response.data);
-                    
-                    // Find the new collection cards (exclude the load more container)
-                    var $newCards = $newContent.filter('.collection-card');
+
+                    // Find the new project cards (exclude the load more container)
+                    var $newCards = $newContent.filter('.single-project-card');
 
                     // Find if there's a new load more button
-                    var $newLoadMore = $newContent.filter('.load-more-container');
+                    var $newLoadMore = $newContent.filter('.load-more-project');
 
-                    // Insert new collection cards before the load-more-container
+                    // Insert new project cards before the load-more-container
                     $loadMoreContainer.before($newCards);
-
-                    // Re-initialize Swiper for new content
-                    $newCards.each(function() {
-                        var $card = $(this);
-                        var $thumbSlider = $card.find('.collection-inner-slider-thumb');
-                        var $previewSlider = $card.find('.collection-inner-slider-preview');
-
-                        if ($thumbSlider.length && $previewSlider.length) {
-                            var thumbSwiper = new Swiper($thumbSlider[0], {
-                                spaceBetween: 10,
-                                slidesPerView: 4,
-                                freeMode: true,
-                                watchSlidesProgress: true,
-                            });
-
-                            var previewSwiper = new Swiper($previewSlider[0], {
-                                spaceBetween: 10,
-                                thumbs: {
-                                    swiper: thumbSwiper,
-                                },
-                            });
-                        }
-                    });
 
                     // Replace or remove the load more button
                     if ($newLoadMore.length) {
@@ -85,20 +62,20 @@ jQuery(document).ready(function($) {
                     }
 
                     // Trigger custom event for other scripts
-                    $(document).trigger('collections:loaded', [$newCards]);
+                    $(document).trigger('projects:loaded', [$newCards]);
 
                 } else {
                     console.error('AJAX error:', response.data);
                     // Reset button state
                     $spinner.hide();
-                    $button.prop('disabled', false).text('Load More Collections');
+                    $button.prop('disabled', false).text('Load More Projects');
                 }
             },
             error: function(xhr, status, error) {
                 console.error('AJAX request failed:', error);
                 // Reset button state
                 $spinner.hide();
-                $button.prop('disabled', false).text('Load More Collections');
+                $button.prop('disabled', false).text('Load More Projects');
             }
         });
     });

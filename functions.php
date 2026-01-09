@@ -36,7 +36,7 @@ function enqueue_archive_collection_scripts() {
     }
 }
 
-// AJAX handler for load more
+// AJAX handler for load more collection
 add_action('wp_ajax_load_more_collections', 'load_more_collections');
 add_action('wp_ajax_nopriv_load_more_collections', 'load_more_collections');
 function load_more_collections() {
@@ -52,6 +52,25 @@ function load_more_collections() {
     }
 
     $html = get_collections_html($offset, $limit, $term_ids, true);
+    wp_send_json_success($html);
+}
+
+// AJAX handler for load more project
+add_action('wp_ajax_load_more_projects', 'load_more_projects');
+add_action('wp_ajax_nopriv_load_more_projects', 'load_more_projects');
+function load_more_projects() {
+    $offset = intval($_POST['offset']);
+    $limit = intval($_POST['limit']) ?: 12;
+    $term_ids = isset($_POST['term_ids']) ? $_POST['term_ids'] : null;
+
+    // Handle comma-separated term IDs
+    if ($term_ids && strpos($term_ids, ',') !== false) {
+        $term_ids = array_map('intval', explode(',', $term_ids));
+    } elseif ($term_ids) {
+        $term_ids = intval($term_ids);
+    }
+
+    $html = get_project_html($offset, $limit, $term_ids, true);
     wp_send_json_success($html);
 }
 
@@ -85,7 +104,18 @@ function enqueue_load_more_scripts() {
         wp_enqueue_script( 'load-more-items-js', get_stylesheet_directory_uri() . '/assets/js/load-more-items.js', array('jquery'), '1.0.0', true );
         wp_localize_script( 'load-more-items-js', 'st_ajax_object', array(
             'ajax_url' => admin_url( 'admin-ajax.php' ),
-            'nonce' => wp_create_nonce( 'load_more_collections_nonce' )
+        ) );
+    }
+}
+
+// Enqueue load more scripts
+add_action( 'wp_enqueue_scripts', 'enqueue_load_more_project_scripts' );
+function enqueue_load_more_project_scripts() {
+    // Load on taxonomy pages or all-collection page
+    if ( is_tax( 'project_category' ) || is_page_template( 'all-project.php' ) ) {
+        wp_enqueue_script( 'load-more-project-js', get_stylesheet_directory_uri() . '/assets/js/load-more-project.js', array('jquery'), '1.0.0', true );
+        wp_localize_script( 'load-more-project-js', 'st_ajax_object', array(
+            'ajax_url' => admin_url( 'admin-ajax.php' ),
         ) );
     }
 }
@@ -98,13 +128,6 @@ function enqueue_idea_basket_scripts() {
         wp_enqueue_script( 'idea-basket-js', get_stylesheet_directory_uri() . '/assets/js/idea-basket.js', array('jquery'), '1.0.0', true );
     }
 }
-
-/*ST Lightbox, if Enfold lightbox doesn't work, enable this one, the trigger class is "st-lightbox"
-add_action( 'wp_enqueue_scripts', 'enqueue_lightbox_scripts' );
-function enqueue_lightbox_scripts() {
-    wp_enqueue_style( 'st-lightbox-css', get_stylesheet_directory_uri() . '/assets/css/st-lightbox.css' );
-    wp_enqueue_script( 'st-lightbox-js', get_stylesheet_directory_uri() . '/assets/js/st-lightbox.js', array('jquery'), '1.0.0', true );
-}*/
 
 // Sets compression quality for both GD and ImageMagick engines
 add_filter('wp_editor_set_quality', function($quality) { return 60; });
@@ -265,7 +288,7 @@ function get_collections_html($offset = 0, $limit = 12, $term_ids = null, $load_
             }
 
             $html .= '<div class="load-more-container" style="text-align: center; margin: 20px 0;">';
-            $html .= '<button class="load-more-btn btn btn-primary" data-offset="' . $next_offset . '" data-limit="' . $limit . '" data-term-ids="' . $term_id_param . '" data-total="' . $total_posts . '">Load More Collections</button>';
+            $html .= '<button class="load-more-filtered-btn btn st-link-button small-style" data-offset="' . $next_offset . '" data-limit="' . $limit . '" data-term-ids="' . $term_id_param . '" data-total="' . $total_posts . '">Load More Collections</button>';
             $html .= '</div>';
         }
     }
@@ -348,7 +371,7 @@ function get_project_html($offset = 0, $limit = 12, $term_ids = null, $load_more
             }
 
             $html .= '<div class="load-more-container" style="text-align: center; margin: 20px 0;">';
-            $html .= '<button class="load-more-btn btn btn-primary" data-offset="' . $next_offset . '" data-limit="' . $limit . '" data-term-ids="' . $term_id_param . '" data-total="' . $total_posts . '">Load More Collections</button>';
+            $html .= '<button class="load-more-filtered-btn btn st-link-button small-style" data-offset="' . $next_offset . '" data-limit="' . $limit . '" data-term-ids="' . $term_id_param . '" data-total="' . $total_posts . '">Load More Collections</button>';
             $html .= '</div>';
         }
     }
