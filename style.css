@@ -83,6 +83,7 @@ ul{padding-left: 0; margin-left: 0;}
 #tile-finish-accordion .accordion-body img{max-width: 200px;}
 #tile-finish-accordion .accordion-body .tile-size-list{margin: 10px 0;}
 #tile-finish-accordion .accordion-body .tile-size-list li{line-height: 28px; margin-top: 3px; display: inline-block; width: 100%;}
+#tile-finish-accordion .accordion-body .tile-size-list span{display: inline-block; max-width: 60%; float: left; font-size: 0.9rem; line-height: 1.2;}
 #tile-finish-accordion .accordion-body .tile-size-list li #add-to-basket, .tile-sidebar-btns a{font-size: 0.7rem; font-weight: 600; padding: 3px 10px; border: 2px solid #000; border-radius: 25px; cursor: pointer; transition: 0.5s; margin: -1px 0 0 5px;}
 #tile-finish-accordion .accordion-body .tile-size-list li #add-to-basket:hover, .tile-sidebar-btns a:hover{background: #000; color: #fff;}
 #tile-finish-accordion .accordion-body .tile-sidebar-btns a{margin: 0;}

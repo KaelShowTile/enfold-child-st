@@ -109,6 +109,13 @@
 					<?php the_field('tile_description'); ?>
 					<div class="collection-description-container">
 							
+						<?php if(get_field('indent_item')): ?>
+							<div class="description-meta-col half-col">
+								<p class="attribute-name">Indent Item</p>
+								<p>Yes</p>
+							</div>
+						<?php endif; ?>
+					
 						<?php if(get_field('tile_design')): ?>
 							<div class="description-meta-col half-col">
 								<p class="attribute-name">Design</p>
