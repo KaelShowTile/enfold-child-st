@@ -148,8 +148,9 @@ ul{padding-left: 0; margin-left: 0;}
 #st-footer-container .business-hours p{margin-bottom: 0;}
 #st-footer-container .form_element{width: 70%; display: inline-block; float: left; clear: none;}
 #st-footer-container .form_element.av-last-visible-form-element{width: 30%;}
-#top #st-footer-container .form_element input{border: 1px solid !important; padding: 8px;}
-#top #st-footer-container .form_element.av-last-visible-form-element input.button{background: #000;}
+#top #st-footer-container .form_element input{border: 1px solid !important; padding: 8px; border-radius: 15px 0 0 15px;}
+#top #st-footer-container .form_element.av-last-visible-form-element input.button{background: #000; border-left-width: 0 !important; padding: 7px 7px 8px; border-radius: 0 15px 15px 0;}
+#st-footer-container .subscription-descripton p{margin-bottom: 0;}
 
 /* elements */
 .load-more-container{width: 100%;}
