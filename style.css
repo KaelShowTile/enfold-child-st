@@ -136,6 +136,19 @@ ul{padding-left: 0; margin-left: 0;}
 .collection-list-container:before{display: none;}
 .collection-list-container .collection-card{width: calc((100% - 80px) / 3);}
 
+/* footer */
+#st-footer-container .footer-logo .avia_image{margin-left: -5px;}
+#st-footer-container .av_textblock_section{display: inline-block; width: 100%;}
+#st-footer-container h5{color: #fff; text-transform: uppercase;font-family: 'roboto', Helvetica, Arial, sans-serif; margin: 0 0 5px; font-size: 1rem; font-weight: 600; letter-spacing: 1px;}
+#st-footer-container .margin-top-20 h5{margin-top: 20px;}
+#st-footer-container p{color: #fff; font-size: 0.8rem; font-weight: 300; letter-spacing: 0.5px; line-height: 1.5;}
+#st-footer-container .business-hours{display: flex; flex-wrap: wrap;}
+#st-footer-container .business-hours .weekday{display: inline-block; width: 35%;}
+#st-footer-container .business-hours .working-hours{display: inline-block; width: 65%;}
+#st-footer-container .business-hours p{margin-bottom: 0;}
+
+
+
 /* elements */
 .load-more-container{width: 100%;}
 
