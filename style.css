@@ -146,8 +146,10 @@ ul{padding-left: 0; margin-left: 0;}
 #st-footer-container .business-hours .weekday{display: inline-block; width: 35%;}
 #st-footer-container .business-hours .working-hours{display: inline-block; width: 65%;}
 #st-footer-container .business-hours p{margin-bottom: 0;}
-
-
+#st-footer-container .form_element{width: 70%; display: inline-block; float: left; clear: none;}
+#st-footer-container .form_element.av-last-visible-form-element{width: 30%;}
+#top #st-footer-container .form_element input{border: 1px solid !important; padding: 8px;}
+#top #st-footer-container .form_element.av-last-visible-form-element input.button{background: #000;}
 
 /* elements */
 .load-more-container{width: 100%;}
