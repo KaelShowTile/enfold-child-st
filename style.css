@@ -203,6 +203,9 @@ ul{padding-left: 0; margin-left: 0;}
 .st-overlay.bottom-left h2{font-size: 2rem; font-weight: 500; margin-bottom: 5px;}
 .st-overlay.bottom-left p{font-weight: 300; letter-spacing: 0.5px; margin-bottom: 40px;}
 
+.cht-simple-page-typography h5{font-size: 1.8rem; font-weight: 700; margin: 40px auto 10px;}
+.cht-simple-page-typography li{line-height: 1.75; padding: 0;}
+
 /* Plugin */
 .swiper-slide{width: auto;}
 #top .swiper-button-prev, #top .swiper-button-next{border: 2px solid #000; border-radius: 50%;}
@@ -246,7 +249,7 @@ svg.swiper-navigation-icon{height: 14px; color: #000000; stroke: #000;}
 .home-blog-inner .swiper-slide h3{margin: 40px auto 10px;}
 .home-blog-inner .swiper-slide p{font-size: 0.8rem;}
 
-.instagram-post-container{padding-top: 50px;}
+.instagram-post-container{padding-top: 50px; margin-bottom: 50px;}
 
 /* All project page */
 .project-list-container.fliter-project{display: flex; flex-wrap: wrap; gap: 40px;}
