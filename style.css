@@ -142,10 +142,6 @@ ul{padding-left: 0; margin-left: 0;}
 #st-footer-container h5{color: #fff; text-transform: uppercase;font-family: 'roboto', Helvetica, Arial, sans-serif; margin: 0 0 5px; font-size: 1rem; font-weight: 600; letter-spacing: 1px;}
 #st-footer-container .margin-top-20 h5{margin-top: 20px;}
 #st-footer-container p{color: #fff; font-size: 0.8rem; font-weight: 300; letter-spacing: 0.5px; line-height: 1.5;}
-#st-footer-container .business-hours{display: flex; flex-wrap: wrap;}
-#st-footer-container .business-hours .weekday{display: inline-block; width: 35%;}
-#st-footer-container .business-hours .working-hours{display: inline-block; width: 65%;}
-#st-footer-container .business-hours p{margin-bottom: 0;}
 #st-footer-container .form_element{width: 70%; display: inline-block; float: left; clear: none;}
 #st-footer-container .form_element.av-last-visible-form-element{width: 30%;}
 #top #st-footer-container .form_element input{border: 1px solid !important; padding: 8px 8px 8px 15px; border-radius: 15px 0 0 15px;}
@@ -205,6 +201,13 @@ ul{padding-left: 0; margin-left: 0;}
 
 .cht-simple-page-typography h5{font-size: 1.8rem; font-weight: 700; margin: 40px auto 10px;}
 .cht-simple-page-typography li{line-height: 1.75; padding: 0;}
+.cht-simple-page-typography p{margin-bottom: 0;}
+.cht-simple-page-typography .about-us-slogan{margin: 40px auto 25px; letter-spacing: 2px; font-weight: 500; font-size: 1.5rem; line-height: 1.2; text-align: center; text-transform: uppercase; color: #999;}
+
+.business-hours{display: flex; flex-wrap: wrap;}
+.business-hours .weekday{display: inline-block; width: 35%;}
+.business-hours .working-hours{display: inline-block; width: 65%;}
+.business-hours p{margin-bottom: 0;}
 
 /* Plugin */
 .swiper-slide{width: auto;}
