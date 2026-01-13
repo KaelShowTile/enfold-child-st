@@ -202,12 +202,17 @@ ul{padding-left: 0; margin-left: 0;}
 .cht-simple-page-typography h5{font-size: 1.8rem; font-weight: 700; margin: 40px auto 10px;}
 .cht-simple-page-typography li{line-height: 1.75; padding: 0;}
 .cht-simple-page-typography p{margin-bottom: 0;}
+.cht-simple-page-typography b{display: inline-block; margin: 20px 0 2px; text-transform: uppercase; font-size: 1.2rem; letter-spacing: 1px;}
 .cht-simple-page-typography .about-us-slogan{margin: 40px auto 25px; letter-spacing: 2px; font-weight: 500; font-size: 1.5rem; line-height: 1.2; text-align: center; text-transform: uppercase; color: #999;}
 
 .business-hours{display: flex; flex-wrap: wrap;}
 .business-hours .weekday{display: inline-block; width: 35%;}
 .business-hours .working-hours{display: inline-block; width: 65%;}
 .business-hours p{margin-bottom: 0;}
+
+#top .av-form-labels-hidden.av-dark-form .form_element .button{width: 100%; background: #000; color: #fff;}
+#top .av-form-labels-hidden.av-dark-form .form_element input, #top .av-form-labels-hidden.av-dark-form .form_element select, #top .av-form-labels-hidden.av-dark-form .form_element textarea{border: 1px solid #aaa !important; border-radius: 5px;}
+#top .av-form-labels-hidden.av-dark-form .form_element select{color: #555;}
 
 /* Plugin */
 .swiper-slide{width: auto;}
