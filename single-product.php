@@ -40,6 +40,7 @@
 	$collection_tiles = get_field('tiles_in_collection');
 
 	$collection_gallery = [];
+	$collection_video = [];
 	$collection_design = [];
 	$collection_material = [];
 	$collection_application = [];
@@ -53,6 +54,7 @@
 		foreach($collection_tiles as $tile){
 			//get ACF value of each tile
 			$tile_images = get_field('tile_photo_gallery', $tile);//return image ids
+			$tile_video = get_field('tile_video', $tile);
 			$tile_design = get_field('tile_design', $tile);
 			$tile_material = get_field('tile_material', $tile);
 			$tile_application = get_field('tile_application', $tile);
@@ -77,6 +79,13 @@
 				foreach($tile_images as $image_id){
 					$collection_gallery[] = ['image_id' => $image_id, 'tile_title' => $tile_title];
 				}
+			}
+
+			//combine videos
+			if($tile_video){
+				$tile_video_url = $tile_video['video_url'];
+				$tile_video_thumb_id = $tile_video['video_thumbnail'];
+				$collection_video[] = ['thumbnail_id' => $tile_video_thumb_id, 'video_url' => $tile_video_url];
 			}
 			
 			//add tile meta to project meta
@@ -164,6 +173,22 @@
         'finish_name' => $name,
         'finish_size' => implode(', ', $uniqueSizes)
     ];
+
+	//Render slider
+	$collection_slider_output = "";
+	if($collection_gallery || $collection_video){
+		if($collection_video){
+			foreach($collection_video as $video_item){
+				$collection_slider_output .= '<div class="swiper-slide"><a class="noLightbox st-lightbox" href="' . $video_item['video_url'] . '"><img src="' . get_stylesheet_directory_uri() . '/assets/img/play-button.svg" class="video-play-button"></a>' . wp_get_attachment_image(  $video_item['thumbnail_id'], 'full') . '</div>';
+			}
+		}
+		
+		if($collection_gallery){
+			foreach($collection_gallery as $gallery_item){
+				$collection_slider_output .= '<div class="swiper-slide"><a href="'. wp_get_attachment_image_url($gallery_item['image_id'], 'full') .'">' . wp_get_attachment_image($gallery_item['image_id'], 'full' ) . '</a><p class="tile-name">' . esc_html($gallery_item['tile_title']) . '</p></div>';
+			}	
+		}
+	}
 }
 
 ?>
@@ -183,12 +208,7 @@
 			<div class="collection-gallery-slider collection-container">
 				<div class="swiper" id="tile-gallery">
 					<div class="swiper-wrapper">
-						<?php foreach($collection_gallery as $gallery_item): ?>
-						<div class="swiper-slide">
-							<?php echo wp_get_attachment_image( $gallery_item['image_id'], 'full' ); ?>
-							<p class="tile-name"><?php echo esc_html($gallery_item['tile_title']); ?></p>
-						</div>
-						<?php endforeach; ?>
+						<?php echo $collection_slider_output; ?>
 					</div>
 					<div class="swiper-button-prev"></div>
 					<div class="swiper-button-next"></div>
@@ -336,5 +356,8 @@
 	</div><!--end container-->
 
 </div><!-- close default .container_wrap element -->
+
+<link type="text/css" rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/css/st-lightbox.css" id="st-lightbox-css">
+<script src="<?php echo get_stylesheet_directory_uri(); ?>/assets/js/st-lightbox.js" id="st-lightbox-js"></script>
 
 <?php get_footer();

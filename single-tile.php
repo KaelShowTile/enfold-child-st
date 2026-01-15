@@ -30,6 +30,25 @@
 	 * @return string
 	 */
 	$main_class = apply_filters( 'avf_custom_main_classes', 'av-main-' . basename( __FILE__, '.php' ), basename( __FILE__ ) );
+
+	//render slider content
+	$tile_images = get_field('tile_photo_gallery');
+	$tile_video = get_field('tile_video');
+	$tile_video_url = ""; 
+	$tile_video_thumb_url = ""; //setup default url later in case My or Naomi forget to upload thumbnail
+	$tile_slider_output = "";
+
+	if($tile_video){
+		$tile_video_url = $tile_video['video_url'];
+		$tile_video_thumb_id = $tile_video['video_thumbnail'];
+		$tile_slider_output .= '<div class="swiper-slide"><a class="noLightbox st-lightbox" href="' . $tile_video_url . '"><img src="' . get_stylesheet_directory_uri() . '/assets/img/play-button.svg" class="video-play-button"></a>' . wp_get_attachment_image( $tile_video_thumb_id, 'full') . '</div>';
+	}
+
+	if($tile_images){
+		foreach($tile_images as $image_id){
+			$tile_slider_output .= '<div class="swiper-slide"><a href="'. wp_get_attachment_image_url( $image_id, 'full') .'">' . wp_get_attachment_image( $image_id, 'full') . '</a></div>';
+		}
+	}
 ?>
 
 <div class='container_wrap container_wrap_first main_color <?php avia_layout_class( 'main' ); ?>'>
@@ -88,22 +107,19 @@
 
 			<div class="tile-details">
 				<?php //Tile gallery
-					$tile_images = get_field('tile_photo_gallery');
-					if( $tile_images ):
+					if( $tile_images || $tile_video):
 				?>
-				<div class="swiper" id="tile-gallery">
-					<div class="swiper-wrapper">
-						<?php foreach($tile_images as $image_id): ?>
-						<div class="swiper-slide"><?php echo wp_get_attachment_image( $image_id, 'full'); ?></div>
-						<?php endforeach; ?>
-					</div>
+						<div class="swiper" id="tile-gallery">
+							<div class="swiper-wrapper">
+								<?php echo $tile_slider_output; ?>
+							</div>
 
-					<div class="swiper-button-prev"></div>
-					<div class="swiper-button-next"></div>
-					<div class="swiper-scrollbar"></div>
+							<div class="swiper-button-prev"></div>
+							<div class="swiper-button-next"></div>
+							<div class="swiper-scrollbar"></div>
 
-				</div>
-				<?php endif; ?>
+						</div>
+					<?php endif; ?>
 				<!-- Tile metas-->		
 				<div class="tile-decripton">
 					<?php the_field('tile_description'); ?>
@@ -173,5 +189,8 @@
 	</div><!--end container-->
 
 </div><!-- close default .container_wrap element -->
+
+<link type="text/css" rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/css/st-lightbox.css" id="st-lightbox-css">
+<script src="<?php echo get_stylesheet_directory_uri(); ?>/assets/js/st-lightbox.js" id="st-lightbox-js"></script>
 
 <?php get_footer();

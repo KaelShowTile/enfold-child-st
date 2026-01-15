@@ -91,6 +91,7 @@ ul{padding-left: 0; margin-left: 0;}
 .tile-decripton .attribute-name{padding-left: 0;}
 .single-tile-related-project-container{margin-top: 40px;}
 
+
 /* single collection */
 .collection-container{display: inline-block; width: 100%;}
 .collection-tiles-list{display: flex; flex-wrap: wrap; align-items: flex-start; gap: 40px;}
@@ -222,6 +223,7 @@ ul{padding-left: 0; margin-left: 0;}
 #top .swiper-button-prev{left: var(--swiper-navigation-sides-offset, 20px);}
 #top .swiper-button-next{right: var(--swiper-navigation-sides-offset, 20px);}
 svg.swiper-navigation-icon{height: 14px; color: #000000; stroke: #000;}
+.swiper-slide .video-play-button{position: absolute; opacity: 0.7; width: 80px; top: 50%; left: 50%; transform: translate(-40px, -40px);}
 
 /* Home */
 .home-banner-container{margin: 80px auto;}
