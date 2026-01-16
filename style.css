@@ -58,6 +58,15 @@ ul{padding-left: 0; margin-left: 0;}
 .av-logo-container .logo-right-container #search-tile{margin-bottom: 0; max-width: 200px; border-width: 0 0 1px 0; font-size: 14px; padding: 3px 0; float: right; margin-right: 15px; background-color: #fff !important; color: #333 !important; border-color: #666 !important;;}
 .av-logo-container .logo-right-container #search-tile:focus{box-shadow: none;}
 .av-logo-container .logo-right-container #search-tile::placeholder{color: #000;}
+.av-logo-container .logo-right-container .search-submit{line-height: 1; background: transparent; position: absolute; right: 40px; top: 5px; color: #333; font-size: 1rem; transition: 0.5s; padding: 0; font-family: 'entypo-fontello';}
+.av-logo-container .logo-right-container .search-submit:hover{background: transparent; color: #000; border-color: #eee;}
+.av-logo-container .logo-right-container .glint-search-input{float: right; width: 60%; margin-right: 15px;}
+#top .av-logo-container .logo-right-container .glint-search-input .search-field{border-width: 0 0 1px 0; margin-bottom: 0; font-size: 0.8rem; padding: 8px 25px 2px 0; color: #333; border-color: #333; background: transparent;}
+#top .av-logo-container .logo-right-container .glint-search-input .search-field:focus{box-shadow: none;}
+#top .av-logo-container .logo-right-container .glint-search-input .search-field::placeholder{color: #000;}
+#top .av_header_transparency .av-logo-container .logo-right-container .search-submit{color: #fff;}
+#top .av_header_transparency .av-logo-container .logo-right-container .glint-search-input .search-field{border-color: #fff;color: #fff;}
+#top .av_header_transparency .av-logo-container .logo-right-container .glint-search-input .search-field::placeholder{color: #fff;}
 .av-logo-container .inner-container{margin: auto; width: 50%;}
 
 #header_main_alternate{padding-top: 5px; box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.05);}
@@ -329,6 +338,7 @@ svg.swiper-navigation-icon{height: 14px; color: #000000; stroke: #000;}
     #header.av_header_transparency .logo-right-container img{filter: brightness(1);}
     .av-logo-container .logo-right-container{z-index: 3;}
     .av-logo-container .logo-right-container img{width: 30px; margin-top: 3px;}
+    .av-logo-container .logo-right-container .glint-search-bar{display: none;}
     .header_color div .av-hamburger-inner, .header_color div .av-hamburger-inner::before, .header_color div .av-hamburger-inner::after{background-color: #333;}
 
     /* home */

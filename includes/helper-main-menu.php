@@ -170,9 +170,11 @@ if( $headerS['header_topbar'] == true )
 				 	$output .= "<div class='logo-left-container'><span class='phone-number'>(02) 8709 5838</span></div>";
 
 					//cotnainer right to menu
-				 	$output .= "<div class='logo-right-container'><a href='" . get_site_url() . "/idea-basket/'><img src='" . get_stylesheet_directory_uri() . "/assets/img/basket.svg'></a><input type='text' id='search-tile' placeholder='Search'></div>";
+				 	$output .= "<div class='logo-right-container'><a href='" . get_site_url() . "/idea-basket/'><img src='" . get_stylesheet_directory_uri() . "/assets/img/basket.svg'></a>";
 
-					$output .= "<div class='inner-container'>";
+					$output .= '<form role="search" method="get" class="glint-search-bar" action="' . esc_url(home_url('/')) . '"><label class="glint-search-input"><input type="search" class="search-field" placeholder="Search..." value="' . get_search_query() . '" name="s" /></label><input type="submit" class="search-submit" value="" /></form>';
+
+					$output .= "</div><div class='inner-container'>";
 
 						/*
 						*	display the theme logo by checking if the default logo was overwritten in the backend.
