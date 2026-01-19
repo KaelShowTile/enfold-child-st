@@ -84,6 +84,140 @@ function load_more_projects() {
 //     wp_send_json_success($html);
 // }
 
+//IMPORT PRODUCT
+add_action('init', function() {
+    if (!isset($_GET['run_tile_import'])) return;
+
+    // Consistently formatted data from your spreadsheet
+    $tile_data = [
+        ['name' => 'Croma Bleu Clair', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SW07471', 'size' => '101x116'],
+        ['name' => 'Croma White', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SW07472', 'size' => '101x116'],
+        ['name' => 'Croma Rose', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SW07473', 'size' => '101x116'],
+        ['name' => 'Croma Green', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SW07474', 'size' => '101x116'],
+        ['name' => 'Croma Clay', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SW07475', 'size' => '101x116'],
+        ['name' => 'Croma Black', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SW07476', 'size' => '101x116'],
+        ['name' => 'Croma Blue', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SW07477', 'size' => '101x116'],
+        ['name' => 'Croma Mint', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SW07478', 'size' => '101x116'],
+        ['name' => 'Croma Denim', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SW07479', 'size' => '101x116'],
+        ['name' => 'Ezarri Cocktail Mojito', 'indent' => 'yes', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'textured', 'code' => 'PT09064', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Cocktail Manhattan', 'indent' => 'yes', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'textured', 'code' => 'PT09065', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Cocktail Bellini', 'indent' => 'yes', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'textured', 'code' => 'PT09067', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Cocktail Kir Royal', 'indent' => 'yes', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'textured', 'code' => 'PT09068', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Cocktail Margarita', 'indent' => 'yes', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'PT09072', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Cocktail Gin Fizz', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'PT09073', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Cocktail San Francisco', 'indent' => 'yes', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'PT09074', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Cocktail Eclipse', 'indent' => 'yes', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'PT09075', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Cocktail Caipirinha', 'indent' => 'yes', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'PT09076', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Cocktail Grasshopper', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'PT09077', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Cocktail Tomahawk', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'PT09078', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Cocktail Bluemoon', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'textured', 'code' => 'PT09079', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Cocktail Blue Lagoon', 'indent' => 'yes', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'PT09081', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Cocktail Daikiri', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'textured', 'code' => 'PT09066', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Cocktail Alexander', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'PT09069', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Cocktail Cosmopolitan', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'PT09070', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Cocktail Bloody Mary', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'textured', 'code' => 'PT09071', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Cocktail Long Island', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'textured', 'code' => 'PT09080', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Iris Ocean', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'PT09001', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Iris Azur', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'PT09002', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Iris Coral', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'PT09003', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Iris Jade', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'PT09005', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Iris Perla', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'PT09006', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Iris Marfil', 'indent' => 'yes', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'PT09094', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Iris Cobre', 'indent' => 'yes', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'PT09098', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Iris Ebano', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'PT09099', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Iris Green Pearl', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'PT09100', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Lisa 2545A', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'PT09008', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Lisa 2551A', 'indent' => 'yes', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'PT09009', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Lisa 2546A', 'indent' => 'yes', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'PT09010', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Lisa 2539B', 'indent' => 'yes', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'PT09011', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Lisa 2554C', 'indent' => 'yes', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'PT09012', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Lisa 2533A', 'indent' => 'yes', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'PT09013', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Lisa 2538D', 'indent' => 'yes', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'PT09014', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Lisa 2532B', 'indent' => 'yes', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'PT09016', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Lisa 2531B', 'indent' => 'yes', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'PT09017', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Lisa 2537E', 'indent' => 'yes', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'PT09018', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Lisa 2552A', 'indent' => 'yes', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'PT09019', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Lisa 2553B', 'indent' => 'yes', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'PT09020', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Lisa 2555C', 'indent' => 'yes', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'PT09021', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Lisa 2548C', 'indent' => 'yes', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'PT09033', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Lisa 2549A', 'indent' => 'yes', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'PT09034', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Lisa 2547A', 'indent' => 'yes', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'PT09035', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Lisa 2535A', 'indent' => 'yes', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'PT09024', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Lisa 2542B', 'indent' => 'yes', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'PT09025', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Lisa 2536C', 'indent' => 'yes', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'PT09026', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Lisa 2557D', 'indent' => 'yes', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'PT09027', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Lisa 2543D', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'PT09028', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Lisa 2556C', 'indent' => 'yes', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'PT09029', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Lisa 2544A', 'indent' => 'yes', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'PT09030', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Lisa 2559B', 'indent' => 'yes', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'PT09031', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Lisa 2558B', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'PT09015', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Lisa 2534A', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'PT09022 ', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Lisa 2541A', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'PT09023', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Lisa 2559B', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'PT09031', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Lisa 2530D', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'PT09032', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Lisa 2531D', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'PT09117', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Niebla 2508A', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'PT09039', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Niebla 2505A', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'PT09040', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Niebla 2562B', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'PT09036', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Niebla 2503D', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'PT09037', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Niebla 2512C', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'PT09038', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Niebla 2521B', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'PT09041', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Niebla 2529B', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'PT09042', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Niebla 2510A', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'PT09063', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Niebla 2502A', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'PT09043', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Niebla 2586B', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'PT09044', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Niebla 2585B', 'indent' => 'yes', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'PT09045', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Niebla 2507A', 'indent' => 'yes', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'PT09046', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Niebla 2596B', 'indent' => 'yes', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'PT09047', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Niebla 2597B', 'indent' => 'yes', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'PT09048', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Niebla 2525B', 'indent' => 'yes', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'PT09049', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Niebla 2526B', 'indent' => 'yes', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'PT09050', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Niebla 2513A', 'indent' => 'yes', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'PT09051', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Niebla 2511A', 'indent' => 'yes', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'PT09052', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Niebla 2509C', 'indent' => 'yes', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'PT09053', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Niebla 2523B', 'indent' => 'yes', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'PT09054', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Niebla 2524B', 'indent' => 'yes', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'PT09055', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Niebla 2564B', 'indent' => 'yes', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'PT09056', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Niebla 2506C', 'indent' => 'yes', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'PT09057', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Niebla 2504A', 'indent' => 'yes', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'PT09058', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Niebla 2522B', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'PT09062', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Niebla 2560A', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'PT09059', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Niebla 2501B', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'PT09060', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+        ['name' => 'Ezarri Niebla 2516B', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Glass Tile', 'application' => 'Pool Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'PT09061', 'size' => 'Chip 25mm - Sheet 312x495mm'],
+    ];
+
+    foreach ($tile_data as $data) {
+        if (get_page_by_title($data['name'], OBJECT, 'tile')) continue;
+
+        $post_id = wp_insert_post([
+            'post_title'   => $data['name'],
+            'post_type'    => 'tile',
+            'post_status'  => 'publish',
+        ]);
+
+        if ($post_id && !is_wp_error($post_id)) {
+            // FIX: Only send 'yes' in an array if the spreadsheet says 'yes'
+            // Otherwise, send an empty array to leave the checkbox unchecked.
+            $indent_value = (strtolower($data['indent']) === 'yes') ? ['yes'] : [];
+            update_field('indent_item', $indent_value, $post_id);
+
+            update_field('tile_design', $data['design'], $post_id);
+            update_field('tile_material', $data['material'], $post_id);
+            update_field('tile_application', $data['application'], $post_id);
+            update_field('tile_variation', $data['variation'], $post_id);
+
+            $finish_repeater = [[
+                'finish_name'  => $data['finish'],
+                'product_code' => $data['code'],
+                'tile_size'    => [['tile_size_name' => $data['size']]]
+            ]];
+            update_field('tile_finish', $finish_repeater, $post_id);
+        }
+    }
+    echo "Import Successful!";
+    exit;
+});
+
 // Enqueue all collection scripts
 add_action( 'wp_enqueue_scripts', 'enqueue_all_collection_scripts' );
 function enqueue_all_collection_scripts() {
