@@ -85,124 +85,358 @@ function load_more_projects() {
 // }
 
 //IMPORT PRODUCT
-/*
 add_action('init', function() {
-    if (!isset($_GET['run_tile_import'])) return;
+    if (!isset($_GET['run_tile_multi_import'])) return;
 
-    // Consistently formatted data from your spreadsheet
-    $tile_data = [
-        ['name' => 'Auckland Timber Bianco', 'indent' => '', 'design' => 'Timber Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'TL01899', 'size' => '200x1200'],
-        ['name' => 'Auckland Timber Brown', 'indent' => '', 'design' => 'Timber Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'TL01897', 'size' => '200x1200'],
-        ['name' => 'Auckland Timber Haya', 'indent' => '', 'design' => 'Timber Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'TL01900', 'size' => '200x1200'],
-        ['name' => 'Auckland Timber Natural', 'indent' => '', 'design' => 'Timber Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'TL01898', 'size' => '200x1200'],
-        ['name' => 'Novo Bianco', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'satin', 'code' => 'SW04280', 'size' => '50x200'],
-        ['name' => 'Novo Grey', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'satin', 'code' => 'SW04281', 'size' => '50x200'],
-        ['name' => 'Novo Sage', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'satin', 'code' => 'SW04282', 'size' => '50x200'],
-        ['name' => 'Novo Terracotta', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'satin', 'code' => 'SW04283', 'size' => '50x200'],
-        ['name' => 'Novo Dome Bianco', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'satin', 'code' => 'SW04284', 'size' => '50x200'],
-        ['name' => 'Novo Dome Grey', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'satin', 'code' => 'SW04285', 'size' => '50x200'],
-        ['name' => 'Novo Dome Sage', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'satin', 'code' => 'SW04286', 'size' => '50x200'],
-        ['name' => 'Novo Dome Terracotta', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'satin', 'code' => 'SW04287', 'size' => '50x200'],
-        ['name' => 'Nosa Brick Beige', 'indent' => '', 'design' => 'Brick Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SW06564', 'size' => '48x450'],
-        ['name' => 'Nosa Brick Cotto', 'indent' => '', 'design' => 'Brick Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SW06565', 'size' => '48x450'],
-        ['name' => 'Nosa Brick Dark Blue', 'indent' => '', 'design' => 'Brick Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SW06566', 'size' => '48x450'],
-        ['name' => 'Nosa Brick Dark Grey', 'indent' => '', 'design' => 'Brick Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SW06567', 'size' => '48x450'],
-        ['name' => 'Nosa Brick Greige', 'indent' => '', 'design' => 'Brick Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SW06568', 'size' => '48x450'],
-        ['name' => 'Nosa Brick Ivory', 'indent' => '', 'design' => 'Brick Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SW06569', 'size' => '48x450'],
-        ['name' => 'Nosa Brick Sea Water', 'indent' => '', 'design' => 'Brick Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SW06570', 'size' => '48x450'],
-        ['name' => 'Nosa Brick Taupe', 'indent' => '', 'design' => 'Brick Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SW06571', 'size' => '48x450'],
-        ['name' => 'Palma White', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => 'V1', 'finish' => 'matt', 'code' => 'SW21327', 'size' => '107x542'],
-        ['name' => 'Palma Concave White', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => 'V1', 'finish' => 'matt', 'code' => 'SW21328', 'size' => '107x542'],
-        ['name' => 'Palma Greige', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => 'V1', 'finish' => 'matt', 'code' => 'SW21329', 'size' => '107x542'],
-        ['name' => 'Palma Concave Greige', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => 'V1', 'finish' => 'matt', 'code' => 'SW21330', 'size' => '107x542'],
-        ['name' => 'Palma Blue', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => 'V1', 'finish' => 'matt', 'code' => 'SW21331', 'size' => '107x542'],
-        ['name' => 'Palma Concave Blue', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => 'V1', 'finish' => 'matt', 'code' => 'SW21332', 'size' => '107x542'],
-        ['name' => 'Palma Green', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => 'V1', 'finish' => 'matt', 'code' => 'SW21333', 'size' => '107x542'],
-        ['name' => 'Palma Concave Green', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => 'V1', 'finish' => 'matt', 'code' => 'SW21334', 'size' => '107x542'],
-        ['name' => 'Parquet Bianco', 'indent' => '', 'design' => 'Timber Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'TL06892', 'size' => '600x600'],
-        ['name' => 'Parquet Noce', 'indent' => '', 'design' => 'Timber Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'TL06893', 'size' => '600x600'],
-        ['name' => 'Parquet Miele', 'indent' => '', 'design' => 'Timber Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'TL06894', 'size' => '600x600'],
-        ['name' => 'Pastel Salmon', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SW07331', 'size' => '75x300'],
-        ['name' => 'Pastel Aquamarina', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SW07332', 'size' => '75x300'],
-        ['name' => 'Pastel Gris', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SW07333', 'size' => '75x300'],
-        ['name' => 'Pastel Azul', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SW07334', 'size' => '75x300'],
-        ['name' => 'Pastel Lima', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SW07335', 'size' => '75x300'],
-        ['name' => 'Pastel Rosa', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SW07336', 'size' => '75x300'],
-        ['name' => 'Pastel Turquesa', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SW07337', 'size' => '75x300'],
-        ['name' => 'Pastel Bianco', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SW07338', 'size' => '75x300'],
-        ['name' => 'Pigment Macro Terracotta', 'indent' => '', 'design' => 'Terrazzo Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'TR19024', 'size' => '200x200'],
-        ['name' => 'Pigment Macro Bianco', 'indent' => '', 'design' => 'Terrazzo Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'TR19025', 'size' => '200x200'],
-        ['name' => 'Pigment Macro Azzuro', 'indent' => '', 'design' => 'Terrazzo Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'TR19026', 'size' => '200x200'],
-        ['name' => 'Pigment Macro Nero', 'indent' => '', 'design' => 'Terrazzo Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'TR19027', 'size' => '200x200'],
-        ['name' => 'Platinum Stone Body', 'indent' => '', 'design' => 'Loose Stone Cladding', 'material' => 'Natural Stone', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'textured', 'code' => 'NS01049', 'size' => 'Random Body'],
-        ['name' => 'Platinum Stone Corner', 'indent' => '', 'design' => 'Loose Stone Cladding', 'material' => 'Natural Stone', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'textured', 'code' => 'NS01050', 'size' => 'Random Corner'],
-        ['name' => 'Provence Red Wine', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'SW07523', 'size' => '100x100'],
-        ['name' => 'Provence Rosewood', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'SW07524', 'size' => '100x100'],
-        ['name' => 'Provence Chartreuse', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'SW07525', 'size' => '100x100'],
-        ['name' => 'Provence Sand Brown', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'SW07527', 'size' => '100x100'],
-        ['name' => 'Provence Peach Puff', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'SW07528', 'size' => '100x100'],
-        ['name' => 'Provence Moccasin', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'SW07529', 'size' => '100x100'],
-        ['name' => 'Provence Frost', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'SW07530', 'size' => '100x100'],
-        ['name' => 'Provence Feel Blue', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'SW07531', 'size' => '100x100'],
-        ['name' => 'Provence Fern', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'SW07532', 'size' => '100x100'],
-        ['name' => 'Provence Dark Brown', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'SW07533', 'size' => '100x100'],
-        ['name' => 'Provence Clover', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'SW07534', 'size' => '100x100'],
-        ['name' => 'Provence Cloud Blue', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'SW07535', 'size' => '100x100'],
-        ['name' => 'Provence Algae Green', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'SW07536', 'size' => '100x100'],
-        ['name' => 'Rakeen Unglazed Green Square 23mm', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'MS07537', 'size' => 'Chip 23x23 - Sheet 301x301'],
-        ['name' => 'Rakeen Unglazed Green Kit Kat', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'MS07538', 'size' => 'Chip 20x145 - Sheet 296x299'],
-        ['name' => 'Rakeen Unglazed Terracotta Square 23mm', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'MS07539', 'size' => 'Chip 23x23 - Sheet 301x301'],
-        ['name' => 'Rakeen Unglazed Terracotta Kit Kat', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'MS07540', 'size' => 'Chip 20x145 - Sheet 296x299'],
-        ['name' => 'Rakeen Unglazed Grey Square 23mm', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'MS07541', 'size' => 'Chip 23x23 - Sheet 301x301'],
-        ['name' => 'Rakeen Unglazed Grey Kit Kat', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'MS07542', 'size' => 'Chip 20x145 - Sheet 296x299'],
-        ['name' => 'Romeo Octagon Botticino', 'indent' => '', 'design' => 'Octagon Dot', 'material' => 'Natural Stone', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'tumbled', 'code' => 'MS07468', 'size' => '150x150 - Insert 45x45'],
-        ['name' => 'Romeo Octagon Carrara', 'indent' => '', 'design' => 'Octagon Dot', 'material' => 'Natural Stone', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'tumbled', 'code' => 'MS07467', 'size' => '150x150 - Insert 45x45'],
-        ['name' => 'Romeo Octagon Nero Marquina', 'indent' => '', 'design' => 'Octagon Dot', 'material' => 'Natural Stone', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'tumbled', 'code' => 'MS07469', 'size' => '150x150 - Insert 45x45'],
-        ['name' => 'Romeo Octagon Ariana', 'indent' => '', 'design' => 'Octagon Dot', 'material' => 'Natural Stone', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'tumbled', 'code' => 'MS07470', 'size' => '150x150 - Insert 45x45'],
-        ['name' => 'Rossette Blue', 'indent' => '', 'design' => 'Pattern Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'VV06150', 'size' => '147x147'],
-        ['name' => 'Rossette Bone', 'indent' => '', 'design' => 'Pattern Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'VV06151', 'size' => '147x147'],
-        ['name' => 'Rossette Burgundy', 'indent' => '', 'design' => 'Pattern Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'VV06152', 'size' => '147x147'],
-        ['name' => 'Rossette Décor Liria', 'indent' => '', 'design' => 'Pattern Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'VV06153', 'size' => '147x147'],
-        ['name' => 'Rossette Décor Nereida', 'indent' => '', 'design' => 'Pattern Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'VV06154', 'size' => '147x147'],
-        ['name' => 'Rossette Décor Roseberry', 'indent' => '', 'design' => 'Pattern Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'VV06155', 'size' => '147x147'],
-        ['name' => 'Rossette Décor Rosetti', 'indent' => '', 'design' => 'Pattern Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'VV06156', 'size' => '147x147'],
-        ['name' => 'Rossette Décor Ariadna', 'indent' => '', 'design' => 'Pattern Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'VV06157', 'size' => '147x147'],
-        ['name' => 'Rossette Green', 'indent' => '', 'design' => 'Pattern Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'VV06158', 'size' => '147x147'],
+    $tile_rows = [  
+        ['name' => 'Broadway Beige', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'satin', 'code' => 'SW04271', 'size' => '68x280'],
+        ['name' => 'Broadway Blue', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'satin', 'code' => 'SW04274', 'size' => '68x280'],
+        ['name' => 'Broadway Frame Blue', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => 'V1', 'finish' => 'gloss', 'code' => 'SW04278', 'size' => '68x280'],
+        ['name' => 'Broadway Frame Green', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => 'V1', 'finish' => 'gloss', 'code' => 'SW04279', 'size' => '68x280'],
+        ['name' => 'Broadway Frame Pink', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => 'V1', 'finish' => 'gloss', 'code' => 'SW04275', 'size' => '68x280'],
+        ['name' => 'Broadway Frame Porcelain', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => 'V1', 'finish' => 'gloss', 'code' => 'SW04276', 'size' => '68x280'],
+        ['name' => 'Broadway Frame White', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => 'V1', 'finish' => 'gloss', 'code' => 'SW04277', 'size' => '68x280'],
+        ['name' => 'Broadway Green', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'satin', 'code' => 'SW04273', 'size' => '68x280'],
+        ['name' => 'Broadway Pink', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'satin', 'code' => 'SW04272', 'size' => '68x280'],
+        ['name' => 'Broadway White', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'satin', 'code' => 'SW04270', 'size' => '68x280'],
+        ['name' => 'Clayart Avorio White', 'indent' => '', 'design' => 'Terracotta Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SW04318', 'size' => '200x200'],
+        ['name' => 'Clayart Avorio White Decor', 'indent' => '', 'design' => 'Terracotta Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'textured', 'code' => 'SW04322', 'size' => '200x200'],
+        ['name' => 'Clayart Avorio White Subway', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SW04326', 'size' => '53x300'],
+        ['name' => 'Clayart Biscotto Beige', 'indent' => '', 'design' => 'Terracotta Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SW04317', 'size' => '200x200'],
+        ['name' => 'Clayart Biscotto Beige Decor', 'indent' => '', 'design' => 'Terracotta Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'textured', 'code' => 'SW04321', 'size' => '200x200'],
+        ['name' => 'Clayart Biscotto Beige Subway', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SW04325', 'size' => '53x300'],
+        ['name' => 'Clayart Cotto Terracotta', 'indent' => '', 'design' => 'Terracotta Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SW04315', 'size' => '200x200'],
+        ['name' => 'Clayart Cotto Terracotta Decor', 'indent' => '', 'design' => 'Terracotta Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'textured', 'code' => 'SW04319', 'size' => '200x200'],
+        ['name' => 'Clayart Cotto Terracotta Subway', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SW04323', 'size' => '53x300'],
+        ['name' => 'Clayart Grigio Grey', 'indent' => '', 'design' => 'Terracotta Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SW04316', 'size' => '200x200'],
+        ['name' => 'Clayart Grigio Grey Decor', 'indent' => '', 'design' => 'Terracotta Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'textured', 'code' => 'SW04320', 'size' => '200x200'],
+        ['name' => 'Clayart Grigio Grey Subway', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SW04324', 'size' => '53x300'],
+        ['name' => 'Crema Marfil and Rosso', 'indent' => '', 'design' => 'Moroccan Look Tile', 'material' => 'Natural Stone', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'tumbled', 'code' => 'MS07506', 'size' => 'Sheet 302x305'],
+        ['name' => 'Cross Art Carrara', 'indent' => '', 'design' => 'Moroccan Look Tile', 'material' => 'Natural Stone', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'tumbled', 'code' => 'MS07503', 'size' => 'Sheet 302x305'],
+        ['name' => 'Cross Art Carrara and Peacock', 'indent' => '', 'design' => 'Moroccan Look Tile', 'material' => 'Natural Stone', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'tumbled', 'code' => 'MS07504', 'size' => 'Sheet 302x305'],
+        ['name' => 'Cross Art Crema Marfil', 'indent' => '', 'design' => 'Moroccan Look Tile', 'material' => 'Natural Stone', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'tumbled', 'code' => 'MS07505', 'size' => 'Sheet 302x305'],
+        ['name' => 'Cross Art Thassos and Azul', 'indent' => '', 'design' => 'Moroccan Look Tile', 'material' => 'Natural Stone', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'tumbled', 'code' => 'MS07502', 'size' => 'Sheet 302x305'],
+        ['name' => 'Ember Bianco', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'SW07541', 'size' => '60x240'],
+        ['name' => 'Ember Brown', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'SW07544', 'size' => '60x240'],
+        ['name' => 'Ember Carmel', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'SW07543', 'size' => '60x240'],
+        ['name' => 'Ember Denim', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'SW07538', 'size' => '60x240'],
+        ['name' => 'Ember Green', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'SW07537', 'size' => '60x240'],
+        ['name' => 'Ember Greige', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'SW07540', 'size' => '60x240'],
+        ['name' => 'Ember Light Grey', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'SW07542', 'size' => '60x240'],
+        ['name' => 'Ember Steel', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'SW07539', 'size' => '60x240'],
+        ['name' => 'Ferrara Emerald Green', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'SW07306', 'size' => '100x100'],
+        ['name' => 'Ferrara Flamingo', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'SW07307', 'size' => '100x100'],
+        ['name' => 'Ferrara Light Blue', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'SW07308', 'size' => '100x100'],
+        ['name' => 'Ferrara Navy', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'SW07309', 'size' => '100x100'],
+        ['name' => 'Ferrara Ocher Yellow', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'SW07310', 'size' => '100x100'],
+        ['name' => 'Ferrara Prune Red', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'SW07311', 'size' => '100x100'],
+        ['name' => 'Ferrara Prussian Blue', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'SW07312', 'size' => '100x100'],
+        ['name' => 'Ferrara Sage', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'SW07313', 'size' => '100x100'],
+        ['name' => 'Ferrara White', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'SW07314', 'size' => '100x100'],
+        ['name' => 'Fishscale Aqua', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'MS07272', 'size' => 'Chip 83x90 - Sheet 274x293'],
+        ['name' => 'Fishscale Ash Grey', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'MS05063', 'size' => 'Chip 87x95 - Sheet 259x273'],
+        ['name' => 'Fishscale Black', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'MS05067', 'size' => 'Chip 87x95 - Sheet 259x273'],
+        ['name' => 'Fishscale Bronze Metal Plated', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'MS05074', 'size' => 'Chip 87x95 - Sheet 259x273'],
+        ['name' => 'Fishscale Charcoal', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'MS05066', 'size' => 'Chip 87x95 - Sheet 259x273'],
+        ['name' => 'Fishscale Denim Blue', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'MS05073', 'size' => 'Chip 87x95 - Sheet 259x273'],
+        ['name' => 'Fishscale Foam Light Green', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'MS05072', 'size' => 'Chip 87x95 - Sheet 259x273'],
+        ['name' => 'Fishscale Green Crackle', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'MS07276', 'size' => 'Chip 83x90 - Sheet 274x293'],
+        ['name' => 'Fishscale Grey Crackle', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'MS07273', 'size' => 'Chip 83x90 - Sheet 274x293'],
+        ['name' => 'Fishscale Midnight Crackle', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'MS07275', 'size' => 'Chip 83x90 - Sheet 274x293'],
+        ['name' => 'Fishscale Mint', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'MS07274', 'size' => 'Chip 83x90 - Sheet 274x293'],
+        ['name' => 'Fishscale Pastel Pink', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'MS05302', 'size' => 'Chip 87x95 - Sheet 259x273'],
+        ['name' => 'Fishscale Reef Green', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'MS05064', 'size' => 'Chip 87x95 - Sheet 259x273'],
+        ['name' => 'Fishscale Water Green', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'MS05065', 'size' => 'Chip 87x95 - Sheet 259x273'],
+        ['name' => 'Fishscale White', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'MS05062', 'size' => 'Chip 87x95 - Sheet 259x273'],
+        ['name' => 'Fishscale White', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'MS05075', 'size' => 'Chip 87x95 - Sheet 259x273'],
+        ['name' => 'Fragments Bianco', 'indent' => '', 'design' => 'Terracotta Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'TR25160', 'size' => '600x1200'],
+        ['name' => 'Fragments Bianco', 'indent' => '', 'design' => 'Terracotta Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'external', 'code' => 'TR25164', 'size' => '300x600'],
+        ['name' => 'Fragments Grigio', 'indent' => '', 'design' => 'Terracotta Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'TR25163', 'size' => '600x1200'],
+        ['name' => 'Fragments Grigio', 'indent' => '', 'design' => 'Terracotta Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'external', 'code' => 'TR25167', 'size' => '300x600'],
+        ['name' => 'Fragments Perla', 'indent' => '', 'design' => 'Terracotta Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'TR25161', 'size' => '600x1200'],
+        ['name' => 'Fragments Perla', 'indent' => '', 'design' => 'Terracotta Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'external', 'code' => 'TR25165', 'size' => '300x600'],
+        ['name' => 'Fragments Taupe', 'indent' => '', 'design' => 'Terracotta Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'TR25162', 'size' => '600x1200'],
+        ['name' => 'Fragments Taupe', 'indent' => '', 'design' => 'Terracotta Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'external', 'code' => 'TR25166', 'size' => '300x600'],
+        ['name' => 'Galaxy Terrazzo Basalt Black', 'indent' => '', 'design' => 'Terracotta Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'lappato', 'code' => 'TR04098', 'size' => '300x600'],
+        ['name' => 'Galaxy Terrazzo Basalt Black', 'indent' => '', 'design' => 'Terracotta Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'lappato', 'code' => 'TR04098', 'size' => '600x600'],
+        ['name' => 'Galaxy Terrazzo Basalt Black', 'indent' => '', 'design' => 'Terracotta Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'TR04102', 'size' => '300x300'],
+        ['name' => 'Galaxy Terrazzo Basalt Black', 'indent' => '', 'design' => 'Terracotta Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'TR04102', 'size' => '300x600'],
+        ['name' => 'Galaxy Terrazzo Basalt Black', 'indent' => '', 'design' => 'Terracotta Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'TR04102', 'size' => '600x600'],
+        ['name' => 'Galaxy Terrazzo Nougat', 'indent' => '', 'design' => 'Terracotta Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'lappato', 'code' => 'TR04096', 'size' => '300x600'],
+        ['name' => 'Galaxy Terrazzo Nougat', 'indent' => '', 'design' => 'Terracotta Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'lappato', 'code' => 'TR04096', 'size' => '600x600'],
+        ['name' => 'Galaxy Terrazzo Nougat', 'indent' => '', 'design' => 'Terracotta Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'TR04100', 'size' => '300x300'],
+        ['name' => 'Galaxy Terrazzo Nougat', 'indent' => '', 'design' => 'Terracotta Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'TR04100', 'size' => '300x600'],
+        ['name' => 'Galaxy Terrazzo Nougat', 'indent' => '', 'design' => 'Terracotta Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'TR04100', 'size' => '600x600'],
+        ['name' => 'Galaxy Terrazzo Silver Pearl', 'indent' => '', 'design' => 'Terracotta Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'lappato', 'code' => 'TR04097', 'size' => '300x600'],
+        ['name' => 'Galaxy Terrazzo Silver Pearl', 'indent' => '', 'design' => 'Terracotta Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'lappato', 'code' => 'TR04097', 'size' => '600x600'],
+        ['name' => 'Galaxy Terrazzo Silver Pearl', 'indent' => '', 'design' => 'Terracotta Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'TR04101', 'size' => '300x300'],
+        ['name' => 'Galaxy Terrazzo Silver Pearl', 'indent' => '', 'design' => 'Terracotta Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'TR04101', 'size' => '300x600'],
+        ['name' => 'Galaxy Terrazzo Silver Pearl', 'indent' => '', 'design' => 'Terracotta Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'TR04101', 'size' => '600x600'],
+        ['name' => 'Galaxy Terrazzo Snow White', 'indent' => '', 'design' => 'Terracotta Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'lappato', 'code' => 'TR04095', 'size' => '300x600'],
+        ['name' => 'Galaxy Terrazzo Snow White', 'indent' => '', 'design' => 'Terracotta Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'lappato', 'code' => 'TR04095', 'size' => '600x600'],
+        ['name' => 'Galaxy Terrazzo Snow White', 'indent' => '', 'design' => 'Terracotta Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'TR04099', 'size' => '300x300'],
+        ['name' => 'Galaxy Terrazzo Snow White', 'indent' => '', 'design' => 'Terracotta Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'TR04099', 'size' => '300x600'],
+        ['name' => 'Galaxy Terrazzo Snow White', 'indent' => '', 'design' => 'Terracotta Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'TR04099', 'size' => '600x600'],
+        ['name' => 'Limestone Sky Body', 'indent' => '', 'design' => 'Loose Stone Cladding', 'material' => 'Natural Stone', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'textured', 'code' => 'NS01090', 'size' => 'Random Body'],
+        ['name' => 'Limestone Sky Corner', 'indent' => '', 'design' => 'Loose Stone Cladding', 'material' => 'Natural Stone', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'textured', 'code' => 'NS01091', 'size' => 'Random Corner'],
+        ['name' => 'Limestone Grey Body', 'indent' => '', 'design' => 'Loose Stone Cladding', 'material' => 'Natural Stone', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'textured', 'code' => 'NS01043', 'size' => 'Random Body'],
+        ['name' => 'Limestone Grey Corner', 'indent' => '', 'design' => 'Loose Stone Cladding', 'material' => 'Natural Stone', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'textured', 'code' => 'NS01044', 'size' => 'Random Corner'],
+        ['name' => 'Cappucino Grey Body', 'indent' => '', 'design' => 'Loose Stone Cladding', 'material' => 'Natural Stone', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'textured', 'code' => 'NS01094', 'size' => 'Random Body'],
+        ['name' => 'Cappucino Grey Corner', 'indent' => '', 'design' => 'Loose Stone Cladding', 'material' => 'Natural Stone', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'textured', 'code' => 'NS01095', 'size' => 'Random Corner'],
+        ['name' => 'Glacier Stone Body', 'indent' => '', 'design' => 'Loose Stone Cladding', 'material' => 'Natural Stone', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'textured', 'code' => 'NS01096', 'size' => 'Random Body'],
+        ['name' => 'Glacier Stone Corner', 'indent' => '', 'design' => 'Loose Stone Cladding', 'material' => 'Natural Stone', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'textured', 'code' => 'NS01097', 'size' => 'Random Corner'],
+        ['name' => 'Imperial Gold Quartz', 'indent' => '', 'design' => 'Crazy Pave', 'material' => 'Natural Stone', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'textured', 'code' => 'NS07064', 'size' => 'Random Body'],
+        ['name' => 'Imperial Olive Quartz', 'indent' => '', 'design' => 'Crazy Pave', 'material' => 'Natural Stone', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'textured', 'code' => 'NS07066', 'size' => 'Random Body'],
+        ['name' => 'Imperial Rosa Quartz', 'indent' => '', 'design' => 'Crazy Pave', 'material' => 'Natural Stone', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'textured', 'code' => 'NS07065', 'size' => 'Random Body'],
+        ['name' => 'Imperial White Quartz', 'indent' => '', 'design' => 'Crazy Pave', 'material' => 'Natural Stone', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'textured', 'code' => 'NS07041', 'size' => 'Random Body'],
+        ['name' => 'Imperial White Quartz', 'indent' => '', 'design' => 'Crazy Pave', 'material' => 'Natural Stone', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'external', 'code' => 'NS07042', 'size' => 'Flamed 400x600x20mm'],
+        ['name' => 'Italian Hexagon Anchor Lily', 'indent' => '', 'design' => 'Pattern Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'CL06037', 'size' => 'Hexagon 216x250'],
+        ['name' => 'Italian Hexagon Antracite', 'indent' => '', 'design' => 'Concrete Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'CL06046', 'size' => 'Hexagon 216x250'],
+        ['name' => 'Italian Hexagon Black', 'indent' => '', 'design' => 'Concrete Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'CL06047', 'size' => 'Hexagon 216x250'],
+        ['name' => 'Italian Hexagon Cornice', 'indent' => '', 'design' => 'Pattern Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'CL06039', 'size' => 'Hexagon 216x250'],
+        ['name' => 'Italian Hexagon Floral', 'indent' => '', 'design' => 'Pattern Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'CL06034', 'size' => 'Hexagon 216x250'],
+        ['name' => 'Italian Hexagon Grey', 'indent' => '', 'design' => 'Concrete Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'CL06045', 'size' => 'Hexagon 216x250'],
+        ['name' => 'Italian Hexagon Kubic', 'indent' => '', 'design' => 'Pattern Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'CL06038', 'size' => 'Hexagon 216x250'],
+        ['name' => 'Italian Hexagon Leaf', 'indent' => '', 'design' => 'Pattern Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'CL06035', 'size' => 'Hexagon 216x250'],
+        ['name' => 'Italian Hexagon Lily', 'indent' => '', 'design' => 'Pattern Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'CL06036', 'size' => 'Hexagon 216x250'],
+        ['name' => 'Italian Hexagon Mix', 'indent' => '', 'design' => 'Pattern Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'CL06043', 'size' => 'Hexagon 216x250'],
+        ['name' => 'Italian Hexagon Porzione', 'indent' => '', 'design' => 'Pattern Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'CL06040', 'size' => 'Hexagon 216x250'],
+        ['name' => 'Italian Hexagon Rombo', 'indent' => '', 'design' => 'Pattern Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'CL06042', 'size' => 'Hexagon 216x250'],
+        ['name' => 'Italian Hexagon Star', 'indent' => '', 'design' => 'Pattern Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'CL06041', 'size' => 'Hexagon 216x250'],
+        ['name' => 'Italian Hexagon Terracotta', 'indent' => '', 'design' => 'Concrete Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'CL06044', 'size' => 'Hexagon 216x250'],
+        ['name' => 'Italian Pattern Antracite Dark Grey', 'indent' => '', 'design' => 'Concrete Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'CL06058', 'size' => '200x200'],
+        ['name' => 'Italian Pattern Cardinal', 'indent' => '', 'design' => 'Pattern Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'CL06050', 'size' => '200x200'],
+        ['name' => 'Italian Pattern Charcoal Black', 'indent' => '', 'design' => 'Concrete Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'CL06059', 'size' => '200x200'],
+        ['name' => 'Italian Pattern Geometrical', 'indent' => '', 'design' => 'Pattern Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'CL06048', 'size' => '200x200'],
+        ['name' => 'Italian Pattern Lantern', 'indent' => '', 'design' => 'Pattern Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'CL06055', 'size' => '200x200'],
+        ['name' => 'Italian Pattern Leaf', 'indent' => '', 'design' => 'Pattern Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'CL06052', 'size' => '200x200'],
+        ['name' => 'Italian Pattern Light Grey', 'indent' => '', 'design' => 'Concrete Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'CL06057', 'size' => '200x200'],
+        ['name' => 'Italian Pattern Lily', 'indent' => '', 'design' => 'Pattern Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'CL06054', 'size' => '200x200'],
+        ['name' => 'Italian Pattern Linea', 'indent' => '', 'design' => 'Pattern Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'CL06049', 'size' => '200x200'],
+        ['name' => 'Italian Pattern Star', 'indent' => '', 'design' => 'Pattern Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'CL06051', 'size' => '200x200'],
+        ['name' => 'Italian Pattern Terracotta', 'indent' => '', 'design' => 'Concrete Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'CL06053', 'size' => '200x200'],
+        ['name' => 'Italian Pattern Triangle', 'indent' => '', 'design' => 'Pattern Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'CL06056', 'size' => '200x200'],
+        ['name' => 'Katrina Antracite', 'indent' => '', 'design' => 'Stone Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SL01477', 'size' => '600x600'],
+        ['name' => 'Katrina Bianco', 'indent' => '', 'design' => 'Stone Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SL01474', 'size' => '600x600'],
+        ['name' => 'Katrina Bianco', 'indent' => '', 'design' => 'Stone Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SL01474', 'size' => '600x1200'],
+        ['name' => 'Katrina Cotton', 'indent' => '', 'design' => 'Stone Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SL01475', 'size' => '600x600'],
+        ['name' => 'Katrina Cotton', 'indent' => '', 'design' => 'Stone Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SL01475', 'size' => '600x1200'],
+        ['name' => 'Katrina Grigio', 'indent' => '', 'design' => 'Stone Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SL01476', 'size' => '600x600'],
+        ['name' => 'Kera Amaranto Jam', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SW06372', 'size' => '60x240'],
+        ['name' => 'Kera Bianco Latte', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SW06374', 'size' => '60x240'],
+        ['name' => 'Kera Blu Notte', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SW06376', 'size' => '60x240'],
+        ['name' => 'Kera Cashmere Melato', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SW06377', 'size' => '60x240'],
+        ['name' => 'Kera Grigio', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SW06373', 'size' => '60x240'],
+        ['name' => 'Kera Nero', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SW06371', 'size' => '60x240'],
+        ['name' => 'Kera Verde Candito', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SW06378', 'size' => '60x240'],
+        ['name' => 'Kera Verde Forest', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SW06375', 'size' => '60x240'],
+        ['name' => 'Limestone 2.0 Bianco', 'indent' => '', 'design' => 'Limestone Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SL01385', 'size' => '300x300'],
+        ['name' => 'Limestone 2.0 Bianco', 'indent' => '', 'design' => 'Limestone Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SL01385', 'size' => '300x600'],
+        ['name' => 'Limestone 2.0 Bianco', 'indent' => '', 'design' => 'Limestone Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SL01385', 'size' => '600x600'],
+        ['name' => 'Limestone 2.0 Bianco', 'indent' => '', 'design' => 'Limestone Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SL01385', 'size' => '600x1200'],
+        ['name' => 'Limestone 2.0 Chalk', 'indent' => '', 'design' => 'Limestone Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SL01457', 'size' => '600x600'],
+        ['name' => 'Limestone 2.0 Chalk', 'indent' => '', 'design' => 'Limestone Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SL01457', 'size' => '600x1200'],
+        ['name' => 'Limestone 2.0 Cotton', 'indent' => '', 'design' => 'Limestone Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SL01386', 'size' => '300x300'],
+        ['name' => 'Limestone 2.0 Cotton', 'indent' => '', 'design' => 'Limestone Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SL01386', 'size' => '300x600'],
+        ['name' => 'Limestone 2.0 Cotton', 'indent' => '', 'design' => 'Limestone Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SL01386', 'size' => '600x600'],
+        ['name' => 'Limestone 2.0 Grigio', 'indent' => '', 'design' => 'Limestone Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SL01387', 'size' => '300x300'],
+        ['name' => 'Limestone 2.0 Grigio', 'indent' => '', 'design' => 'Limestone Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SL01387', 'size' => '300x600'],
+        ['name' => 'Limestone 2.0 Grigio', 'indent' => '', 'design' => 'Limestone Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SL01387', 'size' => '600x600'],
+        ['name' => 'Limestone 2.0 Nero', 'indent' => '', 'design' => 'Limestone Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SL01388', 'size' => '300x300'],
+        ['name' => 'Limestone 2.0 Nero', 'indent' => '', 'design' => 'Limestone Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SL01388', 'size' => '300x600'],
+        ['name' => 'Limestone 2.0 Nero', 'indent' => '', 'design' => 'Limestone Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SL01388', 'size' => '600x600'],
+        ['name' => 'Lincoln Beige', 'indent' => '', 'design' => 'Brick Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'textured', 'code' => 'SW06315', 'size' => '60x250'],
+        ['name' => 'Lincoln Charcoal', 'indent' => '', 'design' => 'Brick Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'textured', 'code' => 'SW06316', 'size' => '60x250'],
+        ['name' => 'Lincoln Fog', 'indent' => '', 'design' => 'Brick Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'textured', 'code' => 'SW06317', 'size' => '60x250'],
+        ['name' => 'Lincoln Multicolor', 'indent' => '', 'design' => 'Brick Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'textured', 'code' => 'SW06318', 'size' => '60x250'],
+        ['name' => 'Lincoln Sunset', 'indent' => '', 'design' => 'Brick Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'textured', 'code' => 'SW06319', 'size' => '60x250'],
+        ['name' => 'Manhattan Stack Bond', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Natural Stone', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'honed', 'code' => 'MS10146', 'size' => 'Chip 15x98 - Sheet 298x304'],
+        ['name' => 'Manhattan Mini Flute', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Natural Stone', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'honed', 'code' => 'MS10049', 'size' => 'Chip 15x151 - Sheet 305x305'],
+        ['name' => 'Manhattan Bamboo', 'indent' => 'yes', 'design' => 'Bamboo Tile', 'material' => 'Natural Stone', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'honed', 'code' => 'MS10050', 'size' => '30x920x18mm'],
+        ['name' => 'Manhattan Tictax', 'indent' => 'yes', 'design' => 'Mosaic Tile', 'material' => 'Natural Stone', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'honed', 'code' => 'MS10051', 'size' => 'Chup 35x150 - Sheet 291x302'],
+        ['name' => 'Manhattan Subway', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Natural Stone', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'honed', 'code' => 'MS10147', 'size' => '75x305x10mm'],
+        ['name' => 'Manhattan Hexagon', 'indent' => 'yes', 'design' => 'Mosaic Tile', 'material' => 'Natural Stone', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'honed', 'code' => 'MS10145', 'size' => 'Chip 70x70 - Sheet 250x289'],
+        ['name' => 'Manhattan Palladiana', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Natural Stone', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'honed', 'code' => 'MS10052', 'size' => 'Sheet 305x305'],
+        ['name' => 'Manhattan Decor', 'indent' => 'yes', 'design' => 'Mosaic Tile', 'material' => 'Natural Stone', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'honed', 'code' => 'MS10048', 'size' => 'Sheet 306x306'],
+        ['name' => 'Marvel Diva Ice Crystal', 'indent' => '', 'design' => 'Marble Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SL03439', 'size' => '600x1200'],
+        ['name' => 'Marvel Diva Ice Crystal', 'indent' => '', 'design' => 'Marble Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'polished', 'code' => 'SL03442', 'size' => '600x1200'],
+        ['name' => 'Marvel Diva Baobab', 'indent' => '', 'design' => 'Marble Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'polished', 'code' => 'SL03440', 'size' => '600x1200'],
+        ['name' => 'Marvel Diva Galaxy', 'indent' => '', 'design' => 'Marble Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'polished', 'code' => 'SL03441', 'size' => '600x1200'],
+        ['name' => 'Marvel Diva Taj Mahal', 'indent' => '', 'design' => 'Marble Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SL03445', 'size' => '600x1200'],
+        ['name' => 'Marvel Diva Taj Mahal', 'indent' => '', 'design' => 'Marble Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'polished', 'code' => 'SL03443', 'size' => '600x1200'],
+        ['name' => 'Marvel Diva White Everest', 'indent' => '', 'design' => 'Marble Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SL03446', 'size' => '600x1200'],
+        ['name' => 'Marvel Diva White Everest', 'indent' => '', 'design' => 'Marble Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'polished', 'code' => 'SL03444', 'size' => '600x1200'],
+        ['name' => 'Messina White', 'indent' => '', 'design' => 'Terracotta Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'TR22218', 'size' => '600x600'],
+        ['name' => 'Messina Leaf', 'indent' => '', 'design' => 'Terracotta Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'TR22219', 'size' => '600x600'],
+        ['name' => 'Messina Anthracite', 'indent' => '', 'design' => 'Terracotta Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'TR22220', 'size' => '600x600'],
+        ['name' => 'Metallic Silver', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'SW07428', 'size' => '65x266'],
+        ['name' => 'Metallic Bronze', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'SW07429', 'size' => '65x266'],
+        ['name' => 'Metallic Gold', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'SW07430', 'size' => '65x266'],
+        ['name' => 'Mille Porridge', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'SW25373', 'size' => '75x225'],
+        ['name' => 'Mille Putty', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'SW25374', 'size' => '75x225'],
+        ['name' => 'Mille Meadow', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'SW25375', 'size' => '75x225'],
+        ['name' => 'Mille Mist', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'SW25376', 'size' => '75x225'],
+        ['name' => 'Mille Horizon', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'SW25377', 'size' => '75x225'],
+        ['name' => 'Mille Lake', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'SW25378', 'size' => '75x225'],
+        ['name' => 'Mille Indigo', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'SW25379', 'size' => '75x225'],
+        ['name' => 'Mille Black', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'SW25380', 'size' => '75x225'],
+        ['name' => 'Mille White', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'SW25381', 'size' => '75x225'],
+        ['name' => 'Mille White', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SW25382', 'size' => '75x225'],
+        ['name' => 'Milo White', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'SW21351', 'size' => '50x150'],
+        ['name' => 'Milo White', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SW21356', 'size' => '50x150'],
+        ['name' => 'Milo Orchard Pink', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'SW21352', 'size' => '50x150'],
+        ['name' => 'Milo Orchard Pink', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SW21357', 'size' => '50x150'],
+        ['name' => 'Milo Blue Grass', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'SW21353', 'size' => '50x150'],
+        ['name' => 'Milo Blue Grass', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SW21358', 'size' => '50x150'],
+        ['name' => 'Milo Black Hat', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'SW21355', 'size' => '50x150'],
+        ['name' => 'Milo Black Hat', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SW21360', 'size' => '50x150'],
+        ['name' => 'Milo Verde', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'SW21354', 'size' => '50x150'],
+        ['name' => 'Milo Verde', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SW21359', 'size' => '50x150'],
+        ['name' => 'Mini Crazy Botticino', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Natural Stone', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'tumbled', 'code' => 'NS08100', 'size' => 'Sheet 300x300'],
+        ['name' => 'Mini Crazy Carrara', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Natural Stone', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'tumbled', 'code' => 'NS08101', 'size' => 'Sheet 305x305'],
+        ['name' => 'Mini Crazy Carrara & Bardiglio', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Natural Stone', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'honed', 'code' => 'NS08102', 'size' => 'Sheet 300x300'],
+        ['name' => 'Mini Crazy Mint', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Natural Stone', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'honed', 'code' => 'NS08103', 'size' => 'Sheet 305x305'],
+        ['name' => 'Mini Crazy Mix Marble', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Natural Stone', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'honed', 'code' => 'NS08104', 'size' => 'Sheet 305x305'],
+        ['name' => 'Mini Crazy Multi Marble', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Natural Stone', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'tumbled', 'code' => 'NS08105', 'size' => 'Sheet 305x305'],
+        ['name' => 'Mini Crazy Rosso', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Natural Stone', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'tumbled', 'code' => 'NS08106', 'size' => 'Sheet 305x305'],
+        ['name' => 'Mini Crazy Verde', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Natural Stone', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'tumbled', 'code' => 'NS08107', 'size' => 'Sheet 300x300'],
+        ['name' => 'Mini Crazy Carrara & Bardiglio & Nero', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Natural Stone', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'honed', 'code' => 'MS10367', 'size' => 'Sheet 305x305'],
+        ['name' => 'Mojo Sea Water', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'SW06431', 'size' => '60x246'],
+        ['name' => 'Mojo Cotto', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'SW06432', 'size' => '60x246'],
+        ['name' => 'Mojo Denim', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'SW06433', 'size' => '60x246'],
+        ['name' => 'Mojo Green', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'SW06434', 'size' => '60x246'],
+        ['name' => 'Mojo Blu', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'SW06283', 'size' => '60x246'],
+        ['name' => 'Mojo Light Grey', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'SW06284', 'size' => '60x246'],
+        ['name' => 'Mojo White', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'SW06285', 'size' => '60x246'],
+        ['name' => 'Mojo Ocra', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'SW06286', 'size' => '60x246'],
+        ['name' => 'Mini Split Calacatta Oro Mosaic Honed', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Natural Stone', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'honed', 'code' => 'MS07566', 'size' => 'Sheet 305x305'],
+        ['name' => 'Mini Split Ming Green Rustic Mosaic Honed', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Natural Stone', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'honed', 'code' => 'MS07567', 'size' => 'Sheet 305x305'],
+        ['name' => 'Mini Split Travertine Rustic Mosaic Honed', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Natural Stone', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'honed', 'code' => 'MS07568', 'size' => 'Sheet 305x305'],
+        ['name' => 'Mini Split Carrara Mosaic Honed', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Natural Stone', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'honed', 'code' => 'MS07569', 'size' => 'Sheet 305x305'],
+        ['name' => 'Moroccan Pale Blue', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Terracotta', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'SW07258', 'size' => '100x100'],
+        ['name' => 'Moroccan Bleu Jean', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Terracotta', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'SW07259', 'size' => '100x100'],
+        ['name' => 'Moroccan Bleu Foncé', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Terracotta', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'SW07260', 'size' => '100x100'],
+        ['name' => 'Moroccan Emerald Green', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Terracotta', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'SW07261', 'size' => '100x100'],
+        ['name' => 'Moroccan Jaune Dóre', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Terracotta', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'SW07262', 'size' => '100x100'],
+        ['name' => 'Moroccan Ecru Off White', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Terracotta', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'SW07263', 'size' => '100x100'],
+        ['name' => 'Moroccan White Fes', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Terracotta', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'SW07264', 'size' => '100x100'],
+        ['name' => 'Moroccan Noir Carbone', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Terracotta', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'SW07265', 'size' => '100x100'],
+        ['name' => 'Moroccan Beige Clear', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Terracotta', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'SW07266', 'size' => '100x100'],
+        ['name' => 'Moroccan Snow', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Terracotta', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'SW07267', 'size' => '100x100'],
+        ['name' => 'Moroccan Gris Rosa', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Terracotta', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'SW07268', 'size' => '100x100'],
+        ['name' => 'Moroccan Pale Green', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Terracotta', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'SW07269', 'size' => '100x100'],
+        ['name' => 'Moroccan Raw Natural', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Terracotta', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'SW07270', 'size' => '100x100'],
+        ['name' => 'Moroccan Atlas Petrole', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Terracotta', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'SW07271', 'size' => '100x100'],
+        ['name' => 'Moroccan Caramel', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Terracotta', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'SW07274', 'size' => '100x100'],
+        ['name' => 'Moroccan Rouge Red', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Terracotta', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'SW07275', 'size' => '100x100'],
+        ['name' => 'Moroccan Marron', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Terracotta', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'SW07276', 'size' => '100x100'],
+        ['name' => 'Moroccan Vert Mousse', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Terracotta', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'SW07273', 'size' => '100x100'],
+        ['name' => 'Mountain Marron Beige', 'indent' => '', 'design' => 'Crazy Pave', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => 'V3', 'finish' => 'textured', 'code' => 'OD04111', 'size' => 'Sheet 226x326'],
+        ['name' => 'Mountain Antricita Black', 'indent' => '', 'design' => 'Crazy Pave', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => 'V3', 'finish' => 'textured', 'code' => 'OD04112', 'size' => 'Sheet 226x326'],
+        ['name' => 'Mountain Pizarra Blue', 'indent' => '', 'design' => 'Crazy Pave', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => 'V3', 'finish' => 'textured', 'code' => 'OD04113', 'size' => 'Sheet 226x326'],
+        ['name' => 'Mountain Oxido White', 'indent' => '', 'design' => 'Crazy Pave', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => 'V3', 'finish' => 'textured', 'code' => 'OD04114', 'size' => 'Sheet 226x326'],
+        ['name' => 'Napoli Brick Brown', 'indent' => '', 'design' => 'Brick Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => 'V3', 'finish' => 'matt', 'code' => 'SW06552', 'size' => '48x450'],
+        ['name' => 'Napoli Brick Charcoal', 'indent' => '', 'design' => 'Brick Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => 'V3', 'finish' => 'matt', 'code' => 'SW06553', 'size' => '48x450'],
+        ['name' => 'Napoli Brick Cotto', 'indent' => '', 'design' => 'Brick Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => 'V3', 'finish' => 'matt', 'code' => 'SW06554', 'size' => '48x450'],
+        ['name' => 'Napoli Brick Mud', 'indent' => '', 'design' => 'Brick Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => 'V3', 'finish' => 'matt', 'code' => 'SW06555', 'size' => '48x450'],
+        ['name' => 'Napoli Brick Multicolor', 'indent' => '', 'design' => 'Brick Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => 'V3', 'finish' => 'matt', 'code' => 'SW06556', 'size' => '48x450'],
+        ['name' => 'Napoli Brick Napa', 'indent' => '', 'design' => 'Brick Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => 'V3', 'finish' => 'matt', 'code' => 'SW06557', 'size' => '48x450'],
+        ['name' => 'Napoli Brick Pearl', 'indent' => '', 'design' => 'Brick Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => 'V3', 'finish' => 'matt', 'code' => 'SW06558', 'size' => '48x450'],
+        ['name' => 'Napoli Brick Sand', 'indent' => '', 'design' => 'Brick Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => 'V3', 'finish' => 'matt', 'code' => 'SW06559', 'size' => '48x450'],
+        ['name' => 'Napoli Brick Silver', 'indent' => '', 'design' => 'Brick Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => 'V3', 'finish' => 'matt', 'code' => 'SW06560', 'size' => '48x450'],
+        ['name' => 'Napoli Brick Smoke', 'indent' => '', 'design' => 'Brick Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => 'V3', 'finish' => 'matt', 'code' => 'SW06561', 'size' => '48x450'],
+        ['name' => 'Napoli Brick Sunset', 'indent' => '', 'design' => 'Brick Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => 'V3', 'finish' => 'matt', 'code' => 'SW06562', 'size' => '48x450'],
+        ['name' => 'Napoli Brick White', 'indent' => '', 'design' => 'Brick Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => 'V1', 'finish' => 'matt', 'code' => 'SW06563', 'size' => '48x450'],
+        ['name' => 'Zellige White Gesso', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => 'V2', 'finish' => 'gloss', 'code' => 'SW21286', 'size' => '100x100'],
+        ['name' => 'Zellige Taupe Cammello', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => 'V4', 'finish' => 'gloss', 'code' => 'SW21287', 'size' => '100x100'],
+        ['name' => 'Zellige Terra Corallo', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => 'V3', 'finish' => 'gloss', 'code' => 'SW21288', 'size' => '100x100'],
+        ['name' => 'Zellige Navy', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => 'V3', 'finish' => 'gloss', 'code' => 'SW21289', 'size' => '100x100'],
+        ['name' => 'Zellige Sky Cielo', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => 'V3', 'finish' => 'gloss', 'code' => 'SW21290', 'size' => '100x100'],
+        ['name' => 'Zellige Olive Salvia', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => 'V3', 'finish' => 'gloss', 'code' => 'SW21291', 'size' => '100x100'],
+        ['name' => 'Zellige Blue Petrolio', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => 'V3', 'finish' => 'gloss', 'code' => 'SW21292', 'size' => '100x100'],
+        ['name' => 'Zellige Green Bosco', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => 'V3', 'finish' => 'gloss', 'code' => 'SW21293', 'size' => '100x100'],
+        ['name' => 'Zellige Mint Turchese', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => 'V3', 'finish' => 'gloss', 'code' => 'SW21294', 'size' => '100x100'],
+        ['name' => 'Zellige Ash Lana', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => 'V4', 'finish' => 'gloss', 'code' => 'SW21295', 'size' => '100x100'],
+        ['name' => 'Zellige Grigio Argilla', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => 'V4', 'finish' => 'gloss', 'code' => 'SW21296', 'size' => '100x100'],
+        ['name' => 'Zellige Coal Carbone', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => 'V2', 'finish' => 'gloss', 'code' => 'SW21297', 'size' => '100x100'],
+        ['name' => 'Piccola Denim', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'SW06443', 'size' => '50x150'],
+        ['name' => 'Piccola Denim', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SW06444', 'size' => '50x150'],
+        ['name' => 'Piccola Green', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'SW06445', 'size' => '50x150'],
+        ['name' => 'Piccola Green', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SW06446', 'size' => '50x150'],
+        ['name' => 'Piccola Grey', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'SW06447', 'size' => '50x150'],
+        ['name' => 'Piccola Grey', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SW06448', 'size' => '50x150'],
+        ['name' => 'Piccola Mint', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'SW06449', 'size' => '50x150'],
+        ['name' => 'Piccola Mint', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SW06450', 'size' => '50x150'],
+        ['name' => 'Piccola White', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'gloss', 'code' => 'SW06451', 'size' => '50x150'],
+        ['name' => 'Piccola White', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SW06452', 'size' => '50x150'],
+        ['name' => 'Piccola Terracotta', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Ceramic Tile', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SW06453', 'size' => '50x150'],
     ];
 
-    foreach ($tile_data as $data) {
-        if (get_page_by_title($data['name'], OBJECT, 'tile')) continue;
+    // --- CONFIGURE ACF KEYS HERE ---
+    $keys = [
+        'tile_finish'    => 'field_68d3799c30127', // Key for the Finish Repeater
+        'finish_name'    => 'field_68d379d530128', // Key for Finish Name (Select)
+        'product_code'   => 'field_68d5fd67c4017', // Key for Product Code
+        'tile_size'      => 'field_68d37a2c3012a', // Key for the Size Repeater (Nested)
+        'tile_size_name' => 'field_68d37a5c3012b', // Key for Size Name
+    ];
 
-        $post_id = wp_insert_post([
-            'post_title'   => $data['name'],
-            'post_type'    => 'tile',
-            'post_status'  => 'publish',
+    foreach ($tile_rows as $row) {
+        $row_name = trim($row['name']);
+        
+        $query = new WP_Query([
+            'post_type' => 'tile', 'title' => $row_name, 'posts_per_page' => 1, 'post_status' => 'publish', 'fields' => 'ids'
         ]);
+        $post_id = !empty($query->posts) ? $query->posts[0] : null;
 
-        if ($post_id && !is_wp_error($post_id)) {
-            // FIX: Only send 'yes' in an array if the spreadsheet says 'yes'
-            // Otherwise, send an empty array to leave the checkbox unchecked.
-            $indent_value = (strtolower($data['indent']) === 'yes') ? ['yes'] : [];
-            update_field('indent_item', $indent_value, $post_id);
-
-            update_field('tile_design', $data['design'], $post_id);
-            update_field('tile_material', $data['material'], $post_id);
-            update_field('tile_application', $data['application'], $post_id);
-            update_field('tile_variation', $data['variation'], $post_id);
-
-            $finish_repeater = [[
-                'finish_name'  => $data['finish'],
-                'product_code' => $data['code'],
-                'tile_size'    => [['tile_size_name' => $data['size']]]
-            ]];
-            update_field('tile_finish', $finish_repeater, $post_id);
+        if (!$post_id) {
+            $post_id = wp_insert_post(['post_title' => $row_name, 'post_type' => 'tile', 'post_status' => 'publish']);
+            // Standard fields update by slug is fine
+            update_field('tile_design', $row['design'], $post_id);
+            update_field('tile_material', $row['material'], $post_id);
+            update_field('tile_application', $row['application'], $post_id);
+            update_field('tile_variation', $row['variation'], $post_id);
         }
+
+        // --- THE REPEATER LOGIC (Using Keys for stability) ---
+        $current_repeater = get_field($keys['tile_finish'], $post_id) ?: [];
+        $found_index = -1;
+
+        foreach ($current_repeater as $index => $item) {
+            // We check both the name and the key index to be 100% safe
+            $item_finish = $item['finish_name'] ?? $item[$keys['finish_name']] ?? '';
+            $item_code   = $item['product_code'] ?? $item[$keys['product_code']] ?? '';
+
+            if (strtolower(trim($item_finish)) == strtolower(trim($row['finish'])) && 
+                strtolower(trim($item_code)) == strtolower(trim($row['code']))) {
+                $found_index = $index;
+                break;
+            }
+        }
+
+        if ($found_index >= 0) {
+            // Add size to existing row
+            $sizes = $current_repeater[$found_index][$keys['tile_size']] ?? $current_repeater[$found_index]['tile_size'] ?? [];
+            $sizes[] = [ $keys['tile_size_name'] => $row['size'] ];
+            $current_repeater[$found_index][$keys['tile_size']] = $sizes;
+        } else {
+            // Create new finish row
+            $current_repeater[] = [
+                $keys['finish_name']  => $row['finish'],
+                $keys['product_code'] => $row['code'],
+                $keys['tile_size']    => [
+                    [ $keys['tile_size_name'] => $row['size'] ]
+                ]
+            ];
+        }
+
+        // Save using the Parent Field Key
+        update_field($keys['tile_finish'], $current_repeater, $post_id);
     }
-    echo "Import Successful!";
+    echo "Import using Field Keys finished!";
     exit;
 });
 
-*/
 
 // Enqueue all collection scripts
 add_action( 'wp_enqueue_scripts', 'enqueue_all_collection_scripts' );
