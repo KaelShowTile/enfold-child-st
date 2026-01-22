@@ -106,6 +106,7 @@ ul{padding-left: 0; margin-left: 0;}
 .collection-tiles-list{display: flex; flex-wrap: wrap; align-items: flex-start; gap: 40px;}
 .collection-gallery-slider .tile-name{position: absolute; bottom: 15px; padding: 8px 25px 7px 20px; background: rgba(255, 255, 255, 0.8); font-size: 0.7rem; letter-spacing: 0.5px;}
 .collection-description-outer-container{margin-top: 25px;}
+.collection-description-outer-container .collection-description-body p {font-size: 0.85rem;}
 .single-tile-card{width: calc((100% - 120px)/4);}
 .collection-description-container{margin-top: 0; display: flex; flex-wrap: wrap; gap: 15px 20px;}
 .collection-description-container tr:nth-child(odd){background: #fff;}

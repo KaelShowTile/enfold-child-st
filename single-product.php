@@ -219,7 +219,7 @@
 
 			<!-- Description & metas -->
 			<div class="collection-description-outer-container collection-container">
-				<div class="flex_column av_one_half avia-builder-el-1 el_before_av_one_half avia-builder-el-first first flex_column_div">
+				<div class="flex_column av_one_half avia-builder-el-1 el_before_av_one_half avia-builder-el-first first flex_column_div collection-description-body">
 					<?php the_field('collection_description'); ?>
 				</div>
 				<div class="flex_column av_one_half avia-builder-el-2 el_after_av_one_half avia-builder-el-last flex_column_div">
