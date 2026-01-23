@@ -85,6 +85,7 @@ function load_more_projects() {
 // }
 
 //IMPORT PRODUCT
+/*
 add_action('init', function() {
     if (!isset($_GET['run_tile_multi_import'])) return;
 
@@ -339,7 +340,7 @@ add_action('init', function() {
     exit;
 });
 
-
+*/
 
 // Enqueue all collection scripts
 add_action( 'wp_enqueue_scripts', 'enqueue_all_collection_scripts' );
