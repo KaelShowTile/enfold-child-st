@@ -286,13 +286,25 @@
 				<?php endforeach; ?>
 				</div>
 			</div>
-
+			
+			<!-- Collection video -->
 			<?php if(get_field('collection_video')): ?>
 			<div class="collection-tile-container collection-container collection-video-container">
 				<?php $video_shortcode = "[av_video src='" . get_field('collection_video') . "' video_loop='aviaTBvideo_loop' video_controls='aviaTBvideo_controls' format='16-9' width='16' height='9' id='' sc_version='1.0']"; ?>
 				<?php echo do_shortcode($video_shortcode); ?>
 			</div>
-			<?php endif; ?>	
+			<?php endif; ?>
+			
+			<!-- Collection Catalogue -->
+			<?php if($catalogue_pdf_url): ?>
+			<div class="collection-pdf-container collection-container">
+				<a id="collection-pdf-btn" class="st-link-button small-style desktop-only">Show Catalogue of <?php the_title(); ?></a>
+				<div id="collection-pdf-content" style="display:none;">				
+					<?php echo do_shortcode($catalogue_pdf_shortcode); ?>				
+				</div>
+				<a href="<?php echo $catalogue_pdf_url; ?>" class="st-link-button small-style mobile-only">Open Catalogue of <?php the_title(); ?></a>
+			</div>
+			<?php endif; ?>
 			
 			<!-- Related project -->
 			<?php if($collection_projects):?>
@@ -312,17 +324,6 @@
 				</div>
 			</div>
 			<?php endif;?>
-
-			<!-- Collection Catalogue -->
-			 <?php if($catalogue_pdf_url): ?>
-			<div class="collection-pdf-container collection-container">
-				<a id="collection-pdf-btn" class="st-link-button small-style desktop-only">Show Catalogue of <?php the_title(); ?></a>
-				<div id="collection-pdf-content" style="display:none;">				
-					<?php echo do_shortcode($catalogue_pdf_shortcode); ?>				
-				</div>
-				<a href="<?php echo $catalogue_pdf_url; ?>" class="st-link-button small-style mobile-only">Open Catalogue of <?php the_title(); ?></a>
-			</div>
-			<?php endif; ?>
 
 			<!-- Collection QA -->
 			<?php if(have_rows('collection_qna')):?>
