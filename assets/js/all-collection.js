@@ -79,14 +79,14 @@ jQuery(document).ready(function($) {
     }
 
     function initializePage() {
-        // Load initial collections (first 6)
-        var initialCollections = collectionsData.slice(0, 6);
+        // Load initial collections (first 9)
+        var initialCollections = collectionsData.slice(0, 9);
         var initialHtml = generateCollectionsHtml(initialCollections);
 
         // Add load more button if there are more collections
-        if (collectionsData.length > 6) {
+        if (collectionsData.length > 9) {
             initialHtml += '<div class="load-more-container" style="text-align: center; margin: 20px 0;">';
-            initialHtml += '<button class="load-more-filtered-btn btn st-link-button small-style" data-offset="6" data-term-ids="" data-total="' + collectionsData.length + '">Load More Collections</button>';
+            initialHtml += '<button class="load-more-filtered-btn btn st-link-button small-style" data-offset="9" data-term-ids="" data-total="' + collectionsData.length + '">Load More Collections</button>';
             initialHtml += '</div>';
         }
 
@@ -131,14 +131,14 @@ jQuery(document).ready(function($) {
         var allFilteredCollections;
         if (termIds.length === 0) {
             allFilteredCollections = collectionsData;
-            filteredCollections = collectionsData.slice(offset, offset + 6);
+            filteredCollections = collectionsData.slice(offset, offset + 9);
         } else {
             allFilteredCollections = collectionsData.filter(function(collection) {
                 return termIds.every(function(termId) {
                     return collection.categories.includes(termId);
                 });
             });
-            filteredCollections = allFilteredCollections.slice(offset, offset + 6);
+            filteredCollections = allFilteredCollections.slice(offset, offset + 9);
         }
 
         console.log('Filtered collections:', filteredCollections.length, 'of', allFilteredCollections.length);

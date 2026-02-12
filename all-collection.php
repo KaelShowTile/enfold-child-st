@@ -60,7 +60,7 @@
 					</div>
 
 					<div class="flex_column av_three_fourth avia-builder-el-2 el_after_av_one_fourth avia-builder-el-last flex_column_div">
-						<?php echo get_collections_html(0, 6, null, true); ?>
+						<?php echo get_collections_html(0, 9, null, true); ?>
 					</div>
 
 				<!--end content-->

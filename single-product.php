@@ -82,10 +82,11 @@
 			}
 
 			//combine videos
-			if($tile_video){
+			if($tile_video && !empty($tile_video['video_thumbnail']) && !empty($tile_video['video_url'])){
 				$tile_video_url = $tile_video['video_url'];
 				$tile_video_thumb_id = $tile_video['video_thumbnail'];
 				$collection_video[] = ['thumbnail_id' => $tile_video_thumb_id, 'video_url' => $tile_video_url];
+				error_log("tile_video has row! Tile ID is: " . $tile);
 			}
 			
 			//add tile meta to project meta
