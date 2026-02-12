@@ -162,6 +162,7 @@ add_action('init', function() {
 */
 
 //import project
+/*
 add_action('init', function() {
     // 1. Safety check: only run when URL has ?run_project_import
     if (!isset($_GET['run_project_import'])) return;
@@ -308,6 +309,8 @@ add_action('init', function() {
     echo "Import Complete! Created $count new projects.";
     exit;
 });
+
+*/
 
 //update project category by ACF field(project_type)
 add_action('acf/save_post', 'sync_project_type_to_taxonomy', 20);
