@@ -139,7 +139,7 @@
 		}
 
 		//other project
-		if($other_project_numbers > 0){
+		if($feature_project_category_id && $other_project_numbers > 0){
 		
 			$other_project_args = array(
 				'post_type' => 'project',
@@ -154,8 +154,8 @@
 				),
 			);
 			$other_project_query = new WP_Query($other_project_args);
-
-			if ($feature_project_query->have_posts()){
+			
+			if ($other_project_query->have_posts()){
 				if($project_section == false){
 					$other_project_output_html .= '<h2>Latest Tile Projects and Collaborations</h2>';
 				}

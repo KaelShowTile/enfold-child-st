@@ -31,7 +31,7 @@ jQuery(document).ready(function($) {
                         <p>${escapeHtml(item.size)}</p>
                     </div>
                     <div class="basket-item-note">
-                        <textarea rows="6"></textarea>
+                        <textarea rows="6" placeholder="Your comments here..."></textarea>
                     </div>
                     <div class="basket-item-actions">
                         <button class="btn btn-danger btn-sm remove-item" data-index="${index}"><i class="fas fa-trash"></i>X</button>

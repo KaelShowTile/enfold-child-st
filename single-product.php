@@ -67,8 +67,12 @@
 
 			//get related project ids
 			$collection_projects_id = get_post_meta($tile, 'related_project', true);
-			if($collection_projects_id){
+			if(is_array($collection_projects_id)){
 				$collection_projects = array_unique(array_merge($collection_projects, $collection_projects_id));
+			}elseif(is_int($collection_projects_id)){
+				if (!in_array($collection_projects_id, $collection_projects, true)) {
+					$collection_projects[] = $collection_projects_id;
+				}
 			}
 			
 			//combine images with tile title
