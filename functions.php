@@ -652,14 +652,15 @@ function generate_collections_xml() {
                 }
                 $collection->appendChild($categories);
             }
-
+            
+            /*
             if ( is_wp_error( $terms ) ) {
                 error_log( 'WP Error Message: ' . $terms->get_error_message() ); // Tells you if taxonomy is invalid
             } elseif ( empty( $terms ) ) {
                 error_log( 'Terms are empty/false. The post exists but has no terms assigned in this taxonomy.' );
             } else {
                 error_log( 'Terms found: ' . print_r( $terms, true ) );
-            }
+            }*/
 
             // Images
             $images = $dom->createElement('images');
@@ -812,4 +813,73 @@ function update_tile_related_projects($post_id) {
 
     // Clean up global
     unset($old_related_tiles[$post_id]);
+}
+
+function av_breadcrumbs_shortcode( $atts ) {
+	return Avia_Breadcrumb_Trail()->get_trail( array( 'separator' => '/', 'richsnippet' => true, 'trail_end' => '' ) );
+}
+add_shortcode( 'av_breadcrumbs', 'av_breadcrumbs_shortcode' );
+
+
+/**
+ * Extend the glint search plugin to include ACF custom fields.
+ */
+
+// 1. Join the postmeta table with a UNIQUE ALIAS (glint_pm)
+add_filter('posts_join', 'glint_child_search_join');
+function glint_child_search_join($join) {
+    global $wpdb;
+    if (is_search() && !is_admin()) {
+        // We use 'glint_pm' as an alias to ensure we don't conflict with 
+        // other plugins that might be querying the postmeta table.
+        $join .= " LEFT JOIN {$wpdb->postmeta} AS glint_pm ON {$wpdb->posts}.ID = glint_pm.post_id ";
+    }
+    return $join;
+}
+
+// 2. Modify the WHERE clause to search specific ACF Nested Repeater fields
+add_filter('posts_where', 'glint_child_search_where');
+function glint_child_search_where($where) {
+    global $wpdb;
+    if (is_search() && !is_admin()) {
+        $search_term = get_query_var('s');
+        if (!empty($search_term)) {
+            $like_term = '%' . $wpdb->esc_like($search_term) . '%';
+            
+            // Build the meta query using the 'glint_pm' alias.
+            // Note on wildcards (%%):
+            // 1. 'tile_finish_%%_product_code' matches 'tile_finish_0_product_code'
+            // 2. 'tile_finish_%%_tile_size_%%_tile_size_name' matches 'tile_finish_0_tile_size_0_tile_size_name'
+            
+            $meta_where = $wpdb->prepare(
+                "
+                (
+                    (glint_pm.meta_key LIKE 'tile_finish_%%_product_code' AND glint_pm.meta_value LIKE %s)
+                    OR 
+                    (glint_pm.meta_key LIKE 'tile_finish_%%_tile_size_%%_tile_size_name' AND glint_pm.meta_value LIKE %s)
+                )
+                ",
+                $like_term,
+                $like_term
+            );
+
+            // Inject our meta search logic into the existing SQL.
+            // This regex finds the title search and appends our OR condition.
+            $where = preg_replace(
+                "/({$wpdb->posts}\.post_title\s+LIKE\s*\'(?:[^'\\\\]+|\\\\.)*\')/",
+                "($1 OR $meta_where)",
+                $where
+            );
+        }
+    }
+    return $where;
+}
+
+// 3. Prevent duplicate results
+add_filter('posts_distinct', 'glint_child_search_distinct');
+function glint_child_search_distinct($distinct) {
+    if (is_search() && !is_admin()) {
+        return "DISTINCT";
+    }
+    return $distinct;
 }

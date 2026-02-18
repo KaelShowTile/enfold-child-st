@@ -60,6 +60,7 @@
 			$tile_application = get_field('tile_application', $tile);
 			$tile_variation = get_field('tile_variation', $tile);
 			$tile_finish = get_field('tile_finish', $tile);//repeater field
+			$tiles_spec_list = [];
 
 			//get title & link
 			$tile_title = get_the_title($tile);
@@ -90,7 +91,6 @@
 				$tile_video_url = $tile_video['video_url'];
 				$tile_video_thumb_id = $tile_video['video_thumbnail'];
 				$collection_video[] = ['thumbnail_id' => $tile_video_thumb_id, 'video_url' => $tile_video_url];
-				error_log("tile_video has row! Tile ID is: " . $tile);
 			}
 			
 			//add tile meta to project meta
@@ -134,12 +134,14 @@
 			if(get_field('tile_finish', $tile)){
 				while( the_repeater_field('tile_finish', $tile) ){
 					$finish_name = get_sub_field('finish_name');
+					$finish_thumb = get_sub_field('finish_image');
 					$total_finish++;
 					//get sizes
 					if(get_sub_field('tile_size')){
 						while( the_repeater_field('tile_size', $tile) ){
 							$finish_size = get_sub_field('tile_size_name');
 							//put finish name pair with size into array
+							$tiles_spec_list[] =  ['tile_id' => $tile, 'tile_title' => $tile_title, 'tile_thumb' => $finish_thumb, 'finish_name' => $finish_name, 'finish_size' => $finish_size];
 							$collection_finish[] =  ['finish_name' => $finish_name, 'finish_size' => $finish_size];
 							$total_size++;
 						}
@@ -153,7 +155,7 @@
 				}
 			}
 
-			$collection_tiles_list[] = ['tile_title' => $tile_title, 'title_link' => $permalink, 'title_thumb_url' => $tile_thumb, 'total_finish' => $total_finish, 'total_size' => $total_size, 'total_finish_suffix' => $total_finish_suffix, 'total_size_suffix' => $total_size_suffix ];
+			$collection_tiles_list[] = ['tile_title' => $tile_title, 'title_link' => $permalink, 'title_thumb_url' => $tile_thumb, 'total_finish' => $total_finish, 'total_size' => $total_size, 'total_finish_suffix' => $total_finish_suffix, 'total_size_suffix' => $total_size_suffix, 'dropdown_option' => $tiles_spec_list];
 		}
 	}
 
@@ -207,6 +209,7 @@
 		<main class='content units <?php avia_layout_class( 'content' ); ?> <?php echo avia_blog_class_string(); ?> <?php echo $main_class; ?>' <?php avia_markup_helper( array( 'context' => 'content', 'post_type' => 'post' ) );?>>
 
 			<h1 class="item-title"><?php the_title(); ?></h1>
+			<div class="breadcrumbs collection-breadcrumbs"><?php echo do_shortcode('[av_breadcrumbs]'); ?></div>
 
 			<!-- Image gallery -->
 			<?php if($collection_gallery): ?>
@@ -284,8 +287,25 @@
 					<div class="single-tile-card">
 						<a href="<?php echo $tile['title_link']; ?>"><img src="<?php echo $tile['title_thumb_url']; ?>"></a>
 						<div class="tile-card-detail">
-							<a href="<?php echo $tile['title_link']; ?>"><h5><?php echo $tile['tile_title']; ?></h5></a>
-							<p><?php echo $tile['total_finish'] . ' ' . $tile['total_finish_suffix'] . ' | ' . $tile['total_size'] . ' ' . $tile['total_size_suffix']; ?></p>
+							<div class="tile-card-left">
+								<a href="<?php echo $tile['title_link']; ?>"><h5><?php echo $tile['tile_title']; ?></h5></a>
+								<!-- dropdown for add to basket -->
+								<?php if($tile['dropdown_option']): ?>
+									<select name="select-tile-to-basket" class="select-tile-dropdown">
+									<?php foreach($tile['dropdown_option'] as $spec): ?>
+										<option value="<?php echo esc_attr($spec['tile_title'] . ' - ' . $spec['finish_name'] . ' - ' . $spec['finish_size']); ?>"
+												data-product-name="<?php echo esc_attr($spec['tile_title'] . ' - ' . $spec['finish_name'] . ' - ' . $spec['finish_size']); ?>"
+												data-tile-name="<?php echo esc_attr($spec['tile_title']); ?>"
+												data-finish="<?php echo esc_attr($spec['finish_name']); ?>"
+												data-size="<?php echo esc_attr($spec['finish_size']); ?>"
+												data-image-url="<?php echo esc_attr($spec['tile_thumb']); ?>">
+											<?php echo esc_html($spec['finish_name'] . ' | ' . $spec['finish_size']); ?>
+										</option>
+									<?php endforeach; ?>
+									</select>
+								<?php endif; ?>
+							</div>
+							<a class="add-tile-to-basket" ><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/add-to-basket-2.svg"></a>
 						</div>
 					</div>		
 				<?php endforeach; ?>

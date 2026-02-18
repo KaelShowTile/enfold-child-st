@@ -57,7 +57,10 @@
 
 		<main class='content units <?php avia_layout_class( 'content' ); ?> <?php echo avia_blog_class_string(); ?> <?php echo $main_class; ?>' <?php avia_markup_helper( array( 'context' => 'content', 'post_type' => 'tile' ) );?>>
 
-			<h1><?php the_title(); ?></h1>
+			<div class="tile-title-container container">	
+				<h1><?php the_title(); ?></h1>
+				<div class="breadcrumbs tile-breadcrumbs"><?php echo do_shortcode('[av_breadcrumbs]'); ?></div>
+			</div>
 
 			<div class="tile-sidebar">
 				<!-- Load finish-->

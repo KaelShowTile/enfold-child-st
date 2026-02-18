@@ -43,6 +43,7 @@
 
 			<div class="project-title-container container">	
 				<h1 class="item-title"><?php the_title(); ?></h1>
+				<div class="breadcrumbs project-breadcrumbs"><?php echo do_shortcode('[av_breadcrumbs]'); ?></div>
 			</div>
 
 			<!-- Project gallery -->
