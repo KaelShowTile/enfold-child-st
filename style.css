@@ -154,11 +154,17 @@ ul{padding-left: 0; margin-left: 0;}
 #top .blog-list-container .entry-content{font-size: 0.8rem; letter-spacing: 0.1px;}
 
 /* collection archive*/
+.template-collection.av-main-taxonomy-product_category h1{text-align: center; margin: 0 auto 50px;}
+.collection-cate-container{margin-bottom: 50px; display: flex;}
+.collection-cate-description-group{position: absolute; bottom: 10px;}
+.collection-cate-heading-group{margin-top: 20px;}
 .collection-list-container{display: flex; flex-wrap: wrap; gap: 40px;}
 .collection-list-container:before{display: none;}
-.collection-list-container .collection-card{width: calc((100% - 80px) / 3);}
+.collection-list-container .collection-card{width: calc((100% - 120px) / 4);}
+
 
 /* footer */
+#st-footer-container a{color: #fff;}
 #st-footer-container .footer-logo .avia_image{margin-left: -5px;}
 #st-footer-container .av_textblock_section{display: inline-block; width: 100%;}
 #st-footer-container h5{color: #fff; text-transform: uppercase;font-family: 'roboto', Helvetica, Arial, sans-serif; margin: 0 0 5px; font-size: 1rem; font-weight: 600; letter-spacing: 1px;}

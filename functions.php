@@ -85,53 +85,49 @@ function load_more_projects() {
 // }
 
 //IMPORT PRODUCT
-/*
 add_action('init', function() {
     if (!isset($_GET['run_tile_multi_import'])) return;
 
     $tile_rows = [  
-        ['name' => 'Breccia Grey', 'indent' => '', 'design' => 'Marble Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'polished', 'code' => 'SL01374', 'size' => '600x1200'],
-        ['name' => 'Breccia Grey', 'indent' => '', 'design' => 'Marble Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'in&out', 'code' => 'SL01382', 'size' => '600x600'],
-        ['name' => 'Breccia Grey', 'indent' => '', 'design' => 'Marble Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'in&out', 'code' => 'SL01382', 'size' => '600x1200'],
-        ['name' => 'Capsule Carrara', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Natural Stone', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'honed', 'code' => 'MS06604', 'size' => 'Chip 10/12/15x98 - Sheet 327x298'],
-        ['name' => 'Capsule Indian Green', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Natural Stone', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'honed', 'code' => 'MS06605', 'size' => 'Chip 10/12/15x98 - Sheet 327x298'],
-        ['name' => 'Capsule Ming Green', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Natural Stone', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'honed', 'code' => 'MS06606', 'size' => 'Chip 10/12/15x98 - Sheet 327x298'],
-        ['name' => 'Capsule White Limestone', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Natural Stone', 'application' => 'Wall Tile', 'variation' => '', 'finish' => 'honed', 'code' => 'MS06607', 'size' => 'Chip 10/12/15x98 - Sheet 327x298'],
-        ['name' => 'Marvel T Halo Sand', 'indent' => '', 'design' => 'Stone Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SL02049', 'size' => '600x600'],
-        ['name' => 'Marvel T Halo Sand', 'indent' => '', 'design' => 'Stone Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SL02049', 'size' => '600x1200'],
-        ['name' => 'Marvel T Halo White', 'indent' => '', 'design' => 'Stone Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SL02050', 'size' => '600x600'],
-        ['name' => 'Marvel T Halo White', 'indent' => '', 'design' => 'Stone Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SL02050', 'size' => '600x1200'],
-        ['name' => 'Marvel T Navona White', 'indent' => '', 'design' => 'Travertine Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SL02051', 'size' => '600x600'],
-        ['name' => 'Marvel T Navona White', 'indent' => '', 'design' => 'Travertine Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SL02051', 'size' => '600x1200'],
-        ['name' => 'Marvel T Stone Veil', 'indent' => '', 'design' => 'Travertine Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SL02052', 'size' => '600x1200'],
-        ['name' => 'Nyra Hay 3D Qube', 'indent' => '', 'design' => 'Stone Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'textured', 'code' => 'SL02053', 'size' => '3D Qube 500x1200'],
-        ['name' => 'Nyra Star 3D Qube', 'indent' => '', 'design' => 'Stone Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'textured', 'code' => 'SL02054', 'size' => '3D Qube 500x1200'],
-        ['name' => 'Nyra Hay 3D Saddle', 'indent' => '', 'design' => 'Stone Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'textured', 'code' => 'SL02055', 'size' => '3D Saddle 400x800'],
-        ['name' => 'Nyra Star 3D Saddle', 'indent' => '', 'design' => 'Stone Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'textured', 'code' => 'SL02056', 'size' => '3D Saddle 400x800'],
-        ['name' => 'Nyra Hay Matt', 'indent' => '', 'design' => 'Stone Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SL02057', 'size' => '600x600'],
-        ['name' => 'Nyra Hay Matt', 'indent' => '', 'design' => 'Stone Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SL02057', 'size' => '600x1200'],
-        ['name' => 'Nyra Star Matt', 'indent' => '', 'design' => 'Stone Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SL02058', 'size' => '600x600'],
-        ['name' => 'Nyra Star Matt', 'indent' => '', 'design' => 'Stone Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SL02058', 'size' => '600x1200'],
-        ['name' => 'Luna Stone White', 'indent' => '', 'design' => 'Stone Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SL04024', 'size' => '600x600'],
-        ['name' => 'Luna Stone Beige', 'indent' => '', 'design' => 'Stone Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SL04025', 'size' => '600x600'],
-        ['name' => 'Luna Stone Grey', 'indent' => '', 'design' => 'Stone Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SL04026', 'size' => '600x600'],
-        ['name' => 'Luna Fossil White Subway', 'indent' => '', 'design' => 'Terrazzo Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SW04024', 'size' => '75x300'],
-        ['name' => 'Luna Fossil Beige Subway', 'indent' => '', 'design' => 'Terrazzo Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SW04025', 'size' => '75x300'],
-        ['name' => 'Luna Fossil Grey Subway', 'indent' => '', 'design' => 'Terrazzo Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'SW04026', 'size' => '75x300'],
-        ['name' => 'Luna Stone White Tumbled Mosaic', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'MS04024', 'size' => 'Sheet 296x396'],
-        ['name' => 'Luna Stone Beige Tumbled Mosaic', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'MS04025', 'size' => 'Sheet 296x396'],
-        ['name' => 'Luna Stone Grey Tumbled Mosaic', 'indent' => '', 'design' => 'Mosaic Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'MS04026', 'size' => 'Sheet 296x396'],
-        ['name' => 'Luna Fossil White', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'TR04024', 'size' => '600x600'],
-        ['name' => 'Luna Fossil Beige', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'TR04025', 'size' => '600x600'],
-        ['name' => 'Luna Fossil Grey', 'indent' => '', 'design' => 'Subway Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'TR04026', 'size' => '600x600'],
-        ['name' => 'Next Terrazzo Bianco', 'indent' => '', 'design' => 'Terrazzo Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'TR01151', 'size' => '300x600'],
-        ['name' => 'Next Terrazzo Bianco', 'indent' => '', 'design' => 'Terrazzo Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'TR01151', 'size' => '600x600'],
-        ['name' => 'Next Terrazzo Natural', 'indent' => '', 'design' => 'Terrazzo Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'TR01154', 'size' => '300x600'],
-        ['name' => 'Next Terrazzo Natural', 'indent' => '', 'design' => 'Terrazzo Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'TR01154', 'size' => '600x600'],
-        ['name' => 'Next Terrazzo Coffee', 'indent' => '', 'design' => 'Terrazzo Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'TR01152', 'size' => '300x600'],
-        ['name' => 'Next Terrazzo Coffee', 'indent' => '', 'design' => 'Terrazzo Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'TR01152', 'size' => '600x600'],
-        ['name' => 'Next Terrazzo Grey', 'indent' => '', 'design' => 'Terrazzo Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'TR01153', 'size' => '300x600'],
-        ['name' => 'Next Terrazzo Grey', 'indent' => '', 'design' => 'Terrazzo Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'TR01153', 'size' => '600x600'],
+        ['name' => 'Max Rock White', 'indent' => '', 'design' => 'Stone Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'CL03117', 'size' => '300x300'],
+        ['name' => 'Max Rock White', 'indent' => '', 'design' => 'Stone Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'CL03117', 'size' => '300x600'],
+        ['name' => 'Max Rock White', 'indent' => '', 'design' => 'Stone Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'CL03117', 'size' => '600x600'],
+        ['name' => 'Max Rock White', 'indent' => '', 'design' => 'Stone Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'CL03117', 'size' => '600x1200'],
+        ['name' => 'Max Rock White', 'indent' => '', 'design' => 'Stone Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'lappato', 'code' => 'CL03120', 'size' => '600x1200'],
+        ['name' => 'Max Rock White', 'indent' => '', 'design' => 'Stone Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'external', 'code' => 'OD03129', 'size' => '300x600'],
+        ['name' => 'Max Rock White', 'indent' => '', 'design' => 'Stone Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'external', 'code' => 'OD03129', 'size' => '600x600'],
+        ['name' => 'Max Rock Sand', 'indent' => '', 'design' => 'Stone Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'CL03118', 'size' => '300x300'],
+        ['name' => 'Max Rock Sand', 'indent' => '', 'design' => 'Stone Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'CL03118', 'size' => '300x600'],
+        ['name' => 'Max Rock Sand', 'indent' => '', 'design' => 'Stone Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'CL03118', 'size' => '600x600'],
+        ['name' => 'Max Rock Sand', 'indent' => '', 'design' => 'Stone Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'CL03118', 'size' => '600x1200'],
+        ['name' => 'Max Rock Sand', 'indent' => '', 'design' => 'Stone Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'lappato', 'code' => 'CL03121', 'size' => '600x1200'],
+        ['name' => 'Max Rock Sand', 'indent' => '', 'design' => 'Stone Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'external', 'code' => 'OD03130', 'size' => '300x600'],
+        ['name' => 'Max Rock Sand', 'indent' => '', 'design' => 'Stone Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'external', 'code' => 'OD03130', 'size' => '600x600'],
+        ['name' => 'Max Rock Grey', 'indent' => '', 'design' => 'Stone Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'CL03119', 'size' => '300x300'],
+        ['name' => 'Max Rock Grey', 'indent' => '', 'design' => 'Stone Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'CL03119', 'size' => '300x600'],
+        ['name' => 'Max Rock Grey', 'indent' => '', 'design' => 'Stone Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'CL03119', 'size' => '600x600'],
+        ['name' => 'Max Rock Grey', 'indent' => '', 'design' => 'Stone Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'CL03119', 'size' => '600x1200'],
+        ['name' => 'Max Rock Grey', 'indent' => '', 'design' => 'Stone Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'lappato', 'code' => 'CL03122', 'size' => '600x1200'],
+        ['name' => 'Max Rock Grey', 'indent' => '', 'design' => 'Stone Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'external', 'code' => 'OD03131', 'size' => '300x600'],
+        ['name' => 'Max Rock Grey', 'indent' => '', 'design' => 'Stone Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'external', 'code' => 'OD03131', 'size' => '600x600'],
+        ['name' => 'Porto Grigio', 'indent' => '', 'design' => '', 'material' => 'Natural Stone', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'honed', 'code' => 'NS01029', 'size' => '305x610x10'],
+        ['name' => 'Roma Terrazzo Earth', 'indent' => '', 'design' => 'Terrazzo', 'material' => 'Natural Stone', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'honed', 'code' => 'TR07111', 'size' => '400x400x20'],
+        ['name' => 'Roma Terrazzo White', 'indent' => '', 'design' => 'Terrazzo', 'material' => 'Natural Stone', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'honed', 'code' => 'TR07112', 'size' => '400x400x18'],
+        ['name' => 'Roma  Terrazzo Light Grey', 'indent' => '', 'design' => 'Terrazzo', 'material' => 'Natural Stone', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'honed', 'code' => 'TR07113', 'size' => '400x400x18'],
+        ['name' => 'Roma  Terrazzo Rosa', 'indent' => '', 'design' => 'Terrazzo', 'material' => 'Natural Stone', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'honed', 'code' => 'TR07114', 'size' => '400x400x18'],
+        ['name' => 'Roma Terrazzo Celtic', 'indent' => '', 'design' => 'Terrazzo', 'material' => 'Natural Stone', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'honed', 'code' => 'TR07115', 'size' => '400x400x18'],
+        ['name' => 'Roma  Terrazzo Esmeraldo Green', 'indent' => '', 'design' => 'Terrazzo', 'material' => 'Natural Stone', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'honed', 'code' => 'TR07116', 'size' => '400x400x18'],
+        ['name' => 'Terra 2.0 Multie White', 'indent' => '', 'design' => 'Terrazzo Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'TR06110', 'size' => '300x300'],
+        ['name' => 'Terra 2.0 Multie White', 'indent' => '', 'design' => 'Terrazzo Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'TR06110', 'size' => '300x600'],
+        ['name' => 'Terra 2.0 Multie White', 'indent' => '', 'design' => 'Terrazzo Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'TR06110', 'size' => '600x600'],
+        ['name' => 'Terra 2.0 Multie Grey', 'indent' => '', 'design' => 'Terrazzo Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'TR06111', 'size' => '300x600'],
+        ['name' => 'Terra 2.0 Multie Grey', 'indent' => '', 'design' => 'Terrazzo Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'matt', 'code' => 'TR06111', 'size' => '600x600'],
+        ['name' => 'Terra 2.0 White', 'indent' => '', 'design' => 'Terrazzo Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'honed', 'code' => 'TR01029', 'size' => '300x300'],
+        ['name' => 'Terra 2.0 White', 'indent' => '', 'design' => 'Terrazzo Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'honed', 'code' => 'TR01029', 'size' => '300x600'],
+        ['name' => 'Terra 2.0 White', 'indent' => '', 'design' => 'Terrazzo Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'honed', 'code' => 'TR01029', 'size' => '600x600'],
+        ['name' => 'Terra 2.0 Big White', 'indent' => '', 'design' => 'Terrazzo Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'honed', 'code' => 'TR06113', 'size' => '300x300'],
+        ['name' => 'Terra 2.0 Big White', 'indent' => '', 'design' => 'Terrazzo Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'honed', 'code' => 'TR06113', 'size' => '300x600'],
+        ['name' => 'Terra 2.0 Big White', 'indent' => '', 'design' => 'Terrazzo Look Tile', 'material' => 'Porcelain Tile', 'application' => 'Wall Tile / Floor Tile', 'variation' => '', 'finish' => 'honed', 'code' => 'TR06113', 'size' => '600x600'],
     ];
 
     // --- CONFIGURE ACF KEYS HERE ---
@@ -199,7 +195,6 @@ add_action('init', function() {
     exit;
 });
 
-*/
 
 //import project
 /*
@@ -546,7 +541,7 @@ function get_project_html($offset = 0, $limit = 12, $term_ids = null, $load_more
             $link = get_permalink();
             $project_id = get_the_ID();
             $project_thumb =  get_the_post_thumbnail($project_id, 'project-vertical' );
-            $project_type = get_field('project_type', $project_id);
+            $project_type = implode( ', ', get_field('project_type', $project_id));
             $project_des = stCutText(get_field('project_description', $project_id));
             //output html
             $html .= '<div class="single-project-card single-project-card-container">';
@@ -718,9 +713,24 @@ add_action('generate_collections_xml', 'generate_collections_xml');
 
 //generate tag cloud
 function display_terms_hierarchically( $terms, $parent_id = 0, $level = 0 ) {
+    $current_level_terms = array();
+    $other_terms = array();
+
     foreach ( $terms as $term ) {
         if ( $term->parent == $parent_id ) {
+            if ( $term->name === 'Other' ) {
+                $other_terms[] = $term;
+            } else {
+                $current_level_terms[] = $term;
+            }
+        }
+    }
+
+    $current_level_terms = array_merge($current_level_terms, $other_terms);
+
+    foreach ( $current_level_terms as $term ) {
             $has_children = false;
+            $otherItem = '';
             foreach ( $terms as $child_term ) {
                 if ( $child_term->parent == $term->term_id ) {
                     $has_children = true;
@@ -732,7 +742,7 @@ function display_terms_hierarchically( $terms, $parent_id = 0, $level = 0 ) {
                 $classes .= ' child-category';
                 $collection_category_ids[] = $term->term_id;
             }
-            if ( $level == 1 && $has_children ) {
+            if ( $level == 1 && $has_children) {
                 // Output accordion
                 echo '<div class="accordion" id="collection-category-fliter-accordion">';
                 echo '<div class="accordion-item">';
@@ -748,12 +758,11 @@ function display_terms_hierarchically( $terms, $parent_id = 0, $level = 0 ) {
                 echo '</div>';
 
                 echo '</div>';
-                echo '</div>';
+                echo '</div>';            
             } else {
                 echo '<span class="' . $classes . '" data-term-id="' . $term->term_id . '" data-level="' . $level . '" data-term-name="' . esc_html( $term->name ) . '">' . str_repeat( '&nbsp;&nbsp;', $level ) . esc_html( $term->name ) . '</span><br>';
                 display_terms_hierarchically( $terms, $term->term_id, $level + 1 );
             }
-        }
     }
 }
 

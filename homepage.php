@@ -167,7 +167,7 @@
 				while ($other_project_query ->have_posts()){
 					$other_project_query ->the_post();
 					$project_id = get_the_ID();
-					$project_type = get_field('project_type', $project_id);
+					$project_type = implode( ', ', get_field('project_type', $project_id) );
 					$project_title = get_the_title();
 					$project_description = get_field('project_description', $project_id);
 					//limit the length of description
