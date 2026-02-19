@@ -81,40 +81,16 @@
 					
 					<!-- Related Post -->
 					<?php if($related_blog): ?>
-					<div class="related-project-container container">
+					<div class="related-blog-container container">
 						<h2>Get Inspired</h2>
-						<?php foreach($related_blog as $collection): ?>
-							<a href="<?php echo get_permalink( $collection ) ?>">
-								<div class="project-card">
-									<?php get_the_post_thumbnail($collection, 'medium'); ?>
-									<h5><?php echo get_the_title($collection); ?></h5>
-								</div>
-							</a>
-						<?php endforeach; ?>
-					</div>
-					<?php endif; ?>
-
-					<!-- Collection QA -->
-					<?php if(have_rows('collection_category_qna', $term->taxonomy . '_' . $term->term_id)):?>
-					<div class="collection-qa-container collection-container container">
-						<div class="accordion" id="collection-qa-accordion">
-						<?php $qna_index = 0; ?>
-						<?php while(have_rows('collection_category_qna', $term->taxonomy . '_' . $term->term_id)): the_row();?>
-							<div class="accordion-item">
-								<h5 class="accordion-header">
-									<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collection-qna-<?php echo $qna_index; ?>" aria-expanded="true" aria-controls="collapseOne">
-										<?php the_sub_field('collection_category_question'); ?>
-									</button>
-								</h5>
-								<div id="collection-qna-<?php echo $qna_index; ?>" class="accordion-collapse collapse" data-bs-parent="#collection-qa-accordion">
-									<div class="accordion-body">
-										<?php the_sub_field('collection_category_answer'); ?>
-									</div>
-								</div>
+						<div class="related-blog-container-inner">
+						<?php foreach($related_blog as $blog): ?>
+							<div class="blog-card">
+								<a href="<?php echo get_permalink( $blog ) ?>"><?php get_the_post_thumbnail($blog, 'medium'); ?></a>
+								<a href="<?php echo get_permalink( $blog ) ?>"><h5><?php echo get_the_title($blog); ?></h5></a>
 							</div>
-						<?php $qna_index++; ?>
-						<?php endwhile; ?>
-						</div>				
+						<?php endforeach; ?>
+						</div>
 					</div>
 					<?php endif; ?>
 
@@ -122,6 +98,35 @@
 				</main>
 
 			</div><!--end container-->
+
+			<!-- Collection QA -->
+			<?php if(have_rows('collection_category_qna', $term->taxonomy . '_' . $term->term_id)):?>
+			<div class="collection-qa-container">
+				<div class="container">
+					<div class="collection-qa-title-section">
+						<h2>FAQs</h2>
+					</div>
+					<div class="accordion" id="collection-qa-accordion">
+					<?php $qna_index = 0; ?>
+					<?php while(have_rows('collection_category_qna', $term->taxonomy . '_' . $term->term_id)): the_row();?>
+						<div class="accordion-item">
+							<h5 class="accordion-header">
+								<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collection-qna-<?php echo $qna_index; ?>" aria-expanded="true" aria-controls="collapseOne">
+									<?php the_sub_field('collection_category_question'); ?>
+								</button>
+							</h5>
+							<div id="collection-qna-<?php echo $qna_index; ?>" class="accordion-collapse collapse" data-bs-parent="#collection-qa-accordion">
+								<div class="accordion-body">
+									<?php the_sub_field('collection_category_answer'); ?>
+								</div>
+							</div>
+						</div>
+					<?php $qna_index++; ?>
+					<?php endwhile; ?>
+					</div>	
+				</div>
+			</div>
+			<?php endif; ?>
 
 		</div><!-- close default .container_wrap element -->
 
