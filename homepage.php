@@ -99,7 +99,7 @@
 				'posts_per_page' => 2,
 				'tax_query' => array(
 					array(
-						'taxonomy' => 'project_category',
+						'taxonomy' => 'project-category',
 						'field'    => 'term_id',
 						'terms'    => $feature_project_category_id,
 					),
@@ -146,7 +146,7 @@
 				'posts_per_page' => $other_project_numbers,
 				'tax_query' => array(
 					array(
-						'taxonomy' => 'project_category',
+						'taxonomy' => 'project-category',
 						'field'    => 'term_id',
 						'terms'    => $feature_project_category_id,
 						'operator' => 'NOT IN',
@@ -357,6 +357,7 @@
 
 		<!-- Instagram plugin -->
 		<div class="container instagram-post-container">
+			<h2>Find us on Instagram: #showtileprojects</h2>
 			<?php echo do_shortcode('[instagram-feed feed=1]'); ?>
 		</div>
 

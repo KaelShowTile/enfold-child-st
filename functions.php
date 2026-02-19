@@ -243,7 +243,7 @@ add_action('init', function() {
                 $type_value = strtolower(trim($row['type'])); 
                 update_field('project_type', $type_value, $post_id);
                 //update project category
-                wp_set_object_terms($post_id, $type_value, 'project_category', false);
+                wp_set_object_terms($post_id, $type_value, 'project-category', false);
 
                 // --- 2. Description (WYSIWYG) ---
                 // The formula already converted newlines to <br/>
@@ -282,10 +282,10 @@ function sync_project_type_to_taxonomy($post_id) {
     if ($project_type_value) {
         // wp_set_object_terms replaces existing categories with the new one.
         // We use the slug directly because your taxonomy slugs match your ACF values.
-        wp_set_object_terms($post_id, $project_type_value, 'project_category', false);
+        wp_set_object_terms($post_id, $project_type_value, 'project-category', false);
     } else {
         // Optional: Clear categories if the project type is set to "None"
-        wp_set_object_terms($post_id, null, 'project_category');
+        wp_set_object_terms($post_id, null, 'project-category');
     }
 }
 
@@ -317,7 +317,7 @@ function enqueue_load_more_scripts() {
 add_action( 'wp_enqueue_scripts', 'enqueue_load_more_project_scripts' );
 function enqueue_load_more_project_scripts() {
     // Load on taxonomy pages or all-collection page
-    if ( is_tax( 'project_category' ) || is_page_template( 'all-project.php' ) ) {
+    if ( is_tax( 'project-category' ) || is_page_template( 'all-project.php' ) ) {
         wp_enqueue_script( 'load-more-project-js', get_stylesheet_directory_uri() . '/assets/js/load-more-project.js', array('jquery'), '1.0.0', true );
         wp_localize_script( 'load-more-project-js', 'st_ajax_object', array(
             'ajax_url' => admin_url( 'admin-ajax.php' ),
@@ -513,11 +513,11 @@ function get_project_html($offset = 0, $limit = 12, $term_ids = null, $load_more
         'offset' => $offset,
     );
     
-    if (is_tax('project_category')) {
+    if (is_tax('project-category')) {
         $term = get_queried_object();
         $args['tax_query'] = array(
             array(
-                'taxonomy' => 'project_category',
+                'taxonomy' => 'project-category',
                 'field'    => 'term_id',
                 'terms'    => $term->term_id,
             ),
@@ -526,7 +526,7 @@ function get_project_html($offset = 0, $limit = 12, $term_ids = null, $load_more
         $terms = is_array($term_ids) ? $term_ids : array($term_ids);
         $args['tax_query'] = array(
             array(
-                'taxonomy' => 'project_category',
+                'taxonomy' => 'project-category',
                 'field'    => 'term_id',
                 'terms'    => $terms,
             ),
