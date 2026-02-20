@@ -577,7 +577,7 @@ function get_project_html($offset = 0, $limit = 12, $term_ids = null, $load_more
             }
 
             $html .= '<div class="load-more-container" style="text-align: center; margin: 20px 0;">';
-            $html .= '<button class="load-more-filtered-btn btn st-link-button small-style" data-offset="' . $next_offset . '" data-limit="' . $limit . '" data-term-ids="' . $term_id_param . '" data-total="' . $total_posts . '">Load More Collections</button>';
+            $html .= '<button class="load-more-btn btn st-link-button small-style" data-offset="' . $next_offset . '" data-limit="' . $limit . '" data-term-ids="' . $term_id_param . '" data-total="' . $total_posts . '">Load More Collections</button>';
             $html .= '</div>';
         }
     }

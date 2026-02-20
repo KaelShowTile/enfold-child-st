@@ -52,7 +52,14 @@
 					</div>
 
 					<!-- collection list -->
-					<?php echo get_collections_html(0, 12, null, true, 'collection-list-container container'); ?>
+					<?php 
+						$collections_html = get_collections_html(0, 12, null, true, 'collection-list-container container');
+						// On this taxonomy page, the AJAX load more script expects the class 'load-more-btn'.
+						// However, the shared get_collections_html() function generates 'load-more-filtered-btn',
+						// which is used for client-side filtering on the 'All Collections' page.
+						// We replace the class here to make the button work correctly on this page without breaking the other.
+						echo str_replace('load-more-filtered-btn', 'load-more-btn', $collections_html); 
+					?>
 					
 					<!-- Related Project -->
 					<?php if($related_projects): ?>
@@ -101,7 +108,7 @@
 
 			<!-- Collection QA -->
 			<?php if(have_rows('collection_category_qna', $term->taxonomy . '_' . $term->term_id)):?>
-			<div class="collection-qa-container">
+			<div class="collection-qa-container collection-category-qa-container">
 				<div class="container">
 					<div class="collection-qa-title-section">
 						<h2>FAQs</h2>

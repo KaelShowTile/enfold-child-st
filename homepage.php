@@ -93,9 +93,9 @@
 		$commercial_project_link = $commercial_project_settings['section_link'];
 
 		$residential_project_settings = get_field('residential_project_banner');
-		$residential_project_title = $commercial_project_settings['section_title'];
-		$residential_project_banner = $commercial_project_settings['section_banner'];
-		$residential_project_link = $commercial_project_settings['section_link'];
+		$residential_project_title = $residential_project_settings['section_title'];
+		$residential_project_banner = $residential_project_settings['section_banner'];
+		$residential_project_link = $residential_project_settings['section_link'];
 
 		//feature project section
 		$project_settings = get_field('homepage_project');

@@ -50,10 +50,10 @@
 					</div>
 
 					<div id="panel-1" role="tabpanel" aria-labelledby="tab-1" class="tab-panel">
-						<?php echo get_project_html(0, 8, [74], true); ?>
+						<?php echo get_project_html(0, 8, [71], true); ?>
 					</div>
 					<div id="panel-2" role="tabpanel" aria-labelledby="tab-2" class="tab-panel" hidden>
-						<?php echo get_project_html(0, 8, [73], true); ?>
+						<?php echo get_project_html(0, 8, [98], true); ?>
 					</div>
 				</div>
 
