@@ -39,9 +39,25 @@
 
 			<div class='container'>
 
-				<h1 class="page-title">Project</h1>
+				<div class="tab-container">
+					<div role="tablist" class="tab-list">
+						<button role="tab" aria-selected="true" aria-controls="panel-1" id="tab-1" class="tab-button">
+							Commercial
+						</button>
+						<button role="tab" aria-selected="false" aria-controls="panel-2" id="tab-2" class="tab-button">
+							Residential
+						</button>
+					</div>
 
-				<?php echo get_project_html(0, 8, null, true); ?>
+					<div id="panel-1" role="tabpanel" aria-labelledby="tab-1" class="tab-panel">
+						<?php echo get_project_html(0, 8, [74], true); ?>
+					</div>
+					<div id="panel-2" role="tabpanel" aria-labelledby="tab-2" class="tab-panel" hidden>
+						<?php echo get_project_html(0, 8, [73], true); ?>
+					</div>
+				</div>
+
+				<script type="text/javascript" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/js/st-tab.js" id="st-tab-js"></script>
 
 			</div><!--end container-->
 

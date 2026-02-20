@@ -18,10 +18,10 @@
 	 */
 	$main_class = apply_filters( 'avf_custom_main_classes', 'av-main-' . basename( __FILE__, '.php' ), basename( __FILE__ ) );
 
-	$total = get_total_collections();
 	$term = get_queried_object();
+	$total = get_total_collections();
+	
 	//get fields
-
 	$related_projects = get_field('collection_category_related_project', $term->taxonomy . '_' . $term->term_id);
 	$related_blog = get_field('collection_category_related_collection', $term->taxonomy . '_' . $term->term_id);
 
@@ -67,7 +67,7 @@
 										$project_description = substr($project_description, 0, strrpos(substr($project_description, 0, 120), ' ')) . '...';
 									endif; ?>
 									<div class="swiper-slide project-card">
-										<a href="<?php echo get_permalink( $project ) ?>"><?php get_the_post_thumbnail( $project, 'project-vertical' ); ?></a>
+										<a href="<?php echo get_permalink( $project ) ?>"><img src="<?php echo get_the_post_thumbnail_url( $project, 'project-vertical' ); ?>" alt ="<?php echo get_the_title($project); ?>"></a>
 										<span><?php the_field( 'project_type', $project); ?></span>
 										<a href="<?php echo get_permalink( $project ) ?>"><h5><?php echo get_the_title($project); ?></h5></a>
 										<a href="<?php echo get_permalink( $project ) ?>"><p><?php echo $project_description; ?></p></a>

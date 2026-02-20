@@ -52,7 +52,6 @@
 	$trending_video_scale = 1;
 	$trending_video_container_margin = 1;
 
-	$feature_project_output_html = null;
 	$other_project_output_html = null;
 	$feature_page_output_html = null;
 	$blog_slider_output_html = null;
@@ -87,69 +86,37 @@
 		$trending_video_container_margin = $trending_video_ratio / ($trending_video_scale - 1) * 2;
 		
 		//project section
-		$project_settings = get_field('homepage_project');
 		$project_section = false;
+		$commercial_project_settings = get_field('commerical_project_banner');
+		$commercial_project_title = $commercial_project_settings['section_title'];
+		$commercial_project_banner = $commercial_project_settings['section_banner'];
+		$commercial_project_link = $commercial_project_settings['section_link'];
+
+		$residential_project_settings = get_field('residential_project_banner');
+		$residential_project_title = $commercial_project_settings['section_title'];
+		$residential_project_banner = $commercial_project_settings['section_banner'];
+		$residential_project_link = $commercial_project_settings['section_link'];
+
+		//feature project section
+		$project_settings = get_field('homepage_project');
 		$feature_project_category_id = $project_settings['feature_project_category'];
-		$other_project_numbers = $project_settings['number_projects_shows'];
+		$feature_project_numbers = $project_settings['number_projects_shows'];
 
 		//feature projects
-		if($feature_project_category_id){
-			$feature_project_args = array(
-				'post_type' => 'project',
-				'posts_per_page' => 2,
-				'tax_query' => array(
-					array(
-						'taxonomy' => 'project-category',
-						'field'    => 'term_id',
-						'terms'    => $feature_project_category_id,
-					),
-				),
-			);
-			$feature_project_query = new WP_Query($feature_project_args);
-
-			if ($feature_project_query->have_posts()){
-				$feature_project_output_html .= '<h2>Latest Tile Projects and Collaborations</h2>';
-				$feature_project_output_html .= '<div class="home-feature-project-inner">';
-				$project_section = true;
-				
-				while ($feature_project_query->have_posts()){
-					$feature_project_query->the_post();
-					$project_id = get_the_ID();
-					$project_title = get_the_title();
-					$project_description = get_field('project_description', $project_id);
-					//limit the length of description
-					if (strlen($project_description) > $project_des_length) {
-						$project_description = substr($project_description, 0, strrpos(substr($project_description, 0, $project_des_length), ' ')) . '...';
-					}
-					$project_link = get_permalink();
-            		$project_thumb = get_the_post_thumbnail_url($project_id, 'large');
-
-					$feature_project_output_html .= '<div class="flex_column av_one_half flex_column_div">';
-					$feature_project_output_html .= '<img src="' . $project_thumb . '">';
-					$feature_project_output_html .= '<h3>' . $project_title . '</h3>';
-					$feature_project_output_html .= '<p>' . $project_description . '</p>';
-					$feature_project_output_html .= '<a href="' . $project_link . '" class="st-link-button small-style">Explore Now</a>';
-					$feature_project_output_html .= '</div>';
-				}
-
-				$feature_project_output_html .= '</div>';
-			}
-
-			wp_reset_postdata();
+		if($commercial_project_banner || $residential_project_banner){
+			$project_section = true;
 		}
 
-		//other project
-		if($feature_project_category_id && $other_project_numbers > 0){
+		if($feature_project_category_id && $feature_project_numbers > 0){
 		
 			$other_project_args = array(
 				'post_type' => 'project',
-				'posts_per_page' => $other_project_numbers,
+				'posts_per_page' => $feature_project_numbers,
 				'tax_query' => array(
 					array(
 						'taxonomy' => 'project-category',
 						'field'    => 'term_id',
 						'terms'    => $feature_project_category_id,
-						'operator' => 'NOT IN',
 					),
 				),
 			);
@@ -296,10 +263,22 @@
 
 		</div>
 		
-		<?php if($feature_project_output_html): ?>
-		<div class="container home-feature-project-container">
-			<?php echo $feature_project_output_html; ?>
-		</div>
+		<?php if($commercial_project_settings && $residential_project_settings): ?>
+			<div class="container home-feature-project-container">
+				<div class="home-feature-project-inner">
+					<h2>Latest Tile Projects and Collaborations</h2>
+					<div class="flex_column av_one_half flex_column_div">
+						<img src="<?php echo $residential_project_banner; ?>">
+						<h3><?php echo $commercial_project_title; ?></h3>
+						<a href="<?php echo $commercial_project_link; ?>" class="st-link-button small-style">Explore Now</a>
+					</div>
+					<div class="flex_column av_one_half flex_column_div">
+						<img src="<?php echo $residential_project_banner; ?>">
+						<h3><?php echo $residential_project_title; ?></h3>
+						<a href="<?php echo $residential_project_link; ?>" class="st-link-button small-style">Explore Now</a>
+					</div>
+				</div>
+			</div>
 		<?php endif; ?>
 
 		<?php if($other_project_output_html): ?>
