@@ -33,6 +33,11 @@
 	 */
 	$main_class = apply_filters( 'avf_custom_main_classes', 'av-main-' . basename( __FILE__, '.php' ), basename( __FILE__ ) );
 
+	$commerical_term = get_term_by('slug', 'commercial', 'project-category');
+	$commerical_id = (array)$commerical_term->term_id;
+	$residential_term = get_term_by('slug', 'residential', 'project-category');
+	$residential_id = (array)$residential_term->term_id;
+
 	?>
 
 		<div class='container_wrap container_wrap_first main_color <?php avia_layout_class( 'main' ); ?>'>
@@ -50,10 +55,10 @@
 					</div>
 
 					<div id="panel-1" role="tabpanel" aria-labelledby="tab-1" class="tab-panel">
-						<?php echo get_project_html(0, 8, [71], true); ?>
+						<?php echo get_project_html(0, 8, $commerical_id, true); ?>
 					</div>
 					<div id="panel-2" role="tabpanel" aria-labelledby="tab-2" class="tab-panel" hidden>
-						<?php echo get_project_html(0, 8, [98], true); ?>
+						<?php echo get_project_html(0, 8, $residential_id, true); ?>
 					</div>
 				</div>
 

@@ -2,7 +2,7 @@ jQuery(document).ready(function($) {
     'use strict';
 
     // Handle load more button clicks
-    $(document).on('click', '.load-more-filtered-btn', function(e) {
+    $(document).on('click', '.load-more-btn', function(e) {
         e.preventDefault();
 
         var $button = $(this);
@@ -47,7 +47,7 @@ jQuery(document).ready(function($) {
                     var $newCards = $newContent.filter('.single-project-card');
 
                     // Find if there's a new load more button
-                    var $newLoadMore = $newContent.filter('.load-more-project');
+                    var $newLoadMore = $newContent.filter('.load-more-container');
 
                     // Insert new project cards before the load-more-container
                     $loadMoreContainer.before($newCards);

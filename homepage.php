@@ -268,7 +268,7 @@
 				<div class="home-feature-project-inner">
 					<h2>Latest Tile Projects and Collaborations</h2>
 					<div class="flex_column av_one_half flex_column_div">
-						<img src="<?php echo $residential_project_banner; ?>">
+						<img src="<?php echo $commercial_project_banner; ?>">
 						<h3><?php echo $commercial_project_title; ?></h3>
 						<a href="<?php echo $commercial_project_link; ?>" class="st-link-button small-style">Explore Now</a>
 					</div>

@@ -302,7 +302,9 @@ svg.swiper-navigation-icon{height: 14px; color: #000000; stroke: #000;}
 .home-feature-project-inner img{width: 100%;}
 
 .home-other-project-container{padding: 10px 0 80px;}
+.home-other-project-inner .swiper-wrapper{gap: 20px;}
 .home-other-project-inner .swiper-slide{width: calc((100% - 120px) / 4);}
+.home-other-project-inner .swiper-slide img{width: 100%;}
 #other-project-slider span{font-size: 0.85rem; text-transform: uppercase; margin-top: 40px; display: inline-block; width: 100%;}
 #other-project-slider p{font-size: 0.85rem;}
 #top .home-other-project-inner .swiper-slide p a{text-decoration: underline;}
@@ -326,6 +328,7 @@ svg.swiper-navigation-icon{height: 14px; color: #000000; stroke: #000;}
 .instagram-post-container h2{font-size: 2.5rem; margin-top: 50px;}
 
 /* All project page */
+#top.page-template-all-project .tab-list{margin-top: 50px;}
 .project-list-container.fliter-project{display: flex; flex-wrap: wrap; gap: 40px;}
 .project-list-container.fliter-project a{width: calc((100% - 80px) / 3);}
 .project-list-container.no-fliter{display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-start; margin-top: 20px;}

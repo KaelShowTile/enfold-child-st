@@ -53,12 +53,7 @@
 
 					<!-- collection list -->
 					<?php 
-						$collections_html = get_collections_html(0, 12, null, true, 'collection-list-container container');
-						// On this taxonomy page, the AJAX load more script expects the class 'load-more-btn'.
-						// However, the shared get_collections_html() function generates 'load-more-filtered-btn',
-						// which is used for client-side filtering on the 'All Collections' page.
-						// We replace the class here to make the button work correctly on this page without breaking the other.
-						echo str_replace('load-more-filtered-btn', 'load-more-btn', $collections_html); 
+						echo get_collections_html(0, 12, null, true, 'collection-list-container container', 'load-more-btn');
 					?>
 					
 					<!-- Related Project -->

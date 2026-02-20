@@ -51,7 +51,7 @@ function load_more_collections() {
         $term_ids = intval($term_ids);
     }
 
-    $html = get_collections_html($offset, $limit, $term_ids, true);
+    $html = get_collections_html($offset, $limit, $term_ids, true, 'collection-list-container fliter-collection', 'load-more-btn');
     wp_send_json_success($html);
 }
 
@@ -388,7 +388,7 @@ function stCutText($text) {
 }
 
 // Function to get collections HTML
-function get_collections_html($offset = 0, $limit = 12, $term_ids = null, $load_more = false, $container_class = 'collection-list-container fliter-collection') {
+function get_collections_html($offset = 0, $limit = 12, $term_ids = null, $load_more = false, $container_class = 'collection-list-container fliter-collection', $button_class = 'load-more-filtered-btn') {
     $args = array(
         'post_type' => 'product',
         'posts_per_page' => $limit,
@@ -494,7 +494,7 @@ function get_collections_html($offset = 0, $limit = 12, $term_ids = null, $load_
             }
 
             $html .= '<div class="load-more-container" style="text-align: center; margin: 20px 0;">';
-            $html .= '<button class="load-more-filtered-btn btn st-link-button small-style" data-offset="' . $next_offset . '" data-limit="' . $limit . '" data-term-ids="' . $term_id_param . '" data-total="' . $total_posts . '">Load More Collections</button>';
+            $html .= '<button class="' . esc_attr($button_class) . ' btn st-link-button small-style" data-offset="' . $next_offset . '" data-limit="' . $limit . '" data-term-ids="' . $term_id_param . '" data-total="' . $total_posts . '">Load More Collections</button>';
             $html .= '</div>';
         }
     }
@@ -543,7 +543,13 @@ function get_project_html($offset = 0, $limit = 12, $term_ids = null, $load_more
             $link = get_permalink();
             $project_id = get_the_ID();
             $project_thumb =  get_the_post_thumbnail($project_id, 'project-vertical' );
-            $project_type = implode( ', ', get_field('project_type', $project_id));
+            $project_type_raw = get_field('project_type', $project_id); // This can return a string or an array.
+            
+            if (is_array($project_type_raw)) {
+                $project_type = implode(', ', $project_type_raw);
+            } else {
+                $project_type = (string) $project_type_raw;
+            }
             $project_des = stCutText(get_field('project_description', $project_id));
             //output html
             $html .= '<div class="single-project-card single-project-card-container">';
@@ -569,7 +575,7 @@ function get_project_html($offset = 0, $limit = 12, $term_ids = null, $load_more
         if ($current_count < $total_posts) {
             $next_offset = $current_count;
             $term_id_param = '';
-            if (is_tax('product_category')) {
+            if (is_tax('project-category')) {
                 $term = get_queried_object();
                 $term_id_param = $term->term_id;
             } elseif ($term_ids !== null && !empty($term_ids)) {
@@ -577,7 +583,7 @@ function get_project_html($offset = 0, $limit = 12, $term_ids = null, $load_more
             }
 
             $html .= '<div class="load-more-container" style="text-align: center; margin: 20px 0;">';
-            $html .= '<button class="load-more-btn btn st-link-button small-style" data-offset="' . $next_offset . '" data-limit="' . $limit . '" data-term-ids="' . $term_id_param . '" data-total="' . $total_posts . '">Load More Collections</button>';
+            $html .= '<button class="load-more-btn btn st-link-button small-style" data-offset="' . $next_offset . '" data-limit="' . $limit . '" data-term-ids="' . $term_id_param . '" data-total="' . $total_posts . '">Load More Projects</button>';
             $html .= '</div>';
         }
     }
