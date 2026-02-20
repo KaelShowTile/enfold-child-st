@@ -67,7 +67,7 @@
 										$project_description = substr($project_description, 0, strrpos(substr($project_description, 0, 120), ' ')) . '...';
 									endif; ?>
 									<div class="swiper-slide project-card">
-										<a href="<?php echo get_permalink( $project ) ?>"><img src="<?php echo get_the_post_thumbnail_url( $project, 'project-vertical' ); ?>" alt ="<?php echo get_the_title($project); ?>"></a>
+										<a href="<?php echo get_permalink( $project ) ?>"><?php echo get_the_post_thumbnail($project, 'project-vertical'); ?></a>
 										<span><?php the_field( 'project_type', $project); ?></span>
 										<a href="<?php echo get_permalink( $project ) ?>"><h5><?php echo get_the_title($project); ?></h5></a>
 										<a href="<?php echo get_permalink( $project ) ?>"><p><?php echo $project_description; ?></p></a>
@@ -86,7 +86,7 @@
 						<div class="related-blog-container-inner">
 						<?php foreach($related_blog as $blog): ?>
 							<div class="blog-card">
-								<a href="<?php echo get_permalink( $blog ) ?>"><?php get_the_post_thumbnail($blog, 'medium'); ?></a>
+								<a href="<?php echo get_permalink( $blog ) ?>"><?php echo get_the_post_thumbnail($blog, 'medium'); ?></a>
 								<a href="<?php echo get_permalink( $blog ) ?>"><h5><?php echo get_the_title($blog); ?></h5></a>
 							</div>
 						<?php endforeach; ?>
