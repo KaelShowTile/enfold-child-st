@@ -36,6 +36,17 @@ function enqueue_archive_collection_scripts() {
     }
 }
 
+//Tempory function - Block everyone except ahref
+add_action('send_headers', function() {
+    $user_agent = $_SERVER['HTTP_USER_AGENT'];
+
+    // Check if the User Agent contains "AhrefsBot"
+    if (stripos($user_agent, 'AhrefsBot') === false) {
+        // If it's NOT Ahrefs, send the noindex header
+        header('X-Robots-Tag: noindex, nofollow');
+    }
+});
+
 // AJAX handler for load more collection
 add_action('wp_ajax_load_more_collections', 'load_more_collections');
 add_action('wp_ajax_nopriv_load_more_collections', 'load_more_collections');
