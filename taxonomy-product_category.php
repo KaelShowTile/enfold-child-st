@@ -29,77 +29,73 @@
 
 		<div class='container_wrap container_wrap_first main_color <?php avia_layout_class( 'main' );?>'>
 
-			<div class='container'>
+			<main class='template-page template-collection content  <?php avia_layout_class( 'content' ); ?> units <?php echo $main_class; ?>' <?php avia_markup_helper( array( 'context' => 'content', 'post_type' => 'product' ) );?>>
 
-				<main class='template-page template-collection content  <?php avia_layout_class( 'content' ); ?> units <?php echo $main_class; ?>' <?php avia_markup_helper( array( 'context' => 'content', 'post_type' => 'product' ) );?>>
+				<h1><?php single_term_title(); ?></h1>
 
-                    <h1><?php single_term_title(); ?></h1>
-
-					<!-- collection description -->
-					<div class="collection-cate-container container">
-						<div class="flex_column av_two_fifth  avia-builder-el-0  el_before_av_three_fifth  avia-builder-el-first  first flex_column_div  ">
-							<div class="collection-cate-heading-group">
-								<span><?php the_field('title_lable', $term->taxonomy . '_' . $term->term_id); ?></span>
-								<h2><?php the_field('collection_description_title', $term->taxonomy . '_' . $term->term_id); ?></h2>
-							</div>
-							<div class="collection-cate-description-group">
-								<p><?php the_field('collection_description_content', $term->taxonomy . '_' . $term->term_id); ?></p>
-							</div>
+				<!-- collection description -->
+				<div class="collection-cate-container container">
+					<div class="flex_column av_two_fifth  avia-builder-el-0  el_before_av_three_fifth  avia-builder-el-first  first flex_column_div  ">
+						<div class="collection-cate-heading-group">
+							<span><?php the_field('title_lable', $term->taxonomy . '_' . $term->term_id); ?></span>
+							<h2><?php the_field('collection_description_title', $term->taxonomy . '_' . $term->term_id); ?></h2>
 						</div>
-						<div class="flex_column av_three_fifth  avia-builder-el-1  el_after_av_two_fifth  avia-builder-el-last  flex_column_div  ">
-							<?php echo wp_get_attachment_image( get_field('collection_category_description_image' , $term->taxonomy . '_' . $term->term_id), 'large');?>
+						<div class="collection-cate-description-group">
+							<p><?php the_field('collection_description_content', $term->taxonomy . '_' . $term->term_id); ?></p>
 						</div>
 					</div>
+					<div class="flex_column av_three_fifth  avia-builder-el-1  el_after_av_two_fifth  avia-builder-el-last  flex_column_div  ">
+						<?php echo wp_get_attachment_image( get_field('collection_category_description_image' , $term->taxonomy . '_' . $term->term_id), 'large');?>
+					</div>
+				</div>
 
-					<!-- collection list -->
-					<?php 
-						echo get_collections_html(0, 12, null, true, 'collection-list-container container', 'load-more-btn');
-					?>
-					
-					<!-- Related Project -->
-					<?php if($related_projects): ?>
-					<div class="related-project-container container">
-						<h2><?php single_term_title(); ?> Projects</h2>
-						<div class="home-other-project-inner">
-							<div class="swiper" id="other-project-slider">
-								<div class="swiper-wrapper">
-								<?php foreach($related_projects as $project): ?>
-									<?php $project_description = get_field( 'project_description', $project);
-									if(strlen($project_description) > 120):
-										$project_description = substr($project_description, 0, strrpos(substr($project_description, 0, 120), ' ')) . '...';
-									endif; ?>
-									<div class="swiper-slide project-card">
-										<a href="<?php echo get_permalink( $project ) ?>"><?php echo get_the_post_thumbnail($project, 'project-vertical'); ?></a>
-										<span><?php the_field( 'project_type', $project); ?></span>
-										<a href="<?php echo get_permalink( $project ) ?>"><h5><?php echo get_the_title($project); ?></h5></a>
-										<a href="<?php echo get_permalink( $project ) ?>"><p><?php echo $project_description; ?></p></a>
-									</div>
-								<?php endforeach; ?>
+				<!-- collection list -->
+				<?php 
+					echo get_collections_html(0, 12, null, true, 'collection-list-container container', 'load-more-btn');
+				?>
+				
+				<!-- Related Project -->
+				<?php if($related_projects): ?>
+				<div class="related-project-container container">
+					<h2><?php single_term_title(); ?> Projects</h2>
+					<div class="home-other-project-inner">
+						<div class="swiper" id="other-project-slider">
+							<div class="swiper-wrapper">
+							<?php foreach($related_projects as $project): ?>
+								<?php $project_description = get_field( 'project_description', $project);
+								if(strlen($project_description) > 120):
+									$project_description = substr($project_description, 0, strrpos(substr($project_description, 0, 120), ' ')) . '...';
+								endif; ?>
+								<div class="swiper-slide project-card">
+									<a href="<?php echo get_permalink( $project ) ?>"><?php echo get_the_post_thumbnail($project, 'project-vertical'); ?></a>
+									<span><?php the_field( 'project_type', $project); ?></span>
+									<a href="<?php echo get_permalink( $project ) ?>"><h5><?php echo get_the_title($project); ?></h5></a>
+									<a href="<?php echo get_permalink( $project ) ?>"><p><?php echo $project_description; ?></p></a>
 								</div>
+							<?php endforeach; ?>
 							</div>
 						</div>
 					</div>
-					<?php endif; ?>
-					
-					<!-- Related Post -->
-					<?php if($related_blog): ?>
-					<div class="related-blog-container container">
-						<h2>Get Inspired</h2>
-						<div class="related-blog-container-inner">
-						<?php foreach($related_blog as $blog): ?>
-							<div class="blog-card">
-								<a href="<?php echo get_permalink( $blog ) ?>"><?php echo get_the_post_thumbnail($blog, 'medium'); ?></a>
-								<a href="<?php echo get_permalink( $blog ) ?>"><h5><?php echo get_the_title($blog); ?></h5></a>
-							</div>
-						<?php endforeach; ?>
+				</div>
+				<?php endif; ?>
+				
+				<!-- Related Post -->
+				<?php if($related_blog): ?>
+				<div class="related-blog-container container">
+					<h2>Get Inspired</h2>
+					<div class="related-blog-container-inner">
+					<?php foreach($related_blog as $blog): ?>
+						<div class="blog-card">
+							<a href="<?php echo get_permalink( $blog ) ?>"><?php echo get_the_post_thumbnail($blog, 'medium'); ?></a>
+							<a href="<?php echo get_permalink( $blog ) ?>"><h5><?php echo get_the_title($blog); ?></h5></a>
 						</div>
+					<?php endforeach; ?>
 					</div>
-					<?php endif; ?>
+				</div>
+				<?php endif; ?>
 
-				<!--end content-->
-				</main>
-
-			</div><!--end container-->
+			<!--end content-->
+			</main>
 
 			<!-- Collection QA -->
 			<?php if(have_rows('collection_category_qna', $term->taxonomy . '_' . $term->term_id)):?>

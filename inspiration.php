@@ -74,7 +74,7 @@
 			$inspiration_video_banner_html .= '<div class="flex_column av_two_fifth avia-builder-el-0 el_before_av_three_fifth avia-builder-el-first first flex_column_table_cell av-equal-height-column av-align-top">';
 
 			$inspiration_video_banner_html .= '<div class="banner-top-container"><span>' . $banner_tagline . '</span><h2>' . $banner_title . '</h2>';
-			$inspiration_video_banner_html .= '<video width="100%" height="auto" controls muted class="mobile-only"><source src="' . $banner_video_url . '"></video>';
+			$inspiration_video_banner_html .= '<video width="100%" height="auto" autoplay loop muted playsinline class="mobile-only"><source src="' . $banner_video_url . '"></video>';
 			$inspiration_video_banner_html .= '</div>';
 
 			$inspiration_video_banner_html .= '<div class="banner-bottom-container">';
@@ -82,7 +82,7 @@
 			$inspiration_video_banner_html .= '</div></div>';
 
 			$inspiration_video_banner_html .= '<div class="flex_column av_three_fifth avia-builder-el-2 el_after_av_two_fifth avia-builder-el-last flex_column_table_cell av-equal-height-column av-align-top desktop-only">';
-			$inspiration_video_banner_html .= '<video width="100%" height="auto" controls muted><source src="' . $banner_video_url . '"></video>';
+			$inspiration_video_banner_html .= '<video width="100%" height="auto" autoplay loop muted playsinline><source src="' . $banner_video_url . '"></video>';
 			$inspiration_video_banner_html .= '</div>';
 
 			$inspiration_video_banner_html .= '</div></div>';
@@ -94,7 +94,7 @@
 		if($inspiration_explore_design_group){
 			$inspiration_explore_design_html .= '<div class="container inpiration-explore-design-container">';
 			$inspiration_explore_design_html .= '<h2>Explore Tile Design</h2>';
-			$inspiration_explore_design_html .= '<div class="container inpiration-explore-design-inner">';
+			$inspiration_explore_design_html .= '<div class="inpiration-explore-design-inner">';
 			$inspiration_explore_design_html .= '<div class="swiper" id="inspiration-explore-design">';
 			$inspiration_explore_design_html .= '<div class="swiper-wrapper">';
 			foreach($inspiration_explore_design_group as $row){

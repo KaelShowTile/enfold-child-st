@@ -31,7 +31,7 @@ jQuery(document).ready(function($) {
                     <div class="basket-item-image">
                         ${item.imageUrl ? `<img src="${item.imageUrl}" alt="${item.name}" loading="lazy">` : '<div class="no-image">No Image</div>'}
                         <div class="basket-item-actions">
-                            <button class="btn btn-danger btn-sm remove-item" data-index="${index}"><i class="fas fa-trash"></i>X</button>
+                            <button class="btn btn-danger btn-sm remove-item" data-date="${item.dateAdded}"><i class="fas fa-trash"></i>X</button>
                         </div>
                     </div>
                     <div class="basket-item-details">
@@ -68,10 +68,13 @@ jQuery(document).ready(function($) {
 
     // Remove item from basket
     $(document).on('click', '.remove-item', function() {
-        const index = $(this).data('index');
+        const dateAdded = $(this).data('date');
         let basketItems = JSON.parse(localStorage.getItem('idea-basket-items')) || [];
 
-        if (index >= 0 && index < basketItems.length) {
+        // Find the item index in the original (unsorted) array using the unique dateAdded timestamp
+        const index = basketItems.findIndex(item => item.dateAdded === dateAdded);
+
+        if (index !== -1) {
             // Remove the item
             basketItems.splice(index, 1);
 

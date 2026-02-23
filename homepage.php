@@ -306,7 +306,7 @@
 			</div>
 		</div>
 
-		<div class="st-mobile-video-container mobile-only" style="margin: calc(100vw / <?php echo $trending_video_container_margin; ?>) 0;">
+		<div class="st-mobile-video-container mobile-video-banner mobile-only" style="margin: calc(100vw / <?php echo $trending_video_container_margin; ?>) 0;">
 			<iframe src="https://player.vimeo.com/video/<?php echo $trending_video_id; ?>?background=1&autoplay=1&loop=1&muted=1&autopause=0" frameborder="0" allow="autoplay; fullscreen" allowfullscreen style="width:100%; height: calc(100vw / <?php echo $trending_video_ratio; ?>); transform: scale(<?php echo $trending_video_scale; ?>);"></iframe>
 
 			<!-- Optional content overlay -->

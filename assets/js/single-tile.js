@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const productImageId = this.getAttribute('data-product-image_id');
             const productImageUrl = this.getAttribute('data-product-image_url');
 
-            if (productUnqueName && productImageId) {
+            if (productUnqueName) {
                 // Get existing basket items
                 let basketItems = JSON.parse(localStorage.getItem('idea-basket-items')) || [];
 
