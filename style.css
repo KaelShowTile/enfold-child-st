@@ -4,7 +4,7 @@ Template: enfold
 */
 
 /* tempory */
-.breadcrumb.breadcrumbs.avia-breadcrumbs{display: none;}
+.breadcrumb.breadcrumbs.avia-breadcrumbs .breadcrumb-trail{display: none;}
 
 /* globe */
 html{font-size: 16px;}
@@ -225,6 +225,9 @@ ul{padding-left: 0; margin-left: 0;}
 .single-project-card h5{font-size: 1.5rem; font-weight: 600;}
 .single-project-card p{font-size: 0.7rem;}
 
+.project-button-list{margin: auto 25px; text-align: center;}
+.project-button-list a{font-size: 1.25rem; transition: 0.5s; letter-spacing: 0.5px;}
+
 #collection-qa-accordion .accordion-item{border-top-width: 0; border-left-width: 0; border-right-width: 0;}
 #collection-qa-accordion .accordion-button{font-family: 'Roboto'; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.2px; padding-left: 10px;}
 #collection-qa-accordion .accordion-button:not(.collapsed){background: #fff; color: #000; border-width: 0;}
@@ -403,20 +406,31 @@ svg.swiper-navigation-icon{height: 14px; color: #000000; stroke: #000;}
     .content, .sidebar{padding-top: 20px;}
     .av-preloading-logo{max-width: 60%;}
 
+    .responsive #header_main .container, .responsive #top .logo{height: 60px !important;}
+    .responsive #top #header_main>.container .main_menu .av-main-nav>li>a, .responsive #top #wrap_all .av-logo-container{line-height: 60px;}
+    .av-logo-container .logo-right-container{margin-top: 10px;}
+    .responsive .logo img, .responsive .logo svg{max-height: 30px;}
     #top #header #search-tile{display: none;}
+    .av-hamburger-box{width: 24px;}
+    .av-hamburger-inner, .av-hamburger-inner::after, .av-hamburger-inner::before{height: 2px;}
+    .av-hamburger-inner::before{top: -8px;}
+    .av-hamburger-inner::after{bottom: -8px;}
+
     .responsive #top #wrap_all .av-logo-container{max-width: 90%; width: 90%;}
     #top .av-logo-container .logo-left-container{display: none;}
     #top .av-logo-container .inner-container{width: 100%;}
     .responsive #top #wrap_all .main_menu{left: 0; right: auto;}
-    .responsive #top #header_main .container .main_menu .av-main-nav li a{padding: 0;}
+    .responsive #top #header_main .container .main_menu .av-main-nav li a{padding: 2px 0 0; height: 58px;}
     .responsive #top .logo{width: 100%;}
     .responsive #top .logo img, .responsive #top .logo svg{margin: auto;}
     .responsive #top .av_header_transparency.av_alternate_logo_active .logo a img{margin: auto;}
     #header.av_header_transparency .logo-right-container img{filter: brightness(1);}
     .av-logo-container .logo-right-container{z-index: 3;}
-    .av-logo-container .logo-right-container img{width: 30px; margin-top: 3px;}
+    .av-logo-container .logo-right-container img{width: 24px; margin-top: 8px;}
     .av-logo-container .logo-right-container .glint-search-bar{display: none;}
     .header_color div .av-hamburger-inner, .header_color div .av-hamburger-inner::before, .header_color div .av-hamburger-inner::after{background-color: #333;}
+
+    #mobile-search-troggle{margin-right: 14px;}
 
     /* home */
     .st-mobile-video-container.mobile-only{display: inline-block; width: 100%;}
@@ -441,13 +455,19 @@ svg.swiper-navigation-icon{height: 14px; color: #000000; stroke: #000;}
     .category-list .active-categories .active-cat{font-size: 0.85rem;}
     #top .st-link-button.small-style.mobile-only{display: inline-block;}
     .single-project-card-container{width: calc((100% - 40px) / 2);}
+    #collection-fliters.mobile-only .collection-fliter-btn{background: transparent; padding: 12px 5px 10px; font-size: 1.2rem; margin-top: 20px;border-bottom: 1px solid #ccc; color: #000; font-weight: 600;}
+    #collection-fliters.mobile-only .collection-fliter-btn.collapsed{border-width: 0;}
+    #collection-fliters.mobile-only .collection-fliter-btn:focus{box-shadow: none; color: #000;}
+    #collection-fliters.mobile-only .accordion-body{padding: 0 5px 20px;}
 
     /* element */
     .collection-list-container{gap:20px;}
     .collection-list-container .collection-card{width: calc((100% - 20px) / 2);}
+    .collection-list-container .collection-card h3{font-size: 1rem;}
     .project-list-container.no-fliter{gap:20px;}
     .project-list-container.no-fliter .single-project-card-container{width: calc((100% - 20px) / 2);}
     .single-project-card span{margin-top: 10px; font-size: 0.6rem;}
+    .single-project-card h5{font-size: 1rem;}
     .single-tile-card{width: calc((100% - 40px) / 2);}
     .description-meta-col.half-col{width:100%;}
     .related-blog-container-inner{gap:20px;}

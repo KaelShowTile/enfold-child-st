@@ -52,10 +52,23 @@
 								'hide_empty' => false,
 							) );
 
-							if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) {
-								display_terms_hierarchically( $terms );
-							}
-							?>
+							if ( ! empty( $terms ) && ! is_wp_error( $terms ) ): ?>
+
+								<div class="desktop-fliter desktop-only">
+									<?php display_terms_hierarchically( $terms ); ?>
+								</div>
+
+								<div class="accordion accordion-flush mobile-only" id="collection-fliters">
+									<div class="accordion-item">
+										<p class="accordion-header" id="flush-headingOne">
+											<button class="accordion-button collapsed collection-fliter-btn" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">Collection Fliters</button>
+										</p>
+										<div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+											<div class="accordion-body"><?php display_terms_hierarchically( $terms ); ?></div>
+										</div>
+									</div>
+								</div>
+							<?php endif; ?>
 						</div>
 					</div>
 

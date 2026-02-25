@@ -35,32 +35,24 @@
 
 	$commerical_term = get_term_by('slug', 'commercial', 'project-category');
 	$commerical_id = (array)$commerical_term->term_id;
+	$commerical_url = get_term_link( $commerical_term );
 	$residential_term = get_term_by('slug', 'residential', 'project-category');
 	$residential_id = (array)$residential_term->term_id;
+	$residential_url = get_term_link( $residential_term );
 
 	?>
 
 		<div class='container_wrap container_wrap_first main_color <?php avia_layout_class( 'main' ); ?>'>
 
 			<div class='container'>
-
-				<div class="tab-container">
-					<div role="tablist" class="tab-list">
-						<button role="tab" aria-selected="true" aria-controls="panel-1" id="tab-1" class="tab-button">
-							Commercial
-						</button>
-						<button role="tab" aria-selected="false" aria-controls="panel-2" id="tab-2" class="tab-button">
-							Residential
-						</button>
-					</div>
-
-					<div id="panel-1" role="tabpanel" aria-labelledby="tab-1" class="tab-panel">
-						<?php echo get_project_html(0, 8, $commerical_id, true); ?>
-					</div>
-					<div id="panel-2" role="tabpanel" aria-labelledby="tab-2" class="tab-panel" hidden>
-						<?php echo get_project_html(0, 8, $residential_id, true); ?>
-					</div>
+				<h1 class="page-title">All Project</h1>
+				<div class="project-button-list">
+					<a href="<?php echo $commerical_url; ?>">Commercial</a>
+					<a>/</a>
+					<a href="<?php echo $residential_url; ?>">Residential</a>
 				</div>
+
+				<?php echo get_project_html(0, 8, $residential_id, true); ?>
 
 				<script type="text/javascript" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/js/st-tab.js" id="st-tab-js"></script>
 

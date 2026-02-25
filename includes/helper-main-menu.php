@@ -167,10 +167,12 @@ if( $headerS['header_topbar'] == true )
 				 $output .= "<div class='container av-logo-container'>";
 
 				 	//cotnainer left to menu
-				 	$output .= "<div class='logo-left-container'><span class='phone-number'>(02) 8709 5838</span></div>";
+				 	$output .= "<div class='logo-left-container'><span class='phone-number'>(02) 9709 5836</span></div>";
 
 					//cotnainer right to menu
 				 	$output .= "<div class='logo-right-container'><a href='" . get_site_url() . "/idea-basket/'><img src='" . get_stylesheet_directory_uri() . "/assets/img/basket.svg'></a>";
+
+					$output .="<a class='mobile-only' id='mobile-search-troggle'><img src='" . get_stylesheet_directory_uri() . "/assets/img/search-icon.svg'></a>";
 
 					$output .= '<form role="search" method="get" class="glint-search-bar" action="' . esc_url(home_url('/')) . '"><label class="glint-search-input"><input type="search" class="search-field" placeholder="Search..." value="' . get_search_query() . '" name="s" /></label><input type="submit" class="search-submit" value="" /></form>';
 
