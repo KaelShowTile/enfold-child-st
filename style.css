@@ -227,7 +227,7 @@ ul{padding-left: 0; margin-left: 0;}
 .single-project-card h5{font-size: 1.5rem; font-weight: 600;}
 .single-project-card p{font-size: 0.7rem;}
 
-.project-button-list{margin: auto 25px; text-align: center;}
+.project-button-list{margin: auto 25px 50px; text-align: center;}
 .project-button-list a{font-size: 1.25rem; transition: 0.5s; letter-spacing: 0.5px;}
 
 #collection-qa-accordion .accordion-item{border-top-width: 0; border-left-width: 0; border-right-width: 0;}
@@ -441,6 +441,14 @@ svg.swiper-navigation-icon{height: 14px; color: #000000; stroke: #000;}
     #top #mobile-search-form .glint-search-input .search-field{margin-bottom: 0; background: transparent; border-width: 0; padding: 8px 8px 8px 12px; color: #333;}
     #top #mobile-search-form .glint-search-input .search-field::placeholder{color: #000;}
     #top #mobile-search-form .search-submit{font-family: 'entypo-fontello'; background: transparent; width: 10%; float: right; padding: 5px 0; color: #333;}
+    #top #wrap_all .av_header_transparency .main_menu ul:first-child>li>a{color:#000;}
+    #top #header.header_color.av_header_transparency .av-main-nav > li > a:hover .av-hamburger-inner, #top #header.header_color.av_header_transparency .av-main-nav > li > a:focus .av-hamburger-inner, #top #header.header_color.av_header_transparency .av-main-nav > li > a:hover .av-hamburger-inner::before, #top #header.header_color.av_header_transparency .av-main-nav > li > a:focus .av-hamburger-inner::before, #top #header.header_color.av_header_transparency .av-main-nav > li > a:hover .av-hamburger-inner::after, #top #header.header_color.av_header_transparency .av-main-nav > li > a:focus .av-hamburger-inner::after{background-color:#000;}
+
+    .html_av-overlay-side #top .av-burger-overlay-scroll{-webkit-box-shadow: -8px 1px 24px -11px rgba(0, 0, 0, 0.5); box-shadow: -8px 1px 24px -11px rgba(0, 0, 0, 0.5); background: rgba(0, 0, 0, 0.9);}
+
+    .html_av-overlay-side .av-burger-overlay-scroll{width: 70%;}
+    .html_av-overlay-side-classic #top #wrap_all .av-burger-overlay #av-burger-menu-ul li a{border-width: 0; color: #fff; font-family: 'Roboto', Helvetica, Arial, sans-serif; letter-spacing: 1px; font-size: 1.25rem;}
+    .html_av-overlay-side #top #wrap_all div .av-burger-overlay-scroll #av-burger-menu-ul a:hover{background: transparent;}
 
     /* home */
     .st-video-container{height: calc(100vh - 60px);}
@@ -505,7 +513,7 @@ svg.swiper-navigation-icon{height: 14px; color: #000000; stroke: #000;}
     .responsive #top #wrap_all .template-single-tile .tile-title-container{width: 100%; max-width: 100%;}
     .tile-sidebar{width: 100%;}
     .tile-details{width: 100%; margin-top: 20px;}
-
+    .page-template-all-project .page-title{margin-bottom: 0;}
 }
 
 
