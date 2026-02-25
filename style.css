@@ -419,8 +419,9 @@ svg.swiper-navigation-icon{height: 14px; color: #000000; stroke: #000;}
     .responsive #top #wrap_all .av-logo-container{max-width: 90%; width: 90%;}
     #top .av-logo-container .logo-left-container{display: none;}
     #top .av-logo-container .inner-container{width: 100%;}
+    .responsive #top #wrap_all .logo .av-contains-svg svg{height: 25px !important;}
     .responsive #top #wrap_all .main_menu{left: 0; right: auto;}
-    .responsive #top #header_main .container .main_menu .av-main-nav li a{padding: 2px 0 0; height: 58px;}
+    .responsive #top #header_main .container .main_menu .av-main-nav li a{padding: 1px 0 0; height: 59px;}
     .responsive #top .logo{width: 100%;}
     .responsive #top .logo img, .responsive #top .logo svg{margin: auto;}
     .responsive #top .av_header_transparency.av_alternate_logo_active .logo a img{margin: auto;}
@@ -431,6 +432,11 @@ svg.swiper-navigation-icon{height: 14px; color: #000000; stroke: #000;}
     .header_color div .av-hamburger-inner, .header_color div .av-hamburger-inner::before, .header_color div .av-hamburger-inner::after{background-color: #333;}
 
     #mobile-search-troggle{margin-right: 14px;}
+    #mobile-search-form{position: absolute; width: 90%; text-align: center; margin: 5px 5% 0; background: rgba(255, 255, 255, 0.8); border-radius: 5px;}
+    #top #mobile-search-form .glint-search-input{width: 90%; float: left;}
+    #top #mobile-search-form .glint-search-input .search-field{margin-bottom: 0; background: transparent; border-width: 0; padding: 8px 8px 8px 12px; color: #333;}
+    #top #mobile-search-form .glint-search-input .search-field::placeholder{color: #000;}
+    #top #mobile-search-form .search-submit{font-family: 'entypo-fontello'; background: transparent; width: 10%; float: right; padding: 5px 0; color: #333;}
 
     /* home */
     .st-mobile-video-container.mobile-only{display: inline-block; width: 100%;}
@@ -472,6 +478,9 @@ svg.swiper-navigation-icon{height: 14px; color: #000000; stroke: #000;}
     .description-meta-col.half-col{width:100%;}
     .related-blog-container-inner{gap:20px;}
     .related-blog-container-inner .blog-card{width: calc((100% - 20px) / 2);}
+    .glint-search-results .search-results{gap:20px;}
+    .glint-search-results .search-results article{width: calc((100% - 20px) / 2);}
+    #top .glint-search-results .search-results article h2.entry-title{font-size: 1rem}
 
     /* Other Pages */
     .inspiration-page-title{text-align: center; margin-bottom: -70px;}

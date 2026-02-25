@@ -172,7 +172,7 @@ if( $headerS['header_topbar'] == true )
 					//cotnainer right to menu
 				 	$output .= "<div class='logo-right-container'><a href='" . get_site_url() . "/idea-basket/'><img src='" . get_stylesheet_directory_uri() . "/assets/img/basket.svg'></a>";
 
-					$output .="<a class='mobile-only' id='mobile-search-troggle'><img src='" . get_stylesheet_directory_uri() . "/assets/img/search-icon.svg'></a>";
+					$output .='<a class="mobile-only" id="mobile-search-troggle" data-bs-toggle="collapse" data-bs-target="#mobile-search-form" role="button" aria-expanded="false" aria-controls="mobile-search-form"><img src="' . get_stylesheet_directory_uri() . '/assets/img/search-icon.svg"></a>';
 
 					$output .= '<form role="search" method="get" class="glint-search-bar" action="' . esc_url(home_url('/')) . '"><label class="glint-search-input"><input type="search" class="search-field" placeholder="Search..." value="' . get_search_query() . '" name="s" /></label><input type="submit" class="search-submit" value="" /></form>';
 
@@ -294,11 +294,10 @@ if( $headerS['header_topbar'] == true )
 		        /* end container */
 		        $output .= ' </div> ';
 
+				$output .='<div class="mobile-search-form collapse" id="mobile-search-form"><form role="search" method="get" class="glint-search-bar" action="' . esc_url(home_url('/')) . '"><label class="glint-search-input"><input type="search" class="search-field" placeholder="Search..." value="' . get_search_query() . '" name="s" /></label><input type="submit" class="search-submit" value="" /></form></div>';
 
 		   		//output the whole menu
 		        echo $output;
-
-
 		   ?>
 
 		<!-- end container_wrap-->
