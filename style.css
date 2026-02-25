@@ -117,7 +117,7 @@ ul{padding-left: 0; margin-left: 0;}
 /* single collection */
 .collection-container{display: inline-block; width: 100%;}
 .collection-tiles-list{display: flex; flex-wrap: wrap; align-items: flex-start; gap: 40px;}
-#top .main_color .tile-card-detail .select-tile-dropdown{color: #666; font-size: 0.85rem; background-color: transparent; border-width: 0; background-image: url(http://127.0.0.1/st/wp-content/themes/enfold-child-st/assets/img/simple-dropdown.svg); background-position: center left; background-size: 20px 15px; background-repeat: no-repeat; padding: 3px 10px 3px 20px; margin: 0 0 0 -5px; cursor: pointer;}
+#top .main_color .tile-card-detail .select-tile-dropdown{color: #666; font-size: 0.85rem; background-color: transparent; border-width: 0; background-image: url(https://showtile.com.au/wp-content/themes/enfold-child-st/assets/img/simple-dropdown.svg); background-position: center left; background-size: 20px 15px; background-repeat: no-repeat; padding: 3px 10px 3px 20px; margin: 0 0 0 -5px; cursor: pointer;}
 .collection-gallery-slider .tile-name{position: absolute; bottom: 15px; padding: 8px 25px 7px 20px; background: rgba(255, 255, 255, 0.8); font-size: 0.7rem; letter-spacing: 0.5px;}
 .collection-description-outer-container{margin-top: 25px;}
 .collection-description-outer-container .collection-description-body p {font-size: 0.85rem;}
@@ -496,6 +496,16 @@ svg.swiper-navigation-icon{height: 14px; color: #000000; stroke: #000;}
     .glint-search-results .search-results{gap:20px;}
     .glint-search-results .search-results article{width: calc((100% - 20px) / 2);}
     #top .glint-search-results .search-results article h2.entry-title{font-size: 1rem}
+    #basket-items{gap: 20px;}
+    #basket-items .basket-item{width: calc((100% - 20px) / 2);}
+    .basket-item-details .basket-item-title{font-size: 1rem;}
+
+    #tile-enquiry-container .submit-form-row{display: inline-block; position: relative; margin-bottom: 20px;}
+    #tile-enquiry-container .basket-item-image{width: 150px; margin-right: 30px; float: left;}
+    #tile-enquiry-container .basket-item-details{width: calc(100% - 160px); float: right; margin-top: 20px;}
+    #tile-enquiry-container .basket-item-note{width: 100%;}
+    #tile-enquiry-container .basket-item-actions{position: absolute; top: 0; right: 0;}
+    #tile-enquiry-container .basket-item-actions .btn.btn-danger.btn-sm.remove-item{--bs-btn-color: #dc3545; --bs-btn-bg: #ffffff; --bs-btn-border-color: #ffffff;}
 
     /* Other Pages */
     .inspiration-page-title{text-align: center; margin-bottom: -70px;}

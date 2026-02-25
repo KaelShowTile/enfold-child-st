@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded', function() {
     const pdfBtn = document.getElementById('collection-pdf-btn');
-    const pdfBtnText = pdfBtn.textContent;
     const pdfContent = document.getElementById('collection-pdf-content');
 
     if (pdfBtn && pdfContent) {
+        const pdfBtnText = pdfBtn.textContent;
         pdfBtn.addEventListener('click', function(e) {
             e.preventDefault();
 
