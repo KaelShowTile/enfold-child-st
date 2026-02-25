@@ -449,6 +449,7 @@ svg.swiper-navigation-icon{height: 14px; color: #000000; stroke: #000;}
     .html_av-overlay-side .av-burger-overlay-scroll{width: 70%;}
     .html_av-overlay-side-classic #top #wrap_all .av-burger-overlay #av-burger-menu-ul li a{border-width: 0; color: #fff; font-family: 'Roboto', Helvetica, Arial, sans-serif; letter-spacing: 1px; font-size: 1.25rem;}
     .html_av-overlay-side #top #wrap_all div .av-burger-overlay-scroll #av-burger-menu-ul a:hover{background: transparent;}
+    #top #wrap_all #header #av-burger-menu-ul>li.av-active-burger-items span.avia-bullet{left: auto; right: 40px; display: block; border-top: 5px solid transparent !important; border-bottom: 5px solid transparent !important; border-left: 5px solid #ffffff; margin-top: -5px;}
 
     /* home */
     .st-video-container{height: calc(100vh - 60px);}
