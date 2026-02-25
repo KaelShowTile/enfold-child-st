@@ -229,16 +229,12 @@
 
 	<div class='container_wrap container_wrap_first main_color <?php avia_layout_class( 'main' ); ?>'>
 
-		<div class="st-video-container desktop-only">
+		<div class="st-video-container">
 			<div class="st-video-wrapper">
 				<div class="st-video-iframe-container">	
 					<iframe src="https://player.vimeo.com/video/<?php echo $video_slider_id; ?>?background=1&autoplay=1&loop=1&muted=1&autopause=0" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
 				</div>
 			</div>
-		</div>
-
-		<div class="st-mobile-video-container mobile-only">
-			<iframe src="https://player.vimeo.com/video/<?php echo $mobile_video_slider_id; ?>?background=1&autoplay=1&loop=1&muted=1&autopause=0" frameborder="0" allow="autoplay; fullscreen" allowfullscreen style="width:100%; height: calc(100vw / <?php echo $mobile_video_ratio; ?>);"></iframe>
 		</div>
 
 		<div class='container home-banner-container'>

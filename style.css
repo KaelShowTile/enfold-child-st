@@ -195,6 +195,8 @@ ul{padding-left: 0; margin-left: 0;}
 #top #st-footer-container .form_element.av-last-visible-form-element input.button{background: #000; border-left-width: 0 !important; padding: 7px 8px 7px; border-radius: 0 15px 15px 0;}
 #st-footer-container .subscription-descripton p{margin-bottom: 0;}
 #socket{background: #000; border-top-width: 0;}
+.social-icon-list{margin-bottom: 15px;}
+.social-icon-list a{display: inline-block; margin: 2px 1px 0 0;}
 
 /* elements */
 .no-top-margin{margin-top: 0 !important;}
@@ -405,7 +407,9 @@ svg.swiper-navigation-icon{height: 14px; color: #000000; stroke: #000;}
     .responsive #top #wrap_all .container{width: 90%; max-width: 90%;}
     .content, .sidebar{padding-top: 20px;}
     .av-preloading-logo{max-width: 60%;}
+    .swiper img.size-full{height: calc(90vw - 20px);}
 
+    /* Header */
     .responsive #header_main .container, .responsive #top .logo{height: 60px !important;}
     .responsive #top #header_main>.container .main_menu .av-main-nav>li>a, .responsive #top #wrap_all .av-logo-container{line-height: 60px;}
     .av-logo-container .logo-right-container{margin-top: 10px;}
@@ -431,7 +435,7 @@ svg.swiper-navigation-icon{height: 14px; color: #000000; stroke: #000;}
     .av-logo-container .logo-right-container .glint-search-bar{display: none;}
     .header_color div .av-hamburger-inner, .header_color div .av-hamburger-inner::before, .header_color div .av-hamburger-inner::after{background-color: #333;}
 
-    #mobile-search-troggle{margin-right: 14px;}
+    #mobile-search-troggle{margin-right: 16px;}
     #mobile-search-form{position: absolute; width: 90%; text-align: center; margin: 5px 5% 0; background: rgba(255, 255, 255, 0.8); border-radius: 5px;}
     #top #mobile-search-form .glint-search-input{width: 90%; float: left;}
     #top #mobile-search-form .glint-search-input .search-field{margin-bottom: 0; background: transparent; border-width: 0; padding: 8px 8px 8px 12px; color: #333;}
@@ -439,6 +443,7 @@ svg.swiper-navigation-icon{height: 14px; color: #000000; stroke: #000;}
     #top #mobile-search-form .search-submit{font-family: 'entypo-fontello'; background: transparent; width: 10%; float: right; padding: 5px 0; color: #333;}
 
     /* home */
+    .st-video-container{height: calc(100vh - 60px);}
     .st-mobile-video-container.mobile-only{display: inline-block; width: 100%;}
     .st-mobile-video-container iframe{background: #000; width: 100%; background-image: url(https://showtile.com.au/staging/wp-content/uploads/2025/12/fade-stagger-squares.svg); background-repeat: no-repeat; background-position: center; background-size: 50px;}
     .st-overlay.bottom-left .st-overlay-inner{width: 80%; margin: 0; padding: 20px 30px;}
@@ -496,6 +501,10 @@ svg.swiper-navigation-icon{height: 14px; color: #000000; stroke: #000;}
     .collection-qa-container.collection-category-qa-container .collection-qa-title-section{width: 100%;}
     .collection-qa-container.collection-category-qa-container #collection-qa-accordion{width: 100%;}
     .collection-qa-container.collection-category-qa-container .container{margin: auto 5% !important;}
+
+    .responsive #top #wrap_all .template-single-tile .tile-title-container{width: 100%; max-width: 100%;}
+    .tile-sidebar{width: 100%;}
+    .tile-details{width: 100%; margin-top: 20px;}
 
 }
 
