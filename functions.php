@@ -5,6 +5,9 @@ function enqueue_child_theme_styles(){
   	wp_enqueue_style( 'parent-style', get_template_directory_uri().'/style.css' );
 }
 
+// Include sending email functionality
+require_once get_stylesheet_directory() . '/sending-email.php';
+
 // Enqueue backend styles
 add_action( 'admin_enqueue_scripts', 'enqueue_backend_styles' );
 function enqueue_backend_styles() {

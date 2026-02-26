@@ -47,8 +47,8 @@
 
 				<form id="tile-enquiry-form">
 					<div class="col-flex-row two-col-flex-row">
-						<input type="text" name="customer-name" id="customer-name" placeholder="Customer Name" require>
-						<select name="customer-type" id="customer-type" placeholder="Customer Type" require>
+						<input type="text" name="customer-name" id="customer-name" placeholder="Customer Name" required>
+						<select name="customer-type" id="customer-type" placeholder="Customer Type" required>
 							<option value="" disabled selected hidden>Please Select Your Role</option>
 							<option value="owner">Home Owner</option>
 							<option value="designer">Designer</option>
@@ -56,14 +56,14 @@
 							<option value="builder">Tiler/Builder</option>
 							<option value="retailer">Other</option>
 						</select>
-						<input type="number" name="contact-no" id="contact-no" placeholder="Contact Number" require>
+						<input type="number" name="contact-no" id="contact-no" placeholder="Contact Number" required>
 						<input type="text" name="company-name" id="company-name" placeholder="Company Name">
-						<input type="text" name="customer-email" id="customer-email" placeholder="Email Address" require>
+						<input type="text" name="customer-email" id="customer-email" placeholder="Email Address" required>
 						<input type="text" name="project-reference" id="project-reference" placeholder="Project Reference">
 					</div>
 					<div class="col-flex-row one-col-flex-row">
 						<input type="checkbox" id="need-sample" name="need-sample" value="yes"><label>Click here if you need samples for the selected tiles</label>
-						<input type="text" name="customer-address" id="customer-address" placeholder="Address" require>
+						<input type="text" name="customer-address" id="customer-address" placeholder="Address" required>
 					</div>
 
 					<input type="submit" id="submit-form-btn" value="Send" class="button" data-sending-label="Sending">

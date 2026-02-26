@@ -171,7 +171,7 @@ jQuery(document).ready(function($) {
 
         // Send AJAX request
         $.ajax({
-            url: st_ajax_object ? st_ajax_object.ajax_url : '/wp-admin/admin-ajax.php',
+            url: (typeof st_ajax_object !== 'undefined') ? st_ajax_object.ajax_url : '/wp-admin/admin-ajax.php',
             type: 'POST',
             data: {
                 action: 'send_tile_enquiry_email',
