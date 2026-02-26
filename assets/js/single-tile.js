@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 let basketItems = JSON.parse(localStorage.getItem('idea-basket-items')) || [];
 
                 // Check if item already exists
-                const existingItem = basketItems.find(item => item.name === productUnqueName && item.imageId === productImageId);
+                const existingItem = basketItems.find(item => item.UnqueName === productUnqueName);
 
                 if (!existingItem) {
                     // Add new item

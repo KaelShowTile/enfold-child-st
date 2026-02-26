@@ -134,7 +134,7 @@
 			if(get_field('tile_finish', $tile)){
 				while( the_repeater_field('tile_finish', $tile) ){
 					$finish_name = get_sub_field('finish_name');
-					$finish_thumb = get_sub_field('finish_image');
+					$finish_thumb = wp_get_attachment_image_url(get_sub_field('finish_image'), 'medium');
 					$total_finish++;
 					//get sizes
 					if(get_sub_field('tile_size')){

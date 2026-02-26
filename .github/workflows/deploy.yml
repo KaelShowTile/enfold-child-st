@@ -34,7 +34,7 @@ jobs:
         # Example for a plugin named "my-plugin":
         # server-dir: /public_html/wp-content/plugins/my-plugin/
         
-        server-dir: /public_html/staging/wp-content/themes/enfold-child-st/
+        server-dir: /public_html/wp-content/themes/enfold-child-st/
 
         # Optional: uncomment to exclude files
         # exclude: |
