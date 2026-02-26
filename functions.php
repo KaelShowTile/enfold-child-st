@@ -336,6 +336,16 @@ function enqueue_load_more_project_scripts() {
     }
 }
 
+// Enqueue submit tile scripts
+add_action( 'wp_enqueue_scripts', 'enqueue_submit_tile_scripts' );
+function enqueue_submit_tile_scripts() {
+    // Load on submit-tile page
+    if ( is_page_template( 'submit-tile.php' ) ) {
+        wp_enqueue_script( 'submit-tile-js', get_stylesheet_directory_uri() . '/assets/js/submit-tile.js', array('jquery'), '1.0.0', true );
+        wp_localize_script( 'submit-tile-js', 'st_ajax_object', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
+    }
+}
+
 // Enqueue idea basket scripts
 add_action( 'wp_enqueue_scripts', 'enqueue_idea_basket_scripts' );
 function enqueue_idea_basket_scripts() {
