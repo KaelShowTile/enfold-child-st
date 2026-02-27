@@ -140,6 +140,39 @@ jQuery(document).ready(function($) {
         const originalLabel = $submitBtn.val();
         const sendingLabel = $submitBtn.data('sending-label');
 
+        // Generate email-friendly HTML for basket content
+        let basketHtml = '';
+        $('#tile-enquiry-container .submit-form-row').each(function() {
+            const $item = $(this);
+            const imageUrl = $item.find('.basket-item-image img').attr('src') || '';
+            const title = $item.find('.basket-item-title').text();
+            const finish = $item.find('.basket-item-details p').eq(0).text();
+            const size = $item.find('.basket-item-details p').eq(1).text();
+            const note = $item.find('.basket-item-note textarea').val();
+
+            // Using a table for better email client compatibility
+            basketHtml += `
+                <table width="100%" cellpadding="0" cellspacing="0" style="width: 100%; border-collapse: collapse; margin-bottom: 20px; border: 1px solid #dee2e6; border-radius: 5px; overflow: hidden;">
+                    <tr>
+                        <td style="padding: 15px; width: 120px; vertical-align: top;">
+                            ${imageUrl ? `<img src="${imageUrl}" alt="${escapeHtml(title)}" width="100" style="max-width: 100px; height: auto; display: block;">` : ''}
+                        </td>
+                        <td style="padding: 15px; vertical-align: top; font-family: Arial, sans-serif;">
+                            <h3 style="margin: 0 0 10px; font-size: 16px; font-weight: bold; color: #333;">${escapeHtml(title)}</h3>
+                            <p style="margin: 0 0 5px; font-size: 14px; color: #555;"><strong>Finish:</strong> ${escapeHtml(finish)}</p>
+                            <p style="margin: 0; font-size: 14px; color: #555;"><strong>Size:</strong> ${escapeHtml(size)}</p>
+                        </td>
+                        ${note ? `
+                        <td style="padding: 15px; vertical-align: top; background-color: #f8f9fa; font-family: Arial, sans-serif; width: 40%;">
+                            <p style="margin: 0 0 5px; font-size: 14px; color: #555;"><strong>Note:</strong></p>
+                            <p style="margin: 0; font-size: 14px; color: #333; white-space: pre-wrap; word-break: break-word;">${escapeHtml(note)}</p>
+                        </td>
+                        ` : ''}
+                    </tr>
+                </table>
+            `;
+        });
+
         // Get form data
         const formData = {
             customer_name: $('#customer-name').val(),
@@ -150,7 +183,7 @@ jQuery(document).ready(function($) {
             project_reference: $('#project-reference').val(),
             need_sample: $('#need-sample').is(':checked') ? 'yes' : 'no',
             customer_address: $('#customer-address').val(),
-            basket_content: $('#tile-enquiry-container').html()
+            basket_content: basketHtml
         };
 
         // Basic validation

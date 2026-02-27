@@ -54,7 +54,7 @@
 							<option value="designer">Designer</option>
 							<option value="architect">Architect</option>
 							<option value="builder">Tiler/Builder</option>
-							<option value="retailer">Other</option>
+							<option value="other">Other</option>
 						</select>
 						<input type="number" name="contact-no" id="contact-no" placeholder="Contact Number" required>
 						<input type="text" name="company-name" id="company-name" placeholder="Company Name">
