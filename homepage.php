@@ -167,8 +167,8 @@
 			$feature_page_output_html .= '<div class="swiper-wrapper">';
 			foreach($feature_page_rows as $row){
 				$feature_page_output_html .= '<div class="swiper-slide">';
-				$feature_page_output_html .= '<img src="' . $row['page_thumbnail'] . '">';
-				$feature_page_output_html .= '<h3>' . $row['page_title'] . '</h3>';
+				$feature_page_output_html .= '<a href="' . $row['page_link'] . '><img src="' . $row['page_thumbnail'] . '"></a>';
+				$feature_page_output_html .= '<a href="' . $row['page_link'] . '><h3>' . $row['page_title'] . '</h3></a>';
 				$feature_page_output_html .= '<p>' . $row['page_description'] . '</p>';
 				$feature_page_output_html .= '<a href="' . $row['page_link'] . '" class="st-link-button small-style">Explore Now</a>';
 				$feature_page_output_html .= '</div>';
@@ -209,8 +209,8 @@
             		$blog_thumb = get_the_post_thumbnail_url($blog_id, 'large');
 
 					$blog_slider_output_html .= '<div class="swiper-slide">';
-					$blog_slider_output_html .= '<img src="' . $blog_thumb . '">';
-					$blog_slider_output_html .= '<h3>' . $blog_title . '</h3>';
+					$blog_slider_output_html .= '<a href="' . $blog_link . '"><img src="' . $blog_thumb . '"></a>';
+					$blog_slider_output_html .= '<a href="' . $blog_link . '"><h3>' . $blog_title . '</h3></a>';
 					$blog_slider_output_html .= '<p>' . $blog_description . '</p>';
 					$blog_slider_output_html .= '<a href="' . $blog_link . '" class="st-link-button small-style">Explore Now</a>';
 					$blog_slider_output_html .= '</div>';
@@ -232,7 +232,63 @@
 		<div class="st-video-container">
 			<div class="st-video-wrapper">
 				<div class="st-video-iframe-container">	
-					<iframe src="https://player.vimeo.com/video/<?php echo $video_slider_id; ?>?background=1&autoplay=1&loop=1&muted=1&autopause=0" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+					<iframe id="st-home-vimeo-player" src="https://player.vimeo.com/video/<?php echo $video_slider_id; ?>?api=1&autoplay=1&loop=1&muted=1&autopause=0&controls=0" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+					
+					<button id="st-mute-toggle" class="st-mute-btn" aria-label="Unmute">
+						<!-- Default Mute Icon -->
+						<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>
+					</button>
+
+					<style>
+						.st-video-iframe-container { position: relative; }
+						.st-mute-btn {
+							position: absolute;
+							bottom: 30px;
+							right: 30px;
+							z-index: 20;
+							background: rgba(0, 0, 0, 0.6);
+							border: 1px solid rgba(255, 255, 255, 0.3);
+							border-radius: 50%;
+							width: 50px;
+							height: 50px;
+							display: flex;
+							align-items: center;
+							justify-content: center;
+							cursor: pointer;
+							color: #fff;
+							transition: background 0.3s ease;
+						}
+						.st-mute-btn:hover { background: rgba(0, 0, 0, 0.9); }
+					</style>
+
+					<script>
+					document.addEventListener('DOMContentLoaded', function() {
+						var iframe = document.getElementById('st-home-vimeo-player');
+						var btn = document.getElementById('st-mute-toggle');
+						var isMuted = true; // Video starts muted via URL param
+
+						btn.addEventListener('click', function() {
+							var action = isMuted ? 'setMuted' : 'setMuted';
+							var value = isMuted ? false : true; // Toggle logic
+							
+							// Send raw postMessage to Vimeo
+							var data = { method: action, value: value };
+							iframe.contentWindow.postMessage(JSON.stringify(data), '*');
+
+							// Update Icon and State
+							if (isMuted) {
+								// Switch to Sound On Icon
+								btn.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>';
+								btn.setAttribute('aria-label', 'Mute');
+							} else {
+								// Switch to Mute Icon
+								btn.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>';
+								btn.setAttribute('aria-label', 'Unmute');
+							}
+							isMuted = !isMuted;
+						});
+					});
+					</script>
 				</div>
 			</div>
 		</div>
@@ -244,7 +300,7 @@
 					<div class="banner-top-container">
 						<span><?php echo $banner_tagline; ?></span>
 						<h2><?php echo $banner_title; ?></h2>
-						<img src="<?php echo $banner_image_link; ?>" class="mobile-only">	
+						<a href="<?php echo $banner_link; ?>"><img src="<?php echo $banner_image_link; ?>" class="mobile-only"></a>
 					</div>
 					<div class="banner-bottom-container">
 						<p><?php echo $bannner_description; ?></p>
@@ -253,7 +309,7 @@
 				</div>
 
 				<div class="flex_column av_three_fifth avia-builder-el-2 el_after_av_two_fifth avia-builder-el-last flex_column_table_cell av-equal-height-column av-align-top desktop-only">
-					<img src="<?php echo $banner_image_link; ?>">	
+					<a href="<?php echo $banner_link; ?>"><img src="<?php echo $banner_image_link; ?>"></a>
 				</div>
 			</div>
 
@@ -264,13 +320,13 @@
 				<div class="home-feature-project-inner">
 					<h2>Latest Tile Projects and Collaborations</h2>
 					<div class="flex_column av_one_half flex_column_div">
-						<img src="<?php echo $commercial_project_banner; ?>">
-						<h3><?php echo $commercial_project_title; ?></h3>
+						<a href="<?php echo $commercial_project_link; ?>"><img src="<?php echo $commercial_project_banner; ?>"></a>
+						<a href="<?php echo $commercial_project_link; ?>"><h3><?php echo $commercial_project_title; ?></h3></a>
 						<a href="<?php echo $commercial_project_link; ?>" class="st-link-button small-style">Explore Now</a>
 					</div>
 					<div class="flex_column av_one_half flex_column_div">
-						<img src="<?php echo $residential_project_banner; ?>">
-						<h3><?php echo $residential_project_title; ?></h3>
+						<a href="<?php echo $residential_project_link; ?>"><img src="<?php echo $residential_project_banner; ?>"></a>
+						<a href="<?php echo $residential_project_link; ?>"><h3><?php echo $residential_project_title; ?></h3></a>
 						<a href="<?php echo $residential_project_link; ?>" class="st-link-button small-style">Explore Now</a>
 					</div>
 				</div>
@@ -284,13 +340,6 @@
 		<?php endif; ?>
 
 		<div class="st-video-container desktop-only">
-			<div class="st-video-wrapper">
-				<div class="st-video-iframe-container">
-					<iframe src="https://player.vimeo.com/video/<?php echo $trending_video_id; ?>?background=1&autoplay=1&loop=1&muted=1&autopause=0" frameborder="0" allow="autoplay; fullscreen" allowfullscreen>
-					</iframe>
-				</div>
-			</div>
-
 			<!-- Optional content overlay -->
 			<div class="st-overlay bottom-left">
 				<div class="st-overlay-inner">
@@ -300,6 +349,14 @@
 					<a href="<?php echo $trending_video_link; ?>" class="st-link-button white-color-schema">Explore Now ></a>
 				</div>
 			</div>
+
+			<div class="st-video-wrapper">
+				<div class="st-video-iframe-container">
+					<iframe src="https://player.vimeo.com/video/<?php echo $trending_video_id; ?>?background=1&autoplay=1&loop=1&muted=1&autopause=0" frameborder="0" allow="autoplay; fullscreen" allowfullscreen>
+					</iframe>
+				</div>
+			</div>
+
 		</div>
 
 		<div class="st-mobile-video-container mobile-video-banner mobile-only" style="margin: calc(100vw / <?php echo $trending_video_container_margin; ?>) 0;">

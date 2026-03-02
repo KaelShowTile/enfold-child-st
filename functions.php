@@ -266,7 +266,7 @@ function get_collections_html($offset = 0, $limit = 12, $term_ids = null, $load_
                     $slider_image_no = $slider_image_no + 1;
                     if($slider_image_no < 6){
                         $preview = get_the_post_thumbnail($tile, 'medium');
-                        $html .= '<div class="swiper-slide">' . $preview . '</div>';
+                        $html .= '<div class="swiper-slide"><a href="' . esc_url($link) . '">' . $preview . '</a></div>';
                     }
                 }
                 $html .= '</div>';
