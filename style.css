@@ -401,8 +401,25 @@ svg.swiper-navigation-icon{height: 14px; color: #000000; stroke: #000;}
 .inpiration-catalogues-inner{display: flex; flex-wrap: wrap; gap: 20px;}
 .inpiration-catalogues-item{width: calc((100% - 100px) / 6);}
 .inpiration-catalogues-item h3{font-size: 1rem; margin-top: 10px;}
+.inpiration-catalogues-item img{border: 2px solid #eee;}
 
-@media only screen and (max-width: 640px) {
+@media only screen and (max-width: 1500px){
+    .responsive #top .container{max-width: 90%;}  
+    .collection-list-container .collection-card{width: calc((100% - 40px) / 3);}
+    
+    .tile-sidebar{width: 280px;}
+    .tile-details{width: calc(100% - 340px);}
+    .tile-details .swiper-slide img.size-full{height: 400px;}
+}
+
+@media only screen and (max-width: 980px){
+    .project-list-container.no-fliter{gap: 20px;}
+    .project-list-container.no-fliter .single-project-card-container{width: calc((100% - 40px) / 3);}
+    .collection-list-container{gap: 20px;}
+
+}
+
+@media only screen and (max-width: 768px) {
     #top .desktop-only{display: none !important;}
     .desktop-only{display: none !important;}
     #top .mobile-only{display: initial;}
@@ -471,10 +488,11 @@ svg.swiper-navigation-icon{height: 14px; color: #000000; stroke: #000;}
     .home-banner-container .banner-bottom-container{position: relative; bottom: 0; margin-top: 20px;}
     .home-feature-project-inner .flex_column{margin-bottom: 40px;}
     .home-other-project-inner .swiper-slide{width: 75%; margin-right: 0 !important;}
-    .home-feature-page-container{padding-top: 100px;}
+    .home-feature-page-container{padding-top: 140px;}
     .home-blog-inner .swiper-slide{width: 75%;}
     .home-feature-page-inner{margin-bottom: 50px;}
     .instagram-post-container{padding-bottom: 40px;}
+    .st-mobile-video-container.mobile-video-banner.mobile-only .st-overlay-outer{display: inline-block; width: 100%;}
 
     /* All Collection */
     .category-display-list br{display: none;}
@@ -517,7 +535,7 @@ svg.swiper-navigation-icon{height: 14px; color: #000000; stroke: #000;}
     #tile-enquiry-container .basket-item-actions .btn.btn-danger.btn-sm.remove-item{--bs-btn-color: #dc3545; --bs-btn-bg: #ffffff; --bs-btn-border-color: #ffffff;}
 
     /* Other Pages */
-    .inspiration-page-title{text-align: center; margin-bottom: -70px;}
+    .inspiration-page-title{text-align: center;}
     #inspiration-explore-design .swiper-slide{width: 250px;}
     .responsive #top #wrap_all .inpiration-catalogues-container{margin: 50px auto;}
     .inpiration-catalogues-item{width: calc((100% - 20px) / 2);}
