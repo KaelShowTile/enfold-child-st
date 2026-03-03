@@ -167,8 +167,8 @@
 			$feature_page_output_html .= '<div class="swiper-wrapper">';
 			foreach($feature_page_rows as $row){
 				$feature_page_output_html .= '<div class="swiper-slide">';
-				$feature_page_output_html .= '<a href="' . $row['page_link'] . '><img src="' . $row['page_thumbnail'] . '"></a>';
-				$feature_page_output_html .= '<a href="' . $row['page_link'] . '><h3>' . $row['page_title'] . '</h3></a>';
+				$feature_page_output_html .= '<a href="' . $row['page_link'] . '"><img src="' . $row['page_thumbnail'] . '"></a>';
+				$feature_page_output_html .= '<a href="' . $row['page_link'] . '"><h3>' . $row['page_title'] . '</h3></a>';
 				$feature_page_output_html .= '<p>' . $row['page_description'] . '</p>';
 				$feature_page_output_html .= '<a href="' . $row['page_link'] . '" class="st-link-button small-style">Explore Now</a>';
 				$feature_page_output_html .= '</div>';
