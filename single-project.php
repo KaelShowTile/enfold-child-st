@@ -54,7 +54,7 @@
 				<div class="swiper" id="tile-gallery">
 					<div class="swiper-wrapper">
 						<?php foreach($project_images as $image_id): ?>
-						<div class="swiper-slide"><?php echo wp_get_attachment_image( $image_id, 'full'); ?></div>
+						<div class="swiper-slide"><a href="<?php echo wp_get_attachment_image_url($image_id, 'full'); ?>"><?php echo wp_get_attachment_image( $image_id, 'full'); ?></div>
 						<?php endforeach; ?>
 					</div>
 					<div class="swiper-button-prev"></div>
@@ -171,6 +171,9 @@
 	</div><!--end container-->
 
 </div><!-- close default .container_wrap element -->
+
+<link type="text/css" rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/css/st-lightbox.css" id="st-lightbox-css">
+<script src="<?php echo get_stylesheet_directory_uri(); ?>/assets/js/st-lightbox.js" id="st-lightbox-js"></script>
 
 <?php get_footer();
 

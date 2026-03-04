@@ -222,11 +222,11 @@ jQuery(document).ready(function($) {
                 html += '<div class="swiper collection-inner-slider-preview">';
                 html += '<div class="swiper-wrapper">';
                 if (collection.images.collection_medium) {
-                    html += '<div class="swiper-slide"><a href="' + collection.permalink + '"><img src="' + collection.images.collection_medium[0] + '" alt="' + collection.title + '"></img></div>';
+                    html += '<div class="swiper-slide"><a href="' + collection.permalink + '"><img src="' + collection.images.collection_medium[0] + '" alt="' + collection.title + '"></img></a></div>';
                 }
                 if (collection.images.tile_medium) {
                     collection.images.tile_medium.forEach(function(url) {
-                        html += '<div class="swiper-slide"><img src="' + url + '" alt="' + collection.title + '"></div>';
+                        html += '<div class="swiper-slide"><a href="' + collection.permalink + '"><img src="' + url + '" alt="' + collection.title + '"></a></div>';
                     });
                 }
                 html += '</div>';
