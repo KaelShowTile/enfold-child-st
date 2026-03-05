@@ -32,6 +32,7 @@
 
 	$project_images = get_field('project_photos');
 	$project_related_tile = get_field('related_tile');
+	$project_testimonial = get_field('project_testimonial');
 
 ?>
 
@@ -160,8 +161,33 @@
 							<a href="<?php echo $tile_link; ?>"><h5><?php echo $tile_title; ?></h5></a>
 						</div>
 					<?php endforeach; ?>
+				</div>			
+			</div>
+			<?php endif; ?>
+
+			<!-- Testimonial -->
+			<?php if( $project_testimonial ): ?>
+			<div class="project-testimonial-container project-container container">
+				<div class="inner-container-heading">
+					<h2>Testimonial</h2>
 				</div>
-				
+
+				<div class="swiper testimonial-tiles-list" id="testimonial-slider">
+					<div class="swiper-wrapper">
+						<?php foreach( $project_testimonial as $testimonial ): ?>
+						<div class="swiper-slide testimonial-card">
+							<p><?php echo $testimonial['project_testimonial_comment'] ?></p>
+							<div class="testimonial-author">
+								<img src="<?php echo $testimonial['project_testimonial_image'] ?>">
+								<span><?php echo $testimonial['project_testimonial_name'] ?></span>
+							</div>
+						</div>
+						<div class="swiper-button-prev"></div>
+						<div class="swiper-button-next"></div>
+						<div class="swiper-scrollbar"></div>
+						<?php endforeach; ?>
+					</div>
+				</div>
 			</div>
 			<?php endif; ?>
 
@@ -174,6 +200,7 @@
 
 <link type="text/css" rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/css/st-lightbox.css" id="st-lightbox-css">
 <script src="<?php echo get_stylesheet_directory_uri(); ?>/assets/js/st-lightbox.js" id="st-lightbox-js"></script>
+<script src="<?php echo get_stylesheet_directory_uri();?>/assets/js/single-project.js"></script>
 
 <?php get_footer();
 

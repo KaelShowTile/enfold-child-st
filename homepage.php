@@ -239,28 +239,6 @@
 						<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>
 					</button>
 
-					<style>
-						.st-video-iframe-container { position: relative; }
-						.st-mute-btn {
-							position: absolute;
-							bottom: 30px;
-							right: 30px;
-							z-index: 20;
-							background: rgba(0, 0, 0, 0.6);
-							border: 1px solid rgba(255, 255, 255, 0.3);
-							border-radius: 50%;
-							width: 50px;
-							height: 50px;
-							display: flex;
-							align-items: center;
-							justify-content: center;
-							cursor: pointer;
-							color: #fff;
-							transition: background 0.3s ease;
-						}
-						.st-mute-btn:hover { background: rgba(0, 0, 0, 0.9); }
-					</style>
-
 					<script>
 					document.addEventListener('DOMContentLoaded', function() {
 						var iframe = document.getElementById('st-home-vimeo-player');
