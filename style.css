@@ -569,6 +569,10 @@ svg.swiper-navigation-icon{height: 14px; color: #000000; stroke: #000;}
 
     #st-footer-container main.template-page{padding-top: 30px;}
 
+    /* Plugin */
+    #top #eqp-payment-form .eqp-row.two-col{gap: 0;}
+    #top #eqp-payment-form .eqp-row.two-col .eqp-field{width: 100%;}
+
 }
 
 
