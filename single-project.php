@@ -34,13 +34,29 @@
 	$project_related_tile = get_field('related_tile');
 	$project_testimonial = get_field('project_testimonial');
 
+	$project_images_output = null;
+
+	if($project_images){
+		$project_images_output .= '<div class="project-gallery-container project-container container">';
+		$project_images_output .= '<div class="swiper" id="tile-gallery">';
+		$project_images_output .= '<div class="swiper-wrapper">';
+		foreach($project_images as $image_id):
+			$project_images_output .= '<div class="swiper-slide"><a href="' . wp_get_attachment_image_url($image_id, 'full') . '">' . wp_get_attachment_image( $image_id, 'full') . '</a></div>';
+		endforeach;
+		$project_images_output .= '</div>';
+		$project_images_output .= '<div class="swiper-button-prev"></div>';
+		$project_images_output .= '<div class="swiper-button-next"></div>';
+		$project_images_output .= '<div class="swiper-scrollbar"></div>';
+		$project_images_output .= '</div></div>';
+	}
+	 
 ?>
 
-<div class='container_wrap container_wrap_first main_color <?php avia_layout_class( 'main' ); ?>'>
+<div class="container_wrap container_wrap_first main_color <?php avia_layout_class( 'main' ); ?>">
 
-	<div class='container template-project template-single-project '>
+	<div class="container template-project template-single-project">
 
-		<main class='content units <?php avia_layout_class( 'content' ); ?> <?php echo avia_blog_class_string(); ?> <?php echo $main_class; ?>' <?php avia_markup_helper( array( 'context' => 'content', 'post_type' => 'post' ) );?>>
+		<main class="content units <?php avia_layout_class( 'content' ); ?> <?php echo avia_blog_class_string(); ?> <?php echo $main_class; ?>" <?php avia_markup_helper( array( 'context' => 'content', 'post_type' => 'post' ) );?>>
 
 			<div class="project-title-container container">	
 				<h1 class="item-title"><?php the_title(); ?></h1>
@@ -48,22 +64,9 @@
 			</div>
 
 			<!-- Project gallery -->
-			<div class="project-gallery-container project-container container">
-				<div class="inner-container-heading">
-				</div>
-				<?php if( $project_images ): ?>
-				<div class="swiper" id="tile-gallery">
-					<div class="swiper-wrapper">
-						<?php foreach($project_images as $image_id): ?>
-						<div class="swiper-slide"><a href="<?php echo wp_get_attachment_image_url($image_id, 'full'); ?>"><?php echo wp_get_attachment_image( $image_id, 'full'); ?></div>
-						<?php endforeach; ?>
-					</div>
-					<div class="swiper-button-prev"></div>
-					<div class="swiper-button-next"></div>
-					<div class="swiper-scrollbar"></div>
-				</div>
-				<?php endif; ?>
-			</div>
+			<?php if($project_images_output):
+				echo $project_images_output;
+			endif; ?>
 
 			<!-- Project description -->
 			<div class="project-description-container project-container container">
@@ -160,7 +163,9 @@
 							<a href="<?php echo $tile_link; ?>"><?php echo get_the_post_thumbnail( $tile, 'medium'); ?></a>
 							<a href="<?php echo $tile_link; ?>"><h5><?php echo $tile_title; ?></h5></a>
 						</div>
-					<?php endforeach; ?>
+					<?php endforeach; 
+					wp_reset_postdata();
+					?>
 				</div>			
 			</div>
 			<?php endif; ?>
