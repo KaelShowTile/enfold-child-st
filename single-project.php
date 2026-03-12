@@ -82,7 +82,7 @@
 					<div class="collection-description-container">
 						<?php if(get_field('project_designer')): ?>
 							<div class="description-meta-col half-col">
-								<p class="attribute-name">Designer</p>
+								<p class="attribute-name designer-name">Designer</p>
 								<p><?php the_field('project_designer') ?></p>
 							</div>
 						<?php endif; ?>

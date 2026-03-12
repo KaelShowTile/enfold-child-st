@@ -57,13 +57,25 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    //blog post slider
     const blogPostSlider = document.getElementById('home-blog-slider');
     if (blogPostSlider) {
         const swiper = new Swiper('#home-blog-slider', {
             direction: 'horizontal',
             slidesPerView: 'auto',
             spaceBetween: 50,
+        });
+    }
+
+    const exploreDesignSlider = document.getElementById('inspiration-explore-design');
+    if (exploreDesignSlider) {
+        const swiper = new Swiper('#inspiration-explore-design', {
+            direction: 'horizontal',
+            slidesPerView: 'auto',
+            spaceBetween: 50,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
         });
     }
 });

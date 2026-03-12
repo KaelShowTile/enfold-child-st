@@ -55,6 +55,7 @@
 	$other_project_output_html = null;
 	$feature_page_output_html = null;
 	$blog_slider_output_html = null;
+	$inspiration_explore_design_html = null;
 
 	//max description length
 	$project_des_length = 120; 
@@ -101,6 +102,9 @@
 		$project_settings = get_field('homepage_project');
 		$feature_project_category_id = $project_settings['feature_project_category'];
 		$feature_project_numbers = $project_settings['number_projects_shows'];
+
+		//inspiration
+		$explore_inspiration = get_field('home_explore_tile_design');
 
 		//feature projects
 		if($commercial_project_banner || $residential_project_banner){
@@ -220,6 +224,24 @@
 			}
 
 			wp_reset_postdata();
+		}
+
+		//explore tile design
+		if($explore_inspiration){
+			$inspiration_explore_design_html .= '<div class="container inpiration-explore-design-container homepage-explore-design">';
+			$inspiration_explore_design_html .= '<h2>Explore Tile Design</h2>';
+			$inspiration_explore_design_html .= '<div class="inpiration-explore-design-inner">';
+			$inspiration_explore_design_html .= '<div class="swiper" id="inspiration-explore-design">';
+			$inspiration_explore_design_html .= '<div class="swiper-wrapper">';
+			foreach($explore_inspiration as $row){
+				$inspiration_explore_design_html .= '<div class="swiper-slide">';
+				$inspiration_explore_design_html .= '<a href="' . $row['home_tile_design_url'] . '"><img src="' . $row['home_tile_design_image'] . '"></a>';
+				$inspiration_explore_design_html .= '<a href="' . $row['home_tile_design_url'] . '"><h3>' . $row['home_tile_design_title'] . '</h3></a>';
+				$inspiration_explore_design_html .= '<p>' . $row['home_tile_design_des'] . '</p>';
+				$inspiration_explore_design_html .= '</div>';
+			}
+
+			$inspiration_explore_design_html .= '</div></div></div></div>';
 		}
 	}
 	
@@ -358,6 +380,10 @@
 			<?php echo $feature_page_output_html; ?>
 		</div>
 		<?php endif; ?>
+
+		<?php if($inspiration_explore_design_html):
+			echo $inspiration_explore_design_html; 
+		endif; ?>
 
 		<?php if($blog_slider_output_html): ?>
 		<div class="container home-blog-lislt-container">
