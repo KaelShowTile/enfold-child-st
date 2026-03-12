@@ -453,7 +453,7 @@ function get_house_tour_html($offset = 0, $limit = 12, $load_more = false, $cont
             $query->the_post();
             $title = get_the_title();
             $house_tour_id = get_the_ID();
-            $house_tour_thumb =  get_the_post_thumbnail($project_id, 'masonry' );
+            $house_tour_thumb =  get_the_post_thumbnail($project_id, 'portfolio' );
             $house_tour_url = get_field('hour_tour_url', $project_id); // This can return a string or an array.
             
             //output html
