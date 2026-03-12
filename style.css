@@ -97,7 +97,7 @@ ul{padding-left: 0; margin-left: 0;}
 #tile-finish-accordion .accordion-button{background: #fff; box-shadow: none; padding: 20px 0;}
 #tile-finish-accordion .accordion-button:focus{box-shadow: none;}
 #tile-finish-accordion .accordion-button h5{display: inline-block; text-transform: uppercase; font-size: 1rem; font-family: 'Roboto', Helvetica, Arial, sans-serif; line-height: 0.75; margin-bottom: 0;}
-#tile-finish-accordion .accordion-button h5 span{font-size: 0.7rem;}
+#tile-finish-accordion .accordion-button h5 span{font-size: 0.80rem; text-transform: none; line-height: 1.5;}
 #tile-finish-accordion .accordion-button .copy-tile-code{width: 11px; margin: 0 0 0 2px;}
 #tile-finish-accordion .accordion-item{border-left-width: 0; border-right-width: 0;}
 #tile-finish-accordion .accordion-body{padding: 0;}
@@ -236,7 +236,8 @@ ul{padding-left: 0; margin-left: 0;}
 
 .house_tour-list-container{display: flex; flex-wrap: wrap; gap: 40px;}
 .single-house-tour-card{width: calc((100% - 120px) / 4);}
-.single-house-tour-card h5{text-align: center; font-weight: 600; text-transform: capitalize; margin: 10px auto 40px;}
+.single-house-tour-card img{border-radius: 3px;}
+.single-house-tour-card h5{text-align: center; font-weight: 600; text-transform: capitalize; margin: 10px auto 0;}
 
 .project-button-list{margin: auto 25px 50px; text-align: center;}
 .project-button-list a{font-size: 1.25rem; transition: 0.5s; letter-spacing: 0.5px;}

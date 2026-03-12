@@ -38,7 +38,7 @@
 		<div class='container_wrap container_wrap_first main_color <?php avia_layout_class( 'main' ); ?>'>
 
 			<div class='container'>
-				<h1 class="page-title">All Hour Tour</h1>
+				<h1 class="page-title">All House Tour</h1>
                 <p class="house-tour-tagline">Explore stunning residential and commercial tile projects, discover luxurious designs, and gather inspiration for your next dream space.</p>
 
 				<?php echo get_house_tour_html(0, 12, true); ?>
