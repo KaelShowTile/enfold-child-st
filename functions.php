@@ -77,6 +77,16 @@ function load_more_projects() {
     wp_send_json_success($html);
 }
 
+// AJAX handler for house tour
+add_action('wp_ajax_load_more_house_tour', 'load_more_house_tour');
+add_action('wp_ajax_nopriv_load_more_house_tour', 'load_more_house_tour');
+function load_more_house_tour() {
+    $offset = intval($_POST['offset']);
+    $limit = intval($_POST['limit']) ?: 12;
+
+    $html = get_house_tour_html($offset, $limit, true);
+    wp_send_json_success($html);
+}
 
 //update project category by ACF field(project_type)
 add_action('acf/save_post', 'sync_project_type_to_taxonomy', 20);
@@ -126,13 +136,22 @@ function enqueue_load_more_scripts() {
     }
 }
 
-// Enqueue load more scripts
 add_action( 'wp_enqueue_scripts', 'enqueue_load_more_project_scripts' );
 function enqueue_load_more_project_scripts() {
     // Load on taxonomy pages or all-collection page
     if ( is_tax( 'project-category' ) || is_page_template( 'all-project.php' ) ) {
         wp_enqueue_script( 'load-more-project-js', get_stylesheet_directory_uri() . '/assets/js/load-more-project.js', array('jquery'), '1.0.0', true );
         wp_localize_script( 'load-more-project-js', 'st_ajax_object', array(
+            'ajax_url' => admin_url( 'admin-ajax.php' ),
+        ) );
+    }
+}
+
+add_action( 'wp_enqueue_scripts', 'enqueue_load_more_house_tour_scripts' );
+function enqueue_load_more_house_tour_scripts() {
+    if ( is_page_template( 'all-house-tour.php' ) ) {
+        wp_enqueue_script( 'load-more-house-tour-js', get_stylesheet_directory_uri() . '/assets/js/load-more-house-tour.js', array('jquery'), '1.0.0', true );
+        wp_localize_script( 'load-more-house-tour-js', 'st_ajax_object', array(
             'ajax_url' => admin_url( 'admin-ajax.php' ),
         ) );
     }
@@ -404,6 +423,60 @@ function get_project_html($offset = 0, $limit = 12, $term_ids = null, $load_more
             } elseif ($term_ids !== null && !empty($term_ids)) {
                 $term_id_param = is_array($term_ids) ? implode(',', $term_ids) : $term_ids;
             }
+
+            $html .= '<div class="load-more-container" style="text-align: center; margin: 20px 0;">';
+            $html .= '<button class="load-more-btn btn st-link-button small-style" data-offset="' . $next_offset . '" data-limit="' . $limit . '" data-term-ids="' . $term_id_param . '" data-total="' . $total_posts . '">Load More Projects</button>';
+            $html .= '</div>';
+        }
+    }
+
+    if($offset == 0){
+        $html = '<div class="' . esc_attr($container_class) . '">' . $html . '</div>';
+    }
+    
+    return $html;
+}
+
+function get_house_tour_html($offset = 0, $limit = 12, $load_more = false, $container_class = 'house_tour-list-container no-fliter') {
+    $args = array(
+        'post_type' => 'house_tour',
+        'posts_per_page' => $limit,
+        'offset' => $offset,
+    );
+    
+    // If term_ids is null and not on tax page, load all projects
+    $query = new WP_Query($args);
+    
+    $html = '';
+    if ($query->have_posts()) {
+        while ($query->have_posts()) {
+            $query->the_post();
+            $title = get_the_title();
+            $house_tour_id = get_the_ID();
+            $house_tour_thumb =  get_the_post_thumbnail($project_id, 'masonry' );
+            $house_tour_url = get_field('hour_tour_url', $project_id); // This can return a string or an array.
+            
+            //output html
+            $html .= '<div class="single-house-tour-card">';
+            $html .= '<a href="' . $house_tour_url . '" target="_blank">' . $house_tour_thumb . '</a>';
+            $html .= '<a href="' . $house_tour_url . '" target="_blank"><h5>' . $title . '</h5></a>';
+            $html .= '</div>';
+        }
+        wp_reset_postdata();
+    }
+
+    // Add load more button if enabled and there are more posts
+    if ($load_more) {
+        // Get total count for this query
+        $total_args = $args;
+        $total_args['posts_per_page'] = -1; // Get all posts for count
+        $total_query = new WP_Query($total_args);
+        $total_posts = $total_query->found_posts;
+        wp_reset_postdata();
+
+        $current_count = $offset + $query->post_count;
+        if ($current_count < $total_posts) {
+            $next_offset = $current_count;
 
             $html .= '<div class="load-more-container" style="text-align: center; margin: 20px 0;">';
             $html .= '<button class="load-more-btn btn st-link-button small-style" data-offset="' . $next_offset . '" data-limit="' . $limit . '" data-term-ids="' . $term_id_param . '" data-total="' . $total_posts . '">Load More Projects</button>';

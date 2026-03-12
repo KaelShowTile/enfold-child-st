@@ -234,6 +234,10 @@ ul{padding-left: 0; margin-left: 0;}
 .single-project-card h5{font-size: 1.5rem; font-weight: 600;}
 .single-project-card p{font-size: 0.7rem;}
 
+.house_tour-list-container{display: flex; flex-wrap: wrap; gap: 40px;}
+.single-house-tour-card{width: calc((100% - 120px) / 4);}
+.single-house-tour-card h5{text-align: center; font-weight: 600; text-transform: capitalize; margin: 10px auto 40px;}
+
 .project-button-list{margin: auto 25px 50px; text-align: center;}
 .project-button-list a{font-size: 1.25rem; transition: 0.5s; letter-spacing: 0.5px;}
 
@@ -417,6 +421,8 @@ svg.swiper-navigation-icon{height: 14px; color: #000000; stroke: #000;}
 .inpiration-catalogues-item h3{font-size: 1rem; margin-top: 10px;}
 .inpiration-catalogues-item img{border: 2px solid #eee;}
 
+.house-tour-tagline{text-align: center; margin: auto auto 50px;}
+
 @media only screen and (max-width: 1500px){
     .responsive #top .container{max-width: 90%;}  
     .collection-list-container .collection-card{width: calc((100% - 40px) / 3);}
@@ -531,6 +537,8 @@ svg.swiper-navigation-icon{height: 14px; color: #000000; stroke: #000;}
     .single-project-card span{margin-top: 10px; font-size: 0.6rem;}
     .single-project-card h5{font-size: 1rem;}
     .single-tile-card{width: calc((100% - 40px) / 2);}
+    .house_tour-list-container{gap:20px;}
+    .single-house-tour-card{width: calc((100% - 20px) / 2);}
     .description-meta-col.half-col{width:100%;}
     .related-blog-container-inner{gap:20px;}
     .related-blog-container-inner .blog-card{width: calc((100% - 20px) / 2);}
