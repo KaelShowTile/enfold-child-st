@@ -30,6 +30,11 @@
 	 */
 	$main_class = apply_filters( 'avf_custom_main_classes', 'av-main-' . basename( __FILE__, '.php' ), basename( __FILE__ ) );
 
+	$h1_title = get_field('project_custom_h1_header');
+	if($h1_title == null || $h1_title == ""){
+		$h1_title = get_the_title();
+	}
+
 	$project_images = get_field('project_photos');
 	$project_related_tile = get_field('related_tile');
 	$project_testimonial = get_field('project_testimonial');
@@ -59,7 +64,7 @@
 		<main class="content units <?php avia_layout_class( 'content' ); ?> <?php echo avia_blog_class_string(); ?> <?php echo $main_class; ?>" <?php avia_markup_helper( array( 'context' => 'content', 'post_type' => 'post' ) );?>>
 
 			<div class="project-title-container container">	
-				<h1 class="item-title"><?php the_title(); ?></h1>
+				<h1 class="item-title"><?php echo $h1_title; ?></h1>
 				<div class="breadcrumbs project-breadcrumbs"><?php echo do_shortcode('[av_breadcrumbs]'); ?></div>
 			</div>
 
@@ -183,7 +188,7 @@
 						<div class="swiper-slide testimonial-card">
 							<p><?php echo $testimonial['project_testimonial_comment'] ?></p>
 							<div class="testimonial-author">
-								<img src="<?php echo $testimonial['project_testimonial_image'] ?>">
+								<img src="<?php echo $testimonial['project_testimonial_image'] ?>" alt="showTile Project reviewer">
 								<span><?php echo $testimonial['project_testimonial_name'] ?></span>
 							</div>
 						</div>

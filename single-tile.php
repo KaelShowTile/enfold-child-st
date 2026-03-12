@@ -32,6 +32,11 @@
 	$main_class = apply_filters( 'avf_custom_main_classes', 'av-main-' . basename( __FILE__, '.php' ), basename( __FILE__ ) );
 
 	//render slider content
+	$h1_title = get_field('tile_custom_h1_header');
+	if($h1_title == null || $h1_title == ""){
+		$h1_title = get_the_title();
+	}
+
 	$tile_images = get_field('tile_photo_gallery');
 	$tile_video = get_field('tile_video');
 	$tile_video_url = ""; 
@@ -58,7 +63,7 @@
 		<main class='content units <?php avia_layout_class( 'content' ); ?> <?php echo avia_blog_class_string(); ?> <?php echo $main_class; ?>' <?php avia_markup_helper( array( 'context' => 'content', 'post_type' => 'tile' ) );?>>
 
 			<div class="tile-title-container container">	
-				<h1><?php the_title(); ?></h1>
+				<h1><?php echo $h1_title; ?></h1>
 				<div class="breadcrumbs tile-breadcrumbs"><?php echo do_shortcode('[av_breadcrumbs]'); ?></div>
 			</div>
 
@@ -72,7 +77,7 @@
 							<h2 class="accordion-header">
 							<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#<?php echo $finishName; ?>" aria-expanded="true" aria-controls="collapseOne">
 								<!-- Load finish name-->
-								<h5><?php echo $finishName; ?><br><span>Code: <?php the_sub_field('product_code'); ?></span></h5>
+								<h5><?php echo $finishName; ?><br><span>Code: <?php the_sub_field('product_code'); ?></span><img src="<?php echo get_stylesheet_directory_uri();?>\assets\img\copy.svg" class="copy-tile-code" value="<?php the_sub_field('product_code'); ?>"></h5>
 							</button>
 							</h2>
 							<div id="<?php echo $finishName; ?>" class="accordion-collapse collapse show" data-bs-parent="#tile-finish-accordion">

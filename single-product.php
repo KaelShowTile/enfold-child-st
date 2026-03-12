@@ -36,7 +36,10 @@
 		$catalogue_pdf_shortcode = '[dflip source="' . esc_url($catalogue_pdf_url) . '" viewertype="flipbook" is3d="true" height="750px"][/dflip]';
 	}
 	
-
+	$h1_title = get_field('collection_custom_h1_header');
+	if($h1_title == null || $h1_title == ""){
+		$h1_title = get_the_title();
+	}
 	$collection_tiles = get_field('tiles_in_collection');
 
 	$collection_gallery = [];
@@ -208,7 +211,7 @@
 
 		<main class='content units <?php avia_layout_class( 'content' ); ?> <?php echo avia_blog_class_string(); ?> <?php echo $main_class; ?>' <?php avia_markup_helper( array( 'context' => 'content', 'post_type' => 'post' ) );?>>
 
-			<h1 class="item-title"><?php the_title(); ?></h1>
+			<h1 class="item-title"><?php echo $h1_title; ?></h1>
 			<div class="breadcrumbs collection-breadcrumbs"><?php echo do_shortcode('[av_breadcrumbs]'); ?></div>
 
 			<!-- Image gallery -->
@@ -285,7 +288,7 @@
 				<div class="collection-tiles-list">
 				<?php foreach($collection_tiles_list as $tile): ?>
 					<div class="single-tile-card">
-						<a href="<?php echo $tile['title_link']; ?>"><img src="<?php echo $tile['title_thumb_url']; ?>"></a>
+						<a href="<?php echo $tile['title_link']; ?>"><img src="<?php echo $tile['title_thumb_url']; ?>" alt="<?php echo $tile['tile_title']; ?>"></a>
 						<div class="tile-card-detail">
 							<div class="tile-card-left">
 								<a href="<?php echo $tile['title_link']; ?>"><h5><?php echo $tile['tile_title']; ?></h5></a>

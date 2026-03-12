@@ -19,6 +19,21 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // Copy product code to clipboard
+    const copyIcons = document.querySelectorAll('.copy-tile-code');
+    copyIcons.forEach(function(icon) {
+        icon.style.cursor = 'pointer';
+        icon.setAttribute('title', 'Copy product code');
+
+        icon.addEventListener('click', function(e) {
+            e.stopPropagation(); // Prevent the accordion from toggling
+
+            const codeToCopy = this.getAttribute('value');
+
+            navigator.clipboard.writeText(codeToCopy);
+        });
+    });
+
     // Idea Basket functionality
     const addToBasketLinks = document.querySelectorAll('#add-to-basket');
     addToBasketLinks.forEach(function(link) {

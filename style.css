@@ -98,6 +98,7 @@ ul{padding-left: 0; margin-left: 0;}
 #tile-finish-accordion .accordion-button:focus{box-shadow: none;}
 #tile-finish-accordion .accordion-button h5{display: inline-block; text-transform: uppercase; font-size: 1rem; font-family: 'Roboto', Helvetica, Arial, sans-serif; line-height: 0.75; margin-bottom: 0;}
 #tile-finish-accordion .accordion-button h5 span{font-size: 0.7rem;}
+#tile-finish-accordion .accordion-button .copy-tile-code{width: 11px; margin: 0 0 0 2px;}
 #tile-finish-accordion .accordion-item{border-left-width: 0; border-right-width: 0;}
 #tile-finish-accordion .accordion-body{padding: 0;}
 #tile-finish-accordion .accordion-body img{max-width: 200px;}
