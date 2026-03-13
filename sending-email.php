@@ -27,6 +27,7 @@ function send_tile_enquiry_email() {
     $customer_email = sanitize_email($form_data['customer_email']);
     $project_reference = sanitize_text_field($form_data['project_reference']);
     $need_sample = sanitize_text_field($form_data['need_sample']);
+    $subscribe_newsletter = isset($form_data['subscribe_newsletter']) ? sanitize_text_field($form_data['subscribe_newsletter']) : 'no';
     $customer_address = sanitize_textarea_field($form_data['customer_address']);
     $basket_content = wp_kses_post($form_data['basket_content']); // Allow basic HTML
 
@@ -177,8 +178,57 @@ function send_tile_enquiry_email() {
     }
 
     if ($admin_sent && $additional_sent) {
+        // Subscribe to Mailchimp if checkbox was ticked
+        if ($subscribe_newsletter === 'yes') {
+            st_subscribe_to_mailchimp($customer_email, $customer_name);
+        }
         wp_send_json_success('Email sent successfully');
     } else {
         wp_send_json_error('Failed to send email');
     }
+}
+
+/**
+ * Subscribe user to Mailchimp List
+ */
+function st_subscribe_to_mailchimp($email, $name) {
+    // --- CONFIGURATION ---
+    $api_key = 'e0f6db032d03b021cf937e5937271431-us19'; // e.g., 'abcdef123456...-us19'
+    $list_id = '81e01869fd'; // Replace this with your actual Audience ID found in Mailchimp
+    // ---------------------
+
+    if (empty($api_key) || empty($list_id) || !is_email($email)) {
+        return;
+    }
+
+    // Extract data center from API key
+    $data_center = substr($api_key, strpos($api_key, '-') + 1);
+    $url = 'https://' . $data_center . '.api.mailchimp.com/3.0/lists/' . $list_id . '/members/';
+
+    // Split name into First and Last
+    $name_parts = explode(' ', trim($name), 2);
+    $fname = isset($name_parts[0]) ? $name_parts[0] : '';
+    $lname = isset($name_parts[1]) ? $name_parts[1] : '';
+
+    $data = array(
+        'email_address' => $email,
+        'status'        => 'subscribed',
+        'merge_fields'  => array(
+            'FNAME' => $fname,
+            'LNAME' => $lname
+        )
+    );
+
+    $args = array(
+        'body'        => json_encode($data),
+        'headers'     => array(
+            'Authorization' => 'Basic ' . base64_encode('user:' . $api_key),
+            'Content-Type'  => 'application/json'
+        ),
+        'method'      => 'POST',
+        'data_format' => 'body',
+        'blocking'    => false // Don't wait for response to speed up UX
+    );
+
+    wp_remote_post($url, $args);
 }

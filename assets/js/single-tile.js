@@ -46,6 +46,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const productSize = this.getAttribute('data-product-size');
             const productImageId = this.getAttribute('data-product-image_id');
             const productImageUrl = this.getAttribute('data-product-image_url');
+            const productCode = this.getAttribute('data-product-code');
 
             if (productUnqueName) {
                 // Get existing basket items
@@ -61,6 +62,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         name: productName,
                         finish: productFinish,
                         size: productSize,
+                        code: productCode,
                         imageId: productImageId,
                         imageUrl: productImageUrl,
                         dateAdded: new Date().toISOString()

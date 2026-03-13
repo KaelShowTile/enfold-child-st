@@ -29,6 +29,7 @@ jQuery(document).ready(function($) {
                         <h3 class="basket-item-title">${escapeHtml(item.name)}</h3>
                         <p>${escapeHtml(item.finish)}</p>
                         <p>${escapeHtml(item.size)}</p>
+                        <p>${escapeHtml(item.code)}</p>
                     </div>
                     <div class="basket-item-note">
                         <textarea rows="6" placeholder="Your comments here..."></textarea>
@@ -148,6 +149,7 @@ jQuery(document).ready(function($) {
             const title = $item.find('.basket-item-title').text();
             const finish = $item.find('.basket-item-details p').eq(0).text();
             const size = $item.find('.basket-item-details p').eq(1).text();
+            const code = $item.find('.basket-item-details p').eq(2).text();
             const note = $item.find('.basket-item-note textarea').val();
 
             // Using a table for better email client compatibility
@@ -161,6 +163,7 @@ jQuery(document).ready(function($) {
                             <h3 style="margin: 0 0 10px; font-size: 16px; font-weight: bold; color: #333;">${escapeHtml(title)}</h3>
                             <p style="margin: 0 0 5px; font-size: 14px; color: #555;"><strong>Finish:</strong> ${escapeHtml(finish)}</p>
                             <p style="margin: 0; font-size: 14px; color: #555;"><strong>Size:</strong> ${escapeHtml(size)}</p>
+                            <p style="margin: 0; font-size: 14px; color: #555;"><strong>Size:</strong> ${escapeHtml(code)}</p>
                         </td>
                         ${note ? `
                         <td style="padding: 15px; vertical-align: top; background-color: #f8f9fa; font-family: Arial, sans-serif; width: 40%;">
@@ -182,6 +185,7 @@ jQuery(document).ready(function($) {
             customer_email: $('#customer-email').val(),
             project_reference: $('#project-reference').val(),
             need_sample: $('#need-sample').is(':checked') ? 'yes' : 'no',
+            subscribe_newsletter: $('#subscribe-newsletter').is(':checked') ? 'yes' : 'no',
             customer_address: $('#customer-address').val(),
             basket_content: basketHtml
         };

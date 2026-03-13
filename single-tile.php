@@ -73,11 +73,12 @@
 					<div class="accordion" id="tile-finish-accordion">
 					<?php while( have_rows('tile_finish') ) : the_row();?>
 						<div class="accordion-item">
-							<?php $finishName = get_sub_field('finish_name'); ?>
+							<?php $finishName = get_sub_field('finish_name'); 
+							$productCode = get_sub_field('product_code');?>
 							<h2 class="accordion-header">
 							<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#<?php echo $finishName; ?>" aria-expanded="true" aria-controls="collapseOne">
 								<!-- Load finish name-->
-								<h5><?php echo $finishName; ?><br><span>Code: <?php the_sub_field('product_code'); ?></span><img src="<?php echo get_stylesheet_directory_uri();?>\assets\img\copy.svg" class="copy-tile-code" value="<?php the_sub_field('product_code'); ?>"></h5>
+								<h5><?php echo $finishName; ?><br><span>Code: <?php echo $productCode; ?></span><img src="<?php echo get_stylesheet_directory_uri();?>\assets\img\copy.svg" class="copy-tile-code" value="<?php echo $productCode; ?>"></h5>
 							</button>
 							</h2>
 							<div id="<?php echo $finishName; ?>" class="accordion-collapse collapse show" data-bs-parent="#tile-finish-accordion">
@@ -93,7 +94,7 @@
 										<?php while( have_rows('tile_size') ) : the_row(); ?>
 											<li>
 												<span><?php the_sub_field('tile_size_name'); ?></span>
-												<a id="add-to-basket" data-product-name="<?php echo the_title() . ' - ' . $finishName . ' - ' . get_sub_field('tile_size_name') ; ?>" data-tile-name="<?php echo the_title(); ?>" data-product-finish="<?php echo $finishName; ?>" data-product-size="<?php echo get_sub_field('tile_size_name'); ?>" data-product-image_id="<?php echo $finishImageID; ?>" data-product-image_url="<?php echo wp_get_attachment_image_url($finishImageID, 'medium'); ?>"><img src="<?php echo get_stylesheet_directory_uri();?>\assets\img\add-to-basket-2.svg"></a>
+												<a id="add-to-basket" data-product-name="<?php echo get_the_title() . ' - ' . $finishName . ' - ' . get_sub_field('tile_size_name') . ' - ' . $productCode ; ?>" data-tile-name="<?php echo the_title(); ?>" data-product-finish="<?php echo $finishName; ?>" data-product-size="<?php echo get_sub_field('tile_size_name'); ?>" data-product-code="<?php echo $productCode; ?>" data-product-image_id="<?php echo $finishImageID; ?>" data-product-image_url="<?php echo wp_get_attachment_image_url($finishImageID, 'medium'); ?>"><img src="<?php echo get_stylesheet_directory_uri();?>\assets\img\add-to-basket-2.svg"></a>
 											</li>
 										<?php endwhile; ?>
 										</ul>

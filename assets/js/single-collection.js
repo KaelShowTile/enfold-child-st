@@ -44,6 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const productFinish = selectedOption.getAttribute('data-finish');
             const productSize = selectedOption.getAttribute('data-size');
             const productImageUrl = selectedOption.getAttribute('data-image-url');
+            const productCode = selectedOption.getAttribute('data-code');
 
             if (productUnqueName) {
                 let basketItems = JSON.parse(localStorage.getItem('idea-basket-items')) || [];
@@ -55,6 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         name: productName,
                         finish: productFinish,
                         size: productSize,
+                        code: productCode,
                         imageUrl: productImageUrl,
                         dateAdded: new Date().toISOString()
                     });

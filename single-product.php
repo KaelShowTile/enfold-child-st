@@ -137,6 +137,7 @@
 			if(get_field('tile_finish', $tile)){
 				while( the_repeater_field('tile_finish', $tile) ){
 					$finish_name = get_sub_field('finish_name');
+					$product_code = get_sub_field('product_code');
 					$finish_thumb = wp_get_attachment_image_url( get_sub_field('finish_image'), 'medium' );
 					$total_finish++;
 					//get sizes
@@ -144,7 +145,7 @@
 						while( the_repeater_field('tile_size', $tile) ){
 							$finish_size = get_sub_field('tile_size_name');
 							//put finish name pair with size into array
-							$tiles_spec_list[] =  ['tile_id' => $tile, 'tile_title' => $tile_title, 'tile_thumb' => $finish_thumb, 'finish_name' => $finish_name, 'finish_size' => $finish_size];
+							$tiles_spec_list[] =  ['tile_id' => $tile, 'tile_title' => $tile_title, 'tile_thumb' => $finish_thumb, 'finish_name' => $finish_name, 'finish_size' => $finish_size, 'product_code' => $product_code];
 							$collection_finish[] =  ['finish_name' => $finish_name, 'finish_size' => $finish_size];
 							$total_size++;
 						}
@@ -296,11 +297,12 @@
 								<?php if($tile['dropdown_option']): ?>
 									<select name="select-tile-to-basket" class="select-tile-dropdown">
 									<?php foreach($tile['dropdown_option'] as $spec): ?>
-										<option value="<?php echo esc_attr($spec['tile_title'] . ' - ' . $spec['finish_name'] . ' - ' . $spec['finish_size']); ?>"
+										<option value="<?php echo esc_attr($spec['tile_title'] . ' - ' . $spec['finish_name'] . ' - ' . $spec['finish_size'] . ' - ' . $spec['product_code']); ?>"
 												data-product-name="<?php echo esc_attr($spec['tile_title'] . ' - ' . $spec['finish_name'] . ' - ' . $spec['finish_size']); ?>"
 												data-tile-name="<?php echo esc_attr($spec['tile_title']); ?>"
 												data-finish="<?php echo esc_attr($spec['finish_name']); ?>"
 												data-size="<?php echo esc_attr($spec['finish_size']); ?>"
+												data-code="<?php echo esc_attr($spec['product_code']); ?>"
 												data-image-url="<?php echo esc_attr($spec['tile_thumb']); ?>">
 											<?php echo esc_html($spec['finish_name'] . ' | ' . $spec['finish_size']); ?>
 										</option>

@@ -769,9 +769,15 @@ function glint_child_search_where($where) {
                 (
                     (glint_pm.meta_key LIKE 'tile_finish_%%_product_code' AND glint_pm.meta_value LIKE %s)
                     OR 
+                    (glint_pm.meta_key LIKE 'tile_finish_%%_finish_name' AND glint_pm.meta_value LIKE %s)
+                    OR 
+                    (glint_pm.meta_key LIKE 'tile_finish_%%_tile_size' AND glint_pm.meta_value LIKE %s)
+                    OR 
                     (glint_pm.meta_key LIKE 'tile_finish_%%_tile_size_%%_tile_size_name' AND glint_pm.meta_value LIKE %s)
                 )
                 ",
+                $like_term,
+                $like_term,
                 $like_term,
                 $like_term
             );

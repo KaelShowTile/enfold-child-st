@@ -38,6 +38,7 @@ jQuery(document).ready(function($) {
                         <h3 class="basket-item-title">${escapeHtml(item.name)}</h3>
                         <p>${escapeHtml(item.finish)}</p>
                         <p>${escapeHtml(item.size)}</p>
+                        <p>${escapeHtml(item.code)}</p>
                     </div>
                     
                 </div>
