@@ -78,22 +78,9 @@ jQuery(document).ready(function($) {
         return collections;
     }
 
-    function initializePage() {
-        // Load initial collections (first 9)
-        var initialCollections = collectionsData.slice(0, 9);
-        var initialHtml = generateCollectionsHtml(initialCollections);
-
-        // Add load more button if there are more collections
-        if (collectionsData.length > 9) {
-            initialHtml += '<div class="load-more-container" style="text-align: center; margin: 20px 0;">';
-            initialHtml += '<button class="load-more-filtered-btn btn st-link-button small-style" data-offset="9" data-term-ids="" data-total="' + collectionsData.length + '">Load More Collections</button>';
-            initialHtml += '</div>';
-        }
-
-        $('.collection-list-container.fliter-collection').html(initialHtml);
-
-        // Initialize Swiper for the initial content
+    function initSwipers() {
         $('.collection-inner-slider-thumb').each(function() {
+            if (this.swiper) return; // Prevent re-initializing if already initialized
             var thumbEl = this;
             var previewEl = $(this).siblings('.collection-inner-slider-preview')[0];
             if (previewEl) {
@@ -111,16 +98,56 @@ jQuery(document).ready(function($) {
                 });
             }
         });
+    }
 
-        // Store original category texts and update counts
+    function saveState(currentLimit) {
+        var termIds = $('.active-categories .active-cat').map(function() {
+            return parseInt($(this).data('term-id'));
+        }).get();
+        
+        var state = {
+            categories: termIds,
+            limit: currentLimit
+        };
+        sessionStorage.setItem('st_collection_state', JSON.stringify(state));
+    }
+
+    function initializePage() {
+        // Store original category texts first
         $('.child-category').each(function() {
             $(this).data('original-text', $(this).text().trim());
         });
-        updateCategoryCounts();
+
+        // Check for saved state
+        var savedState = sessionStorage.getItem('st_collection_state');
+        var initialLimit = 9;
+        var activeCategories = [];
+
+        if (savedState) {
+            savedState = JSON.parse(savedState);
+            initialLimit = savedState.limit || 9;
+            activeCategories = savedState.categories || [];
+        }
+
+        // Restore active categories in UI
+        if (activeCategories.length > 0) {
+            activeCategories.forEach(function(catId) {
+                var $catElement = $('.category-display-list .child-category[data-term-id="' + catId + '"]');
+                if ($catElement.length) {
+                    var catName = $catElement.data('term-name');
+                    var button = '<button class="active-cat" data-term-id="' + catId + '">' + catName + ' <span class="delete-icon">&times;</span></button>';
+                    $('.active-categories').append(button);
+                    $catElement.addClass('selected');
+                }
+            });
+        }
+
+        // Let filterCollections handle generation, Swiper init, counts, and saving state
+        filterCollections(0, initialLimit);
     }
 
     // Function to filter collections based on active categories
-    function filterCollections(offset = 0) {
+    function filterCollections(offset = 0, limit = 9) {
         var termIds = $('.active-categories .active-cat').map(function() {
             return parseInt($(this).data('term-id'));
         }).get();
@@ -131,15 +158,15 @@ jQuery(document).ready(function($) {
         var allFilteredCollections;
         if (termIds.length === 0) {
             allFilteredCollections = collectionsData;
-            filteredCollections = collectionsData.slice(offset, offset + 9);
         } else {
             allFilteredCollections = collectionsData.filter(function(collection) {
                 return termIds.every(function(termId) {
                     return collection.categories.includes(termId);
                 });
             });
-            filteredCollections = allFilteredCollections.slice(offset, offset + 9);
         }
+        
+        filteredCollections = allFilteredCollections.slice(offset, offset + limit);
 
         console.log('Filtered collections:', filteredCollections.length, 'of', allFilteredCollections.length);
         console.log(filteredCollections);
@@ -188,28 +215,9 @@ jQuery(document).ready(function($) {
             }
         }
 
-        // Re-initialize Swiper for the new content
-        $('.collection-inner-slider-thumb').each(function() {
-            var thumbEl = this;
-            var previewEl = $(this).siblings('.collection-inner-slider-preview')[0];
-            if (previewEl) {
-                var swiperThumb = new Swiper(thumbEl, {
-                    spaceBetween: 10,
-                    slidesPerView: 4,
-                    freeMode: true,
-                    watchSlidesProgress: true,
-                });
-                var swiperPreview = new Swiper(previewEl, {
-                    spaceBetween: 10,
-                    thumbs: {
-                        swiper: swiperThumb,
-                    },
-                });
-            }
-        });
-
-        // Update category counts
+        initSwipers();
         updateCategoryCounts();
+        saveState(currentCount);
     }
 
     function generateCollectionsHtml(collections) {
@@ -265,7 +273,7 @@ jQuery(document).ready(function($) {
             var button = '<button class="active-cat" data-term-id="' + catId + '">' + catName + ' <span class="delete-icon">&times;</span></button>';
             $('.active-categories').append(button);
             $(this).addClass('selected');
-            filterCollections(); // Filter after adding
+            filterCollections(0, 9); // Reset offset on new filter
         }
     });
 
@@ -275,7 +283,7 @@ jQuery(document).ready(function($) {
         var catId = $(this).parent('.active-cat').data('term-id');
         $(this).parent('.active-cat').remove();
         $('.child-category[data-term-id="' + catId + '"]').removeClass('selected');
-        filterCollections(); // Filter after removing
+        filterCollections(0, 9); // Reset offset on filter change
     });
 
     function updateCategoryCounts() {
@@ -327,7 +335,7 @@ jQuery(document).ready(function($) {
 
         // Load more filtered results
         setTimeout(function() {
-            filterCollections(offset);
+            filterCollections(offset, 9);
         }, 100); // Small delay to show loading state
     });
 
