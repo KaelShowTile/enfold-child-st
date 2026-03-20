@@ -62,9 +62,11 @@
 						<input type="text" name="project-reference" id="project-reference" placeholder="Project Reference">
 					</div>
 					<div class="col-flex-row one-col-flex-row">
-						<input type="checkbox" id="need-sample" name="need-sample" value="yes"><label> I would like to be on the list and receive the inside scoop on new arrivals and the latest news.</label>
-						<input type="checkbox" id="subscribe-newsletter" name="subscribe-newsletter" value="yes"><label>Click here if you want to subscribe us.</label>
 						<input type="text" name="customer-address" id="customer-address" placeholder="Address" required>
+						<input type="checkbox" id="need-sample" name="need-sample" value="yes"><label> Click here if you need the samples for above selected Items. (up to 5pcs)</label>
+					</div>
+					<div class="col-flex-row one-col-flex-row no-top-margin">
+						<input type="checkbox" id="subscribe-newsletter" name="subscribe-newsletter" value="yes"><label>Click here if you want to subscribe us.</label>
 					</div>
 
 					<input type="submit" id="submit-form-btn" value="Send" class="button" data-sending-label="Sending">

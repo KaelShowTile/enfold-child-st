@@ -159,7 +159,6 @@ function send_tile_enquiry_email() {
 
     // Send email to admin/support
     $additional_recipients = array(
-        'sales@showtile.com.au',
         'marketing@showtile.com.au'
     );
 

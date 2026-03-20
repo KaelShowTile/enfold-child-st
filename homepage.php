@@ -344,7 +344,7 @@
 			<div class="st-overlay bottom-left">
 				<div class="st-overlay-inner">
 					<span class="tagline">TRENDING</span>
-					<h2><?php echo $trending_video_title; ?></h2>
+					<h1><?php echo $trending_video_title; ?></h1>
 					<p><?php echo $trending_video_description; ?></p>
 					<a href="<?php echo $trending_video_link; ?>" class="st-link-button white-color-schema">Explore Now ></a>
 				</div>
