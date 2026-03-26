@@ -533,6 +533,12 @@ svg.swiper-navigation-icon{height: 14px; color: #000000; stroke: #000;}
     #collection-fliters.mobile-only .collection-fliter-btn:focus{box-shadow: none; color: #000;}
     #collection-fliters.mobile-only .accordion-body{padding: 0 5px 20px;}
 
+    /* Single Collection */
+    .tile-card-detail{position: relative;}
+    .tile-card-left{width: 100%;}
+    .tile-card-left a{width: calc(100% - 35px); display: inline-block;}
+    .tile-card-detail .add-tile-to-basket{width: 20px; position: absolute !important; right: 0; margin-top: 8px;}
+
     /* element */
     .collection-list-container{gap:20px;}
     .collection-list-container .collection-card{width: calc((100% - 20px) / 2);}

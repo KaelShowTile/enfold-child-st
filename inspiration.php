@@ -49,7 +49,7 @@
 			$inspiration_pages_html .= '<div class="swiper-wrapper">';
 			foreach($inspiration_pages_group as $row){
 				$inspiration_pages_html .= '<div class="swiper-slide">';
-				$inspiration_pages_html .= '<img src="' . $row['page_thumbnail'] . '">';
+				$inspiration_pages_html .= '<a href="' . $row['page_link'] . '"><img src="' . $row['page_thumbnail'] . '"></a>';
 				$inspiration_pages_html .= '<h3>' . $row['page_title'] . '</h3>';
 				$inspiration_pages_html .= '<p>' . $row['page_description'] . '</p>';
 				$inspiration_pages_html .= '<a href="' . $row['page_link'] . '" class="st-link-button small-style">Explore Now</a>';
