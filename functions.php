@@ -258,9 +258,7 @@ function get_collections_html($offset = 0, $limit = 12, $term_ids = null, $load_
     }
     // If term_ids is null and not on tax page, load all collections
     $query = new WP_Query($args);
-    $slider_image_no = 0;
-    $slider_thumb_no = 0;
-    
+
     $html = '';
     if ($query->have_posts()) {
         while ($query->have_posts()) {
@@ -270,6 +268,9 @@ function get_collections_html($offset = 0, $limit = 12, $term_ids = null, $load_
             $collection_id = get_the_ID();
             $collection_thumb_preview = get_the_post_thumbnail($collection_id, 'medium');
             $collection_thumb_thumb = get_the_post_thumbnail($collection_id, 'thumbnail');
+
+            $slider_image_no = 0;
+            $slider_thumb_no = 0;
             
             //output html
             $html .= '<div class="collection-card">';

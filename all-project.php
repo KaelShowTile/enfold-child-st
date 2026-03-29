@@ -52,7 +52,7 @@
 					<a href="<?php echo $residential_url; ?>">Residential</a>
 				</div>
 
-				<?php echo get_project_html(0, 8, $residential_id, true); ?>
+				<?php echo get_project_html(0, 8, null, true); ?>
 
 				<script type="text/javascript" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/js/st-tab.js" id="st-tab-js"></script>
 

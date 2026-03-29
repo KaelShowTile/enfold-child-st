@@ -163,7 +163,7 @@ jQuery(document).ready(function($) {
                             <h3 style="margin: 0 0 10px; font-size: 16px; font-weight: bold; color: #333;">${escapeHtml(title)}</h3>
                             <p style="margin: 0 0 5px; font-size: 14px; color: #555;"><strong>Finish:</strong> ${escapeHtml(finish)}</p>
                             <p style="margin: 0; font-size: 14px; color: #555;"><strong>Size:</strong> ${escapeHtml(size)}</p>
-                            <p style="margin: 0; font-size: 14px; color: #555;"><strong>Size:</strong> ${escapeHtml(code)}</p>
+                            <p style="margin: 0; font-size: 14px; color: #555;"><strong>Code:</strong> ${escapeHtml(code)}</p>
                         </td>
                         ${note ? `
                         <td style="padding: 15px; vertical-align: top; background-color: #f8f9fa; font-family: Arial, sans-serif; width: 40%;">
