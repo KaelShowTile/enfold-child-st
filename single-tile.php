@@ -76,7 +76,7 @@
 							<?php $finishName = get_sub_field('finish_name'); 
 							$productCode = get_sub_field('product_code');?>
 							<h2 class="accordion-header">
-							<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#<?php echo $finishName; ?>" aria-expanded="true" aria-controls="collapseOne">
+							<button class="accordion-button" id="<?php echo $productCode; ?>" type="button" data-bs-toggle="collapse" data-bs-target="#<?php echo $finishName; ?>" aria-expanded="true" aria-controls="collapseOne">
 								<!-- Load finish name-->
 								<h5><?php echo $finishName; ?><br><span>Code: <?php echo $productCode; ?></span><img src="<?php echo get_stylesheet_directory_uri();?>\assets\img\copy.svg" class="copy-tile-code" value="<?php echo $productCode; ?>"></h5>
 							</button>

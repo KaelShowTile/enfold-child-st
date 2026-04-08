@@ -38,11 +38,15 @@
 	?>
 
 		<div class='container_wrap container_wrap_first main_color <?php avia_layout_class( 'main' ); ?>'>
-
+			
 			<div class='container'>
 
 				<main class='template-page content  <?php avia_layout_class( 'content' ); ?> units <?php echo $main_class; ?>' <?php avia_markup_helper(array('context' => 'content','post_type'=>'page'));?>>
 
+					<div class="full-width-breadcrumbs-container container">
+						<div class="breadcrumbs tile-breadcrumbs"><?php echo do_shortcode('[av_breadcrumbs]'); ?></div>
+					</div>
+				
 					<div class="category-list flex_column av_one_fourth  avia-builder-el-0  el_before_av_three_fourth  avia-builder-el-first  first flex_column_div">
 						<div class="active-categories"></div>
 						<div class="category-display-list">

@@ -43,6 +43,9 @@
 	?>
 
 		<div class='container_wrap container_wrap_first main_color <?php avia_layout_class( 'main' ); ?>'>
+			<div class="full-width-breadcrumbs-container float-breadcrumb container">
+				<div class="breadcrumbs tile-breadcrumbs"><?php echo do_shortcode('[av_breadcrumbs]'); ?></div>
+			</div>
 
 			<div class='container'>
 				<h1 class="page-title">All Project</h1>

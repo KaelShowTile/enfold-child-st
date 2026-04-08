@@ -308,7 +308,7 @@ function get_collections_html($offset = 0, $limit = 12, $term_ids = null, $load_
             }
 
             $html .= '</div>';
-            $html .= '<a href="' . esc_url($link) . '">';
+            $html .= '<a href="' . esc_url($link) . '" class="collection-title-link-container">';
             $html .= '<h3>' . esc_html($title) . '</h3>';
             $html .= '</a>';
             $html .= '</div>';
@@ -735,9 +735,9 @@ function av_breadcrumbs_shortcode( $atts ) {
 add_shortcode( 'av_breadcrumbs', 'av_breadcrumbs_shortcode' );
 
 
-/**
- * Extend the glint search plugin to include ACF custom fields.
- */
+/**Extend the glint search plugin to include ACF custom fields.
+
+ 
 
 // 1. Join the postmeta table with a UNIQUE ALIAS (glint_pm)
 add_filter('posts_join', 'glint_child_search_join');
@@ -803,3 +803,4 @@ function glint_child_search_distinct($distinct) {
     }
     return $distinct;
 }
+*/

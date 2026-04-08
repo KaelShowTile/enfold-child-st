@@ -31,9 +31,6 @@ function send_tile_enquiry_email() {
     $customer_address = sanitize_textarea_field($form_data['customer_address']);
     $basket_content = wp_kses_post($form_data['basket_content']); // Allow basic HTML
 
-    //get admin email
-    $admin_email = get_option('admin_email');
-
     // Validate required fields
     if (empty($customer_name) || empty($customer_type) || empty($contact_no) || empty($customer_email) || empty($customer_address)) {
         wp_send_json_error('Missing required fields');
@@ -157,10 +154,13 @@ function send_tile_enquiry_email() {
         'Reply-To: sales@showtile.com.au'
     );
 
-    // Send email to admin/support
+    //get admin email
+    $admin_email = 'marketing@showtile.com.au';
+
+    /* Send email to admin/support
     $additional_recipients = array(
         'marketing@showtile.com.au'
-    );
+    );*/
 
     // Send to admin
     $admin_sent = wp_mail($admin_email, $subjectAdmin, $messageAdmin, $headersAdmin);
@@ -168,13 +168,13 @@ function send_tile_enquiry_email() {
     //Send to customer
     $customer_sent = wp_mail($customer_email, $subjectCustomer, $messageCustomer, $headersCustomer);
 
-    // Send to additional recipients
+    /* Send to additional recipients
     $additional_sent = true;
     foreach ($additional_recipients as $recipient) {
         if (!wp_mail($recipient, $subjectAdmin, $messageAdmin, $headersAdmin)) {
             $additional_sent = false;
         }
-    }
+    }*/
 
     if ($admin_sent && $additional_sent) {
         // Subscribe to Mailchimp if checkbox was ticked
