@@ -110,7 +110,7 @@
 						<div class="accordion-item">
 							<h5 class="accordion-header">
 								<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collection-qna-<?php echo $qna_index; ?>" aria-expanded="true" aria-controls="collapseOne">
-									<?php the_sub_field('collection_category_question'); ?>
+									v
 								</button>
 							</h5>
 							<div id="collection-qna-<?php echo $qna_index; ?>" class="accordion-collapse collapse" data-bs-parent="#collection-qa-accordion">
@@ -126,6 +126,22 @@
 			</div>
 			<?php endif; ?>
 
+			<!-- For SEO Content -->
+			<?php if(have_rows('collection_seo_content', $term->taxonomy . '_' . $term->term_id)):?>
+				<div class ="collection-feature-container container">
+				<?php while(have_rows('collection_seo_content', $term->taxonomy . '_' . $term->term_id)): the_row();?>
+					<div class="<?php the_sub_field('collection_seo_content_layout'); ?>">
+						<img src="<?php the_sub_field('collection_seo_content_img'); ?>" class="collection-feature-image">
+						<div class="collection-feature-content">
+							<?php the_sub_field('collection_seo_content_text'); ?>
+						</div>
+					</div>
+				<?php endwhile; ?>
+				</div>
+			<?php endif; ?>
+
 		</div><!-- close default .container_wrap element -->
+
+		<script src="<?php echo get_stylesheet_directory_uri();?>/assets/js/colllection-category.js"></script>
 
 <?php get_footer();

@@ -338,7 +338,7 @@
 			
 			<!-- Related project -->
 			<?php if($collection_projects):?>
-			<div class="collection-tile-container collection-container">
+			<div class="collection-project-container collection-container">
 				<div class="inner-container-heading">
 					<h2><?php the_title(); ?> Project</h2>
 				</div>

@@ -133,6 +133,7 @@ ul{padding-left: 0; margin-left: 0;}
 .collection-description-container tr td{border-width: 0; font-size: 1rem; padding: 0 10px;}
 .collection-description-container tr td.attribute-name{min-width: 180px; text-transform: uppercase; width: 20%;}
 .collection-description-container tr td p{margin-bottom: 0;}
+.collection-project-container{margin-top: 30px;}
 .collection-pdf-container{min-height: 46px; margin: 20px 0 0;}
 #top #collection-pdf-btn{cursor: pointer; position: absolute; background: #ffffff; border-radius: 0; z-index: 9999; margin-top: 1px; padding: 10px 60px 9px;}
 #top .st-link-button.small-style.mobile-only{display: none;}
@@ -186,6 +187,10 @@ ul{padding-left: 0; margin-left: 0;}
 #top .collection-qa-container.collection-category-qa-container #collection-qa-accordion .accordion-item{border-bottom: 1px solid #333; border-radius: 0;}
 .collection-qa-container.collection-category-qa-container .accordion-body{padding-top: 0;}
 .collection-qa-container.collection-category-qa-container #collection-qa-accordion .accordion-button{font-size: 1rem; text-transform: uppercase;}
+.collection-feature-container.container .left, .collection-feature-container.container .right{display: flex; margin-bottom: 60px; align-items: center;}
+.collection-feature-container .collection-feature-image{width: 64%; margin-right: 2.666%;}
+.collection-feature-container .collection-feature-content{width: 33.333%;}
+.collection-feature-container.container .right .collection-feature-image{width: 64%; margin-left: 2.666%; margin-right: 0; order: 2;}
 
 /* footer */
 #st-footer-container a{color: #fff;}
@@ -594,6 +599,13 @@ svg.swiper-navigation-icon{height: 14px; color: #000000; stroke: #000;}
     .collection-qa-container.collection-category-qa-container .collection-qa-title-section{width: 100%;}
     .collection-qa-container.collection-category-qa-container #collection-qa-accordion{width: 100%;}
     .collection-qa-container.collection-category-qa-container .container{margin: auto 5% !important;}
+
+    .collection-feature-container.container .left, .collection-feature-container.container .right{display: inline-block; margin-bottom: 20px;}
+    .collection-feature-container .collection-feature-image{width: 100%; margin: auto 0 15px;}
+    .collection-feature-container.container .right .collection-feature-image{width: 100%; margin: auto 0 15px;}
+    .collection-feature-container .collection-feature-content{width: 100%; margin: auto 0;}
+    .collection-feature-container .right .collection-feature-content{width: 100%; margin: auto 0;}
+    .collection-feature-container.container .right .collection-feature-image{order: 0;}
 
     .responsive #top #wrap_all .template-single-tile .tile-title-container{width: 100%; max-width: 100%;}
     .tile-sidebar{width: 100%;}
