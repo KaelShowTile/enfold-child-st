@@ -48,6 +48,7 @@
 	$collection_material = [];
 	$collection_application = [];
 	$collection_variation = [];
+	$collection_thickness = [];
 	$collection_finish = [];//get all finish-size pair
 	$grouped_finish = [];//combine $collection_finish by finish name & merge size
 	$collection_tiles_list = [];
@@ -62,6 +63,7 @@
 			$tile_material = get_field('tile_material', $tile);
 			$tile_application = get_field('tile_application', $tile);
 			$tile_variation = get_field('tile_variation', $tile);
+			$tile_thickness = get_field('tile_thickness', $tile);
 			$tile_finish = get_field('tile_finish', $tile);//repeater field
 			$tiles_spec_list = [];
 
@@ -111,6 +113,10 @@
 
 			if (!empty($tile_variation && !in_array($tile_variation, $collection_variation))) {
 				$collection_variation[] = $tile_variation;
+			}
+
+			if (!empty($tile_thickness && !in_array($tile_thickness, $collection_thickness))) {
+				$collection_thickness[] = $tile_thickness;
 			}
 
 			//get thumbnail
@@ -265,6 +271,14 @@
 							<div class="description-meta-col half-col">
 								<p class="attribute-name">Variation</p>
 								<p><?php echo $variation_string; ?></p>
+							</div>
+						<?php endif; ?>
+
+						<?php if (!empty($collection_thickness)): 
+							$thickness_string = implode(", ", $collection_thickness); ?>
+							<div class="description-meta-col half-col">
+								<p class="attribute-name">Thickness</p>
+								<p><?php echo $thickness_string; ?></p>
 							</div>
 						<?php endif; ?>
 

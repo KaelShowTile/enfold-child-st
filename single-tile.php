@@ -168,6 +168,13 @@
 								<p><?php the_field('tile_variation'); ?></p>
 							</div>
 						<?php endif; ?>
+
+						<?php if(get_field('tile_thickness')): ?>
+							<div class="description-meta-col half-col">
+								<p class="attribute-name">Thickness</p>
+								<p><?php the_field('tile_thickness'); ?></p>
+							</div>
+						<?php endif; ?>
 						
 					</div>
 				</div>
