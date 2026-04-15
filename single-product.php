@@ -34,13 +34,17 @@
 	$catalogue_pdf_shortcode = "";
 
 	if (strpos($catalogue_pdf_url, '0.0.138.123') !== false) {
-		$parsed_url = parse_url($catalogue_pdf_url);
-		$catalogue_pdf_url = site_url($parsed_url['path']);
+		$site_url = site_url(); 
+		$catalogue_pdf_url = str_replace(array('http://0.0.138.123', '0.0.138.123'), $site_url, $catalogue_pdf_url);
 	}
+
+	error_log("PDF URL: " . $catalogue_pdf_url);
 	
 	if($catalogue_pdf_url){
 		$catalogue_pdf_shortcode = '[dflip source="' . esc_url($catalogue_pdf_url) . '" viewertype="flipbook" is3d="true" height="750px"][/dflip]';
 	}
+
+	error_log("PDF SHORTCODE: " . $catalogue_pdf_shortcode);
 	
 	$h1_title = get_field('collection_custom_h1_header');
 	if($h1_title == null || $h1_title == ""){
