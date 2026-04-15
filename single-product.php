@@ -32,6 +32,12 @@
 
 	$catalogue_pdf_url = get_field('catalogue_pdf');
 	$catalogue_pdf_shortcode = "";
+
+	if (strpos($catalogue_pdf_url, '0.0.138.123') !== false) {
+		$parsed_url = parse_url($catalogue_pdf_url);
+		$catalogue_pdf_url = site_url($parsed_url['path']);
+	}
+	
 	if($catalogue_pdf_url){
 		$catalogue_pdf_shortcode = '[dflip source="' . esc_url($catalogue_pdf_url) . '" viewertype="flipbook" is3d="true" height="750px"][/dflip]';
 	}
