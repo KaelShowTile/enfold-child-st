@@ -735,6 +735,15 @@ function av_breadcrumbs_shortcode( $atts ) {
 add_shortcode( 'av_breadcrumbs', 'av_breadcrumbs_shortcode' );
 
 
+add_action( 'phpmailer_init', 'debug_my_wp_mail', 999 );
+function debug_my_wp_mail( $phpmailer ) {
+    error_log( '--- email debug ---' );
+    error_log( 'To: ' . print_r( $phpmailer->getToAddresses(), true ) );
+    error_log( 'CC: ' . print_r( $phpmailer->getCcAddresses(), true ) );
+    error_log( 'BCC: ' . print_r( $phpmailer->getBccAddresses(), true ) );
+}
+
+
 /**Extend the glint search plugin to include ACF custom fields.
 
  
