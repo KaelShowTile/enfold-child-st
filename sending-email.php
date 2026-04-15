@@ -176,7 +176,7 @@ function send_tile_enquiry_email() {
         }
     }*/
 
-    if ($admin_sent && $additional_sent) {
+    if ($admin_sent) {
         // Subscribe to Mailchimp if checkbox was ticked
         if ($subscribe_newsletter === 'yes') {
             st_subscribe_to_mailchimp($customer_email, $customer_name);

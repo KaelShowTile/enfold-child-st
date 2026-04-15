@@ -33,6 +33,8 @@
 	$catalogue_pdf_url = get_field('catalogue_pdf');
 	$catalogue_pdf_shortcode = "";
 
+	error_log("Original PDF URL: " . $catalogue_pdf_url);
+
 	if (strpos($catalogue_pdf_url, '0.0.138.123') !== false) {
 		$site_url = site_url(); 
 		$catalogue_pdf_url = str_replace(array('http://0.0.138.123', '0.0.138.123'), $site_url, $catalogue_pdf_url);
