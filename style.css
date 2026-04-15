@@ -257,7 +257,7 @@ ul{padding-left: 0; margin-left: 0;}
 
 .st-video-container { position: relative; width: 100vw; height: 100vh; overflow: hidden; }
 .st-video-wrapper { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-.st-video-iframe-container { position: relative; top: 50%; left: 50%; transform: translate(-50%, -50%);  width: 100%; height: 100%; min-width: 100%; min-height: 100%; background: #000; background-image: url(https://showtile.com.au/staging/wp-content/uploads/2025/12/fade-stagger-squares.svg); background-repeat: no-repeat; background-attachment: fixed; background-position: center; background-size: 50px;}
+.st-video-iframe-container { position: relative; top: 50%; left: 50%; transform: translate(-50%, -50%);  width: 100%; height: 100%; min-width: 100%; min-height: 100%; background: #000; background-image: url(https://showtile.com.au/wp-content/uploads/2025/12/fade-stagger-squares.svg); background-repeat: no-repeat; background-attachment: fixed; background-position: center; background-size: 50px;}
 .st-video-iframe-container::before { content: ''; display: block; padding-top: 56.25%; }
 .st-video-iframe-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; transform: scale(1.2);  transform-origin: center; }
 .st-overlay-outer{position: relative;}
@@ -521,7 +521,7 @@ svg.swiper-navigation-icon{height: 14px; color: #000000; stroke: #000;}
     /* home */
     .st-video-container{height: calc(100vh - 60px);}
     .st-mobile-video-container.mobile-only{display: inline-block; width: 100%;}
-    .st-mobile-video-container iframe{background: #000; width: 100%; background-image: url(https://showtile.com.au/staging/wp-content/uploads/2025/12/fade-stagger-squares.svg); background-repeat: no-repeat; background-position: center; background-size: 50px;}
+    .st-mobile-video-container iframe{background: #000; width: 100%; background-image: url(https://showtile.com.au/wp-content/uploads/2025/12/fade-stagger-squares.svg); background-repeat: no-repeat; background-position: center; background-size: 50px;}
     .st-overlay.bottom-left .st-overlay-inner{width: 80%; margin: 0; padding: 20px 30px;}
     .st-overlay.bottom-left h2{font-size: 1.5rem;}
 
