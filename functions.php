@@ -281,7 +281,7 @@ function get_collections_html($offset = 0, $limit = 12, $term_ids = null, $load_
             if($collection_tiles){ 
                 $html .= '<div class="swiper collection-inner-slider-preview">';
                 $html .= '<div class="swiper-wrapper">';
-                $html .= '<div class="swiper-slide">' . $collection_thumb_preview . '</div>';
+                $html .= '<div class="swiper-slide"><a href="' . esc_url($link) . '">' . $collection_thumb_preview . '</a></div>';
 		        foreach($collection_tiles as $tile){
                     $slider_image_no = $slider_image_no + 1;
                     if($slider_image_no < 6){

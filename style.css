@@ -327,7 +327,7 @@ svg.swiper-navigation-icon{height: 14px; color: #000000; stroke: #000;}
 .st-mute-btn:hover { background: rgba(0, 0, 0, 0.9); }
 
 .home-banner-container{margin: 80px auto;}
-.home-banner-container h2{font-size: 3rem;}
+.home-banner-container h2{font-size: 3rem; line-height: 1;}
 .home-banner-container .banner-bottom-container{position: absolute; bottom: 10px;}
 .home-banner-container .banner-bottom-container .st-link-button{margin-top: 30px;}
 .home-banner-container .av_three_fifth img{margin-left: 8%; width: 92%;}
@@ -450,6 +450,13 @@ svg.swiper-navigation-icon{height: 14px; color: #000000; stroke: #000;}
     .tile-details .swiper-slide img.size-full{height: 400px;}
 }
 
+@media only screen and (max-width: 1280px){
+    #top .home-banner-container .flex_column_table{display: flex; flex-wrap: wrap; align-content: space-around; align-items: center;}
+    #top .home-banner-container .flex_column_table .flex_column_table_cell{display: inline-block; margin-left: 0;}
+    .home-banner-container .banner-bottom-container{position: relative; margin-top: 40px;}
+    #top .home-banner-container .flex_column_table .flex_column_table_cell.av_two_fifth{width: 42.4%;}
+}
+
 @media only screen and (max-width: 980px){
     .project-list-container.no-fliter{gap: 20px;}
     .project-list-container.no-fliter .single-project-card-container{width: calc((100% - 40px) / 3);}
@@ -525,8 +532,9 @@ svg.swiper-navigation-icon{height: 14px; color: #000000; stroke: #000;}
     .st-overlay.bottom-left .st-overlay-inner{width: 80%; margin: 0; padding: 20px 30px;}
     .st-overlay.bottom-left h2{font-size: 1.5rem;}
 
-    .container.home-banner-container{padding-top: 20px;}
+    .container.home-banner-container{padding-top: 20px; margin: 20px auto;}
     .home-banner-container .banner-bottom-container{position: relative; bottom: 0; margin-top: 20px;}
+    #top .home-banner-container .flex_column_table .flex_column_table_cell.av_two_fifth{width: 100%;}
     .home-feature-project-inner .flex_column{margin-bottom: 40px;}
     .home-other-project-inner .swiper-slide{width: 75%; margin-right: 0 !important;}
     .home-feature-page-container{padding-top: 80px;}
