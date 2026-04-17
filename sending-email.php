@@ -166,9 +166,8 @@ function send_tile_enquiry_email() {
     $admin_sent = wp_mail($admin_email, $subjectAdmin, $messageAdmin, $headersAdmin);
 
     //Send to customer
-    $customer_sent = wp_mail($customer_email, $subjectCustomer, $messageCustomer, $headersCustomer);
+    //$customer_sent = wp_mail($customer_email, $subjectCustomer, $messageCustomer, $headersCustomer);
     
-    error_log("customer email: " . $customer_email);
     /* Send to additional recipients
     $additional_sent = true;
     foreach ($additional_recipients as $recipient) {
