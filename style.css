@@ -37,6 +37,8 @@ ul{padding-left: 0; margin-left: 0;}
 .full-width-breadcrumbs-container.container{margin-bottom: -40px;}
 .full-width-breadcrumbs-container.float-breadcrumb.container{position: relative; margin-bottom: 0;}
 .full-width-breadcrumbs-container.float-breadcrumb.container .breadcrumbs.tile-breadcrumbs{position: absolute; right: 0;}
+.breadcrumbs.tile-breadcrumbs span{font-size: 0.8rem; padding-right: 0;}
+.breadcrumbs.tile-breadcrumbs a{padding-right: 0;}
 .inner-container-heading h2{margin-top: 20px;}
 .col-flex-row{display: flex; flex-wrap: wrap; }
 .two-col-flex-row{gap: 20px;}
