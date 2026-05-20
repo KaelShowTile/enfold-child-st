@@ -352,7 +352,7 @@
 
 			<div class="st-video-wrapper">
 				<div class="st-video-iframe-container">
-					<iframe src="https://player.vimeo.com/video/<?php echo $trending_video_id; ?>?background=1&autoplay=1&loop=1&muted=1&autopause=0" frameborder="0" allow="autoplay; fullscreen" allowfullscreen>
+					<iframe src="https://player.vimeo.com/video/<?php echo $trending_video_id; ?>?autoplay=1&loop=1&muted=1&autopause=0" frameborder="0" allow="autoplay; fullscreen" allowfullscreen>
 					</iframe>
 				</div>
 			</div>
@@ -360,7 +360,7 @@
 		</div>
 
 		<div class="st-mobile-video-container mobile-video-banner mobile-only" style="margin: calc(100vw / <?php echo $trending_video_container_margin; ?>) 0;">
-			<iframe src="https://player.vimeo.com/video/<?php echo $trending_video_id; ?>?background=1&autoplay=1&loop=1&muted=1&autopause=0" frameborder="0" allow="autoplay; fullscreen" allowfullscreen style="width:100%; height: calc(100vw / <?php echo $trending_video_ratio; ?>); transform: scale(<?php echo $trending_video_scale; ?>);"></iframe>
+			<iframe src="https://player.vimeo.com/video/<?php echo $trending_video_id; ?>?autoplay=1&loop=1&muted=1&autopause=0" frameborder="0" allow="autoplay; fullscreen" allowfullscreen style="width:100%; height: calc(100vw / <?php echo $trending_video_ratio; ?>); transform: scale(<?php echo $trending_video_scale; ?>);"></iframe>
 
 			<!-- Optional content overlay -->
 			<div class="st-overlay-outer">
