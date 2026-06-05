@@ -317,7 +317,7 @@
 					<div class="single-tile-card">
 						<a href="<?php echo $tile['title_link']; ?>">
 							<?php if($tile['has_360'] == true):?>
-								<img src="https://showtile.com.au/wp-content/uploads/2026/03/ST-360-2.png" class="tile-virtual-threater-icon">
+								<img src="https://showtile.com.au/wp-content/uploads/2026/06/360-icon-for-tile-face.svg" class="tile-virtual-threater-icon">
 							<?php endif; ?>
 							<img src="<?php echo $tile['title_thumb_url']; ?>" alt="<?php echo $tile['tile_title']; ?>">
 						</a>
