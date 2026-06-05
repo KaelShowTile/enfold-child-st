@@ -131,7 +131,7 @@
 				<div class ="collection-feature-container container">
 				<?php while(have_rows('collection_seo_content', $term->taxonomy . '_' . $term->term_id)): the_row();?>
 					<div class="<?php the_sub_field('collection_seo_content_layout'); ?>">
-						<img src="<?php the_sub_field('collection_seo_content_img'); ?>" class="collection-feature-image">
+						<img src="<?php the_sub_field('collection_seo_content_img'); ?>" class="collection-feature-image" alt="<?php single_term_title(); ?>">
 						<div class="collection-feature-content">
 							<?php the_sub_field('collection_seo_content_text'); ?>
 						</div>

@@ -8,6 +8,7 @@
 	 */
 	get_header();
     $collection_id = get_the_ID();
+	$collection_title = get_the_title();
 
 	$title = __( 'Collection', 'avia_framework' ); //default blog title
 	$t_link = home_url( '/' );
@@ -44,7 +45,7 @@
 	
 	$h1_title = get_field('collection_custom_h1_header');
 	if($h1_title == null || $h1_title == ""){
-		$h1_title = get_the_title();
+		$h1_title = $collection_title;
 	}
 	$collection_tiles = get_field('tiles_in_collection');
 
@@ -145,12 +146,17 @@
 			$total_finish_suffix = "finish";
 			$total_size = 0;
 			$total_size_suffix = "size";
+			$has360 = false;
 			
 			if(get_field('tile_finish', $tile)){
 				while( the_repeater_field('tile_finish', $tile) ){
 					$finish_name = get_sub_field('finish_name');
 					$product_code = get_sub_field('product_code');
 					$finish_thumb = wp_get_attachment_image_url( get_sub_field('finish_image'), 'medium' );
+					$virtualThreaterURL = get_sub_field('visual_theatre');
+					if($virtualThreaterURL){
+						$has360 = true;
+					}
 					$total_finish++;
 					//get sizes
 					if(get_sub_field('tile_size')){
@@ -171,7 +177,7 @@
 				}
 			}
 
-			$collection_tiles_list[] = ['tile_title' => $tile_title, 'title_link' => $permalink, 'title_thumb_url' => $tile_thumb, 'total_finish' => $total_finish, 'total_size' => $total_size, 'total_finish_suffix' => $total_finish_suffix, 'total_size_suffix' => $total_size_suffix, 'dropdown_option' => $tiles_spec_list];
+			$collection_tiles_list[] = ['tile_title' => $tile_title, 'title_link' => $permalink, 'title_thumb_url' => $tile_thumb, 'total_finish' => $total_finish, 'total_size' => $total_size, 'total_finish_suffix' => $total_finish_suffix, 'total_size_suffix' => $total_size_suffix, 'dropdown_option' => $tiles_spec_list, 'has_360' => $has360];
 		}
 	}
 
@@ -202,13 +208,13 @@
 	if($collection_gallery || $collection_video){
 		if($collection_video){
 			foreach($collection_video as $video_item){
-				$collection_slider_output .= '<div class="swiper-slide"><a class="noLightbox st-lightbox" href="' . $video_item['video_url'] . '"><img src="' . get_stylesheet_directory_uri() . '/assets/img/play-button.svg" class="video-play-button"></a>' . wp_get_attachment_image(  $video_item['thumbnail_id'], 'full') . '</div>';
+				$collection_slider_output .= '<div class="swiper-slide"><a class="noLightbox st-lightbox" href="' . $video_item['video_url'] . '"><img src="' . get_stylesheet_directory_uri() . '/assets/img/play-button.svg" class="video-play-button" alt="play video"></a>' . wp_get_attachment_image(  $video_item['thumbnail_id'], 'full') . '</div>';
 			}
 		}
 		
 		if($collection_gallery){
 			foreach($collection_gallery as $gallery_item){
-				$collection_slider_output .= '<div class="swiper-slide"><a href="'. wp_get_attachment_image_url($gallery_item['image_id'], 'full') .'">' . wp_get_attachment_image($gallery_item['image_id'], 'full' ) . '</a><p class="tile-name">' . esc_html($gallery_item['tile_title']) . '</p></div>';
+				$collection_slider_output .= '<div class="swiper-slide"><a href="'. wp_get_attachment_image_url($gallery_item['image_id'], 'full') .'" alt="' . $collection_title . '">' . wp_get_attachment_image($gallery_item['image_id'], 'full' ) . '</a><p class="tile-name">' . esc_html($gallery_item['tile_title']) . '</p></div>';
 			}	
 		}
 	}
@@ -309,7 +315,12 @@
 				<div class="collection-tiles-list">
 				<?php foreach($collection_tiles_list as $tile): ?>
 					<div class="single-tile-card">
-						<a href="<?php echo $tile['title_link']; ?>"><img src="<?php echo $tile['title_thumb_url']; ?>" alt="<?php echo $tile['tile_title']; ?>"></a>
+						<a href="<?php echo $tile['title_link']; ?>">
+							<?php if($tile['has_360'] == true):?>
+								<img src="https://showtile.com.au/wp-content/uploads/2026/03/ST-360-2.png" class="tile-virtual-threater-icon">
+							<?php endif; ?>
+							<img src="<?php echo $tile['title_thumb_url']; ?>" alt="<?php echo $tile['tile_title']; ?>">
+						</a>
 						<div class="tile-card-detail">
 							<div class="tile-card-left">
 								<a href="<?php echo $tile['title_link']; ?>"><h5><?php echo $tile['tile_title']; ?></h5></a>
@@ -330,7 +341,7 @@
 									</select>
 								<?php endif; ?>
 							</div>
-							<a class="add-tile-to-basket" ><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/add-to-basket-2.svg"></a>
+							<a class="add-tile-to-basket" ><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/add-to-basket-2.svg" alt="add tile to basket"></a>
 						</div>
 					</div>		
 				<?php endforeach; ?>

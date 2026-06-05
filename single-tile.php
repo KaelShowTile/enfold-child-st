@@ -46,7 +46,7 @@
 	if($tile_video){
 		$tile_video_url = $tile_video['video_url'];
 		$tile_video_thumb_id = $tile_video['video_thumbnail'];
-		$tile_slider_output .= '<div class="swiper-slide"><a class="noLightbox st-lightbox" href="' . $tile_video_url . '"><img src="' . get_stylesheet_directory_uri() . '/assets/img/play-button.svg" class="video-play-button"></a>' . wp_get_attachment_image( $tile_video_thumb_id, 'full') . '</div>';
+		$tile_slider_output .= '<div class="swiper-slide"><a class="noLightbox st-lightbox" href="' . $tile_video_url . '"><img src="' . get_stylesheet_directory_uri() . '/assets/img/play-button.svg" class="video-play-button" alt="Play video"></a>' . wp_get_attachment_image( $tile_video_thumb_id, 'full') . '</div>';
 	}
 
 	if($tile_images){
@@ -78,7 +78,7 @@
 							<h2 class="accordion-header">
 							<button class="accordion-button" id="<?php echo $productCode; ?>" type="button" data-bs-toggle="collapse" data-bs-target="#<?php echo $finishName; ?>" aria-expanded="true" aria-controls="collapseOne">
 								<!-- Load finish name-->
-								<h5><?php echo $finishName; ?><br><span>Code: <?php echo $productCode; ?></span><img src="<?php echo get_stylesheet_directory_uri();?>\assets\img\copy.svg" class="copy-tile-code" value="<?php echo $productCode; ?>"></h5>
+								<h5><?php echo $finishName; ?><br><span>Code: <?php echo $productCode; ?></span><img src="<?php echo get_stylesheet_directory_uri();?>\assets\img\copy.svg" class="copy-tile-code" value="<?php echo $productCode; ?>" alt="copy tile name"></h5>
 							</button>
 							</h2>
 							<div id="<?php echo $finishName; ?>" class="accordion-collapse collapse show" data-bs-parent="#tile-finish-accordion">
@@ -86,7 +86,7 @@
 									<!-- Load finish image-->
 									<?php $finishImageID = get_sub_field('finish_image'); ?>
 									<a class="Lightbox" href="<?php echo wp_get_attachment_image_url( $finishImageID, 'full'); ?>">
-										<img src="<?php echo wp_get_attachment_image_url( $finishImageID, 'medium'); ?>">
+										<img src="<?php echo wp_get_attachment_image_url( $finishImageID, 'medium'); ?>" alt="<?php the_title(); ?>">
 									</a>
 									<!-- Load sizes-->
 									<?php if( have_rows('tile_size') ): ?>
@@ -94,7 +94,7 @@
 										<?php while( have_rows('tile_size') ) : the_row(); ?>
 											<li>
 												<span><?php the_sub_field('tile_size_name'); ?></span>
-												<a id="add-to-basket" data-product-name="<?php echo get_the_title() . ' - ' . $finishName . ' - ' . get_sub_field('tile_size_name') . ' - ' . $productCode ; ?>" data-tile-name="<?php echo the_title(); ?>" data-product-finish="<?php echo $finishName; ?>" data-product-size="<?php echo get_sub_field('tile_size_name'); ?>" data-product-code="<?php echo $productCode; ?>" data-product-image_id="<?php echo $finishImageID; ?>" data-product-image_url="<?php echo wp_get_attachment_image_url($finishImageID, 'medium'); ?>"><img src="<?php echo get_stylesheet_directory_uri();?>\assets\img\add-to-basket-2.svg"></a>
+												<a id="add-to-basket" data-product-name="<?php echo get_the_title() . ' - ' . $finishName . ' - ' . get_sub_field('tile_size_name') . ' - ' . $productCode ; ?>" data-tile-name="<?php echo the_title(); ?>" data-product-finish="<?php echo $finishName; ?>" data-product-size="<?php echo get_sub_field('tile_size_name'); ?>" data-product-code="<?php echo $productCode; ?>" data-product-image_id="<?php echo $finishImageID; ?>" data-product-image_url="<?php echo wp_get_attachment_image_url($finishImageID, 'medium'); ?>"><img src="<?php echo get_stylesheet_directory_uri();?>\assets\img\add-to-basket-2.svg" alt="add to basket"></a>
 											</li>
 										<?php endwhile; ?>
 										</ul>

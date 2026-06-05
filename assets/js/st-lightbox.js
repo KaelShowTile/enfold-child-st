@@ -3,7 +3,7 @@ jQuery(document).ready(function($) {
     var lightboxHTML = '<div class="st-lightbox-overlay">' +
         '<div class="st-lightbox-content">' +
         '<button class="st-lightbox-close">&times;</button>' +
-        '<img class="st-lightbox-image" src="" alt="" style="display: none;">' +
+        '<img class="st-lightbox-image" src="" alt="showtile" style="display: none;">' +
         '<video class="st-lightbox-video" controls style="display: none;"></video>' +
         '</div>' +
         '</div>';
