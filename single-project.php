@@ -145,7 +145,7 @@
 										<script type="text/javascript" async data-short="<?php echo $tour_url; ?>" data-path="tours" data-is-self-hosted="undefined" width="100%" height="500px" src="https://app.cloudpano.com/public/shareScript.js"></script>
 									</div>
 								<?php elseif($tour_platform == 'teliportme' && $tour_url): ?>
-									<iframe src="https://teliportme.com/embed/<?php echo $tour_url; ?>?ar=-3&amp;sfc=t&amp;lp=lt&amp;ls=d&amp;lz=50&amp;lo=-1" width="100%" height="500" frameborder="0" scrolling="no" allowfullscreen="allowfullscreen"></iframe>
+									<iframe src="https://teliportme.com/embed/tour/<?php echo $tour_url; ?>" width="100%" height="500" frameborder="0" scrolling="no" allowfullscreen="allowfullscreen"></iframe>
 								<?php endif; ?>
 							<?php endif; ?>	
 						<?php endwhile; ?>
