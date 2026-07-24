@@ -156,11 +156,11 @@ ul{padding-left: 0; margin-left: 0;}
 .project-video-title{font-weight: 700; margin-top: 40px;}
 
 /* single blog */
-#top .fullsize .template-blog .post .entry-content-wrapper{max-width: 100%;}
-#top .fullsize .template-blog .post .entry-content-wrapper>*{max-width: 100%;}
+#top #wrap_all .fullsize .template-blog .post .entry-content-wrapper{max-width: 100%;}
+#top #wrap_all .fullsize .template-blog .post .entry-content-wrapper>*{max-width: 100%;}
 #top .fullsize .template-blog .post-title{max-width: 100%;}
 .html_modern-blog #top .post-entry .wp-block-image{margin-bottom: 40px;}
-#top .fullsize .template-blog .post .entry-content-wrapper .entry-content p{font-size: 1rem; line-height: 1.5;}
+#top #wrap_all .fullsize .template-blog .post .entry-content-wrapper .entry-content p{font-size: 1rem; line-height: 1.5;}
 
 /* blog page */
 #top .blog-list-container h3.entry-title{font-size: 1.2rem; text-transform: capitalize; font-weight: 600;}
