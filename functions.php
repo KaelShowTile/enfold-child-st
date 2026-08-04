@@ -5,6 +5,20 @@ function enqueue_child_theme_styles(){
   	wp_enqueue_style( 'parent-style', get_template_directory_uri().'/style.css' );
 }
 
+//redirect 404 link caused by spam & paramaters
+add_action( 'template_redirect', 'wc_redirect_404_with_params' );
+function wc_redirect_404_with_params() {
+    if ( is_404() && ! empty( $_SERVER['QUERY_STRING'] ) ) {
+        $shop_url = wc_get_page_permalink( 'shop' );
+        
+        if ( ! $shop_url ) {
+            $shop_url = home_url();
+        }
+        wp_safe_redirect( $shop_url, 301 );
+        exit;
+    }
+}
+
 // Include sending email functionality
 require_once get_stylesheet_directory() . '/sending-email.php';
 
