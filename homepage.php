@@ -198,6 +198,7 @@
 			if ($blog_query->have_posts()){
 
 				$blog_slider_output_html .= '<div class="home-blog-inner">';
+				$blog_slider_output_html .= '<h2>Tile Blog</h2>';
 				$blog_slider_output_html .= '<div class="swiper" id="home-blog-slider">';
 				$blog_slider_output_html .= '<div class="swiper-wrapper">';
 

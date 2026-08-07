@@ -47,8 +47,8 @@ ul{padding-left: 0; margin-left: 0;}
 .category-list .active-categories .active-cat{background: #fff; border-radius: 25px; padding: 1px 12px 0; margin: 0 3px 3px 0;}
 
 /* tag cloud */
-.category-display-list .category-item{display: inline-block; text-transform: uppercase; font-weight: 600; margin: 40px 0 10px;}
-.category-display-list .category-item.child-category{text-transform: capitalize; font-weight: 500; margin: 0; cursor: pointer;}
+.category-display-list .category-item{display: inline-block; text-transform: uppercase; font-weight: 600; margin: 40px 0 10px; font-size: 1rem;}
+.category-display-list .category-item.child-category{text-transform: capitalize; font-weight: 500; margin: 2px 0; cursor: pointer; font-size: 1rem;}
 .category-item.child-category.selected{cursor: not-allowed; color: #ccc; text-decoration: line-through;}
 .category-display-list .category-item.no-collection{cursor: not-allowed; color: #ccc;}
 #collection-category-fliter-accordion .accordion-item{border-width: 0;}
@@ -373,6 +373,8 @@ svg.swiper-navigation-icon{height: 14px; color: #000000; stroke: #000;}
 .instagram-post-container{padding-top: 50px; margin-bottom: 50px;}
 .instagram-post-container h2{font-size: 2.5rem; margin-top: 50px;}
 
+.inpiration-explore-design-container h2, .home-blog-lislt-container h2{font-size: 2.5rem; margin-bottom: 20px;}
+
 /* All project page */
 #top.page-template-all-project .tab-list{margin-top: 50px;}
 .project-list-container.fliter-project{display: flex; flex-wrap: wrap; gap: 40px;}
@@ -550,6 +552,8 @@ svg.swiper-navigation-icon{height: 14px; color: #000000; stroke: #000;}
     .home-feature-page-inner{margin-bottom: 50px;}
     .instagram-post-container{padding-bottom: 40px;}
     .st-mobile-video-container.mobile-video-banner.mobile-only .st-overlay-outer{display: inline-block; width: 100%;}
+    .st-mobile-video-container.mobile-video-banner.mobile-only .st-overlay-inner h2{margin-bottom: 30px;}
+    .st-mobile-video-container.mobile-video-banner.mobile-only .st-overlay-inner p{display: none;}
 
     /* All Collection */
     .category-display-list br{display: none;}
