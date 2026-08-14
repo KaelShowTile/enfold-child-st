@@ -119,7 +119,7 @@
 				<?php if(have_rows('project_video')):?>
 					<?php while( have_rows('project_video')): the_row();?>
 						<?php if(get_sub_field('project_video_title')): ?>
-							<h5 class="project-video-title"><?php the_sub_field('project_video_title'); ?></h5>
+							<h3 class="project-video-title"><?php the_sub_field('project_video_title'); ?></h3>
 						<?php endif; ?>	
 						<?php if(get_sub_field('project_video_url')): ?>
 							<?php $video_shortcode = "[av_video src='" . get_sub_field('project_video_url') . "' video_loop='aviaTBvideo_loop' video_controls='aviaTBvideo_controls' format='16-9' width='16' height='9' id='' sc_version='1.0']"; ?>
@@ -135,7 +135,7 @@
 					<?php if(have_rows('project_house_tour')):?>
 						<?php while( have_rows('project_house_tour')): the_row();?>
 							<?php if(get_sub_field('project_house_tour_title')): ?>
-								<h5 class="project-video-title"><?php the_sub_field('project_house_tour_title'); ?></h5>
+								<h3 class="project-video-title"><?php the_sub_field('project_house_tour_title'); ?></h3>
 							<?php endif; ?>	
 							<?php if(get_sub_field('project_house_tour_platform')): ?>
 								<?php $tour_platform = get_sub_field('project_house_tour_platform'); ?>

@@ -145,6 +145,7 @@ ul{padding-left: 0; margin-left: 0;}
 .collection-qa-container{margin-top: 20px;}
 
 /* single project */
+.project-title-container.container, .project-gallery-container.project-container, .project-house-tour-container.container, .project-tile-container.project-container, .project-description-container.project-container{padding: 0;}
 .project-gallery-container{padding: 30px;}
 .project-video-container{padding: 0 10px 10px;}
 .project-description-container.project-container{margin-bottom: 50px;}
@@ -153,7 +154,7 @@ ul{padding-left: 0; margin-left: 0;}
 .project-tile-container h5{margin-top: 10px;}
 .project-tile-container .inner-container-heading{margin-bottom: 15px;}
 .single-finish-card-container{margin: auto 2%; width: 14.666%; display: inline-block; float: left;}
-.project-video-title{font-weight: 700; margin-top: 40px;}
+.project-video-title{font-size: 1.8rem; margin-top: 40px;}
 
 /* single blog */
 #top #wrap_all .fullsize .template-blog .post .entry-content-wrapper{max-width: 100%;}

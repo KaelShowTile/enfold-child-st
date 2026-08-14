@@ -37,16 +37,16 @@
 		$h1_title = get_the_title();
 	}
 
-	$tile_images = get_field('tile_photo_gallery');
-	$tile_video = get_field('tile_video');
-	$tile_video_url = ""; 
-	$tile_video_thumb_url = ""; //setup default url later in case My or Naomi forget to upload thumbnail
 	$tile_slider_output = "";
+	$tile_images = get_field('tile_photo_gallery');
+	$tile_videos = get_field('tile_video_repeater');
 
-	if($tile_video){
-		$tile_video_url = $tile_video['video_url'];
-		$tile_video_thumb_id = $tile_video['video_thumbnail'];
-		$tile_slider_output .= '<div class="swiper-slide"><a class="noLightbox st-lightbox" href="' . $tile_video_url . '"><img src="' . get_stylesheet_directory_uri() . '/assets/img/play-button.svg" class="video-play-button" alt="Play video"></a>' . wp_get_attachment_image( $tile_video_thumb_id, 'full') . '</div>';
+	if($tile_videos){
+		foreach($tile_videos as $tile_video){
+			$tile_video_url = $tile_video['single_video_url']; 
+			$tile_video_thumb_id = $tile_video['single_video_thumbnail']; 
+			$tile_slider_output .= '<div class="swiper-slide"><a class="noLightbox st-lightbox" href="' . $tile_video_url . '"><img src="' . get_stylesheet_directory_uri() . '/assets/img/play-button.svg" class="video-play-button" alt="Play video"></a>' . wp_get_attachment_image( $tile_video_thumb_id, 'full') . '</div>';
+		}
 	}
 
 	if($tile_images){
