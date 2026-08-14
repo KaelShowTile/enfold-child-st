@@ -353,7 +353,7 @@
 
 			<div class="st-video-wrapper">
 				<div class="st-video-iframe-container">
-					<iframe src="https://player.vimeo.com/video/<?php echo $trending_video_id; ?>?autoplay=1&loop=1&muted=1&autopause=0" frameborder="0" allow="autoplay; fullscreen" allowfullscreen>
+					<iframe src="https://player.vimeo.com/video/<?php echo $trending_video_id; ?>?api=1&autoplay=1&loop=1&muted=1&autopause=0&controls=0" frameborder="0" allow="autoplay; fullscreen" allowfullscreen>
 					</iframe>
 				</div>
 			</div>
