@@ -307,15 +307,6 @@
 							</div>
 						<?php endif; ?>
 
-						<?php if (!empty($grouped_finish)): ?>
-							<div class="description-meta-col full-col">
-								<p class="attribute-name">Finish | Size</p>
-								<?php foreach($grouped_finish as $finish): ?>
-									<p><?php echo $finish['finish_name']; ?> | <?php echo $finish['finish_size']; ?></p>
-								<?php endforeach; ?>
-							</div>
-						<?php endif; ?>
-
 						<?php if (!empty($collection_face)): ?>
 							<div class="description-meta-col full-col">
 								<p class="attribute-name">Face</p>
@@ -324,6 +315,16 @@
 								<?php endforeach; ?>
 							</div>
 						<?php endif; ?>	
+
+						<?php if (!empty($grouped_finish)): ?>
+							<div class="description-meta-col full-col">
+								<p class="attribute-name">Finish | Size</p>
+								<?php foreach($grouped_finish as $finish): ?>
+									<p><?php echo $finish['finish_name']; ?> | <?php echo $finish['finish_size']; ?></p>
+								<?php endforeach; ?>
+							</div>
+						<?php endif; ?>
+						
 					</div>
 				</div>
 			</div>
