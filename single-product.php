@@ -58,6 +58,7 @@
 	$collection_thickness = [];
 	$collection_finish = [];//get all finish-size pair
 	$grouped_finish = [];//combine $collection_finish by finish name & merge size
+	$collection_face = [];
 	$collection_tiles_list = [];
 	$collection_projects = [];
 
@@ -71,7 +72,9 @@
 			$tile_application = get_field('tile_application', $tile);
 			$tile_variation = get_field('tile_variation', $tile);
 			$tile_thickness = get_field('tile_thickness', $tile);
+			$tile_indent = get_field('indent_item', $tile);
 			$tile_finish = get_field('tile_finish', $tile);//repeater field
+			$tile_faces = get_field('tile_face_repeater', $tile);//repeater field
 			$tiles_spec_list = [];
 
 			//get title & link
@@ -148,7 +151,7 @@
 			$total_size_suffix = "size";
 			$has360 = false;
 			
-			if(get_field('tile_finish', $tile)){
+			if($tile_finish){
 				while( the_repeater_field('tile_finish', $tile) ){
 					$finish_name = get_sub_field('finish_name');
 					$product_code = get_sub_field('product_code');
@@ -177,7 +180,14 @@
 				}
 			}
 
-			$collection_tiles_list[] = ['tile_title' => $tile_title, 'title_link' => $permalink, 'title_thumb_url' => $tile_thumb, 'total_finish' => $total_finish, 'total_size' => $total_size, 'total_finish_suffix' => $total_finish_suffix, 'total_size_suffix' => $total_size_suffix, 'dropdown_option' => $tiles_spec_list, 'has_360' => $has360];
+			if($tile_faces){
+				while( the_repeater_field('tile_face_repeater', $tile) ){
+					$face_name = get_sub_field('tile_face');
+					$collection_face[] =  $face_name;
+				}
+			}
+
+			$collection_tiles_list[] = ['tile_title' => $tile_title, 'title_link' => $permalink, 'title_thumb_url' => $tile_thumb, 'total_finish' => $total_finish, 'total_size' => $total_size, 'total_finish_suffix' => $total_finish_suffix, 'total_size_suffix' => $total_size_suffix, 'dropdown_option' => $tiles_spec_list, 'has_360' => $has360, 'indent_only' => $tile_indent];
 		}
 	}
 
@@ -202,6 +212,9 @@
         'finish_name' => $name,
         'finish_size' => implode(', ', $uniqueSizes)
     ];
+
+	//inique face
+	$collection_face = array_unique($collection_face);
 
 	//Render slider
 	$collection_slider_output = "";
@@ -303,6 +316,14 @@
 							</div>
 						<?php endif; ?>
 
+						<?php if (!empty($collection_face)): ?>
+							<div class="description-meta-col full-col">
+								<p class="attribute-name">Face</p>
+								<?php foreach($collection_face as $face): ?>
+									<p><?php echo $face; ?></p>
+								<?php endforeach; ?>
+							</div>
+						<?php endif; ?>	
 					</div>
 				</div>
 			</div>
@@ -315,6 +336,9 @@
 				<div class="collection-tiles-list">
 				<?php foreach($collection_tiles_list as $tile): ?>
 					<div class="single-tile-card">
+						<?php if($tile['indent_only']):?>
+							<span class="indent-only-icon">Indent Only</span>							
+						<?php endif; ?> 
 						<a href="<?php echo $tile['title_link']; ?>">
 							<?php if($tile['has_360'] == true):?>
 								<img src="https://showtile.com.au/wp-content/uploads/2026/06/360-icon-for-tile-face.svg" class="tile-virtual-threater-icon">

@@ -175,6 +175,15 @@
 								<p><?php the_field('tile_thickness'); ?></p>
 							</div>
 						<?php endif; ?>
+
+						<?php if( have_rows('tile_face_repeater') ): ?>
+							<div class="description-meta-col half-col">
+								<p class="attribute-name">Face</p>
+								<?php while( have_rows('tile_face_repeater') ) : the_row(); ?>
+									<p><?php the_sub_field('tile_face'); ?></p>
+								<?php endwhile; ?>
+							</div>
+						<?php endif ?>
 						
 					</div>
 				</div>
