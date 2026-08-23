@@ -127,7 +127,7 @@ ul{padding-left: 0; margin-left: 0;}
 #top .main_color .tile-card-detail .select-tile-dropdown{color: #666; font-size: 0.85rem; background-color: transparent; border-width: 0; background-image: url(https://showtile.com.au/wp-content/themes/enfold-child-st/assets/img/simple-dropdown.svg); background-position: center left; background-size: 20px 15px; background-repeat: no-repeat; padding: 3px 10px 3px 20px; margin: 0 0 0 -5px; cursor: pointer;}
 .collection-gallery-slider .tile-name{position: absolute; bottom: 15px; padding: 8px 25px 7px 20px; background: rgba(255, 255, 255, 0.8); font-size: 0.7rem; letter-spacing: 0.5px;}
 .collection-description-outer-container{margin-top: 25px;}
-.collection-description-outer-container .collection-description-body p {font-size: 0.85rem;}
+.collection-description-outer-container .collection-description-body p {font-size: 0.85rem;margin-top: 0;}
 .single-tile-card{width: calc((100% - 120px)/4);}
 .collection-description-container{margin-top: 0; display: flex; flex-wrap: wrap; gap: 15px 20px;}
 .collection-description-container tr:nth-child(odd){background: #fff;}
@@ -148,8 +148,8 @@ ul{padding-left: 0; margin-left: 0;}
 .project-title-container.container, .project-gallery-container.project-container, .project-house-tour-container.container, .project-tile-container.project-container, .project-description-container.project-container{padding: 0;}
 .project-gallery-container{padding: 30px;}
 .project-video-container{padding: 0 10px 10px;}
-.project-description-container.project-container{margin-bottom: 50px;}
-.project-description-container.project-description-container .el_before_av_one_half.avia-builder-el-first p{font-size: 0.85rem;}
+.project-description-container.project-container{margin-bottom: 50px; margin-top: 20px;}
+.project-description-container.project-description-container .el_before_av_one_half.avia-builder-el-first p{font-size: 0.85rem;margin-top: 0;}
 .project-tile-container{margin: 80px auto 60px;}
 .project-tile-container h5{margin-top: 10px;}
 .project-tile-container .inner-container-heading{margin-bottom: 15px;}

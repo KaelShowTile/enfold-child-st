@@ -142,10 +142,10 @@
 								<?php $tour_url = get_sub_field('project_house_tour_url'); ?>
 								<?php if($tour_platform == 'cloudpano' && $tour_url): ?>
 									<div id="<?php echo $tour_url; ?>">
-										<script type="text/javascript" async data-short="<?php echo $tour_url; ?>" data-path="tours" data-is-self-hosted="undefined" width="100%" height="500px" src="https://app.cloudpano.com/public/shareScript.js"></script>
+										<script type="text/javascript" async data-short="<?php echo $tour_url; ?>" data-path="tours" data-is-self-hosted="undefined" width="100%" height="767px" src="https://app.cloudpano.com/public/shareScript.js"></script>
 									</div>
 								<?php elseif($tour_platform == 'teliportme' && $tour_url): ?>
-									<iframe src="https://teliportme.com/embed/tour/<?php echo $tour_url; ?>" width="100%" height="500" frameborder="0" scrolling="no" allowfullscreen="allowfullscreen"></iframe>
+									<iframe src="https://teliportme.com/embed/tour/<?php echo $tour_url; ?>" width="100%" height="767" frameborder="0" scrolling="no" allowfullscreen="allowfullscreen"></iframe>
 								<?php endif; ?>
 							<?php endif; ?>	
 						<?php endwhile; ?>
