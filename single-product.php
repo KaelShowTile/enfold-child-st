@@ -83,6 +83,7 @@
 
 			//get related project ids
 			$collection_projects_id = get_post_meta($tile, 'related_project', true);
+			
 			if(is_array($collection_projects_id)){
 				$collection_projects = array_unique(array_merge($collection_projects, $collection_projects_id));
 			}elseif(is_int($collection_projects_id)){
@@ -400,12 +401,14 @@
 				</div>
 				<div class="collection-project-list">
 				<?php foreach($collection_projects as $project): ?>
-					<div class="single-project-card single-project-card-container">
-						<a href="<?php echo get_permalink($project); ?>"><?php echo get_the_post_thumbnail($project, 'project-vertical'); ?></a>
-						<span><?php the_field('project_type', $project); ?></span>
-						<a href="<?php echo get_permalink($project); ?>"><h5><?php echo get_the_title($project); ?></h5></a>
-						<p><?php echo stCutText(get_field('project_description', $project));?></p>
-					</div>
+					<?php if('publish' === get_post_status( $project )): ?>
+						<div class="single-project-card single-project-card-container">
+							<a href="<?php echo get_permalink($project); ?>"><?php echo get_the_post_thumbnail($project, 'project-vertical'); ?></a>
+							<span><?php the_field('project_type', $project); ?></span>
+							<a href="<?php echo get_permalink($project); ?>"><h5><?php echo get_the_title($project); ?></h5></a>
+							<p><?php echo stCutText(get_field('project_description', $project));?></p>
+						</div>
+					<?php endif; ?>
 				<?php endforeach; ?>
 				</div>
 			</div>
