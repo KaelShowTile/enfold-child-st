@@ -103,7 +103,7 @@
 									<div class="tile-sidebar-btns">
 										
 										<?php if(get_sub_field('visual_theatre')): ?>
-											<a href="<?php the_sub_field('visual_theatre'); ?>">Virtual Theatre</a>
+											<a href="<?php the_sub_field('visual_theatre'); ?>" target="_blank">Virtual Theatre</a>
 										<?php endif; ?>
 									</div>
 								</div>
