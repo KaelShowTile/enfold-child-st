@@ -116,7 +116,7 @@
 
 			<div class="tile-details">
 				<?php //Tile gallery
-					if( $tile_images || $tile_video):
+					if( $tile_images || $tile_videos):
 				?>
 						<div class="swiper" id="tile-gallery">
 							<div class="swiper-wrapper">
