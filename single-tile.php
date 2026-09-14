@@ -196,12 +196,14 @@
 					</div>
 					<div class="collection-project-list">
 					<?php foreach($related_project_ids as $project): ?>
+						<?php if ( get_post_status( $post_id ) === 'publish' ):?>
 						<div class="single-project-card single-project-card-container">
 							<a href="<?php echo get_permalink($project); ?>"><?php echo get_the_post_thumbnail($project, 'project-vertical'); ?></a>
 							<span><?php the_field('project_type', $project); ?></span>
 							<a href="<?php echo get_permalink($project); ?>"><h5><?php echo get_the_title($project); ?></h5></a>
 							<p><?php echo stCutText(get_field('project_description', $project));?></p>
 						</div>
+						<?php endif; ?>
 					<?php endforeach; ?>
 					</div>
 				</div>
