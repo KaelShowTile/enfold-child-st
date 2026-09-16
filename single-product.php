@@ -66,7 +66,7 @@
 		foreach($collection_tiles as $tile){
 			//get ACF value of each tile
 			$tile_images = get_field('tile_photo_gallery', $tile);//return image ids
-			$tile_video = get_field('tile_video', $tile);
+			$tile_videos = get_field('tile_video_repeater', $tile);//repeater field
 			$tile_design = get_field('tile_design', $tile);
 			$tile_material = get_field('tile_material', $tile);
 			$tile_application = get_field('tile_application', $tile);
@@ -103,10 +103,14 @@
 			}
 
 			//combine videos
-			if($tile_video && !empty($tile_video['video_thumbnail']) && !empty($tile_video['video_url'])){
-				$tile_video_url = $tile_video['video_url'];
-				$tile_video_thumb_id = $tile_video['video_thumbnail'];
-				$collection_video[] = ['thumbnail_id' => $tile_video_thumb_id, 'video_url' => $tile_video_url];
+			if($tile_videos){
+				foreach($tile_videos as $tile_video){
+					$tile_video_url = $tile_video['single_video_url']; 
+					$tile_video_thumb_id = $tile_video['single_video_thumbnail']; 
+					if(!empty($tile_video_url) && !empty($tile_video_thumb_id)){
+						$collection_video[] = ['thumbnail_id' => $tile_video_thumb_id, 'video_url' => $tile_video_url];
+					}
+				}
 			}
 			
 			//add tile meta to project meta
