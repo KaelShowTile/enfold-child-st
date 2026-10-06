@@ -331,6 +331,9 @@ svg.swiper-navigation-icon{height: 14px; color: #000000; stroke: #000;}
 
 .main_color tr:nth-child(even) td{color: #000;}
 
+.tile-cal-2col{width: 50%; clear: none !important; float: left;}
+#fbuilder .top_aligned .fields .float-right-select .dfield{padding-top: 2.5px;}
+
 /* Home */
 .st-mute-btn {position: absolute; bottom: 30px; right: 30px; z-index: 20; background: rgba(0, 0, 0, 0.6); border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 50%; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #fff; transition: background 0.3s ease; }
 .st-mute-btn:hover { background: rgba(0, 0, 0, 0.9); }
