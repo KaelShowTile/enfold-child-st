@@ -51,7 +51,7 @@
 				<h1 class="page-title">All Project</h1>
 				<div class="project-button-list">
 					<a href="<?php echo $commerical_url; ?>">Commercial</a>
-					<a>/</a>
+					<a>·</a>
 					<a href="<?php echo $residential_url; ?>">Residential</a>
 				</div>
 
