@@ -22,6 +22,9 @@ function wc_redirect_404_with_params() {
 // Include sending email functionality
 require_once get_stylesheet_directory() . '/sending-email.php';
 
+// Include custom API for updating tile prices
+require_once get_stylesheet_directory() . '/api-update-prices.php';
+
 // Enqueue backend styles
 add_action( 'admin_enqueue_scripts', 'enqueue_backend_styles' );
 function enqueue_backend_styles() {
@@ -280,8 +283,16 @@ function get_collections_html($offset = 0, $limit = 12, $term_ids = null, $load_
             $title = get_the_title();
             $link = get_permalink();
             $collection_id = get_the_ID();
-            $collection_thumb_preview = get_the_post_thumbnail($collection_id, 'medium');
-            $collection_thumb_thumb = get_the_post_thumbnail($collection_id, 'thumbnail');
+
+            //default thumbnail
+            $collection_thumb_preview = get_stylesheet_directory_uri() . '/assets/img/ST-photo-coming-soon-450x450.webp';
+            $collection_thumb_thumb = get_stylesheet_directory_uri() . '/assets/img/ST-photo-coming-soon-80x80.webp';
+
+            //if has thumbnail
+            if(get_the_post_thumbnail($collection_id)){
+                $collection_thumb_preview = get_the_post_thumbnail($collection_id, 'medium');
+                $collection_thumb_thumb = get_the_post_thumbnail($collection_id, 'thumbnail');
+            }
 
             $slider_image_no = 0;
             $slider_thumb_no = 0;
@@ -567,15 +578,6 @@ function generate_collections_xml() {
                 $collection->appendChild($categories);
             }
             
-            /*
-            if ( is_wp_error( $terms ) ) {
-                error_log( 'WP Error Message: ' . $terms->get_error_message() ); // Tells you if taxonomy is invalid
-            } elseif ( empty( $terms ) ) {
-                error_log( 'Terms are empty/false. The post exists but has no terms assigned in this taxonomy.' );
-            } else {
-                error_log( 'Terms found: ' . print_r( $terms, true ) );
-            }*/
-
             // Images
             $images = $dom->createElement('images');
             $collection->appendChild($images);
