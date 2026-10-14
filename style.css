@@ -164,8 +164,9 @@ ul{padding-left: 0; margin-left: 0;}
 #top #wrap_all .fullsize .template-blog .post .entry-content-wrapper .entry-content p{font-size: 1rem; line-height: 1.5;}
 
 /* blog page */
-#blog-tab-container .av-tab-section-tab-title-container{background: #fff;}
+#blog-tab-container .av-tab-section-tab-title-container{background: #fff;padding-top: 0;}
 #blog-tab-container .av-tab-section-tab-title-container .av-inner-tab-title{color: #333; margin-bottom: 0;}
+#blog-tab-container .avia-tab-title-padding-default .av-outer-tab-title{padding: 0;}
 #blog-tab-container .av-layout-tab{padding-top: 0;}
 #top .blog-list-container h3.entry-title{font-size: 1.2rem; text-transform: capitalize; font-weight: 600;}
 #top .blog-list-container .blog-categories.minor-meta a{color: #333 !important; display: inline-block; margin: 5px auto 0; text-transform: capitalize; letter-spacing: 0.2px;}
