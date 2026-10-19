@@ -750,6 +750,100 @@ function av_breadcrumbs_shortcode( $atts ) {
 }
 add_shortcode( 'av_breadcrumbs', 'av_breadcrumbs_shortcode' );
 
+/**
+ * Shortcode to display collections by calling get_collections_html()
+ *
+ * Shortcode names: [get_collections], [collections]
+ *
+ * Supported attributes:
+ * - offset: (int) Starting offset of posts (default: 0)
+ * - limit: (int) Number of collections to display (default: 12)
+ * - term_ids: (string) Comma-separated product_category term IDs or slugs (default: null)
+ * - load_more: (bool) Whether to display Load More button (default: false)
+ * - container_class: (string) CSS class for wrapper container (default: 'collection-list-container fliter-collection')
+ * - button_class: (string) CSS class for Load More button (default: 'load-more-filtered-btn')
+ *
+ * Usage examples:
+ * [collections]
+ * [collections limit="6"]
+ * [collections term_ids="12,15" limit="8"]
+ * [collections limit="8" load_more="true" button_class="load-more-btn"]
+ */
+function get_collections_shortcode( $atts ) {
+    $atts = shortcode_atts(
+        array(
+            'offset'          => 0,
+            'limit'           => 12,
+            'term_ids'        => null,
+            'load_more'       => false,
+            'container_class' => 'collection-list-container fliter-collection',
+            'button_class'    => '',
+        ),
+        $atts,
+        'get_collections'
+    );
+
+    $offset = intval( $atts['offset'] );
+    $limit  = intval( $atts['limit'] );
+    if ( $limit === 0 ) {
+        $limit = 12;
+    }
+
+    // Process term_ids (support comma-separated IDs or slugs, converting to array of int)
+    $term_ids = null;
+    if ( ! empty( $atts['term_ids'] ) ) {
+        $raw_ids = array_map( 'trim', explode( ',', (string) $atts['term_ids'] ) );
+        $parsed_ids = array();
+        foreach ( $raw_ids as $item ) {
+            if ( $item === '' ) {
+                continue;
+            }
+            if ( is_numeric( $item ) ) {
+                $parsed_ids[] = intval( $item );
+            } else {
+                $term_obj = get_term_by( 'slug', $item, 'product_category' );
+                if ( ! $term_obj ) {
+                    $term_obj = get_term_by( 'name', $item, 'product_category' );
+                }
+                if ( $term_obj && ! is_wp_error( $term_obj ) ) {
+                    $parsed_ids[] = intval( $term_obj->term_id );
+                }
+            }
+        }
+        if ( ! empty( $parsed_ids ) ) {
+            $term_ids = $parsed_ids;
+        }
+    }
+
+    // Handle boolean for load_more
+    $load_more = filter_var( $atts['load_more'], FILTER_VALIDATE_BOOLEAN );
+
+    // Container class
+    $container_class = ! empty( $atts['container_class'] ) ? sanitize_text_field( $atts['container_class'] ) : 'collection-list-container fliter-collection';
+
+    // Button class
+    if ( ! empty( $atts['button_class'] ) ) {
+        $button_class = sanitize_text_field( $atts['button_class'] );
+    } else {
+        $button_class = $load_more ? 'load-more-filtered-btn load-more-btn' : 'load-more-filtered-btn';
+    }
+
+    // Enqueue load-more script if load_more is enabled
+    if ( $load_more ) {
+        if ( ! wp_script_is( 'load-more-items-js', 'enqueued' ) ) {
+            wp_enqueue_script( 'load-more-items-js', get_stylesheet_directory_uri() . '/assets/js/load-more-items.js', array( 'jquery' ), '1.0.0', true );
+            wp_localize_script( 'load-more-items-js', 'st_ajax_object', array(
+                'ajax_url' => admin_url( 'admin-ajax.php' ),
+            ) );
+        }
+    }
+
+    // Call existing get_collections_html() without modifying it
+    return get_collections_html( $offset, $limit, $term_ids, $load_more, $container_class, $button_class );
+}
+add_shortcode( 'get_collections', 'get_collections_shortcode' );
+add_shortcode( 'collections', 'get_collections_shortcode' );
+
 
 add_action( 'phpmailer_init', 'debug_my_wp_mail', 999 );
 function debug_my_wp_mail( $phpmailer ) {
