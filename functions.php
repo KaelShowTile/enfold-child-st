@@ -844,6 +844,94 @@ function get_collections_shortcode( $atts ) {
 add_shortcode( 'get_collections', 'get_collections_shortcode' );
 add_shortcode( 'collections', 'get_collections_shortcode' );
 
+/**
+ * Shortcode to display projects by calling get_project_html()
+ *
+ * Shortcode names: [get_projects], [projects], [get_project], [project]
+ *
+ * Supported attributes:
+ * - offset: (int) Starting offset of posts (default: 0)
+ * - limit: (int) Number of projects to display (default: 12)
+ * - term_ids: (string) Comma-separated project-category term IDs or slugs (default: null)
+ * - load_more: (bool) Whether to display Load More button (default: false)
+ * - container_class: (string) CSS class for wrapper container (default: 'project-list-container no-fliter')
+ *
+ * Usage examples:
+ * [projects]
+ * [projects limit="6"]
+ * [projects term_ids="commercial" limit="8"]
+ * [projects term_ids="12,15" limit="8" load_more="true"]
+ */
+function get_projects_shortcode( $atts ) {
+    $atts = shortcode_atts(
+        array(
+            'offset'          => 0,
+            'limit'           => 12,
+            'term_ids'        => null,
+            'load_more'       => false,
+            'container_class' => 'project-list-container no-fliter',
+        ),
+        $atts,
+        'get_projects'
+    );
+
+    $offset = intval( $atts['offset'] );
+    $limit  = intval( $atts['limit'] );
+    if ( $limit === 0 ) {
+        $limit = 12;
+    }
+
+    // Process term_ids (support comma-separated IDs or slugs, converting to array of int)
+    $term_ids = null;
+    $raw_term = ! empty( $atts['term_ids'] ) ? $atts['term_ids'] : ( isset( $atts['term_id'] ) ? $atts['term_id'] : ( isset( $atts['category'] ) ? $atts['category'] : '' ) );
+    if ( ! empty( $raw_term ) ) {
+        $raw_ids = array_map( 'trim', explode( ',', (string) $raw_term ) );
+        $parsed_ids = array();
+        foreach ( $raw_ids as $item ) {
+            if ( $item === '' ) {
+                continue;
+            }
+            if ( is_numeric( $item ) ) {
+                $parsed_ids[] = intval( $item );
+            } else {
+                $term_obj = get_term_by( 'slug', $item, 'project-category' );
+                if ( ! $term_obj ) {
+                    $term_obj = get_term_by( 'name', $item, 'project-category' );
+                }
+                if ( $term_obj && ! is_wp_error( $term_obj ) ) {
+                    $parsed_ids[] = intval( $term_obj->term_id );
+                }
+            }
+        }
+        if ( ! empty( $parsed_ids ) ) {
+            $term_ids = $parsed_ids;
+        }
+    }
+
+    // Handle boolean for load_more
+    $load_more = filter_var( $atts['load_more'], FILTER_VALIDATE_BOOLEAN );
+
+    // Container class
+    $container_class = ! empty( $atts['container_class'] ) ? sanitize_text_field( $atts['container_class'] ) : 'project-list-container no-fliter';
+
+    // Enqueue load-more script if load_more is enabled
+    if ( $load_more ) {
+        if ( ! wp_script_is( 'load-more-project-js', 'enqueued' ) ) {
+            wp_enqueue_script( 'load-more-project-js', get_stylesheet_directory_uri() . '/assets/js/load-more-project.js', array( 'jquery' ), '1.0.0', true );
+            wp_localize_script( 'load-more-project-js', 'st_ajax_object', array(
+                'ajax_url' => admin_url( 'admin-ajax.php' ),
+            ) );
+        }
+    }
+
+    // Call existing get_project_html() without modifying it
+    return get_project_html( $offset, $limit, $term_ids, $load_more, $container_class );
+}
+add_shortcode( 'get_projects', 'get_projects_shortcode' );
+add_shortcode( 'projects', 'get_projects_shortcode' );
+add_shortcode( 'get_project', 'get_projects_shortcode' );
+add_shortcode( 'project', 'get_projects_shortcode' );
+
 
 add_action( 'phpmailer_init', 'debug_my_wp_mail', 999 );
 function debug_my_wp_mail( $phpmailer ) {
