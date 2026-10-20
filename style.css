@@ -184,7 +184,7 @@ ul{padding-left: 0; margin-left: 0;}
 #top.tax-product_category .collection-list-container .collection-card .swiper-slide{width: 100%;}
 .related-project-container{margin-top: 50px;}
 .related-blog-container{margin-top: 50px;}
-.related-blog-container-inner{display: flex; flex-wrap: wrap; gap: 0 40px;}
+.related-blog-container-inner{display: flex; flex-wrap: wrap; gap: 20px 40px;}
 .related-blog-container-inner .blog-card{width: calc((100% - 120px) / 4);}
 .related-blog-container-inner .blog-card h5{margin-top: 10px;}
 .collection-qa-container.collection-category-qa-container{background: #f6f7f8; padding: 80px 0;}
@@ -458,6 +458,14 @@ svg.swiper-navigation-icon{height: 14px; color: #000000; stroke: #000;}
 .glint-search-results .search-results.exact-matches-section{margin-bottom: 40px;}
 .glint-search-results .search-results .exact-result-item h2{margin-top: 15px;}
 .glint-search-results .search-results .exact-result-item .item-meta li{font-size: 0.85rem; color: #666;}
+
+/* temp */
+#softec-landing-slider h1{color: #fff; font-size: 5rem; margin-bottom: 0; text-transform: capitalize;}
+#softec-landing-slider p{letter-spacing: 1px; color: #fff; font-size: 1.25rem; margin: 5px auto 25px; font-weight: 300;}
+#top #softec-landing-slider .avia-button.avia-color-light{border-width: 2px; letter-spacing: 0.5px; opacity: 0.85; padding: 9px 15px 7px;}
+#softec-landing-contact-inner{background: rgba(255, 255, 255, 0.85); padding: 40px 40px 10px; border-radius: 15px;}
+#softec-landing-contact-inner h2{text-transform: capitalize; letter-spacing: 0; font-size: 2rem; margin-bottom: 0;}
+#softec-landing-contact-inner p{font-size: 1rem;}
 
 @media only screen and (max-width: 1500px){
     .responsive #top .container{max-width: 90%;}  
