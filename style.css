@@ -461,17 +461,19 @@ svg.swiper-navigation-icon{height: 14px; color: #000000; stroke: #000;}
 .glint-search-results .search-results .exact-result-item .item-meta li{font-size: 0.85rem; color: #666;}
 
 /* temp */
-#softec-landing-slider h1{color: #fff; font-size: 5rem; margin-bottom: 0; text-transform: capitalize;}
-#softec-landing-slider p{letter-spacing: 1px; color: #fff; font-size: 1.25rem; margin: 5px auto 25px; font-weight: 300;}
-#top #softec-landing-slider .avia-button.avia-color-light{border-width: 2px; letter-spacing: 0.5px; opacity: 0.85; padding: 9px 15px 7px;}
+#softec-landing-slider h1{color: #fff; margin-bottom: 0; text-transform: capitalize;}
+#softec-landing-slider p{letter-spacing: 1px; color: #fff; font-size: 1rem; margin: 5px auto 25px; font-weight: 300;}
+#top #softec-landing-slider .avia-button.avia-color-light{border-width: 2px; letter-spacing: 0.5px; opacity: 0.85; padding: 12px 20px 11px; border-radius: 25px; font-weight: 600;}
 #softec-landing-contact-inner{background: rgba(255, 255, 255, 0.85); padding: 40px 40px 10px; border-radius: 15px;}
 #softec-landing-contact-inner h2{text-transform: capitalize; letter-spacing: 0; font-size: 2rem; margin-bottom: 0;}
 #softec-landing-contact-inner p{font-size: 1rem;}
 #top #softec-landing-contact-inner input[type='text']{color: #000; border: 1px solid #ddd; border-radius: 5px;}
 #top #softec-landing-contact-inner input[type='text']::placeholder{color: #333;}
 #top #softec-landing-contact-inner input.button{width: 100%;}
+/*
 #softec-landing-features .av-overlay-hover-deactivate .avia-image-overlay-wrap:hover .av-caption-image-overlay-bg{opacity: 0.9 !important;}
 #softec-landing-features .av-image-caption-overlay{height: 40px; width: 150px; bottom: 0;}
+*/
 #softec-landing-review .ti-header.ti-header-grid.source-Google{display: none;}
 #softec-landing-faq-inner #collection-qa-accordion .toggler{border-width: 0 0 1px 0; background: transparent; border-color: #000; font-size: 1rem; padding-left: 0; text-transform: uppercase; font-weight: 600;}
 #softec-landing-faq-inner #collection-qa-accordion .toggler .toggle_icon{display: none;}
@@ -665,6 +667,9 @@ svg.swiper-navigation-icon{height: 14px; color: #000000; stroke: #000;}
     #top #eqp-payment-form .eqp-row.two-col{gap: 0;}
     #top #eqp-payment-form .eqp-row.two-col .eqp-field{width: 100%;}
 
+    /* Temp */
+    .responsive #top #wrap_all #softec-landing-why .av_one_fifth{width: 33.333%;}
+    .responsive #top #wrap_all #softec-landing-why .av_one_fifth.first{display: none;}
 }
 
 @media only screen and (max-width: 640px){
