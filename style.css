@@ -472,6 +472,10 @@ svg.swiper-navigation-icon{height: 14px; color: #000000; stroke: #000;}
 #top #softec-landing-contact-inner input.button{width: 100%;}
 #softec-landing-features .av-overlay-hover-deactivate .avia-image-overlay-wrap:hover .av-caption-image-overlay-bg{opacity: 0.9 !important;}
 #softec-landing-features .av-image-caption-overlay{height: 40px; width: 150px; bottom: 0;}
+#softec-landing-review .ti-header.ti-header-grid.source-Google{display: none;}
+#softec-landing-faq-inner #collection-qa-accordion .toggler{border-width: 0 0 1px 0; background: transparent; border-color: #000; font-size: 1rem; padding-left: 0; text-transform: uppercase; font-weight: 600;}
+#softec-landing-faq-inner #collection-qa-accordion .toggler .toggle_icon{display: none;}
+#softec-landing-faq-inner #collection-qa-accordion .toggle_content{border-width: 0; padding: 0;}
 
 
 @media only screen and (max-width: 1500px){
