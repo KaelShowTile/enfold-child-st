@@ -466,6 +466,10 @@ svg.swiper-navigation-icon{height: 14px; color: #000000; stroke: #000;}
 #softec-landing-contact-inner{background: rgba(255, 255, 255, 0.85); padding: 40px 40px 10px; border-radius: 15px;}
 #softec-landing-contact-inner h2{text-transform: capitalize; letter-spacing: 0; font-size: 2rem; margin-bottom: 0;}
 #softec-landing-contact-inner p{font-size: 1rem;}
+#top #softec-landing-contact-inner input[type='text']{color: #000; border: 1px solid #ddd; border-radius: 5px;}
+#top #softec-landing-contact-inner input[type='text']::placeholder{color: #333;}
+#softec-landing-features .av-overlay-hover-deactivate .avia-image-overlay-wrap:hover .av-caption-image-overlay-bg{opacity: 0.9;}
+
 
 @media only screen and (max-width: 1500px){
     .responsive #top .container{max-width: 90%;}  
