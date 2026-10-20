@@ -10,7 +10,7 @@ h1{padding: 10px 0 0; font-size: 3.5rem; font-weight: 600; font-family: "Crimson
 h2{font-weight: 600; font-size: 1.8rem; font-family: "Crimson Text", serif;}
 h3, h4, h5, h6{font-family: "Crimson Text", serif;}
 ul{padding-left: 0; margin-left: 0;}
-span.trade-mark{font-size: 0.6em; vertical-align: super; line-height: 0; margin-left: 2px;}
+span.trade-mark{font-size: 0.4em; vertical-align: super; line-height: 0; margin-left: 2px;}
 
 #top del{text-decoration: line-through;}
 .hide-this-area{display: none !important; visibility: hidden !important;}
