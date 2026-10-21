@@ -13,6 +13,7 @@
 	$title = __( 'Tile', 'avia_framework' ); //default blog title
 	$t_link = home_url( '/' );
 	$t_sub = '';
+	$tile_thumb = get_stylesheet_directory_uri() . '/assets/img/st-place-holder.jpg';
 
 	if( avia_get_option( 'frontpage' ) && $new = avia_get_option( 'blogpage' ) )
 	{
@@ -85,9 +86,15 @@
 								<div class="accordion-body">
 									<!-- Load finish image-->
 									<?php $finishImageID = get_sub_field('finish_image'); ?>
-									<a class="Lightbox" href="<?php echo wp_get_attachment_image_url( $finishImageID, 'full'); ?>">
-										<img src="<?php echo wp_get_attachment_image_url( $finishImageID, 'medium'); ?>" alt="<?php the_title(); ?>">
-									</a>
+									<?php if($finishImageID): ?>
+										<a class="Lightbox" href="<?php echo wp_get_attachment_image_url( $finishImageID, 'full'); ?>">
+											<img src="<?php echo wp_get_attachment_image_url( $finishImageID, 'medium'); ?>" alt="<?php the_title(); ?>">
+										</a>
+									<?php else: ?>
+										<a class="Lightbox" href="<?php echo $tile_thumb; ?>">
+											<img src="<?php echo $tile_thumb; ?>" alt="<?php the_title(); ?>">
+										</a>
+									<?php endif;?>
 									<!-- Load sizes-->
 									<?php if( have_rows('tile_size') ): ?>
 										<ul class="tile-size-list">

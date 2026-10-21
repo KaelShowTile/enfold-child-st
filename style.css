@@ -676,6 +676,8 @@ svg.swiper-navigation-icon{height: 14px; color: #000000; stroke: #000;}
     /* Temp */
     .responsive #top #wrap_all #softec-landing-why .av_one_fifth{width: 33.333%;}
     .responsive #top #wrap_all #softec-landing-why .av_one_fifth.first{display: none;}
+    #softec-landing-collection .collection-card{width: calc((100% - 40px) / 2);}
+    #softec-landing-contact-inner{padding: 10px 10px 0;}
 }
 
 @media only screen and (max-width: 640px){
