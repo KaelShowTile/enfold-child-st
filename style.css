@@ -255,8 +255,8 @@ span.trade-mark{font-size: 0.4em; vertical-align: super; line-height: 0; margin-
 .single-house-tour-card img{border-radius: 3px;}
 .single-house-tour-card h5{text-align: center; font-weight: 600; text-transform: capitalize; margin: 10px auto 0;}
 
-.project-button-list{margin: auto 25px 50px; text-align: center;}
-.project-button-list a{font-size: 1.25rem; transition: 0.5s; letter-spacing: 0.5px;}
+.project-button-list{margin: 50px 25px 0; text-align: center;}
+.project-button-list a{font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.8px; padding: 0 10px;}
 
 #collection-qa-accordion .accordion-item{border-top-width: 0; border-left-width: 0; border-right-width: 0;}
 #collection-qa-accordion .accordion-button{font-family: 'Roboto'; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.2px; padding-left: 10px;}
