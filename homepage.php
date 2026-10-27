@@ -310,7 +310,10 @@
 					</div>
 					<div class="banner-bottom-container">
 						<p><?php echo $bannner_description; ?></p>
-						<a href="<?php echo $banner_link; ?>" class="st-link-button small-style">Explore Now ></a>
+						<!-- <a href="<?php //echo $banner_link; ?>" class="st-link-button small-style">Explore Now ></a> -->
+						<!-- temp code start-->
+						<a href="<?php echo $banner_link; ?>" class="st-link-button small-style">Request Sample Box</a>
+						<!-- temp code end-->
 					</div>
 				</div>
 
