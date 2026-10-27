@@ -300,7 +300,12 @@
 				<div class="flex_column av_two_fifth avia-builder-el-0 el_before_av_three_fifth avia-builder-el-first first flex_column_table_cell av-equal-height-column av-align-top">
 					<div class="banner-top-container">
 						<span><?php echo $banner_tagline; ?></span>
-						<h2><?php echo $banner_title; ?></h2>
+						<!-- <h2><?php //echo $banner_title; ?></h2> -->
+						<!-- temp code start-->
+						<div style="width:100%;">
+							<img src ="https://showtile.com.au/wp-content/uploads/2026/10/Softec_Black.png" style = "width: 250px; margin-top: 10px; margin-left: -10px; margin-bottom: 20px;">
+						</div>
+						<!-- temp code end-->
 						<a href="<?php echo $banner_link; ?>"><img src="<?php echo $banner_image_link; ?>" class="mobile-only"></a>
 					</div>
 					<div class="banner-bottom-container">

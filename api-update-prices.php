@@ -39,6 +39,7 @@ function st_update_prices_callback($request)
         $finish = isset($update['finish']) ? sanitize_text_field($update['finish']) : '';
         $size = isset($update['size']) ? sanitize_text_field($update['size']) : '';
         $price = isset($update['price']) ? sanitize_text_field($update['price']) : '';
+        $suffix = isset($update['suffix']) ? sanitize_text_field($update['suffix']) : '';
 
         // Checking if necessary data is present
         if (!$product_id || !$finish || !$size || $price === '') {
@@ -69,6 +70,7 @@ function st_update_prices_callback($request)
                             if (strcasecmp($size_row['tile_size_name'], $size) === 0) {
                                 // Update the price in the array
                                 $tile_finish[$finish_index]['tile_size'][$size_index]['tile_size_price'] = $price;
+                                $tile_finish[$finish_index]['tile_size'][$size_index]['suffixtile_size_suffix'] = $suffix;
                                 $updated = true;
                                 break 2; // Break out of both loops once found
                             }
