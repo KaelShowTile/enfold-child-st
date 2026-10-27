@@ -22,6 +22,9 @@ function wc_redirect_404_with_params() {
 // Include sending email functionality
 require_once get_stylesheet_directory() . '/sending-email.php';
 
+// Include tile enquiry tracker functionality
+require_once get_stylesheet_directory() . '/tile-enquiry-tracker.php';
+
 // Include custom API for updating tile prices
 require_once get_stylesheet_directory() . '/api-update-prices.php';
 

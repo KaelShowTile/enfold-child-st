@@ -143,14 +143,25 @@ jQuery(document).ready(function($) {
 
         // Generate email-friendly HTML for basket content
         let basketHtml = '';
+        const basketItems = [];
         $('#tile-enquiry-container .submit-form-row').each(function() {
             const $item = $(this);
             const imageUrl = $item.find('.basket-item-image img').attr('src') || '';
-            const title = $item.find('.basket-item-title').text();
-            const finish = $item.find('.basket-item-details p').eq(0).text();
-            const size = $item.find('.basket-item-details p').eq(1).text();
-            const code = $item.find('.basket-item-details p').eq(2).text();
-            const note = $item.find('.basket-item-note textarea').val();
+            const title = $item.find('.basket-item-title').text().trim();
+            const finish = $item.find('.basket-item-details p').eq(0).text().trim();
+            const size = $item.find('.basket-item-details p').eq(1).text().trim();
+            const code = $item.find('.basket-item-details p').eq(2).text().trim();
+            const note = $item.find('.basket-item-note textarea').val().trim();
+
+            basketItems.push({
+                name: title,
+                colour: title,
+                finish: finish,
+                size: size,
+                code: code,
+                note: note,
+                imageUrl: imageUrl
+            });
 
             // Using a table for better email client compatibility
             basketHtml += `
@@ -187,7 +198,8 @@ jQuery(document).ready(function($) {
             need_sample: $('#need-sample').is(':checked') ? 'yes' : 'no',
             subscribe_newsletter: $('#subscribe-newsletter').is(':checked') ? 'yes' : 'no',
             customer_address: $('#customer-address').val(),
-            basket_content: basketHtml
+            basket_content: basketHtml,
+            items: basketItems
         };
 
         // Basic validation

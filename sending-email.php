@@ -177,6 +177,12 @@ function send_tile_enquiry_email() {
     }*/
 
     if ($admin_sent) {
+        // Record enquiry and products to database for statistics
+        if ( function_exists( 'st_record_tile_enquiry' ) ) {
+            $items = isset( $form_data['items'] ) && is_array( $form_data['items'] ) ? $form_data['items'] : array();
+            st_record_tile_enquiry( $form_data, $items );
+        }
+
         // Subscribe to Mailchimp if checkbox was ticked
         if ($subscribe_newsletter === 'yes') {
             st_subscribe_to_mailchimp($customer_email, $customer_name);
