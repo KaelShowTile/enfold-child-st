@@ -140,7 +140,8 @@ span.trade-mark{font-size: 0.4em; vertical-align: super; line-height: 0; margin-
 .collection-tiles-container .single-tile-card .tile-virtual-threater-icon{position: absolute; top: 10px; right: 10px; width: 30px; height: 30px; padding: 5px; background: #606060; border-radius: 12px;}
 .collection-project-container{margin-top: 30px;}
 .collection-pdf-container{min-height: 46px; margin: 20px 0 0;}
-#top #collection-pdf-btn{cursor: pointer; position: absolute; background: #ffffff; border-radius: 0; z-index: 9999; margin-top: 1px; padding: 10px 60px 9px;}
+#top #collection-pdf-btn{cursor: pointer; position: absolute; background: #ff0000; border-radius: 25px; border-color: #ff0000; z-index: 9999; margin-top: 5px;     padding: 9px 60px 7px;}
+#top #collection-pdf-btn:hover{background: transparent; color: #000; border-color: #000;}
 #top .st-link-button.small-style.mobile-only{display: none;}
 .collection-video-container{margin-top: 30px;}
 .collection-qa-container{margin-top: 20px;}
