@@ -73,11 +73,12 @@ function st_update_prices_callback($request)
                 $error_message = $matched_finish_index->get_error_message();
             } else {
                 $finish_row = $tile_finish[$matched_finish_index];
+                $normalized_target_size = st_normalize_tile_size($size);
                 if (isset($finish_row['tile_size']) && is_array($finish_row['tile_size'])) {
                     foreach ($finish_row['tile_size'] as $size_index => $size_row) {
-                        $current_size_name = isset($size_row['tile_size_name']) ? trim((string) $size_row['tile_size_name']) : '';
-                        // Compare size name (case-insensitive)
-                        if (strcasecmp($current_size_name, $size) === 0) {
+                        $current_size_name = isset($size_row['tile_size_name']) ? $size_row['tile_size_name'] : '';
+                        // Compare normalized size (ignores case, spaces, and multiplication symbol variants)
+                        if (st_normalize_tile_size($current_size_name) === $normalized_target_size) {
                             // Update the price and suffix in the array
                             $tile_finish[$matched_finish_index]['tile_size'][$size_index]['tile_size_price'] = $price;
                             $tile_finish[$matched_finish_index]['tile_size'][$size_index]['suffixtile_size_suffix'] = $suffix;
@@ -139,19 +140,21 @@ function st_find_matching_finish_index($tile_finish, $product_code, $finish)
 {
     $code_matches = array();
     $finish_matches = array();
+    $normalized_target_code = st_normalize_match_text($product_code);
+    $normalized_target_finish = st_normalize_match_text($finish);
 
     foreach ($tile_finish as $finish_index => $finish_row) {
-        $current_code = isset($finish_row['product_code']) ? trim((string) $finish_row['product_code']) : '';
+        $current_code = isset($finish_row['product_code']) ? $finish_row['product_code'] : '';
         $raw_finish = isset($finish_row['finish_name']) ? $finish_row['finish_name'] : '';
         $current_finish = is_array($raw_finish) && isset($raw_finish['value'])
-            ? trim((string) $raw_finish['value'])
-            : trim((string) $raw_finish);
+            ? $raw_finish['value']
+            : $raw_finish;
 
-        if ($product_code !== '' && $current_code !== '' && strcasecmp($current_code, $product_code) === 0) {
+        if ($normalized_target_code !== '' && st_normalize_match_text($current_code) === $normalized_target_code) {
             $code_matches[] = $finish_index;
         }
 
-        if ($finish !== '' && $current_finish !== '' && strcasecmp($current_finish, $finish) === 0) {
+        if ($normalized_target_finish !== '' && st_normalize_match_text($current_finish) === $normalized_target_finish) {
             $finish_matches[] = $finish_index;
         }
     }
@@ -173,4 +176,39 @@ function st_find_matching_finish_index($tile_finish, $product_code, $finish)
     }
 
     return new WP_Error('finish_not_found', 'Matching product_code or finish_name not found in this product.');
+}
+
+/**
+ * Normalize text for reliable matching by decoding entities, removing all whitespace, and lowercasing.
+ *
+ * @param mixed $value Raw text value.
+ * @return string Normalized string.
+ */
+function st_normalize_match_text($value)
+{
+    $text = html_entity_decode((string) $value, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+    $text = preg_replace('/[\s\p{Z}]+/u', '', $text);
+
+    return function_exists('mb_strtolower') ? mb_strtolower($text, 'UTF-8') : strtolower($text);
+}
+
+/**
+ * Normalize tile size string by unifying multiplication/cross symbols, dashes, whitespace, and case.
+ *
+ * @param mixed $size Raw size string.
+ * @return string Normalized size string.
+ */
+function st_normalize_tile_size($size)
+{
+    $text = html_entity_decode((string) $size, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+
+    // Unify various multiplication/cross symbols (math ×, *, fullwidth Ｘ/ｘ/＊, lookalikes) to 'x'
+    $multiply_symbols = array('×', '✕', '✖', '✗', '✘', '⨯', '∗', '*', '＊', 'Ｘ', 'ｘ', 'Х', 'х', 'Χ', 'χ');
+    $text = str_replace($multiply_symbols, 'x', $text);
+
+    // Unify Unicode dash variants to ASCII hyphen
+    $dash_symbols = array('–', '—', '－', '−');
+    $text = str_replace($dash_symbols, '-', $text);
+
+    return st_normalize_match_text($text);
 }
