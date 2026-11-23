@@ -105,11 +105,11 @@ span.trade-mark{font-size: 0.4em; vertical-align: super; line-height: 0; margin-
 #tile-finish-accordion .accordion-item{border-left-width: 0; border-right-width: 0;}
 #tile-finish-accordion .accordion-body{padding: 0;}
 #tile-finish-accordion .accordion-body img{max-width: 200px;}
-#tile-finish-accordion .accordion-body .tile-size-list{margin: 10px 0;}
-#tile-finish-accordion .accordion-body .tile-size-list li{line-height: 28px; margin-top: 3px; display: flex; align-items: flex-end; width: 100%; gap: 20px; border-top: 1px solid #eee; padding: 5px 0;}
+#tile-finish-accordion .accordion-body .tile-size-list{margin: 10px 0 0;}
+#tile-finish-accordion .accordion-body .tile-size-list li{line-height: 28px; display: flex; align-items: center; width: 100%; gap: 20px; border-top: 1px solid #eee; padding: 6px 0 5px;}
 #tile-finish-accordion .accordion-body .tile-size-list span{display: inline-block; width: calc(100% - 40px); line-height: 1.4;}
 #tile-finish-accordion .accordion-body .tile-size-list li #add-to-basket{cursor: pointer; width: 20px;}
-#tile-finish-accordion .accordion-body .tile-size-list li #add-to-basket img{width: 100%; transition: 0.5s;}
+#tile-finish-accordion .accordion-body .tile-size-list li #add-to-basket img{width: 100%; transition: 0.5s; display: flex; padding: 3px 0;}
 #tile-finish-accordion .accordion-body .tile-size-list li #add-to-basket img:hover{opacity: 0.7;}
 #tile-finish-accordion .accordion-body .tile-sidebar-btns a{display: inline-block; width: 100%; text-align: center; border: 2px solid #666; border-radius: 10px; margin: 0 0 15px; padding: 5px 0 3px; transition: 0.5s;}
 #tile-finish-accordion .accordion-body .tile-sidebar-btns a:hover{color: #fff; background: #ea1c2e; border-color: #ea1c2e; box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);}
