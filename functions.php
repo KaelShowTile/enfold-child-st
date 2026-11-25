@@ -28,6 +28,9 @@ require_once get_stylesheet_directory() . '/tile-enquiry-tracker.php';
 // Include custom API for updating tile prices
 require_once get_stylesheet_directory() . '/api-update-prices.php';
 
+// Include All Tiles static JSON feed generator & script enqueuer
+require_once get_stylesheet_directory() . '/all-tile-feed.php';
+
 // Enqueue backend styles
 add_action( 'admin_enqueue_scripts', 'enqueue_backend_styles' );
 function enqueue_backend_styles() {

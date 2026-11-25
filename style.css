@@ -101,6 +101,7 @@ span.trade-mark{font-size: 0.4em; vertical-align: super; line-height: 0; margin-
 #tile-finish-accordion .accordion-button:focus{box-shadow: none;}
 #tile-finish-accordion .accordion-button h5{display: inline-block; text-transform: uppercase; font-size: 1rem; font-family: 'Roboto', Helvetica, Arial, sans-serif; line-height: 0.75; margin-bottom: 0;}
 #tile-finish-accordion .accordion-button h5 span{font-size: 0.80rem; text-transform: none; line-height: 1.5;}
+#tile-finish-accordion .accordion-button h5 span.slip-rate{margin-left: 10px;}
 #tile-finish-accordion .accordion-button .copy-tile-code{width: 11px; margin: 0 0 0 2px;}
 #tile-finish-accordion .accordion-item{border-left-width: 0; border-right-width: 0;}
 #tile-finish-accordion .accordion-body{padding: 0;}
@@ -688,3 +689,32 @@ svg.swiper-navigation-icon{height: 14px; color: #000000; stroke: #000;}
     .html_modern-blog main .collection-breadcrumbs .breadcrumb{margin-top: 0;}
     .home-feature-page-inner .swiper-pagination{display: none;}
 }
+
+
+/* All Tiles Template */
+.all-tiles-list-container .all-tiles-list { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 40px; }
+.all-tiles-list-container .all-tiles-list .single-tile-card { width: calc((100% - 80px) / 3); position: relative; }
+.all-tiles-list-container .all-tiles-list .single-tile-card > a { display: block; position: relative; overflow: unset !important; }
+.all-tiles-list-container .all-tiles-list .single-tile-card > a img:not(.tile-virtual-threater-icon) { width: 100%; height: auto; display: block; }
+.all-tiles-list-container .all-tiles-list .single-tile-card .tile-virtual-threater-icon { position: absolute; top: 10px; right: 10px; width: 30px; height: 30px; padding: 5px; background: #606060; border-radius: 12px; z-index: 2; }
+.all-tiles-filter-group { margin-bottom: 10px; }
+.all-tiles-filter-group:first-child .category-item.tile-filter-heading { margin-top: 10px; }
+.category-list .active-categories .active-cat { cursor: pointer; }
+.category-list .active-categories .active-cat.clear-all-filters { background: #333; color: #fff; border-color: #333; }
+.all-tiles-status-bar { margin: 0 0 15px; font-size: 0.9rem; color: #666; }
+.all-tiles-empty-message, .all-tiles-loading-message { width: 100%; padding: 40px 20px; text-align: center; color: #666; font-size: 1rem; }
+
+@media only screen and (max-width: 989px) {
+    .all-tiles-list-container .all-tiles-list { gap: 20px; }
+    .all-tiles-list-container .all-tiles-list .single-tile-card { width: calc((100% - 40px) / 3); }
+}
+
+@media only screen and (max-width: 767px) {
+    .all-tiles-list-container .all-tiles-list { gap: 20px; }
+    .all-tiles-list-container .all-tiles-list .single-tile-card { width: calc((100% - 20px) / 2); }
+    #tile-fliters.mobile-only .collection-fliter-btn { background: transparent; padding: 12px 5px 10px; font-size: 1.2rem; margin-top: 20px; border-bottom: 1px solid #ccc; color: #000; font-weight: 600; }
+    #tile-fliters.mobile-only .collection-fliter-btn.collapsed { border-width: 0; }
+    #tile-fliters.mobile-only .collection-fliter-btn:focus { box-shadow: none; color: #000; }
+    #tile-fliters.mobile-only .accordion-body { padding: 0 5px 20px; }
+}
+.all-tiles-filter-list .tile-filter-option.selected { cursor: pointer; }
