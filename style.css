@@ -102,6 +102,7 @@ span.trade-mark{font-size: 0.4em; vertical-align: super; line-height: 0; margin-
 #tile-finish-accordion .accordion-button h5{display: inline-block; text-transform: uppercase; font-size: 1rem; font-family: 'Roboto', Helvetica, Arial, sans-serif; line-height: 0.75; margin-bottom: 0;}
 #tile-finish-accordion .accordion-button h5 span{font-size: 0.80rem; text-transform: none; line-height: 1.5;}
 #tile-finish-accordion .accordion-button h5 span.slip-rate{margin-left: 10px;}
+#tile-finish-accordion .accordion-button h5 span.slip-rate-value{color: #ff0000;}
 #tile-finish-accordion .accordion-button .copy-tile-code{width: 11px; margin: 0 0 0 2px;}
 #tile-finish-accordion .accordion-item{border-left-width: 0; border-right-width: 0;}
 #tile-finish-accordion .accordion-body{padding: 0;}

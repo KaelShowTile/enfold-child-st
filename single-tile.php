@@ -91,7 +91,7 @@ if ($tile_images) {
 												src="<?php echo get_stylesheet_directory_uri(); ?>\assets\img\copy.svg"
 												class="copy-tile-code" value="<?php echo $productCode; ?>" alt="copy tile name">
 											<?php if ($slipRate): ?>
-												<span class="slip-rate">Slip Rate: <?php echo $slipRate; ?></span>
+												<span class="slip-rate">Slip Rate: <span class="slip-rate-value"><?php echo $slipRate; ?></span></span>
 											<?php endif; ?>
 
 									</button>
